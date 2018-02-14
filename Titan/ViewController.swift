@@ -108,14 +108,9 @@ class ViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
     
     
     @IBAction func loginButtonPressed(_ sender: Any) {
-        
-        //     UIApplication.shared.open(loginUrl!, options: nil, completionHandler: nil)
-        
-        if UIApplication.shared.openURL(loginUrl!) {
-            
-            if auth.canHandle(auth.redirectURL) {
-                // To do - build in error handling
-            }
+        UIApplication.shared.open(loginUrl!, options: [:], completionHandler: nil)
+        if auth.canHandle(auth.redirectURL) {
+            // To do - build in error handling
         }
     }
     

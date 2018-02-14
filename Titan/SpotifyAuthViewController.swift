@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SpotifyAuthViewController.swift
 //  Titan
 //
 //  Created by Tim Gamble on 2/7/18.
@@ -12,7 +12,7 @@ import AVFoundation
 
 
 
-class ViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
+class SpotifyAuthViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     
     //--------------------------------------
     // MARK: Variables
@@ -42,7 +42,7 @@ class ViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setup()
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateAfterFirstLogin), name: NSNotification.Name(rawValue: "loginSuccessfull"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SpotifyAuthViewController.updateAfterFirstLogin), name: NSNotification.Name(rawValue: "loginSuccessfull"), object: nil)
         
     }
     
@@ -61,7 +61,7 @@ class ViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
         
     }
     
-    func initializaPlayer(authSession:SPTSession){
+    func initializePlayer(authSession:SPTSession){
         if self.player == nil {
             
             
@@ -86,7 +86,7 @@ class ViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
             let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
             
             self.session = firstTimeSession
-            initializaPlayer(authSession: session)
+            initializePlayer(authSession: session)
             self.loginButton.isHidden = true
             // self.loadingLabel.isHidden = false
             
@@ -101,8 +101,8 @@ class ViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
             if (error != nil) {
                 print("playing!")
             }
-            
         })
+    self.navigationController!.navigationBar.isHidden = true;
         
     }
     

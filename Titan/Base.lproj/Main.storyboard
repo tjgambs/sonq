@@ -114,7 +114,7 @@
         <!--Join Party-->
         <scene sceneID="Z95-RB-MCS">
             <objects>
-                <viewController title="Join Party" id="jAm-Ek-Xqq" customClass="JoinPartyController" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Join Party" id="jAm-Ek-Xqq" customClass="JoinPartyViewController" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="31c-fn-MAL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,11 +159,36 @@
                     </view>
                     <connections>
                         <outlet property="partyID" destination="fwv-HE-3Qp" id="jBY-MI-nTG"/>
+                        <segue destination="mTD-5f-Nwh" kind="showDetail" identifier="PartyMemberSegue" id="qgY-pt-DGY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6a-cY-B4l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="127.2" y="127.83251231527095"/>
+        </scene>
+        <!--Party Member-->
+        <scene sceneID="GXN-EG-WFu">
+            <objects>
+                <viewController title="Party Member" id="mTD-5f-Nwh" customClass="PartyMemberViewController" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Brz-vQ-SW8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WELCOME TO THE PARTY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmf-Sf-ZCc">
+                                <rect key="frame" x="36" y="119" width="302" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.662741574" green="0.93124363440000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="GJv-2F-b8e"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8fI-S6-Nhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="103.2" y="886.69950738916259"/>
         </scene>
     </scenes>
     <resources>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JoinPartyController: UIViewController {
+class JoinPartyViewController: UIViewController {
 
     let titanAPI = TitanAPI.sharedInstance
     @IBOutlet weak var partyID: UITextField!
@@ -25,10 +25,20 @@ class JoinPartyController: UIViewController {
     
     @IBAction func join(_ sender: UIButton) {
         let id = partyID.text ?? ""
-        let song = Song(party_id: id, song_id: id)
-        titanAPI.addSong(song: song) { (error) in
-            if let error = error {
-                fatalError(error.localizedDescription)
+        titanAPI.joinParty(id) { (responseDict) in
+            print(responseDict)
+            if let dataDict = responseDict["data"] as? [String: Any] {
+                if let validParty = dataDict["party_exists"] as? Bool {
+                    if validParty {
+                        print("VALID PARTY")
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "PartyMemberSegue", sender: self)
+                        }
+                    }
+                    else {
+                        print("INVALID PARTY")
+                    }
+                }
             }
         }
     }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		220D19FB20350F7D0055BE1D /* apiWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D19FA20350F7D0055BE1D /* apiWrapper.swift */; };
+		220D19FB20350F7D0055BE1D /* TitanAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D19FA20350F7D0055BE1D /* TitanAPI.swift */; };
 		224483B3202BE6210042591F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483B2202BE6210042591F /* AppDelegate.swift */; };
 		224483B5202BE6210042591F /* SpotifyAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483B4202BE6210042591F /* SpotifyAuthViewController.swift */; };
 		224483B8202BE6210042591F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224483B6202BE6210042591F /* Main.storyboard */; };
@@ -20,6 +20,7 @@
 		22EDCC03202BF1DF00CA1CA0 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EDCC00202BF1DF00CA1CA0 /* SpotifyAudioPlayback.framework */; };
 		E119908E2034DC7E00F0345F /* JoinPartyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119908D2034DC7E00F0345F /* JoinPartyViewController.swift */; };
 		E1406DFD2034D6600027F19E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1406DFC2034D6600027F19E /* HomeViewController.swift */; };
+		E1CBC34220351F9A00B275C8 /* PartyMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CBC34120351F9A00B275C8 /* PartyMemberViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		220D19FA20350F7D0055BE1D /* apiWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apiWrapper.swift; sourceTree = "<group>"; };
+		220D19FA20350F7D0055BE1D /* TitanAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitanAPI.swift; sourceTree = "<group>"; };
 		224483AF202BE6210042591F /* Titan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Titan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		224483B2202BE6210042591F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		224483B4202BE6210042591F /* SpotifyAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAuthViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		22EDCC00202BF1DF00CA1CA0 /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAudioPlayback.framework; path = "../ios-sdk/SpotifyAudioPlayback.framework"; sourceTree = "<group>"; };
 		E119908D2034DC7E00F0345F /* JoinPartyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPartyViewController.swift; sourceTree = "<group>"; };
 		E1406DFC2034D6600027F19E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E1CBC34120351F9A00B275C8 /* PartyMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +125,8 @@
 				224483BE202BE6210042591F /* Info.plist */,
 				E1406DFC2034D6600027F19E /* HomeViewController.swift */,
 				E119908D2034DC7E00F0345F /* JoinPartyViewController.swift */,
-				220D19FA20350F7D0055BE1D /* apiWrapper.swift */,
+				220D19FA20350F7D0055BE1D /* TitanAPI.swift */,
+				E1CBC34120351F9A00B275C8 /* PartyMemberViewController.swift */,
 			);
 			path = Titan;
 			sourceTree = "<group>";
@@ -292,10 +295,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				224483B5202BE6210042591F /* SpotifyAuthViewController.swift in Sources */,
-				220D19FB20350F7D0055BE1D /* apiWrapper.swift in Sources */,
+				220D19FB20350F7D0055BE1D /* TitanAPI.swift in Sources */,
 				224483B3202BE6210042591F /* AppDelegate.swift in Sources */,
 				E1406DFD2034D6600027F19E /* HomeViewController.swift in Sources */,
 				E119908E2034DC7E00F0345F /* JoinPartyViewController.swift in Sources */,
+				E1CBC34220351F9A00B275C8 /* PartyMemberViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

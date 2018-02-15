@@ -203,12 +203,17 @@
                                     <action selector="searchSong:" destination="mTD-5f-Nwh" eventType="touchUpInside" id="peN-Fu-WLv"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IeR-lu-OYo">
+                                <rect key="frame" x="36" y="208" width="302" height="570"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.662741574" green="0.93124363440000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="GJv-2F-b8e"/>
                     </view>
                     <connections>
                         <outlet property="searchBox" destination="6x2-ib-KMN" id="ivz-H1-NSt"/>
+                        <outlet property="searchResults" destination="IeR-lu-OYo" id="DuU-Vc-fcE"/>
                         <outlet property="welcomeLabel" destination="rmf-Sf-ZCc" id="avf-ps-hKq"/>
                     </connections>
                 </viewController>

@@ -9,6 +9,7 @@
 class TitanAPI: NSObject {
     
     static let sharedInstance = TitanAPI()
+    static var PARTY_ID = ""
     
     struct Payload: Codable {
         let party_id: String

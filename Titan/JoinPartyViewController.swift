@@ -31,6 +31,7 @@ class JoinPartyViewController: UIViewController {
                 if let validParty = dataDict["party_exists"] as? Bool {
                     if validParty {
                         print("VALID PARTY")
+                        TitanAPI.PARTY_ID = id
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "PartyMemberSegue", sender: self)
                         }

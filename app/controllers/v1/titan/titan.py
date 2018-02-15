@@ -63,3 +63,18 @@ def delete_song():
             success=True
         )
     )
+
+@mod.route("/join_party/<party_id>", methods=["GET"])
+def join_party(party_id):
+    q = db.session.query(Queue).filter(Queue.party_id == party_id)
+    if len(q.all()) :
+    	data = {'party_exists' : True}
+    else :
+    	data = {'party_exists' : False}
+    return jsonify(
+        prepare_json_response(
+            message="OK",
+            success=True,
+            data=data
+        )
+    )

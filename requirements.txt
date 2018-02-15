@@ -7,3 +7,4 @@ MarkupSafe==1.0
 psycopg2==2.7.4
 SQLAlchemy==1.2.2
 Werkzeug==0.14.1
+spotipy==2.4.4

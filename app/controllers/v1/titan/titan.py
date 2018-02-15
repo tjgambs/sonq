@@ -7,6 +7,14 @@ from app import db
 from app.utils import prepare_json_response
 from app.models.queue import Queue
 
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+
+client_credentials_manager = SpotifyClientCredentials(client_id='a9f554e8bb984585a1113624550330bb', 
+													  client_secret='5ba840288aad4545a879d0dad451720a', 
+													  proxies=None)
+spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
 
 mod = Blueprint("v1_titan", __name__, url_prefix="/v1/titan")
 
@@ -76,5 +84,19 @@ def join_party(party_id):
             message="OK",
             success=True,
             data=data
+        )
+    )
+
+@mod.route("/spotify_search/<query>", methods=["GET"])
+def spotify_search(query):
+    results = spotify.search(q=query, type='track')
+    for item in results['tracks']['items']:
+    	print 'Song Name: ' + item['name'] + '  Artist: ' + item['artists'][0]['name'] + '  Song ID: ' + item['id'] + '\n'
+
+    return jsonify(
+        prepare_json_response(
+            message="OK",
+            success=True,
+            #data=data
         )
     )

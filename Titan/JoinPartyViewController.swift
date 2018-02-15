@@ -13,6 +13,22 @@ class JoinPartyViewController: UIViewController {
     let titanAPI = TitanAPI.sharedInstance
     @IBOutlet weak var partyID: UITextField!
     
+    struct Response: Codable {
+        let data: DataVariable
+        let meta: MetaVariable
+    }
+    
+    struct DataVariable: Codable {
+        let party_exists: Bool
+    }
+    
+    struct MetaVariable: Codable {
+        let data_count: Int
+        let message: String
+        let request: String
+        let success: Bool
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,21 +42,16 @@ class JoinPartyViewController: UIViewController {
     @IBAction func join(_ sender: UIButton) {
         let id = partyID.text ?? ""
         titanAPI.joinParty(id) { (responseDict) in
-            print(responseDict)
-            if let dataDict = responseDict["data"] as? [String: Any] {
-                if let validParty = dataDict["party_exists"] as? Bool {
-                    if validParty {
-                        print("VALID PARTY")
-                        TitanAPI.PARTY_ID = id
-                        DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "PartyMemberSegue", sender: self)
-                        }
-                    }
-                    else {
-                        print("INVALID PARTY")
+            do {
+                let jsonDecoder = JSONDecoder()
+                let response = try jsonDecoder.decode(Response.self, from: responseDict)
+                if response.data.party_exists {
+                    TitanAPI.PARTY_ID = id
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "PartyMemberSegue", sender: self)
                     }
                 }
-            }
+            } catch {}
         }
     }
 }

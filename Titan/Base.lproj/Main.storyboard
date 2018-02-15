@@ -131,10 +131,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27m-aV-OOo">
+                                <rect key="frame" x="115" y="373" width="145" height="51"/>
+                                <color key="backgroundColor" red="0.12029799200000001" green="0.067733026350000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Join">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="join:" destination="jAm-Ek-Xqq" eventType="touchUpInside" id="4qe-jz-VUh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="27m-aV-OOo" firstAttribute="leading" secondItem="F1M-Yl-m6v" secondAttribute="leading" constant="115" id="Any-N9-VLd"/>
                             <constraint firstItem="F1M-Yl-m6v" firstAttribute="trailing" secondItem="LcP-9Q-R86" secondAttribute="trailing" constant="104" id="McU-Ix-bTs"/>
+                            <constraint firstItem="27m-aV-OOo" firstAttribute="top" secondItem="fwv-HE-3Qp" secondAttribute="bottom" constant="20" id="U9Y-ET-WlD"/>
+                            <constraint firstItem="F1M-Yl-m6v" firstAttribute="trailing" secondItem="27m-aV-OOo" secondAttribute="trailing" constant="115" id="aRI-E2-nPQ"/>
                             <constraint firstItem="LcP-9Q-R86" firstAttribute="leading" secondItem="F1M-Yl-m6v" secondAttribute="leading" constant="104" id="kD4-ab-865"/>
                             <constraint firstItem="LcP-9Q-R86" firstAttribute="top" secondItem="F1M-Yl-m6v" secondAttribute="top" constant="180" id="mST-cK-Qwu"/>
                             <constraint firstItem="fwv-HE-3Qp" firstAttribute="leading" secondItem="F1M-Yl-m6v" secondAttribute="leading" constant="85" id="nSx-O6-Y5X"/>
@@ -143,6 +157,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="F1M-Yl-m6v"/>
                     </view>
+                    <connections>
+                        <outlet property="partyID" destination="fwv-HE-3Qp" id="jBY-MI-nTG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6a-cY-B4l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

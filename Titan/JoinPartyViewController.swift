@@ -10,6 +10,8 @@ import UIKit
 
 class JoinPartyController: UIViewController {
 
+    let titanAPI = TitanAPI.sharedInstance
+    @IBOutlet weak var partyID: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,5 +23,14 @@ class JoinPartyController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func join(_ sender: UIButton) {
+        let id = partyID.text ?? ""
+        let song = Song(party_id: id, song_id: id)
+        titanAPI.addSong(song: song) { (error) in
+            if let error = error {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
 }
 

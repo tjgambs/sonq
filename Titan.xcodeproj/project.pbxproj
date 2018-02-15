@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220D19FB20350F7D0055BE1D /* apiWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D19FA20350F7D0055BE1D /* apiWrapper.swift */; };
 		224483B3202BE6210042591F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483B2202BE6210042591F /* AppDelegate.swift */; };
 		224483B5202BE6210042591F /* SpotifyAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483B4202BE6210042591F /* SpotifyAuthViewController.swift */; };
 		224483B8202BE6210042591F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224483B6202BE6210042591F /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		220D19FA20350F7D0055BE1D /* apiWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apiWrapper.swift; sourceTree = "<group>"; };
 		224483AF202BE6210042591F /* Titan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Titan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		224483B2202BE6210042591F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		224483B4202BE6210042591F /* SpotifyAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAuthViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				224483BE202BE6210042591F /* Info.plist */,
 				E1406DFC2034D6600027F19E /* HomeViewController.swift */,
 				E119908D2034DC7E00F0345F /* JoinPartyViewController.swift */,
+				220D19FA20350F7D0055BE1D /* apiWrapper.swift */,
 			);
 			path = Titan;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				224483B5202BE6210042591F /* SpotifyAuthViewController.swift in Sources */,
+				220D19FB20350F7D0055BE1D /* apiWrapper.swift in Sources */,
 				224483B3202BE6210042591F /* AppDelegate.swift in Sources */,
 				E1406DFD2034D6600027F19E /* HomeViewController.swift in Sources */,
 				E119908E2034DC7E00F0345F /* JoinPartyViewController.swift in Sources */,

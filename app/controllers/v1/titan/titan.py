@@ -83,7 +83,10 @@ def join_party(party_id):
 @mod.route("/spotify_search/<query>", methods=["GET"])
 def spotify_search(query):
     results = spotify_client.search(q=query, type='track')
-    data = results['tracks']['items']
+    data = [{'uri': i['uri'],
+             'name':i['name'],
+             'artist':i['artists'][0]['name']}
+            for i in results['tracks']['items']]
     return jsonify(
         prepare_json_response(
             message="OK",

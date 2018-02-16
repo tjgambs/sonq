@@ -82,7 +82,7 @@ def join_party(party_id):
 
 @mod.route("/spotify_search/<query>", methods=["GET"])
 def spotify_search(query):
-    results = spotify_client.search(q=query, type='track')
+    results = spotify_client.search(q=query, type='track', limit=50)
     data = [{'uri': i['uri'],
              'name':i['name'],
              'artist':i['artists'][0]['name']}

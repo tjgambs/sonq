@@ -12,6 +12,7 @@ class JoinPartyViewController: UIViewController {
 
     let titanAPI = TitanAPI.sharedInstance
     @IBOutlet weak var partyID: UITextField!
+    @IBOutlet weak var joinButton: UIButton!
     
     struct Response: Codable {
         let data: DataVariable
@@ -32,6 +33,7 @@ class JoinPartyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        joinButton.layer.cornerRadius = 12
     }
     
     override func didReceiveMemoryWarning() {

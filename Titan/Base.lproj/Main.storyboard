@@ -158,6 +158,7 @@
                         <viewLayoutGuide key="safeArea" id="F1M-Yl-m6v"/>
                     </view>
                     <connections>
+                        <outlet property="joinButton" destination="27m-aV-OOo" id="Y73-JY-Cmb"/>
                         <outlet property="partyID" destination="fwv-HE-3Qp" id="jBY-MI-nTG"/>
                         <segue destination="mTD-5f-Nwh" kind="showDetail" identifier="PartyMemberSegue" id="qgY-pt-DGY"/>
                     </connections>

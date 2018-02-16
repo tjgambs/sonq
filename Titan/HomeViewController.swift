@@ -15,6 +15,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        startParty.layer.cornerRadius = 12
+        joinParty.layer.cornerRadius = 12
     }
     
     override func didReceiveMemoryWarning() {

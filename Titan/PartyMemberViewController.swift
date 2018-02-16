@@ -78,10 +78,8 @@ class PartyMemberViewController: UIViewController {
                     }
                 }
             } catch {}
-           
         }
     }
-    
 }
 
 

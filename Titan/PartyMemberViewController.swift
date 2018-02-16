@@ -11,6 +11,7 @@ import UIKit
 class PartyMemberViewController: UIViewController {
     
     let titanAPI = TitanAPI.sharedInstance
+    let jsonDecoder = JSONDecoder()
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var searchBox: UITextField!
     @IBOutlet weak var searchButton: UIButton!
@@ -20,9 +21,22 @@ class PartyMemberViewController: UIViewController {
     
     var searchResultButtons = [UIButton : String]()
     
-    struct Response: Codable {
-        let data: [Song]?
+    struct SongResponse: Codable {
+        let data: [Song]
         let meta: MetaVariable
+    }
+    
+    struct QueueResponse: Codable {
+        let data: Queue
+        let meta: MetaVariable
+    }
+    
+    struct PostResponse: Codable {
+        let meta: MetaVariable
+    }
+    
+    struct Queue: Codable {
+        let results: [String]
     }
     
     struct Song: Codable {
@@ -55,11 +69,38 @@ class PartyMemberViewController: UIViewController {
         print((sender.titleLabel!.text ?? "") + " - URI: \(uri)")
         titanAPI.addSong(TitanAPI.PARTY_ID, uri) { (responseDict) in
             do {
-                let jsonDecoder = JSONDecoder()
-                let response = try jsonDecoder.decode(Response.self, from: responseDict)
-                print(response.meta.success)
-            } catch {print("ERROR: \(error)")}
+                let response = try self.jsonDecoder.decode(PostResponse.self, from: responseDict)
+                let message = response.meta.message
+                if message == "OK" {
+                    DispatchQueue.main.async {
+                        self.searchResults.removeArrangedSubview(sender)
+                    }
+                }
+                else {
+                    self.showAlert(title: "Song Already in Queue", message: "This Song is already in the queue. Please wait for the song to finish before adding it again.")
+                }
+                
+            } catch {}
         }
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func getCurrentQueue() -> [String] {
+        var currQueue = [String]()
+        titanAPI.getSongs(TitanAPI.PARTY_ID) { (responseDict) in
+            do {
+                let response = try self.jsonDecoder.decode(QueueResponse.self, from: responseDict)
+                currQueue = response.data.results
+            } catch {}
+        }
+        return currQueue
     }
     
     func createButton(_ song: Song) -> UIButton {
@@ -74,20 +115,17 @@ class PartyMemberViewController: UIViewController {
         let text = searchBox.text ?? ""
         titanAPI.searchSong(text) { (responseDict) in
             do {
-                let jsonDecoder = JSONDecoder()
-                let response = try jsonDecoder.decode(Response.self, from: responseDict)
+                let response = try self.jsonDecoder.decode(SongResponse.self, from: responseDict)
                 DispatchQueue.main.async {
                     for b in self.searchResultButtons.keys {
                         self.searchResults.removeArrangedSubview(b)
                     }
                 }
-                if let data = response.data {
-                    for song in data {
-                        DispatchQueue.main.async {
-                            let button = self.createButton(song)
-                            self.searchResultButtons[button] = song.uri
-                            self.searchResults.addArrangedSubview(button)
-                        }
+                for song in response.data {
+                    DispatchQueue.main.async {
+                        let button = self.createButton(song)
+                        self.searchResultButtons[button] = song.uri
+                        self.searchResults.addArrangedSubview(button)
                     }
                 }
             } catch {}

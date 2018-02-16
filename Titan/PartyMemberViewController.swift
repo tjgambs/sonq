@@ -16,9 +16,12 @@ class PartyMemberViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchResults: UIStackView!
     
-    var searchResultButtons: [UIButton] = []
+    //var searchResultButtons: [UIButton] = []
+    
+    var searchResultButtons = [UIButton : String]()
+    
     struct Response: Codable {
-        let data: [Song]
+        let data: [Song]?
         let meta: MetaVariable
     }
     
@@ -29,7 +32,7 @@ class PartyMemberViewController: UIViewController {
     }
     
     struct MetaVariable: Codable {
-        let data_count: Int
+        let data_count: Int?
         let message: String
         let request: String
         let success: Bool
@@ -48,7 +51,15 @@ class PartyMemberViewController: UIViewController {
     }
     
     @objc func buttonAction(sender: UIButton!) {
-        print(sender.titleLabel!.text ?? "")
+        let uri = searchResultButtons[sender] ?? "NULL"
+        print((sender.titleLabel!.text ?? "") + " - URI: \(uri)")
+        titanAPI.addSong(TitanAPI.PARTY_ID, uri) { (responseDict) in
+            do {
+                let jsonDecoder = JSONDecoder()
+                let response = try jsonDecoder.decode(Response.self, from: responseDict)
+                print(response.meta.success)
+            } catch {print("ERROR: \(error)")}
+        }
     }
     
     func createButton(_ song: Song) -> UIButton {
@@ -66,15 +77,17 @@ class PartyMemberViewController: UIViewController {
                 let jsonDecoder = JSONDecoder()
                 let response = try jsonDecoder.decode(Response.self, from: responseDict)
                 DispatchQueue.main.async {
-                    for b in self.searchResultButtons {
+                    for b in self.searchResultButtons.keys {
                         self.searchResults.removeArrangedSubview(b)
                     }
                 }
-                for song in response.data {
-                    DispatchQueue.main.async {
-                        let button = self.createButton(song)
-                        self.searchResultButtons.append(button)
-                        self.searchResults.addArrangedSubview(button)
+                if let data = response.data {
+                    for song in data {
+                        DispatchQueue.main.async {
+                            let button = self.createButton(song)
+                            self.searchResultButtons[button] = song.uri
+                            self.searchResults.addArrangedSubview(button)
+                        }
                     }
                 }
             } catch {}

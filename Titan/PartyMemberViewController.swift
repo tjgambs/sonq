@@ -13,11 +13,10 @@ class PartyMemberViewController: UIViewController {
     let titanAPI = TitanAPI.sharedInstance
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var searchBox: UITextField!
-
+    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchResults: UIStackView!
     
     var searchResultButtons: [UIButton] = []
-    
     struct Response: Codable {
         let data: [Song]
         let meta: MetaVariable
@@ -40,6 +39,7 @@ class PartyMemberViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         welcomeLabel.text = "Welcome to Party \(TitanAPI.PARTY_ID)"
+        searchButton.layer.cornerRadius = 12
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,7 +53,7 @@ class PartyMemberViewController: UIViewController {
     
     func createButton(_ song: Song) -> UIButton {
         let button = UIButton(frame: CGRect(x: 100, y: 100, width: 200, height: 15))
-        button.backgroundColor = .green
+        button.backgroundColor = .lightGray
         button.setTitle(song.name + " - " + song.artist, for: [])
         button.addTarget(self, action: #selector(self.buttonAction), for: .touchUpInside)
         return button

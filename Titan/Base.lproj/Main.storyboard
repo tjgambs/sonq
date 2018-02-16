@@ -175,45 +175,78 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WELCOME TO THE PARTY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmf-Sf-ZCc">
-                                <rect key="frame" x="36" y="44" width="302" height="104"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Party Test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmf-Sf-ZCc">
+                                <rect key="frame" x="8" y="44" width="359" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P41-o2-rqL">
-                                <rect key="frame" x="16" y="128" width="54" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for Song or Artist" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6x2-ib-KMN">
+                                <rect key="frame" x="16" y="87" width="343" height="30"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6x2-ib-KMN">
-                                <rect key="frame" x="78" y="123" width="281" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQX-Bo-GYp">
-                                <rect key="frame" x="163" y="170" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQX-Bo-GYp">
+                                <rect key="frame" x="128" y="127" width="119" height="51"/>
+                                <color key="backgroundColor" red="0.12029799200000001" green="0.067733026350000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="searchSong:" destination="mTD-5f-Nwh" eventType="touchUpInside" id="peN-Fu-WLv"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IeR-lu-OYo">
-                                <rect key="frame" x="36" y="208" width="302" height="570"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stackView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSJ-r7-8xN">
+                                <rect key="frame" x="16" y="190" width="343" height="588"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="top" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IeR-lu-OYo">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.333333333333332"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlb-kR-dJO" userLabel="HiddenLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IeR-lu-OYo" secondAttribute="trailing" id="9hB-Hd-I0c"/>
+                                    <constraint firstItem="IeR-lu-OYo" firstAttribute="leading" secondItem="MSJ-r7-8xN" secondAttribute="leading" id="SUB-87-keO"/>
+                                    <constraint firstAttribute="bottom" secondItem="IeR-lu-OYo" secondAttribute="bottom" id="Xyf-rM-zPl"/>
+                                    <constraint firstItem="IeR-lu-OYo" firstAttribute="width" secondItem="MSJ-r7-8xN" secondAttribute="width" id="d9p-AG-g5v"/>
+                                    <constraint firstItem="IeR-lu-OYo" firstAttribute="top" secondItem="MSJ-r7-8xN" secondAttribute="top" id="ipl-JX-TjT"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.662741574" green="0.93124363440000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6x2-ib-KMN" firstAttribute="top" secondItem="rmf-Sf-ZCc" secondAttribute="bottom" constant="20" id="1rZ-P8-KZW"/>
+                            <constraint firstItem="MSJ-r7-8xN" firstAttribute="leading" secondItem="GJv-2F-b8e" secondAttribute="leading" constant="16" id="ACf-z5-YEV"/>
+                            <constraint firstItem="GJv-2F-b8e" firstAttribute="trailing" secondItem="6x2-ib-KMN" secondAttribute="trailing" constant="16" id="C09-dw-f2E"/>
+                            <constraint firstItem="RQX-Bo-GYp" firstAttribute="leading" secondItem="GJv-2F-b8e" secondAttribute="leading" constant="128" id="EOZ-IW-rdA"/>
+                            <constraint firstItem="RQX-Bo-GYp" firstAttribute="top" secondItem="rmf-Sf-ZCc" secondAttribute="bottom" constant="60" id="Pwx-nY-lEh"/>
+                            <constraint firstItem="rmf-Sf-ZCc" firstAttribute="top" secondItem="GJv-2F-b8e" secondAttribute="top" id="Qmj-ST-Ozf"/>
+                            <constraint firstItem="GJv-2F-b8e" firstAttribute="trailing" secondItem="MSJ-r7-8xN" secondAttribute="trailing" constant="16" id="TO6-AL-NXg"/>
+                            <constraint firstItem="MSJ-r7-8xN" firstAttribute="top" secondItem="RQX-Bo-GYp" secondAttribute="bottom" constant="12" id="VvY-XW-vrD"/>
+                            <constraint firstItem="rmf-Sf-ZCc" firstAttribute="leading" secondItem="GJv-2F-b8e" secondAttribute="leading" constant="8" id="bKm-0S-2wc"/>
+                            <constraint firstItem="MSJ-r7-8xN" firstAttribute="leading" secondItem="GJv-2F-b8e" secondAttribute="leading" constant="16" id="cMr-Gb-fj5"/>
+                            <constraint firstItem="6x2-ib-KMN" firstAttribute="leading" secondItem="GJv-2F-b8e" secondAttribute="leading" constant="16" id="doh-RW-twz"/>
+                            <constraint firstItem="GJv-2F-b8e" firstAttribute="trailing" secondItem="MSJ-r7-8xN" secondAttribute="trailing" constant="16" id="gkV-Jx-ufh"/>
+                            <constraint firstItem="GJv-2F-b8e" firstAttribute="trailing" secondItem="RQX-Bo-GYp" secondAttribute="trailing" constant="128" id="nkf-LX-Aug"/>
+                            <constraint firstItem="MSJ-r7-8xN" firstAttribute="bottom" secondItem="GJv-2F-b8e" secondAttribute="bottom" id="oSN-Xp-Oh5"/>
+                            <constraint firstItem="MSJ-r7-8xN" firstAttribute="bottom" secondItem="GJv-2F-b8e" secondAttribute="bottom" id="t1G-WQ-gO2"/>
+                            <constraint firstItem="GJv-2F-b8e" firstAttribute="trailing" secondItem="rmf-Sf-ZCc" secondAttribute="trailing" constant="8" id="tY1-nJ-dOv"/>
+                            <constraint firstItem="MSJ-r7-8xN" firstAttribute="top" secondItem="RQX-Bo-GYp" secondAttribute="bottom" constant="12" id="ylg-gU-Imc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GJv-2F-b8e"/>
                     </view>
                     <connections>
                         <outlet property="searchBox" destination="6x2-ib-KMN" id="ivz-H1-NSt"/>
+                        <outlet property="searchButton" destination="RQX-Bo-GYp" id="7Xf-uh-04B"/>
                         <outlet property="searchResults" destination="IeR-lu-OYo" id="DuU-Vc-fcE"/>
                         <outlet property="welcomeLabel" destination="rmf-Sf-ZCc" id="avf-ps-hKq"/>
                     </connections>

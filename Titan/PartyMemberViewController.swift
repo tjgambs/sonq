@@ -16,10 +16,10 @@ class PartyMemberViewController: UIViewController {
     @IBOutlet weak var searchBox: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchResults: UIStackView!
-    
-    //var searchResultButtons: [UIButton] = []
+    @IBOutlet weak var playlistButton: UIButton!
     
     var searchResultButtons = [UIButton : String]()
+    var queueLabels = [UILabel]()
     
     struct SongResponse: Codable {
         let data: [Song]
@@ -57,6 +57,7 @@ class PartyMemberViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         welcomeLabel.text = "Welcome to Party \(TitanAPI.PARTY_ID)"
         searchButton.layer.cornerRadius = 12
+        playlistButton.layer.cornerRadius = 12
     }
     
     override func didReceiveMemoryWarning() {
@@ -92,15 +93,40 @@ class PartyMemberViewController: UIViewController {
         }
     }
     
-    func getCurrentQueue() -> [String] {
-        var currQueue = [String]()
+    @IBAction func getCurrentQueue() {
+        playlistButton.setTitle("Refresh", for: [])
+        DispatchQueue.main.async {
+            for l in self.queueLabels {
+                self.searchResults.removeArrangedSubview(l)
+            }
+            self.queueLabels.removeAll()
+        }
+        //Remove search results
+        DispatchQueue.main.async {
+            for b in self.searchResultButtons.keys {
+                self.searchResults.removeArrangedSubview(b)
+                self.searchResultButtons.removeValue(forKey: b)
+            }
+        }
         titanAPI.getSongs(TitanAPI.PARTY_ID) { (responseDict) in
             do {
                 let response = try self.jsonDecoder.decode(QueueResponse.self, from: responseDict)
-                currQueue = response.data.results
+                for id in response.data.results {
+                    DispatchQueue.main.async {
+                        let label = self.createLabels(id)
+                        self.queueLabels.append(label)
+                        self.searchResults.addArrangedSubview(label)
+                    }
+                }
             } catch {}
         }
-        return currQueue
+    }
+    
+    func createLabels(_ id: String) -> UILabel {
+        let label = UILabel(frame: CGRect(x: 100, y: 100, width: 200, height: 15))
+        label.backgroundColor = .lightGray
+        label.text = id
+        return label
     }
     
     func createButton(_ song: Song) -> UIButton {
@@ -112,6 +138,14 @@ class PartyMemberViewController: UIViewController {
     }
     
     @IBAction func searchSong(_ sender: UIButton) {
+        playlistButton.setTitle("Current Playlist", for: [])
+        //Remove current playlist
+        DispatchQueue.main.async {
+            for l in self.queueLabels {
+                self.searchResults.removeArrangedSubview(l)
+            }
+            self.queueLabels.removeAll()
+        }
         let text = searchBox.text ?? ""
         titanAPI.searchSong(text) { (responseDict) in
             do {
@@ -119,6 +153,7 @@ class PartyMemberViewController: UIViewController {
                 DispatchQueue.main.async {
                     for b in self.searchResultButtons.keys {
                         self.searchResults.removeArrangedSubview(b)
+                        self.searchResultButtons.removeValue(forKey: b)
                     }
                 }
                 for song in response.data {

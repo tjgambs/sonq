@@ -8,17 +8,24 @@ from app import spotify_client
 from app.utils import prepare_json_response
 from app.models.queue import Queue
 
+from sqlalchemy.exc import IntegrityError
+
 
 mod = Blueprint("v1_titan", __name__, url_prefix="/v1/titan")
 
 
 @mod.route("/add_song", methods=["POST"])
 def add_song():
-    db.session.add(Queue(**request.json))
-    db.session.commit()
+    message = "OK"
+    try:
+        db.session.add(Queue(**request.json))
+        db.session.commit()
+    except IntegrityError:
+        message = "SONG IN QUEUE"
+        db.session.close()
     return jsonify(
         prepare_json_response(
-            message="OK",
+            message=message,
             success=True
         )
     )

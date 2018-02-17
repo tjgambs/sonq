@@ -7,20 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		220D19FB20350F7D0055BE1D /* TitanAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D19FA20350F7D0055BE1D /* TitanAPI.swift */; };
+		0700CAFD20694A7DA44CC779 /* Pods_Titan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE7349BC1BB936B231F777A /* Pods_Titan.framework */; };
+		1555EBDF1F48D55D39DDE9E9 /* Pods_TitanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E21CF0F4FC41DE3E1331BA /* Pods_TitanUITests.framework */; };
 		224483B3202BE6210042591F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483B2202BE6210042591F /* AppDelegate.swift */; };
-		224483B5202BE6210042591F /* SpotifyAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483B4202BE6210042591F /* SpotifyAuthViewController.swift */; };
-		224483B8202BE6210042591F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224483B6202BE6210042591F /* Main.storyboard */; };
 		224483BA202BE6210042591F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 224483B9202BE6210042591F /* Assets.xcassets */; };
 		224483BD202BE6210042591F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224483BB202BE6210042591F /* LaunchScreen.storyboard */; };
 		224483C8202BE6210042591F /* TitanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483C7202BE6210042591F /* TitanTests.swift */; };
 		224483D3202BE6210042591F /* TitanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483D2202BE6210042591F /* TitanUITests.swift */; };
+		22A25FCE203806EF00E4D0DB /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FCD203806EF00E4D0DB /* LoginManager.swift */; };
+		22A25FD02038074A00E4D0DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FCF2038074A00E4D0DB /* ViewController.swift */; };
+		22A25FD4203807BC00E4D0DB /* TableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FD3203807BC00E4D0DB /* TableViewVC.swift */; };
+		22A25FD6203807E100E4D0DB /* MusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FD5203807E100E4D0DB /* MusicVC.swift */; };
+		22A25FDA2038081500E4D0DB /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FD92038081500E4D0DB /* MediaPlayer.swift */; };
+		22A25FDC2038081D00E4D0DB /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FDB2038081D00E4D0DB /* SongCell.swift */; };
+		22A25FDE2038082200E4D0DB /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FDD2038082200E4D0DB /* Song.swift */; };
+		22A25FE02038083A00E4D0DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A25FDF2038083A00E4D0DB /* Main.storyboard */; };
+		22A25FE3203808A700E4D0DB /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FE2203808A700E4D0DB /* Header.m */; };
+		22A25FE82038091C00E4D0DB /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A25FE62038091B00E4D0DB /* SpotifyMetadata.framework */; };
+		22A25FE92038091C00E4D0DB /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A25FE72038091B00E4D0DB /* SpotifyAudioPlayback.framework */; };
+		22A25FEB20380E5400E4D0DB /* JoinPartyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FEA20380E5400E4D0DB /* JoinPartyVC.swift */; };
+		22A25FEF2038146300E4D0DB /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FEE2038146300E4D0DB /* Api.swift */; };
+		22A25FF1203816A700E4D0DB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FF0203816A700E4D0DB /* Utils.swift */; };
 		22EDCC01202BF1DF00CA1CA0 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EDCBFE202BF1DF00CA1CA0 /* SpotifyAuthentication.framework */; };
-		22EDCC02202BF1DF00CA1CA0 /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EDCBFF202BF1DF00CA1CA0 /* SpotifyMetadata.framework */; };
-		22EDCC03202BF1DF00CA1CA0 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EDCC00202BF1DF00CA1CA0 /* SpotifyAudioPlayback.framework */; };
-		E119908E2034DC7E00F0345F /* JoinPartyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119908D2034DC7E00F0345F /* JoinPartyViewController.swift */; };
-		E1406DFD2034D6600027F19E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1406DFC2034D6600027F19E /* HomeViewController.swift */; };
-		E1CBC34220351F9A00B275C8 /* PartyMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CBC34120351F9A00B275C8 /* PartyMemberViewController.swift */; };
+		B1068FCDFD634B2F97406D0B /* Pods_TitanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8B626CA516BE4E7CA821A7 /* Pods_TitanTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,11 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		220D19FA20350F7D0055BE1D /* TitanAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitanAPI.swift; sourceTree = "<group>"; };
 		224483AF202BE6210042591F /* Titan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Titan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		224483B2202BE6210042591F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		224483B4202BE6210042591F /* SpotifyAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAuthViewController.swift; sourceTree = "<group>"; };
-		224483B7202BE6210042591F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		224483B9202BE6210042591F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		224483BC202BE6210042591F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		224483BE202BE6210042591F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,13 +61,32 @@
 		224483CE202BE6210042591F /* TitanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TitanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		224483D2202BE6210042591F /* TitanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitanUITests.swift; sourceTree = "<group>"; };
 		224483D4202BE6210042591F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		224483F1202BEFFA0042591F /* Titan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Titan-Bridging-Header.h"; sourceTree = "<group>"; };
+		22A25FCD203806EF00E4D0DB /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		22A25FCF2038074A00E4D0DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		22A25FD3203807BC00E4D0DB /* TableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewVC.swift; sourceTree = "<group>"; };
+		22A25FD5203807E100E4D0DB /* MusicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVC.swift; sourceTree = "<group>"; };
+		22A25FD92038081500E4D0DB /* MediaPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
+		22A25FDB2038081D00E4D0DB /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		22A25FDD2038082200E4D0DB /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		22A25FDF2038083A00E4D0DB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		22A25FE12038089200E4D0DB /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		22A25FE2203808A700E4D0DB /* Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Header.m; sourceTree = "<group>"; };
+		22A25FE5203808CF00E4D0DB /* Titan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Titan-Bridging-Header.h"; sourceTree = "<group>"; };
+		22A25FE62038091B00E4D0DB /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyMetadata.framework; path = ../../../Desktop/SpotiBox/SpotifyMetadata.framework; sourceTree = "<group>"; };
+		22A25FE72038091B00E4D0DB /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAudioPlayback.framework; path = ../../../Desktop/SpotiBox/SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
+		22A25FEA20380E5400E4D0DB /* JoinPartyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPartyVC.swift; sourceTree = "<group>"; };
+		22A25FEE2038146300E4D0DB /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		22A25FF0203816A700E4D0DB /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		22EDCBFE202BF1DF00CA1CA0 /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
-		22EDCBFF202BF1DF00CA1CA0 /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyMetadata.framework; path = "../ios-sdk/SpotifyMetadata.framework"; sourceTree = "<group>"; };
-		22EDCC00202BF1DF00CA1CA0 /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAudioPlayback.framework; path = "../ios-sdk/SpotifyAudioPlayback.framework"; sourceTree = "<group>"; };
-		E119908D2034DC7E00F0345F /* JoinPartyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPartyViewController.swift; sourceTree = "<group>"; };
-		E1406DFC2034D6600027F19E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		E1CBC34120351F9A00B275C8 /* PartyMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberViewController.swift; sourceTree = "<group>"; };
+		3350B69A1FF07679D266E0AB /* Pods-TitanUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests.release.xcconfig"; sourceTree = "<group>"; };
+		38B25543CB0A8FE2A390A1C1 /* Pods-Titan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Titan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Titan/Pods-Titan.release.xcconfig"; sourceTree = "<group>"; };
+		3EE7349BC1BB936B231F777A /* Pods_Titan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Titan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3FB3B3097538A7765B2087A /* Pods-TitanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AB7BC43FDF99DC80E3B3DB8A /* Pods-Titan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Titan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Titan/Pods-Titan.debug.xcconfig"; sourceTree = "<group>"; };
+		B9E21CF0F4FC41DE3E1331BA /* Pods_TitanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TitanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD8B626CA516BE4E7CA821A7 /* Pods_TitanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TitanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7466FA659C7CE816E1DD241 /* Pods-TitanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests.release.xcconfig"; sourceTree = "<group>"; };
+		EC42DC0BE5AA35ECACA56337 /* Pods-TitanUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,9 +94,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22EDCC02202BF1DF00CA1CA0 /* SpotifyMetadata.framework in Frameworks */,
+				22A25FE82038091C00E4D0DB /* SpotifyMetadata.framework in Frameworks */,
 				22EDCC01202BF1DF00CA1CA0 /* SpotifyAuthentication.framework in Frameworks */,
-				22EDCC03202BF1DF00CA1CA0 /* SpotifyAudioPlayback.framework in Frameworks */,
+				22A25FE92038091C00E4D0DB /* SpotifyAudioPlayback.framework in Frameworks */,
+				0700CAFD20694A7DA44CC779 /* Pods_Titan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1068FCDFD634B2F97406D0B /* Pods_TitanTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1555EBDF1F48D55D39DDE9E9 /* Pods_TitanUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,12 +123,16 @@
 		224483A6202BE6210042591F = {
 			isa = PBXGroup;
 			children = (
-				224483F1202BEFFA0042591F /* Titan-Bridging-Header.h */,
+				22A25FE5203808CF00E4D0DB /* Titan-Bridging-Header.h */,
+				22A25FE72038091B00E4D0DB /* SpotifyAudioPlayback.framework */,
+				22A25FE62038091B00E4D0DB /* SpotifyMetadata.framework */,
+				22EDCBFE202BF1DF00CA1CA0 /* SpotifyAuthentication.framework */,
 				224483B1202BE6210042591F /* Titan */,
 				224483C6202BE6210042591F /* TitanTests */,
 				224483D1202BE6210042591F /* TitanUITests */,
 				224483B0202BE6210042591F /* Products */,
 				224483E0202BE68E0042591F /* Frameworks */,
+				EA717578E36437366CCAA7EB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,16 +149,23 @@
 		224483B1202BE6210042591F /* Titan */ = {
 			isa = PBXGroup;
 			children = (
+				22A25FE12038089200E4D0DB /* Header.h */,
+				22A25FE2203808A700E4D0DB /* Header.m */,
+				22A25FEE2038146300E4D0DB /* Api.swift */,
 				224483B2202BE6210042591F /* AppDelegate.swift */,
-				224483B4202BE6210042591F /* SpotifyAuthViewController.swift */,
-				224483B6202BE6210042591F /* Main.storyboard */,
+				22A25FCD203806EF00E4D0DB /* LoginManager.swift */,
+				22A25FCF2038074A00E4D0DB /* ViewController.swift */,
+				22A25FD3203807BC00E4D0DB /* TableViewVC.swift */,
+				22A25FD5203807E100E4D0DB /* MusicVC.swift */,
+				22A25FD92038081500E4D0DB /* MediaPlayer.swift */,
+				22A25FDB2038081D00E4D0DB /* SongCell.swift */,
+				22A25FDD2038082200E4D0DB /* Song.swift */,
 				224483B9202BE6210042591F /* Assets.xcassets */,
+				22A25FDF2038083A00E4D0DB /* Main.storyboard */,
 				224483BB202BE6210042591F /* LaunchScreen.storyboard */,
 				224483BE202BE6210042591F /* Info.plist */,
-				E1406DFC2034D6600027F19E /* HomeViewController.swift */,
-				E119908D2034DC7E00F0345F /* JoinPartyViewController.swift */,
-				220D19FA20350F7D0055BE1D /* TitanAPI.swift */,
-				E1CBC34120351F9A00B275C8 /* PartyMemberViewController.swift */,
+				22A25FEA20380E5400E4D0DB /* JoinPartyVC.swift */,
+				22A25FF0203816A700E4D0DB /* Utils.swift */,
 			);
 			path = Titan;
 			sourceTree = "<group>";
@@ -152,11 +191,24 @@
 		224483E0202BE68E0042591F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				22EDCC00202BF1DF00CA1CA0 /* SpotifyAudioPlayback.framework */,
-				22EDCBFE202BF1DF00CA1CA0 /* SpotifyAuthentication.framework */,
-				22EDCBFF202BF1DF00CA1CA0 /* SpotifyMetadata.framework */,
+				3EE7349BC1BB936B231F777A /* Pods_Titan.framework */,
+				CD8B626CA516BE4E7CA821A7 /* Pods_TitanTests.framework */,
+				B9E21CF0F4FC41DE3E1331BA /* Pods_TitanUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA717578E36437366CCAA7EB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AB7BC43FDF99DC80E3B3DB8A /* Pods-Titan.debug.xcconfig */,
+				38B25543CB0A8FE2A390A1C1 /* Pods-Titan.release.xcconfig */,
+				A3FB3B3097538A7765B2087A /* Pods-TitanTests.debug.xcconfig */,
+				D7466FA659C7CE816E1DD241 /* Pods-TitanTests.release.xcconfig */,
+				EC42DC0BE5AA35ECACA56337 /* Pods-TitanUITests.debug.xcconfig */,
+				3350B69A1FF07679D266E0AB /* Pods-TitanUITests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,9 +218,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 224483D7202BE6210042591F /* Build configuration list for PBXNativeTarget "Titan" */;
 			buildPhases = (
+				8843A5003CB4AC76B271BC0E /* [CP] Check Pods Manifest.lock */,
 				224483AB202BE6210042591F /* Sources */,
 				224483AC202BE6210042591F /* Frameworks */,
 				224483AD202BE6210042591F /* Resources */,
+				91A4003C539B8FA0DD1FF28D /* [CP] Embed Pods Frameworks */,
+				F0E842E58232A8AD98F45F74 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -183,9 +238,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 224483DA202BE6210042591F /* Build configuration list for PBXNativeTarget "TitanTests" */;
 			buildPhases = (
+				32F6F0FB644DC7E9F3E5003E /* [CP] Check Pods Manifest.lock */,
 				224483BF202BE6210042591F /* Sources */,
 				224483C0202BE6210042591F /* Frameworks */,
 				224483C1202BE6210042591F /* Resources */,
+				D723D65E9CA38C90150C8D28 /* [CP] Embed Pods Frameworks */,
+				BA157CF7FA0236128B820524 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,9 +259,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 224483DD202BE6210042591F /* Build configuration list for PBXNativeTarget "TitanUITests" */;
 			buildPhases = (
+				5CEE8ED6F32D8EA115DD88A6 /* [CP] Check Pods Manifest.lock */,
 				224483CA202BE6210042591F /* Sources */,
 				224483CB202BE6210042591F /* Frameworks */,
 				224483CC202BE6210042591F /* Resources */,
+				CD1A66785EA254FC01C71C2E /* [CP] Embed Pods Frameworks */,
+				48876C80C270ADF1B1ABB912 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -267,9 +328,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22A25FE02038083A00E4D0DB /* Main.storyboard in Resources */,
 				224483BD202BE6210042591F /* LaunchScreen.storyboard in Resources */,
 				224483BA202BE6210042591F /* Assets.xcassets in Resources */,
-				224483B8202BE6210042591F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,17 +350,175 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		32F6F0FB644DC7E9F3E5003E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TitanTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48876C80C270ADF1B1ABB912 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5CEE8ED6F32D8EA115DD88A6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TitanUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8843A5003CB4AC76B271BC0E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Titan-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91A4003C539B8FA0DD1FF28D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Titan/Pods-Titan-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Titan/Pods-Titan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA157CF7FA0236128B820524 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD1A66785EA254FC01C71C2E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D723D65E9CA38C90150C8D28 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0E842E58232A8AD98F45F74 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Titan/Pods-Titan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		224483AB202BE6210042591F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				224483B5202BE6210042591F /* SpotifyAuthViewController.swift in Sources */,
-				220D19FB20350F7D0055BE1D /* TitanAPI.swift in Sources */,
+				22A25FD4203807BC00E4D0DB /* TableViewVC.swift in Sources */,
+				22A25FE3203808A700E4D0DB /* Header.m in Sources */,
+				22A25FCE203806EF00E4D0DB /* LoginManager.swift in Sources */,
 				224483B3202BE6210042591F /* AppDelegate.swift in Sources */,
-				E1406DFD2034D6600027F19E /* HomeViewController.swift in Sources */,
-				E119908E2034DC7E00F0345F /* JoinPartyViewController.swift in Sources */,
-				E1CBC34220351F9A00B275C8 /* PartyMemberViewController.swift in Sources */,
+				22A25FDC2038081D00E4D0DB /* SongCell.swift in Sources */,
+				22A25FEF2038146300E4D0DB /* Api.swift in Sources */,
+				22A25FD6203807E100E4D0DB /* MusicVC.swift in Sources */,
+				22A25FD02038074A00E4D0DB /* ViewController.swift in Sources */,
+				22A25FEB20380E5400E4D0DB /* JoinPartyVC.swift in Sources */,
+				22A25FDA2038081500E4D0DB /* MediaPlayer.swift in Sources */,
+				22A25FDE2038082200E4D0DB /* Song.swift in Sources */,
+				22A25FF1203816A700E4D0DB /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,14 +554,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		224483B6202BE6210042591F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				224483B7202BE6210042591F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		224483BB202BE6210042591F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -463,6 +674,7 @@
 		};
 		224483D8202BE6210042591F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB7BC43FDF99DC80E3B3DB8A /* Pods-Titan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -486,6 +698,7 @@
 		};
 		224483D9202BE6210042591F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38B25543CB0A8FE2A390A1C1 /* Pods-Titan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -508,6 +721,7 @@
 		};
 		224483DB202BE6210042591F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3FB3B3097538A7765B2087A /* Pods-TitanTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -525,6 +739,7 @@
 		};
 		224483DC202BE6210042591F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7466FA659C7CE816E1DD241 /* Pods-TitanTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -542,6 +757,7 @@
 		};
 		224483DE202BE6210042591F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC42DC0BE5AA35ECACA56337 /* Pods-TitanUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -558,6 +774,7 @@
 		};
 		224483DF202BE6210042591F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3350B69A1FF07679D266E0AB /* Pods-TitanUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

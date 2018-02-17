@@ -33,11 +33,27 @@ def add_song():
 
 
 @mod.route("/get_next_song/<deviceID>", methods=["GET"])
-def get_queue(deviceID):
+def get_next_song(deviceID):
     q = (db.session.query(Queue)
          .filter(Queue.deviceID == deviceID)
          .order_by(Queue.created_at.asc()))
     data = {'results': q.first().serialize if q.first() else None}
+    return jsonify(
+        prepare_json_response(
+            message="OK",
+            success=True,
+            data=data
+        )
+    )
+
+
+@mod.route("/get_queue/<deviceID>", methods=["GET"])
+def get_queue(deviceID):
+    q = (db.session.query(Queue)
+         .filter(Queue.deviceID == deviceID)
+         .order_by(Queue.created_at.asc()))
+    payload = [x.serialize for x in q.all()]
+    data = {'results': payload}
     return jsonify(
         prepare_json_response(
             message="OK",

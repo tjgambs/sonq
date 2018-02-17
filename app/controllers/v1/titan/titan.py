@@ -7,6 +7,7 @@ from app import db
 from app import spotify_client
 from app.utils import prepare_json_response
 from app.models.queue import Queue
+from app.models.device import Device
 
 from sqlalchemy.exc import IntegrityError
 
@@ -31,25 +32,12 @@ def add_song():
     )
 
 
-@mod.route("/get_queue/<party_id>", methods=["GET"])
-def get_queue(party_id):
-    q = db.session.query(Queue).filter(Queue.party_id == party_id)
-    payload = [q.song_id for q in q.all()]
-    data = {'results': payload}
-    return jsonify(
-        prepare_json_response(
-            message="OK",
-            success=True,
-            data=data
-        )
-    )
-
-
-@mod.route("/get_parties", methods=["GET"])
-def get_parties():
-    q = db.session.query(Queue.party_id).group_by(Queue.party_id)
-    payload = [q.party_id for q in q.all()]
-    data = {'results': payload}
+@mod.route("/get_next_song/<deviceID>", methods=["GET"])
+def get_queue(deviceID):
+    q = (db.session.query(Queue)
+         .filter(Queue.deviceID == deviceID)
+         .order_by(Queue.created_at.asc()))
+    data = {'results': q.first().serialize if q.first() else None}
     return jsonify(
         prepare_json_response(
             message="OK",
@@ -63,8 +51,8 @@ def get_parties():
 def delete_song():
     req_content = request.json
     db.session.query(Queue).filter(
-        (Queue.party_id == req_content['party_id'])
-        & (Queue.song_id == req_content['song_id'])).delete()
+        (Queue.deviceID == req_content['deviceID'])
+        & (Queue.songURL == req_content['songURL'])).delete()
     db.session.commit()
     return jsonify(
         prepare_json_response(
@@ -74,26 +62,27 @@ def delete_song():
     )
 
 
-@mod.route("/join_party/<party_id>", methods=["GET"])
-def join_party(party_id):
-    q = db.session.query(Queue).filter(Queue.party_id == party_id)
-    data = {'party_exists': bool(len(q.all()))}
+@mod.route("/register_device/<deviceID>", methods=["GET"])
+def register_device(deviceID):
+    message = "OK"
+    try:
+        db.session.add(Device(id=deviceID))
+        db.session.commit()
+    except IntegrityError:
+        message = "PARTY ALREADY EXISTS"
+        db.session.close()
     return jsonify(
         prepare_json_response(
-            message="OK",
-            success=True,
-            data=data
+            message=message,
+            success=True
         )
     )
 
 
-@mod.route("/spotify_search/<query>", methods=["GET"])
-def spotify_search(query):
-    results = spotify_client.search(q=query, type='track', limit=50)
-    data = [{'uri': i['uri'],
-             'name':i['name'],
-             'artist':i['artists'][0]['name']}
-            for i in results['tracks']['items']]
+@mod.route("/join_party/<deviceID>", methods=["GET"])
+def join_party(deviceID):
+    q = db.session.query(Device).filter(Device.id == deviceID)
+    data = {'party_exists': bool(len(q.all()))}
     return jsonify(
         prepare_json_response(
             message="OK",

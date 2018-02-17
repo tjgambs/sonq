@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class Song {
-    
+
     struct SongData: Codable {
         var name: String
         var artist: String
@@ -47,21 +47,8 @@ class Song {
     var searchURL: String!
     
     var validURL = true
-    
-    func getQueue() {
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            Api.shared.getQueue(deviceID) { (responseDict) in
-                do {
-                    let response = try self.jsonDecoder.decode(QueueResponse.self, from: responseDict)
-                    for song in response.data.results {
-                        self.songArray.append(song)
-                    }
-                } catch {}
-            }
-            
-        }
-    }
-    
+
+
     func getSongDetails(completed: @escaping () -> ()) {
         let auth = SPTAuth.defaultInstance()!
         

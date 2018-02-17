@@ -180,12 +180,16 @@
                     <navigationItem key="navigationItem" title="DJ TITAN" id="E2h-lm-Hhd">
                         <barButtonItem key="backBarButtonItem" title=" " id="JZe-MW-36P"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="xd0-Qr-q2i">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Al8-i5-nbG">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Al8-i5-nbG" userLabel="ViewQueue">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View Queue">
                                     <color key="titleColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayQueueButtonClicked:" destination="1XN-Bz-T1o" eventType="touchUpInside" id="Dzp-ug-1CB"/>
+                                    <action selector="displayQueueButtonClicked:" destination="nHa-xF-Um8" eventType="touchUpInside" id="wg6-f4-bz4"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="XiL-Dk-gfC">

@@ -15,7 +15,7 @@ class TableViewVC: UIViewController {
     let jsonDecoder = JSONDecoder()
     
     struct SongResponse: Codable {
-        let data: [SongData]
+        let data: [Song.SongData]
         let meta: MetaVariable
     }
     
@@ -29,7 +29,7 @@ class TableViewVC: UIViewController {
     }
     
     struct Queue: Codable {
-        let results: [SongData]
+        let results: [Song.SongData]
     }
     
     struct SongData: Codable {
@@ -78,6 +78,24 @@ class TableViewVC: UIViewController {
     @IBAction func partyIDButtonClicked(_ sender: UIButton) {
         if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
             self.showAlert(title:"Your Party ID:", message:deviceID)
+        }
+    }
+    
+    @IBAction func displayQueueButtonClicked(_ sender: UIButton) {
+        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+            Api.shared.getQueue(deviceID) { (responseDict) in
+                do {
+                    let response = try self.jsonDecoder.decode(QueueResponse.self, from: responseDict)
+                    
+                    self.song.songArray = []
+                    for s in response.data.results {
+                        self.song.songArray.append(s)
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } catch {}
+            }
         }
     }
 }

@@ -101,6 +101,32 @@ class TableViewVC: UIViewController {
         }
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "tableToMusic" {
+            var response: NextSongResponse?
+            if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+                Api.shared.getNextSong(deviceID) { (responseDict) in
+                    do {
+                        response = try self.jsonDecoder.decode(NextSongResponse.self, from: responseDict)
+                    }catch {
+                        print("ERROR IN shouldPerformSegue: \(error)")
+                    }
+                }
+                while (response == nil) {
+                    sleep(1)
+                }
+                //okay to force unwrap because of loop above
+                if response!.data.results != nil {
+                    return true
+                }
+                else {
+                    showAlert(title: "No song in queue", message: "Add a song to the queue to get this party started!")
+                    return false
+                }
+            }
+        }
+        return true
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! MusicVC
@@ -115,13 +141,6 @@ class TableViewVC: UIViewController {
                             destination.imageURL = results.imageURL
                             destination.songURL = results.songURL
                             destination.durationInSeconds = results.durationInSeconds
-                        }
-                        else {
-                            destination.song = "NO SONG"
-                            destination.artist = "NO ARTIST"
-                            destination.imageURL = "NO URL"
-                            destination.songURL = "NO URL"
-                            destination.durationInSeconds = 0
                         }
                     } catch {
                         print("ERROR IN prepare: \(error)")

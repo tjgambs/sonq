@@ -207,7 +207,7 @@
                                 <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="View Party"/>
                                 <connections>
-                                    <segue destination="vDj-bj-6iy" kind="show" id="rA5-pJ-Muh"/>
+                                    <segue destination="vDj-bj-6iy" kind="show" identifier="tableToMusic" id="rA5-pJ-Muh"/>
                                 </connections>
                             </button>
                         </barButtonItem>

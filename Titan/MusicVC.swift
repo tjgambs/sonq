@@ -63,7 +63,7 @@ class MusicVC: UIViewController {
         }
         
         
-        prepareNextSong()
+        //prepareNextSong()
         updateUserInterface()
         updatePlayButton()
         updateSlider()

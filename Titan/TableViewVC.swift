@@ -30,7 +30,7 @@ class TableViewVC: UIViewController {
     }
     
     struct NextSong: Codable {
-        let results: Song.SongData
+        let results: Song.SongData?
     }
     
     struct PostResponse: Codable {
@@ -96,10 +96,11 @@ class TableViewVC: UIViewController {
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
-                } catch {}
+                } catch {print("ERROR IN displayQueueButtonClicked: \(error)")}
             }
         }
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! MusicVC
@@ -108,12 +109,23 @@ class TableViewVC: UIViewController {
                 Api.shared.getNextSong(deviceID) { (responseDict) in
                     do {
                         let response = try self.jsonDecoder.decode(NextSongResponse.self, from: responseDict)
-                        destination.song = response.data.results.name
-                        destination.artist = response.data.results.artist
-                        destination.imageURL = response.data.results.imageURL
-                        destination.songURL = response.data.results.songURL
-                        destination.durationInSeconds = response.data.results.durationInSeconds
-                    } catch {}
+                        if let results = response.data.results {
+                            destination.song = results.name
+                            destination.artist = results.artist
+                            destination.imageURL = results.imageURL
+                            destination.songURL = results.songURL
+                            destination.durationInSeconds = results.durationInSeconds
+                        }
+                        else {
+                            destination.song = "NO SONG"
+                            destination.artist = "NO ARTIST"
+                            destination.imageURL = "NO URL"
+                            destination.songURL = "NO URL"
+                            destination.durationInSeconds = 0
+                        }
+                    } catch {
+                        print("ERROR IN prepare: \(error)")
+                    }
                 }
             } else {
                 destination.song = MediaPlayer.shared.player?.metadata.currentTrack?.name
@@ -177,7 +189,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                     else {
                         self.showAlert(title: "Song Already in Queue", message: "This Song is already in the queue. Please wait for the song to finish before adding it again.")
                     }
-                } catch {}
+                } catch {print("ERROR IN tableView: \(error)")}
             }
         }
     }

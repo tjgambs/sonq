@@ -207,7 +207,7 @@
                                 <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="View Party"/>
                                 <connections>
-                                    <segue destination="vDj-bj-6iy" kind="show" id="Kh1-GW-5aM"/>
+                                    <segue destination="vDj-bj-6iy" kind="show" id="rA5-pJ-Muh"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -221,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1XN-Bz-T1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282.5" y="-113.02816901408451"/>
+            <point key="canvasLocation" x="1305" y="-114"/>
         </scene>
         <!--MusicVC-->
         <scene sceneID="mID-7r-o6x">

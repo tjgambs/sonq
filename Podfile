@@ -8,6 +8,7 @@ target 'Titan' do
   # Pods for Titan
   pod 'Alamofire', '~> 4.5'
   pod 'SwiftyJSON'
+  pod 'QRCode'
   
   target 'TitanTests' do
     inherit! :search_paths

@@ -69,11 +69,6 @@ class MusicVC: UIViewController {
         updateSlider()
         navigationItem.title = artist.uppercased()
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            partyIDLabel.text = "Party ID: \(deviceID)"
-        }
-        
-        
         
         //Update the slider and the play button once every second
         playTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePlayButton), userInfo: nil, repeats: true)

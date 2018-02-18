@@ -223,10 +223,10 @@
             </objects>
             <point key="canvasLocation" x="1305" y="-114"/>
         </scene>
-        <!--MusicVC-->
+        <!-- -->
         <scene sceneID="mID-7r-o6x">
             <objects>
-                <viewController id="vDj-bj-6iy" customClass="MusicVC" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title=" " id="vDj-bj-6iy" customClass="MusicVC" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rRG-K3-tHd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,35 +259,35 @@
                                     <outletCollection property="gestureRecognizers" destination="1ro-Du-ZY2" appends="YES" id="GGj-A0-yDq"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party ID: Device UUID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFy-8P-jJk">
-                                <rect key="frame" x="76" y="527" width="168" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utu-gg-cg5">
+                                <rect key="frame" x="109" y="518" width="102" height="30"/>
+                                <state key="normal" title="Party QR Code"/>
+                                <connections>
+                                    <segue destination="Two-KP-3h5" kind="show" id="yZK-ye-Ja6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OfS-N4-Ie2" firstAttribute="top" secondItem="lxl-ME-F9R" secondAttribute="bottom" constant="17" id="0B7-r2-OQZ"/>
                             <constraint firstItem="OfS-N4-Ie2" firstAttribute="leading" secondItem="Hzl-7L-fhT" secondAttribute="leading" constant="132" id="CLG-FV-Rau"/>
                             <constraint firstItem="lxl-ME-F9R" firstAttribute="leading" secondItem="Hzl-7L-fhT" secondAttribute="leading" constant="41" id="KpJ-3h-zJ1"/>
+                            <constraint firstItem="Utu-gg-cg5" firstAttribute="centerX" secondItem="rRG-K3-tHd" secondAttribute="centerX" id="MeB-UT-3dW"/>
                             <constraint firstItem="Zju-Ug-VsJ" firstAttribute="leading" secondItem="Hzl-7L-fhT" secondAttribute="leading" constant="42" id="O3e-q0-LOv"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="Zju-Ug-VsJ" secondAttribute="trailing" constant="37" id="QRI-y8-sK4"/>
                             <constraint firstItem="05M-94-1Tp" firstAttribute="top" secondItem="Hzl-7L-fhT" secondAttribute="top" constant="42" id="ZxQ-xD-EVX"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="OfS-N4-Ie2" secondAttribute="trailing" constant="128" id="fPQ-HR-DsX"/>
-                            <constraint firstItem="Hzl-7L-fhT" firstAttribute="bottom" secondItem="sFy-8P-jJk" secondAttribute="bottom" constant="20" id="fpc-Cl-Zuv"/>
                             <constraint firstItem="lxl-ME-F9R" firstAttribute="top" secondItem="Zju-Ug-VsJ" secondAttribute="bottom" constant="23.5" id="g38-gI-S2O"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="05M-94-1Tp" secondAttribute="trailing" constant="37" id="iJJ-MR-bBL"/>
+                            <constraint firstItem="Hzl-7L-fhT" firstAttribute="bottom" secondItem="Utu-gg-cg5" secondAttribute="bottom" constant="20" id="kFN-ds-VZD"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="lxl-ME-F9R" secondAttribute="trailing" constant="37" id="kNA-4E-tDM"/>
                             <constraint firstItem="05M-94-1Tp" firstAttribute="leading" secondItem="Hzl-7L-fhT" secondAttribute="leading" constant="42" id="lPB-4x-CJ4"/>
                             <constraint firstItem="Zju-Ug-VsJ" firstAttribute="top" secondItem="05M-94-1Tp" secondAttribute="bottom" constant="8" id="oGL-BA-bnb"/>
-                            <constraint firstItem="sFy-8P-jJk" firstAttribute="centerX" secondItem="rRG-K3-tHd" secondAttribute="centerX" id="sCs-eb-xBg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hzl-7L-fhT"/>
                     </view>
                     <connections>
                         <outlet property="albumCoverImage" destination="05M-94-1Tp" id="5Li-3D-9Ri"/>
-                        <outlet property="partyIDLabel" destination="sFy-8P-jJk" id="0JI-DV-ndW"/>
                         <outlet property="playButton" destination="OfS-N4-Ie2" id="XLG-3s-G2b"/>
                         <outlet property="slider" destination="lxl-ME-F9R" id="MJd-fv-zGQ"/>
                         <outlet property="songName" destination="Zju-Ug-VsJ" id="Ybz-aQ-ZuV"/>
@@ -301,6 +301,37 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2041.875" y="-113.02816901408451"/>
+        </scene>
+        <!--CodeVC-->
+        <scene sceneID="4z5-Jm-kHE">
+            <objects>
+                <viewController id="Two-KP-3h5" customClass="QRCodeVC" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zid-VA-YwO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dCe-UE-AW8">
+                                <rect key="frame" x="10" y="134" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="SXJ-Jj-K8D"/>
+                                    <constraint firstAttribute="height" constant="300" id="fCq-N3-ejE"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dCe-UE-AW8" firstAttribute="centerY" secondItem="Zid-VA-YwO" secondAttribute="centerY" id="Mk1-nu-nGH"/>
+                            <constraint firstItem="dCe-UE-AW8" firstAttribute="centerX" secondItem="Zid-VA-YwO" secondAttribute="centerX" id="YF9-eE-uzS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hCi-WZ-pfv"/>
+                    </view>
+                    <connections>
+                        <outlet property="qrCodeImage" destination="dCe-UE-AW8" id="Foj-P2-MrJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0DU-rk-yZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2801" y="-114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fCo-fl-Grr">

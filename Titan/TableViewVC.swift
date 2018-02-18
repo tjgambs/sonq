@@ -187,6 +187,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.cellSongName.text = song.songArray[indexPath.row].name
         cell.cellSongDuration.text = song.songArray[indexPath.row].duration
+        cell.cellSongArtist.text = song.songArray[indexPath.row].artist
         
         //get image from imageURL
         guard let url = URL(string: song.songArray[indexPath.row].imageURL) else {

@@ -13,6 +13,7 @@ class SongCell: UITableViewCell {
     @IBOutlet weak var cellSongImage: UIImageView!
     @IBOutlet weak var cellSongName: UILabel!
     @IBOutlet weak var cellSongDuration: UILabel!
+    @IBOutlet weak var cellSongArtist: UILabel!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

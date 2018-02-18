@@ -58,10 +58,16 @@ class Api: NSObject {
     }
 
     
-    func getQueue(_ partyId: String, _ completion: @escaping (Data) -> ()) {
-        let endpoint:String = "/v1/titan/get_queue/\(partyId)"
+    func getQueue(_ deviceID: String, _ completion: @escaping (Data) -> ()) {
+        let endpoint:String = "/v1/titan/get_queue/\(deviceID)"
         let httpMethod:String = "GET"
-        return sendPayload(payload:nil, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
+        sendPayload(payload:nil, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
+    }
+    
+    func getNextSong(_ deviceID: String, _ completion: @escaping (Data) -> ()) {
+        let endpoint:String = "/v1/titan/get_next_song/\(deviceID)"
+        let httpMethod:String = "GET"
+        sendPayload(payload:nil, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
     func addSong(deviceID: String, name: String, artist: String, duration: String, durationInSeconds: Double, imageURL:String, songURL:String, _ completion: @escaping (Data) -> ()) {

@@ -24,6 +24,15 @@ class TableViewVC: UIViewController {
         let meta: MetaVariable
     }
     
+    struct NextSongResponse: Codable {
+        let data: NextSong
+        let meta: MetaVariable
+    }
+    
+    struct NextSong: Codable {
+        let results: Song.SongData
+    }
+    
     struct PostResponse: Codable {
         let meta: MetaVariable
     }
@@ -75,18 +84,11 @@ class TableViewVC: UIViewController {
         }
     }
     
-    @IBAction func partyIDButtonClicked(_ sender: UIButton) {
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            self.showAlert(title:"Your Party ID:", message:deviceID)
-        }
-    }
-    
     @IBAction func displayQueueButtonClicked(_ sender: UIButton) {
         if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
             Api.shared.getQueue(deviceID) { (responseDict) in
                 do {
                     let response = try self.jsonDecoder.decode(QueueResponse.self, from: responseDict)
-                    
                     self.song.songArray = []
                     for s in response.data.results {
                         self.song.songArray.append(s)
@@ -95,6 +97,31 @@ class TableViewVC: UIViewController {
                         self.tableView.reloadData()
                     }
                 } catch {}
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! MusicVC
+        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+            if !MediaPlayer.shared.isPlaying {
+                Api.shared.getNextSong(deviceID) { (responseDict) in
+                    do {
+                        let response = try self.jsonDecoder.decode(NextSongResponse.self, from: responseDict)
+                        destination.song = response.data.results.name
+                        destination.artist = response.data.results.artist
+                        destination.imageURL = response.data.results.imageURL
+                        destination.songURL = response.data.results.songURL
+                        destination.durationInSeconds = response.data.results.durationInSeconds
+                    } catch {}
+                }
+            } else {
+                destination.song = MediaPlayer.shared.player?.metadata.currentTrack?.name
+                destination.artist = MediaPlayer.shared.player?.metadata.currentTrack?.artistName
+                destination.imageURL = MediaPlayer.shared.player?.metadata.currentTrack?.albumCoverArtURL
+                destination.songURL = MediaPlayer.shared.player?.metadata.currentTrack?.uri
+                destination.durationInSeconds = MediaPlayer.shared.player?.metadata.currentTrack?.duration
+                destination.timeElapsed = Float((MediaPlayer.shared.player?.playbackState.position)!) 
             }
         }
     }

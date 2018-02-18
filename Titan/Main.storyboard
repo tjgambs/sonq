@@ -192,15 +192,14 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="XiL-Dk-gfC">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wEQ-46-Dp2">
-                                <rect key="frame" x="233" y="7" width="71" height="30"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="dbc-3G-OD4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eWR-9e-ufc">
+                                <rect key="frame" x="230" y="7" width="74" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Party ID">
-                                    <color key="titleColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="View Party"/>
                                 <connections>
-                                    <action selector="partyIDButtonClicked:" destination="nHa-xF-Um8" eventType="touchUpInside" id="Lg7-dR-b3u"/>
+                                    <segue destination="vDj-bj-6iy" kind="show" id="Kh1-GW-5aM"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -209,6 +208,7 @@
                         <outlet property="partyIDHeader" destination="E2h-lm-Hhd" id="yc3-Xe-jFf"/>
                         <outlet property="searchBar" destination="dzy-4D-GQ1" id="g8c-ya-hdY"/>
                         <outlet property="tableView" destination="DD9-0c-z2n" id="DYL-eX-d6H"/>
+                        <outlet property="view" destination="dEy-W0-2Di" id="BVy-ni-Uc8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1XN-Bz-T1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -224,25 +224,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="05M-94-1Tp">
-                                <rect key="frame" x="42" y="62" width="241" height="216.5"/>
+                                <rect key="frame" x="42" y="106" width="241" height="216.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="05M-94-1Tp" secondAttribute="height" multiplier="241:216" id="aib-e5-Wg1"/>
                                 </constraints>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lxl-ME-F9R">
-                                <rect key="frame" x="39" y="337.5" width="246" height="31"/>
+                                <rect key="frame" x="39" y="381.5" width="246" height="31"/>
                                 <connections>
                                     <action selector="sliderDragged:" destination="vDj-bj-6iy" eventType="valueChanged" id="X53-YX-vLX"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zju-Ug-VsJ">
-                                <rect key="frame" x="42" y="286.5" width="241" height="27"/>
+                                <rect key="frame" x="42" y="330.5" width="241" height="27"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pause" translatesAutoresizingMaskIntoConstraints="NO" id="OfS-N4-Ie2">
-                                <rect key="frame" x="132" y="384.5" width="60" height="60"/>
+                                <rect key="frame" x="132" y="428.5" width="60" height="60"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OfS-N4-Ie2" secondAttribute="height" multiplier="1:1" id="sAi-iy-5j2"/>
@@ -251,6 +251,12 @@
                                     <outletCollection property="gestureRecognizers" destination="1ro-Du-ZY2" appends="YES" id="GGj-A0-yDq"/>
                                 </connections>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party ID: Device UUID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFy-8P-jJk">
+                                <rect key="frame" x="76" y="527" width="168" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -261,16 +267,19 @@
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="Zju-Ug-VsJ" secondAttribute="trailing" constant="37" id="QRI-y8-sK4"/>
                             <constraint firstItem="05M-94-1Tp" firstAttribute="top" secondItem="Hzl-7L-fhT" secondAttribute="top" constant="42" id="ZxQ-xD-EVX"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="OfS-N4-Ie2" secondAttribute="trailing" constant="128" id="fPQ-HR-DsX"/>
+                            <constraint firstItem="Hzl-7L-fhT" firstAttribute="bottom" secondItem="sFy-8P-jJk" secondAttribute="bottom" constant="20" id="fpc-Cl-Zuv"/>
                             <constraint firstItem="lxl-ME-F9R" firstAttribute="top" secondItem="Zju-Ug-VsJ" secondAttribute="bottom" constant="23.5" id="g38-gI-S2O"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="05M-94-1Tp" secondAttribute="trailing" constant="37" id="iJJ-MR-bBL"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="lxl-ME-F9R" secondAttribute="trailing" constant="37" id="kNA-4E-tDM"/>
                             <constraint firstItem="05M-94-1Tp" firstAttribute="leading" secondItem="Hzl-7L-fhT" secondAttribute="leading" constant="42" id="lPB-4x-CJ4"/>
                             <constraint firstItem="Zju-Ug-VsJ" firstAttribute="top" secondItem="05M-94-1Tp" secondAttribute="bottom" constant="8" id="oGL-BA-bnb"/>
+                            <constraint firstItem="sFy-8P-jJk" firstAttribute="centerX" secondItem="rRG-K3-tHd" secondAttribute="centerX" id="sCs-eb-xBg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hzl-7L-fhT"/>
                     </view>
                     <connections>
                         <outlet property="albumCoverImage" destination="05M-94-1Tp" id="5Li-3D-9Ri"/>
+                        <outlet property="partyIDLabel" destination="sFy-8P-jJk" id="0JI-DV-ndW"/>
                         <outlet property="playButton" destination="OfS-N4-Ie2" id="XLG-3s-G2b"/>
                         <outlet property="slider" destination="lxl-ME-F9R" id="MJd-fv-zGQ"/>
                         <outlet property="songName" destination="Zju-Ug-VsJ" id="Ybz-aQ-ZuV"/>

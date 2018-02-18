@@ -79,7 +79,6 @@ class ViewController: UIViewController {
                     let response = try self.jsonDecoder.decode(DataResponse.self, from: responseDict)
                     if response.data.party_exists {
                         DispatchQueue.main.async {
-                            UserDefaults.standard.register(defaults: ["partyID" : partyId])
                             self.performSegue(withIdentifier: "SearchSongSegue", sender: self)
                         }
                     } else {

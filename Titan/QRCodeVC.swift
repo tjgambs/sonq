@@ -17,8 +17,13 @@ class QRCodeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Generate a QR code using this device's UUID.
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+        // This is a party member, not a host. Generate a QR code using the party id.
+        if !Api.JOIN_ID.isEmpty {
+            let qrCode = QRCode(Api.JOIN_ID)
+            self.qrCodeImage.image = UIImageView(qrCode: qrCode!).image
+        }
+        // Else this is a host, generate a QR code using this device's UUID.
+        else if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
             let qrCode = QRCode(deviceID)
             self.qrCodeImage.image = UIImageView(qrCode: qrCode!).image
         }

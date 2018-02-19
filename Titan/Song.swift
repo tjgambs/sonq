@@ -16,14 +16,44 @@ class Song {
     let auth = SPTAuth.defaultInstance()!
     var songArray = [SongData]()
     var searchURL: String!
+    var accessToken: String?
     
+    var updateAuthTimer: Timer!
+    
+    public init() {
+        self.updateAuthorization()
+        updateAuthTimer = Timer.scheduledTimer(timeInterval: 1800, target: self, selector: #selector(updateAuthorization), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateAuthorization() {
+        //This function allows anyone to be able to search for songs.
+        let headers = ["Authorization": "Basic MzYyZmM1YmRkMGQ1NDYxNDk5Y2NmNmU0ZTc0ODM4MDA6ODhiNGNlOWVhMTQ2NDdjOTlkOGI0YjU3MGYxYTk5OGE="]
+        let para = ["grant_type": "client_credentials"]
+        let url = "https://accounts.spotify.com/api/token"
+        Alamofire.request(
+            url,
+            method: .post,
+            parameters: para,
+            encoding: URLEncoding.default,
+            headers : headers).responseJSON { response in
+                switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        self.accessToken = json.dictionary!["access_token"]?.stringValue
+                case .failure(let error):
+                    print(error)
+                }
+        }
+    }
+
     //Whenever the searchURL changes, collect the search results from the Spotify API.
     func getSongDetails(callback: @escaping () -> ()) {
         if (searchURL == nil) {
             return
         }
         let param = ["q":"", "type":"track"]
-        let headers = ["Authorization": "Bearer " + auth.session.accessToken]
+        
+        let headers = ["Authorization": "Bearer " + self.accessToken!]
         Alamofire.request(
             searchURL,
             method: .get,

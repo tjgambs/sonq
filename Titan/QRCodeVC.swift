@@ -9,6 +9,7 @@
 import UIKit
 import QRCode
 
+
 class QRCodeVC: UIViewController {
 
     @IBOutlet weak var qrCodeImage: UIImageView!
@@ -16,29 +17,15 @@ class QRCodeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Generate a QR code using this device's UUID.
         if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            var qrCode = QRCode(deviceID)
-            qrCode?.size = CGSize(width: 300, height: 300)
+            let qrCode = QRCode(deviceID)
             self.qrCodeImage.image = UIImageView(qrCode: qrCode!).image
         }
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -17,7 +17,7 @@ class MusicVC: UIViewController {
     }
     
     struct NextSong: Codable {
-        let results: Song.SongData
+        let results: SongData
     }
     
     struct MetaVariable: Codable {
@@ -34,7 +34,7 @@ class MusicVC: UIViewController {
     @IBOutlet weak var partyIDLabel: UILabel!
     
     let jsonDecoder = JSONDecoder()
-    var nextSong: Song.SongData?
+    var nextSong: SongData?
     
     var song: String!
     var artist: String!

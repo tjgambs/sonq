@@ -10,54 +10,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+
 class TableViewVC: UIViewController {
-    
-    let jsonDecoder = JSONDecoder()
-    
-    struct SongResponse: Codable {
-        let data: [Song.SongData]
-        let meta: MetaVariable
-    }
-    
-    struct QueueResponse: Codable {
-        let data: Queue
-        let meta: MetaVariable
-    }
-    
-    struct NextSongResponse: Codable {
-        let data: NextSong
-        let meta: MetaVariable
-    }
-    
-    struct NextSong: Codable {
-        let results: Song.SongData?
-    }
-    
-    struct PostResponse: Codable {
-        let meta: MetaVariable
-    }
-    
-    struct Queue: Codable {
-        let results: [Song.SongData]
-    }
-    
-    struct SongData: Codable {
-        var deviceID: String
-        var name: String
-        var artist: String
-        var duration: String
-        var durationInSeconds: Double
-        var imageURL: String
-        var songURL: String
-    }
-    
-    struct MetaVariable: Codable {
-        let data_count: Int?
-        let message: String
-        let request: String
-        let success: Bool
-    }
-    
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -67,7 +22,8 @@ class TableViewVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //log into audio streaming
+        
+        //Login to Spotify
         LoginManager.shared.preparePlayer()
         
         searchBar.delegate = self
@@ -76,19 +32,17 @@ class TableViewVC: UIViewController {
         tableView.keyboardDismissMode = .onDrag
     }
     
-    func showAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true, completion: nil)
-        }
-    }
-    
     @IBAction func displayQueueButtonClicked(_ sender: UIButton) {
+        // When the user asks to see the current Queue, go get the Queue,
+        // clear the search results, then update the search results with
+        // the response from the server.
         if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
             Api.shared.getQueue(deviceID) { (responseDict) in
                 do {
-                    let response = try self.jsonDecoder.decode(QueueResponse.self, from: responseDict)
+                    let jsonDecoder = JSONDecoder()
+                    let response = try jsonDecoder.decode(
+                        QueueResponse.self,
+                        from: responseDict)
                     self.song.songArray = []
                     for s in response.data.results {
                         self.song.songArray.append(s)
@@ -96,7 +50,9 @@ class TableViewVC: UIViewController {
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
-                } catch {print("ERROR IN displayQueueButtonClicked: \(error)")}
+                } catch {
+                    print("ERROR IN displayQueueButtonClicked: \(error)")
+                }
             }
         }
     }
@@ -107,7 +63,8 @@ class TableViewVC: UIViewController {
             if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
                 Api.shared.getNextSong(deviceID) { (responseDict) in
                     do {
-                        response = try self.jsonDecoder.decode(NextSongResponse.self, from: responseDict)
+                        let jsonDecoder = JSONDecoder()
+                        response = try jsonDecoder.decode(NextSongResponse.self, from: responseDict)
                     }catch {
                         print("ERROR IN shouldPerformSegue: \(error)")
                     }
@@ -134,7 +91,8 @@ class TableViewVC: UIViewController {
             if !MediaPlayer.shared.isPlaying {
                 Api.shared.getNextSong(deviceID) { (responseDict) in
                     do {
-                        let response = try self.jsonDecoder.decode(NextSongResponse.self, from: responseDict)
+                        let jsonDecoder = JSONDecoder()
+                        let response = try jsonDecoder.decode(NextSongResponse.self, from: responseDict)
                         if let results = response.data.results {
                             destination.song = results.name
                             destination.artist = results.artist
@@ -196,7 +154,8 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
             let duration = song.songArray[indexPath.row].duration
             Api.shared.addSong(deviceID:deviceID, name:name, artist:artist, duration:duration, durationInSeconds:durationInSeconds, imageURL:imageURL, songURL:songURL) { (responseDict) in
                 do {
-                    let response = try self.jsonDecoder.decode(PostResponse.self, from: responseDict)
+                    let jsonDecoder = JSONDecoder()
+                    let response = try jsonDecoder.decode(PostResponse.self, from: responseDict)
                     let message = response.meta.message
                     if message == "OK" {
                         DispatchQueue.main.async {
@@ -206,7 +165,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                     else {
-                        self.showAlert(title: "Song Already in Queue", message: "This Song is already in the queue. Please wait for the song to finish before adding it again.")
+                        showAlert(title: "Song Already in Queue", message: "This Song is already in the queue. Please wait for the song to finish before adding it again.")
                     }
                 } catch {print("ERROR IN tableView: \(error)")}
             }

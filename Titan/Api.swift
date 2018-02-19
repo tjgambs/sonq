@@ -15,7 +15,7 @@ class Api: NSObject {
     static var JOIN_ID = ""
     
     let scheme = "http"
-    let host = "0.0.0.0"
+    let host = "192.168.1.8"
     let port = 5000
     
     

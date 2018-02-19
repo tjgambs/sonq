@@ -11,22 +11,6 @@ import AVFoundation
 
 class MusicVC: UIViewController {
 
-    struct NextSongResponse: Codable {
-        let data: NextSong
-        let meta: MetaVariable
-    }
-    
-    struct NextSong: Codable {
-        let results: SongData
-    }
-    
-    struct MetaVariable: Codable {
-        let data_count: Int?
-        let message: String
-        let request: String
-        let success: Bool
-    }
-
     @IBOutlet weak var albumCoverImage: UIImageView!
     @IBOutlet weak var songName: UILabel!
     @IBOutlet weak var slider: UISlider!
@@ -55,13 +39,9 @@ class MusicVC: UIViewController {
         super.viewDidLoad()
         
         //Wait for the API to say what song to play
-        while(true) {
-            if self.song != nil {
-                break
-            }
+        while(self.song == nil) {
             sleep(1)
         }
-        
         
         prepareNextSong()
         updateUserInterface()

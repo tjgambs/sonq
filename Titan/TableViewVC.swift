@@ -16,6 +16,7 @@ class TableViewVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var viewPartyButton: UIButton!
     @IBOutlet weak var partyIDHeader: UINavigationItem!
     
     var song = Song()
@@ -30,13 +31,20 @@ class TableViewVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag
+        
+        if Globals.partyDeviceId != nil {
+            self.viewPartyButton.isHidden = true
+        }
     }
     
     @IBAction func displayQueueButtonClicked(_ sender: UIButton) {
         // When the user asks to see the current Queue, go get the Queue,
         // clear the search results, then update the search results with
         // the response from the server.
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+        if var deviceID = UIDevice.current.identifierForVendor?.uuidString {
+            if Globals.partyDeviceId != nil {
+                deviceID = Globals.partyDeviceId! //If this user had joined a party, add the song to the parties queue.
+            }
             Api.shared.getQueue(deviceID) { (responseDict) in
                 do {
                     let jsonDecoder = JSONDecoder()
@@ -59,27 +67,31 @@ class TableViewVC: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "tableToMusic" {
-            var response: NextSongResponse?
             if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+                var response: NextSongResponse?
                 Api.shared.getNextSong(deviceID) { (responseDict) in
                     do {
                         let jsonDecoder = JSONDecoder()
                         response = try jsonDecoder.decode(NextSongResponse.self, from: responseDict)
-                    }catch {
+                    } catch {
                         print("ERROR IN shouldPerformSegue: \(error)")
                     }
                 }
+                
+                // Wait for the server to respond. TEMPORARY
                 while (response == nil) {
                     sleep(1)
                 }
-                //okay to force unwrap because of loop above
+                
+                // The queue has an item.
                 if response!.data.results != nil {
                     return true
                 }
-                else {
-                    showAlert(title: "No song in queue", message: "Add a song to the queue to get this party started!")
-                    return false
-                }
+                
+                //There is nothing in the Queue, don't let them proceed.
+                showAlert(title: "No song in queue",
+                          message: "Add a song to the queue to get this party started!")
+                return false
             }
         }
         return true
@@ -89,6 +101,7 @@ class TableViewVC: UIViewController {
         let destination = segue.destination as! MusicVC
         if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
             if !MediaPlayer.shared.isPlaying {
+                // If there is no music playing, generate the destination with the first item in the Queue.
                 Api.shared.getNextSong(deviceID) { (responseDict) in
                     do {
                         let jsonDecoder = JSONDecoder()
@@ -105,98 +118,95 @@ class TableViewVC: UIViewController {
                     }
                 }
             } else {
-                destination.song = MediaPlayer.shared.player?.metadata.currentTrack?.name
-                destination.artist = MediaPlayer.shared.player?.metadata.currentTrack?.artistName
-                destination.imageURL = MediaPlayer.shared.player?.metadata.currentTrack?.albumCoverArtURL
-                destination.songURL = MediaPlayer.shared.player?.metadata.currentTrack?.uri
-                destination.durationInSeconds = MediaPlayer.shared.player?.metadata.currentTrack?.duration
-                destination.timeElapsed = Float((MediaPlayer.shared.player?.playbackState.position)!) 
+                // If there is music playing, generate the destination with the song playing.
+                if let player = MediaPlayer.shared.player {
+                    if let currentTrack = player.metadata.currentTrack {
+                        destination.song = currentTrack.name
+                        destination.artist = currentTrack.artistName
+                        destination.imageURL = currentTrack.albumCoverArtURL
+                        destination.songURL = currentTrack.uri
+                        destination.durationInSeconds = currentTrack.duration
+                        destination.timeElapsed = Float(player.playbackState.position)
+                    }
+                }
             }
         }
     }
 }
 
+
 extension TableViewVC: UISearchBarDelegate {
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let search = searchBar.text
-        let keywords = search?.replacingOccurrences(of: " ", with: "+")
-        
-        //every time the searchBar is "clicked", the searchURL is updated
-        song.searchURL = "https://api.spotify.com/v1/search?q=\(keywords!)&type=track"
-        
+        let keywords = searchBar.text!.replacingOccurrences(of: " ", with: "+")
+        //Every time the searchBar is "clicked", the searchURL is updated
+        song.searchURL = "https://api.spotify.com/v1/search?q=\(keywords)&type=track"
         self.view.endEditing(true)
-        
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         song.getSongDetails {
             self.tableView.reloadData()
         }
-        
         return true
     }
-    
 }
 
+
 extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return song.songArray.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            let name = song.songArray[indexPath.row].name
-            let artist = song.songArray[indexPath.row].artist
-            let imageURL = song.songArray[indexPath.row].imageURL
-            let songURL = song.songArray[indexPath.row].songURL
-            let durationInSeconds = song.songArray[indexPath.row].durationInSeconds
-            let duration = song.songArray[indexPath.row].duration
-            Api.shared.addSong(deviceID:deviceID, name:name, artist:artist, duration:duration, durationInSeconds:durationInSeconds, imageURL:imageURL, songURL:songURL) { (responseDict) in
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    let response = try jsonDecoder.decode(PostResponse.self, from: responseDict)
-                    let message = response.meta.message
-                    if message == "OK" {
+        if var deviceID = UIDevice.current.identifierForVendor?.uuidString {
+            if Globals.partyDeviceId != nil {
+                deviceID = Globals.partyDeviceId! //If this user had joined a party, add the song to the parties queue.
+            }
+            let selectedSong = song.songArray[indexPath.row]
+            Api.shared.addSong(
+                deviceID: deviceID,
+                name: selectedSong.name,
+                artist: selectedSong.artist,
+                duration: selectedSong.duration,
+                durationInSeconds: selectedSong.durationInSeconds,
+                imageURL: selectedSong.imageURL,
+                songURL: selectedSong.songURL) { (responseDict) in
+                    let json = JSON(responseDict)
+                    if json["meta"]["message"] == "OK" {
                         DispatchQueue.main.async {
 
-                            //This is where a green check mark should show up.
+                            // TODO: This is where a green check mark should show up.
 
                         }
+                    } else {
+                        let title = "Song Already in Queue"
+                        let message = "This Song is already in the queue. Please wait for the song to finish before adding it again."
+                        showAlert(title: title, message: message)
                     }
-                    else {
-                        showAlert(title: "Song Already in Queue", message: "This Song is already in the queue. Please wait for the song to finish before adding it again.")
-                    }
-                } catch {print("ERROR IN tableView: \(error)")}
             }
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! SongCell
-        
-        cell.cellSongName.text = song.songArray[indexPath.row].name
-        cell.cellSongDuration.text = song.songArray[indexPath.row].duration
-        cell.cellSongArtist.text = song.songArray[indexPath.row].artist
-        
-        //get image from imageURL
-        guard let url = URL(string: song.songArray[indexPath.row].imageURL) else {
-            return cell //presumably returns cell without image
+        let selectedSong = song.songArray[indexPath.row]
+        cell.cellSongName.text = selectedSong.name
+        cell.cellSongDuration.text = selectedSong.duration
+        cell.cellSongArtist.text = selectedSong.artist
+        guard let url = URL(string: selectedSong.imageURL) else {
+            return cell //Don't bother continuing, the resrt has to do with the image.
         }
-        
         do {
             let data = try Data(contentsOf: url)
             cell.cellSongImage.image = UIImage(data: data)
-        } catch {
-            print("ERROR: error thrown trying to get data from URL \(url)")
-        }
-        
+        } catch {}
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    
 }
-

@@ -26,14 +26,12 @@
 		22A25FE3203808A700E4D0DB /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FE2203808A700E4D0DB /* Header.m */; };
 		22A25FE82038091C00E4D0DB /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A25FE62038091B00E4D0DB /* SpotifyMetadata.framework */; };
 		22A25FE92038091C00E4D0DB /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A25FE72038091B00E4D0DB /* SpotifyAudioPlayback.framework */; };
-		22A25FEB20380E5400E4D0DB /* JoinPartyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FEA20380E5400E4D0DB /* JoinPartyVC.swift */; };
 		22A25FEF2038146300E4D0DB /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FEE2038146300E4D0DB /* Api.swift */; };
 		22D89ECE203A44A20036D5EF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D89ECD203A44A20036D5EF /* Models.swift */; };
 		22D89ED0203A4C710036D5EF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D89ECF203A4C710036D5EF /* Helpers.swift */; };
 		22EDCC01202BF1DF00CA1CA0 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EDCBFE202BF1DF00CA1CA0 /* SpotifyAuthentication.framework */; };
 		B1068FCDFD634B2F97406D0B /* Pods_TitanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8B626CA516BE4E7CA821A7 /* Pods_TitanTests.framework */; };
 		E119974A203A1C2400C9AC12 /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1199749203A1C2400C9AC12 /* QRScannerVC.swift */; };
-		E119974C203A2C1B00C9AC12 /* TableViewClientVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119974B203A2C1B00C9AC12 /* TableViewClientVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +77,6 @@
 		22A25FE5203808CF00E4D0DB /* Titan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Titan-Bridging-Header.h"; sourceTree = "<group>"; };
 		22A25FE62038091B00E4D0DB /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyMetadata.framework; path = ../../../Desktop/SpotiBox/SpotifyMetadata.framework; sourceTree = "<group>"; };
 		22A25FE72038091B00E4D0DB /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAudioPlayback.framework; path = ../../../Desktop/SpotiBox/SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
-		22A25FEA20380E5400E4D0DB /* JoinPartyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPartyVC.swift; sourceTree = "<group>"; };
 		22A25FEE2038146300E4D0DB /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		22D89ECD203A44A20036D5EF /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		22D89ECF203A4C710036D5EF /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -93,7 +90,6 @@
 		CD8B626CA516BE4E7CA821A7 /* Pods_TitanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TitanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7466FA659C7CE816E1DD241 /* Pods-TitanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests.release.xcconfig"; sourceTree = "<group>"; };
 		E1199749203A1C2400C9AC12 /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
-		E119974B203A2C1B00C9AC12 /* TableViewClientVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewClientVC.swift; sourceTree = "<group>"; };
 		EC42DC0BE5AA35ECACA56337 /* Pods-TitanUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,24 +156,22 @@
 				22A25FE12038089200E4D0DB /* Header.h */,
 				22A25FE2203808A700E4D0DB /* Header.m */,
 				22A25FEE2038146300E4D0DB /* Api.swift */,
-				22D89ECD203A44A20036D5EF /* Models.swift */,
 				22D89ECF203A4C710036D5EF /* Helpers.swift */,
-				224483B2202BE6210042591F /* AppDelegate.swift */,
-				22A25FCD203806EF00E4D0DB /* LoginManager.swift */,
-				22A25FCF2038074A00E4D0DB /* ViewController.swift */,
-				22A25FD92038081500E4D0DB /* MediaPlayer.swift */,
-				22A25FD5203807E100E4D0DB /* MusicVC.swift */,
-				22A25FD3203807BC00E4D0DB /* TableViewVC.swift */,
+				22D89ECD203A44A20036D5EF /* Models.swift */,
+				224483BE202BE6210042591F /* Info.plist */,
+				224483BB202BE6210042591F /* LaunchScreen.storyboard */,
 				22A25FDF2038083A00E4D0DB /* Main.storyboard */,
 				224483B9202BE6210042591F /* Assets.xcassets */,
-				224483BB202BE6210042591F /* LaunchScreen.storyboard */,
-				224483BE202BE6210042591F /* Info.plist */,
-				22A25FDD2038082200E4D0DB /* Song.swift */,
-				22A25FEA20380E5400E4D0DB /* JoinPartyVC.swift */,
-				22793976203A087B00FA454E /* QRCodeVC.swift */,
-				22A25FDB2038081D00E4D0DB /* SongCell.swift */,
+				224483B2202BE6210042591F /* AppDelegate.swift */,
+				22A25FCF2038074A00E4D0DB /* ViewController.swift */,
+				22A25FCD203806EF00E4D0DB /* LoginManager.swift */,
+				22A25FD92038081500E4D0DB /* MediaPlayer.swift */,
 				E1199749203A1C2400C9AC12 /* QRScannerVC.swift */,
-				E119974B203A2C1B00C9AC12 /* TableViewClientVC.swift */,
+				22A25FD3203807BC00E4D0DB /* TableViewVC.swift */,
+				22A25FDB2038081D00E4D0DB /* SongCell.swift */,
+				22A25FDD2038082200E4D0DB /* Song.swift */,
+				22793976203A087B00FA454E /* QRCodeVC.swift */,
+				22A25FD5203807E100E4D0DB /* MusicVC.swift */,
 			);
 			path = Titan;
 			sourceTree = "<group>";
@@ -521,7 +515,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E119974C203A2C1B00C9AC12 /* TableViewClientVC.swift in Sources */,
 				22793977203A087B00FA454E /* QRCodeVC.swift in Sources */,
 				22D89ED0203A4C710036D5EF /* Helpers.swift in Sources */,
 				22D89ECE203A44A20036D5EF /* Models.swift in Sources */,
@@ -534,7 +527,6 @@
 				22A25FEF2038146300E4D0DB /* Api.swift in Sources */,
 				22A25FD6203807E100E4D0DB /* MusicVC.swift in Sources */,
 				22A25FD02038074A00E4D0DB /* ViewController.swift in Sources */,
-				22A25FEB20380E5400E4D0DB /* JoinPartyVC.swift in Sources */,
 				22A25FDA2038081500E4D0DB /* MediaPlayer.swift in Sources */,
 				22A25FDE2038082200E4D0DB /* Song.swift in Sources */,
 			);

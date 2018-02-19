@@ -8,6 +8,11 @@
 
 import Foundation
 
+struct Globals {
+    static var partyDeviceId: String?
+}
+
+
 struct SongData: Codable {
     var name: String
     var artist: String
@@ -53,3 +58,6 @@ struct NextSong: Codable {
     let results: SongData?
 }
 
+struct NoDataResponse: Codable {
+    let meta: MetaVariable
+}

@@ -15,8 +15,8 @@ class Api: NSObject {
     static var JOIN_ID = ""
     
     let scheme = "http"
-    let host = "192.168.1.8"
-    let port = 5000
+    let host = "35.184.31.17"
+    let port = 80
     
     
     struct SongData: Codable {

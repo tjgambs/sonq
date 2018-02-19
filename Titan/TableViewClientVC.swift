@@ -14,36 +14,6 @@ class TableViewClientVC: UIViewController {
     
     let jsonDecoder = JSONDecoder()
     
-    struct QueueResponse: Codable {
-        let data: Queue
-        let meta: MetaVariable
-    }
-    
-    struct PostResponse: Codable {
-        let meta: MetaVariable
-    }
-    
-    struct Queue: Codable {
-        let results: [Song.SongData]
-    }
-    
-    struct SongData: Codable {
-        var deviceID: String
-        var name: String
-        var artist: String
-        var duration: String
-        var durationInSeconds: Double
-        var imageURL: String
-        var songURL: String
-    }
-    
-    struct MetaVariable: Codable {
-        let data_count: Int?
-        let message: String
-        let request: String
-        let success: Bool
-    }
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     

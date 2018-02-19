@@ -13,6 +13,7 @@ import SwiftyJSON
 class TableViewClientVC: UIViewController {
     
     let jsonDecoder = JSONDecoder()
+    let partyID = Api.JOIN_ID
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -39,19 +40,17 @@ class TableViewClientVC: UIViewController {
     }
     
     @IBAction func displayQueueButtonClicked(_ sender: UIButton) {
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            Api.shared.getQueue(deviceID) { (responseDict) in
-                do {
-                    let response = try self.jsonDecoder.decode(QueueResponse.self, from: responseDict)
-                    self.song.songArray = []
-                    for s in response.data.results {
-                        self.song.songArray.append(s)
-                    }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                } catch {print("ERROR IN displayQueueButtonClicked: \(error)")}
-            }
+        Api.shared.getQueue(partyID) { (responseDict) in
+            do {
+                let response = try self.jsonDecoder.decode(QueueResponse.self, from: responseDict)
+                self.song.songArray = []
+                for s in response.data.results {
+                    self.song.songArray.append(s)
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch {print("ERROR IN displayQueueButtonClicked: \(error)")}
         }
     }
 }
@@ -85,29 +84,27 @@ extension TableViewClientVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            let name = song.songArray[indexPath.row].name
-            let artist = song.songArray[indexPath.row].artist
-            let imageURL = song.songArray[indexPath.row].imageURL
-            let songURL = song.songArray[indexPath.row].songURL
-            let durationInSeconds = song.songArray[indexPath.row].durationInSeconds
-            let duration = song.songArray[indexPath.row].duration
-            Api.shared.addSong(deviceID:deviceID, name:name, artist:artist, duration:duration, durationInSeconds:durationInSeconds, imageURL:imageURL, songURL:songURL) { (responseDict) in
-                do {
-                    let response = try self.jsonDecoder.decode(PostResponse.self, from: responseDict)
-                    let message = response.meta.message
-                    if message == "OK" {
-                        DispatchQueue.main.async {
-                            
-                            //This is where a green check mark should show up.
-                            
-                        }
+        let name = song.songArray[indexPath.row].name
+        let artist = song.songArray[indexPath.row].artist
+        let imageURL = song.songArray[indexPath.row].imageURL
+        let songURL = song.songArray[indexPath.row].songURL
+        let durationInSeconds = song.songArray[indexPath.row].durationInSeconds
+        let duration = song.songArray[indexPath.row].duration
+        Api.shared.addSong(deviceID:partyID, name:name, artist:artist, duration:duration, durationInSeconds:durationInSeconds, imageURL:imageURL, songURL:songURL) { (responseDict) in
+            do {
+                let response = try self.jsonDecoder.decode(PostResponse.self, from: responseDict)
+                let message = response.meta.message
+                if message == "OK" {
+                    DispatchQueue.main.async {
+                        
+                        //This is where a green check mark should show up.
+                        
                     }
-                    else {
-                        self.showAlert(title: "Song Already in Queue", message: "This Song is already in the queue. Please wait for the song to finish before adding it again.")
-                    }
-                } catch {print("ERROR IN tableView: \(error)")}
-            }
+                }
+                else {
+                    self.showAlert(title: "Song Already in Queue", message: "This Song is already in the queue. Please wait for the song to finish before adding it again.")
+                }
+            } catch {print("ERROR IN tableView: \(error)")}
         }
     }
     

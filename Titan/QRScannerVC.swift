@@ -86,7 +86,7 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             
             if let string = metadataObj.stringValue {
                 Api.JOIN_ID = string
-                
+                performSegue(withIdentifier: "scanToTableView", sender: nil)
             }
         }
     }

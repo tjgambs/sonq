@@ -31,6 +31,8 @@
 		22A25FF1203816A700E4D0DB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FF0203816A700E4D0DB /* Utils.swift */; };
 		22EDCC01202BF1DF00CA1CA0 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EDCBFE202BF1DF00CA1CA0 /* SpotifyAuthentication.framework */; };
 		B1068FCDFD634B2F97406D0B /* Pods_TitanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8B626CA516BE4E7CA821A7 /* Pods_TitanTests.framework */; };
+		E119974A203A1C2400C9AC12 /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1199749203A1C2400C9AC12 /* QRScannerVC.swift */; };
+		E119974C203A2C1B00C9AC12 /* TableViewClientVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119974B203A2C1B00C9AC12 /* TableViewClientVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		B9E21CF0F4FC41DE3E1331BA /* Pods_TitanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TitanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8B626CA516BE4E7CA821A7 /* Pods_TitanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TitanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7466FA659C7CE816E1DD241 /* Pods-TitanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests.release.xcconfig"; sourceTree = "<group>"; };
+		E1199749203A1C2400C9AC12 /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
+		E119974B203A2C1B00C9AC12 /* TableViewClientVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewClientVC.swift; sourceTree = "<group>"; };
 		EC42DC0BE5AA35ECACA56337 /* Pods-TitanUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +173,8 @@
 				22A25FEA20380E5400E4D0DB /* JoinPartyVC.swift */,
 				22A25FF0203816A700E4D0DB /* Utils.swift */,
 				22793976203A087B00FA454E /* QRCodeVC.swift */,
+				E1199749203A1C2400C9AC12 /* QRScannerVC.swift */,
+				E119974B203A2C1B00C9AC12 /* TableViewClientVC.swift */,
 			);
 			path = Titan;
 			sourceTree = "<group>";
@@ -512,8 +518,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E119974C203A2C1B00C9AC12 /* TableViewClientVC.swift in Sources */,
 				22793977203A087B00FA454E /* QRCodeVC.swift in Sources */,
 				22A25FD4203807BC00E4D0DB /* TableViewVC.swift in Sources */,
+				E119974A203A1C2400C9AC12 /* QRScannerVC.swift in Sources */,
 				22A25FE3203808A700E4D0DB /* Header.m in Sources */,
 				22A25FCE203806EF00E4D0DB /* LoginManager.swift in Sources */,
 				224483B3202BE6210042591F /* AppDelegate.swift in Sources */,

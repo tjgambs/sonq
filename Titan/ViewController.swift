@@ -33,7 +33,6 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var partyIDInput: UITextField!
     @IBOutlet weak var joinPartyButton: UIButton!
     @IBOutlet weak var errorMessageTextBox: UILabel!
     
@@ -44,7 +43,6 @@ class ViewController: UIViewController {
     
     private func configureView() {
         LoginManager.shared.delegate = self
-        self.partyIDInput.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -67,26 +65,6 @@ class ViewController: UIViewController {
                 } catch {}
             }
         }
-    }
-    
-    @IBAction func joinPartyButtonPressed(_ sender: UIButton) {
-        self.partyIDInput.isHidden = false
-        self.joinPartyButton.titleLabel!.text = "Submit"
-        
-        if let partyId = partyIDInput.text {
-            Api.shared.joinParty(partyId) { (responseDict) in
-                do {
-                    let response = try self.jsonDecoder.decode(DataResponse.self, from: responseDict)
-                    if response.data.party_exists {
-                        DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "SearchSongSegue", sender: self)
-                        }
-                    } else {
-                        self.errorMessageTextBox.text = "\(partyId) is not an active party."
-                    }
-                } catch {}
-            }
-        }        
     }
     
 }

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import AVFoundation
 
 
 class TableViewVC: UIViewController {
@@ -24,7 +25,17 @@ class TableViewVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Login to Spotify
+        // Sets the previously defined AVAudioSession (in AppDelegate.swift) to active
+        // Apple suggests doing it only right before your app will play audio
+        // Otherwise, just opening the app the the menu screen will cancel all other audio
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setActive(true)
+        } catch {
+            print("Activating AVAudioSession failed.")
+        }
+        
+        // Login to Spotify
         LoginManager.shared.preparePlayer()
         
         searchBar.delegate = self

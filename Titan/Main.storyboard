@@ -460,7 +460,7 @@
                                     <color key="titleColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayQueueButtonClicked:" destination="3xh-6Q-l2J" eventType="touchUpInside" id="BbB-Hf-QJf"/>
+                                    <action selector="displayQueueButtonClicked:" destination="rSr-Qt-DKF" eventType="touchUpInside" id="kh4-Cf-dNo"/>
                                 </connections>
                             </button>
                         </barButtonItem>

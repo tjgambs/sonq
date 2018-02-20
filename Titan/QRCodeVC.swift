@@ -18,8 +18,8 @@ class QRCodeVC: UIViewController {
         super.viewDidLoad()
         
         // This is a party member, not a host. Generate a QR code using the party id.
-        if !Api.JOIN_ID.isEmpty {
-            let qrCode = QRCode(Api.JOIN_ID)
+        if Globals.partyDeviceId != nil {
+            let qrCode = QRCode(Globals.partyDeviceId!)
             self.qrCodeImage.image = UIImageView(qrCode: qrCode!).image
         }
         // Else this is a host, generate a QR code using this device's UUID.

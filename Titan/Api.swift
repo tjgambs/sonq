@@ -12,7 +12,6 @@ import Foundation
 class Api: NSObject {
     
     static let shared = Api()
-    static var JOIN_ID = ""
     
     let scheme = "http"
     let host = "35.184.31.17"

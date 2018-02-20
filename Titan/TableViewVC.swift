@@ -54,6 +54,7 @@ class TableViewVC: UIViewController {
         // When the user asks to see the current Queue, go get the Queue,
         // clear the search results, then update the search results with
         // the response from the server.
+        self.tableView.allowsSelection = false
         if var deviceID = UIDevice.current.identifierForVendor?.uuidString {
             if Globals.partyDeviceId != nil {
                 deviceID = Globals.partyDeviceId! //If this user had joined a party, add the song to the parties queue.
@@ -152,6 +153,7 @@ class TableViewVC: UIViewController {
 extension TableViewVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.tableView.allowsSelection = true
         let keywords = searchBar.text!.replacingOccurrences(of: " ", with: "+")
         //Every time the searchBar is "clicked", the searchURL is updated
         song.searchURL = "https://api.spotify.com/v1/search?q=\(keywords)&type=track"

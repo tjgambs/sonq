@@ -21,6 +21,7 @@ class TableViewVC: UIViewController {
     @IBOutlet weak var partyIDHeader: UINavigationItem!
     
     var song = Song()
+    var songCellArray = [SongCell]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,6 +158,7 @@ extension TableViewVC: UISearchBarDelegate {
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         song.getSongDetails {
+            self.songCellArray = []
             self.tableView.reloadData()
         }
         return true
@@ -188,9 +190,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                     let json = JSON(responseDict)
                     if json["meta"]["message"] == "OK" {
                         DispatchQueue.main.async {
-
-                            // TODO: This is where a green check mark should show up.
-
+                            self.songCellArray[indexPath.row].accessoryType = UITableViewCellAccessoryType.checkmark
                         }
                     } else {
                         let title = "Song Already in Queue"
@@ -207,17 +207,22 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
         cell.cellSongName.text = selectedSong.name
         cell.cellSongDuration.text = selectedSong.duration
         cell.cellSongArtist.text = selectedSong.artist
+        cell.accessoryType = UITableViewCellAccessoryType.none
         guard let url = URL(string: selectedSong.imageURL) else {
+            songCellArray.append(cell)
             return cell //Don't bother continuing, the resrt has to do with the image.
         }
         do {
             let data = try Data(contentsOf: url)
             cell.cellSongImage.image = UIImage(data: data)
         } catch {}
+        songCellArray.append(cell)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
 }
+

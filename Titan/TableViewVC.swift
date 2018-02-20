@@ -22,6 +22,7 @@ class TableViewVC: UIViewController {
     
     var song = Song()
     var songCellArray = [SongCell]()
+    var viewingQueue = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +68,7 @@ class TableViewVC: UIViewController {
                     for s in response.data.results {
                         self.song.songArray.append(s)
                     }
+                    self.viewingQueue = true
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -159,6 +161,7 @@ extension TableViewVC: UISearchBarDelegate {
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         song.getSongDetails {
             self.songCellArray = []
+            self.viewingQueue = false
             self.tableView.reloadData()
         }
         return true
@@ -224,5 +227,38 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
+    // Swipe to delete cell. Check that the action is delete, the user is the host, and they are viewing the queue then delete song and cell.
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete && Globals.partyDeviceId == nil && viewingQueue {
+            // Send delete request
+            if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+                Api.shared.deleteSong(deviceID: deviceID, songURL: song.songArray[indexPath.row].songURL) { (response) in
+                    let json = JSON(response)
+                    if json["meta"]["message"] == "OK" {
+                        // Delete the cell
+                        self.song.songArray.remove(at: indexPath.row)
+                        self.songCellArray.remove(at: indexPath.row)
+                        DispatchQueue.main.async {
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+                        }
+                    }
+                    else {
+                        let title = "Song Could Not Be Deleted"
+                        let message = "This song is no longer in the queue"
+                        showAlert(title: title, message: message)
+                    }
+                }
+            }
+        }
+    }
+    
+    // Do not show delete option on swipe if the user is not the host and viewing the queue.
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if viewingQueue && Globals.partyDeviceId == nil{
+            return .delete
+        }
+        
+        return .none
+    }
 }
 

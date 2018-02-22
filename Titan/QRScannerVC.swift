@@ -67,7 +67,8 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "JoinParty", sender: self)
             }
+        } else {
+            dismiss(animated: true)
         }
-        dismiss(animated: true)
     }
 }

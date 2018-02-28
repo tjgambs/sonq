@@ -19,6 +19,11 @@ mod = Blueprint("v1_titan", __name__, url_prefix="/v1/titan")
 def add_song():
     message = "OK"
     try:
+        q = (db.session.query(Queue)
+             .filter(Queue.deviceID == request.json['deviceID'])
+             .order_by(Queue.position.desc()))
+        last_position = q.first().position if q.first() else -1
+        request.json['position'] = last_position + 1
         db.session.add(Queue(**request.json))
         db.session.commit()
     except IntegrityError:
@@ -36,7 +41,7 @@ def add_song():
 def get_next_song(deviceID):
     q = (db.session.query(Queue)
          .filter(Queue.deviceID == deviceID)
-         .order_by(Queue.created_at.asc()))
+         .order_by(Queue.position.asc()))
     data = {'results': q.first().serialize if q.first() else None}
     return jsonify(
         prepare_json_response(
@@ -51,7 +56,7 @@ def get_next_song(deviceID):
 def get_queue(deviceID):
     q = (db.session.query(Queue)
          .filter(Queue.deviceID == deviceID)
-         .order_by(Queue.created_at.asc()))
+         .order_by(Queue.position.asc()))
     payload = [x.serialize for x in q.all()]
     data = {'results': payload}
     return jsonify(
@@ -104,5 +109,18 @@ def join_party(deviceID):
             message="OK",
             success=True,
             data=data
+        )
+    )
+
+@mod.route("/reorder_queue", methods=["POST"])
+def reorder_queue():
+    for idx, s in enumerate(request.json['songs']):
+        q = (db.session.query(Queue).filter(Queue.deviceID == request.json['deviceID']).filter(Queue.songURL == s))
+        q.first().position = idx
+    db.session.commit()
+    return jsonify(
+        prepare_json_response(
+            message="OK",
+            success=True
         )
     )

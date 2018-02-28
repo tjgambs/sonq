@@ -15,6 +15,7 @@ class Queue(db.Model):
     imageURL = db.Column(db.String)
     songURL = db.Column(db.String, primary_key=True)
     created_at = db.Column(db.Date, default=datetime.datetime.utcnow)
+    position = db.Column(db.Integer)
 
     @property
     def serialize(self):
@@ -24,4 +25,5 @@ class Queue(db.Model):
                 'duration': self.duration,
                 'durationInSeconds': self.durationInSeconds,
                 'imageURL': self.imageURL,
-                'songURL': self.songURL}
+                'songURL': self.songURL,
+                'position:': self.position}

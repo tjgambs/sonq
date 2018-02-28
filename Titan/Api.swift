@@ -7,15 +7,17 @@
 //
 
 import Foundation
-
+import SwiftyJSON
 
 class Api: NSObject {
     
     static let shared = Api()
     
     let scheme = "http"
-    let host = "35.184.31.17"
-    let port = 80
+    //let host = "35.184.31.17"
+    //let port = 80
+    let host = "0.0.0.0"
+    let port = 5000
     
     
     struct SongData: Codable {
@@ -28,7 +30,12 @@ class Api: NSObject {
         var songURL: String
     }
     
-    func sendPayload(payload:SongData?, endpoint:String, httpMethod:String, completion: @escaping (Data) -> ()) {
+    struct QueueData: Codable {
+        var deviceID: String
+        var songs: [String]
+    }
+    
+    func sendPayload<T:Codable>(payload:T, endpoint:String, httpMethod:String, completion: @escaping (Data) -> ()) {
         var urlComponents = URLComponents()
         urlComponents.scheme = self.scheme
         urlComponents.host = self.host
@@ -56,18 +63,43 @@ class Api: NSObject {
         }
         task.resume()
     }
+    
+    func sendPayload(endpoint:String, httpMethod:String, completion: @escaping (Data) -> ()) {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = self.scheme
+        urlComponents.host = self.host
+        urlComponents.port = self.port
+        urlComponents.path = endpoint
+        var request = URLRequest(url: urlComponents.url!)
+        request.httpMethod = httpMethod
+        
+        var headers = request.allHTTPHeaderFields ?? [:]
+        headers["Content-Type"] = "application/json"
+        request.allHTTPHeaderFields = headers
+        
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+            guard responseError == nil else {
+                return
+            }
+            if let data = responseData {
+                completion(data)
+            }
+        }
+        task.resume()
+    }
 
     
     func getQueue(_ deviceID: String, _ completion: @escaping (Data) -> ()) {
         let endpoint:String = "/v1/titan/get_queue/\(deviceID)"
         let httpMethod:String = "GET"
-        sendPayload(payload:nil, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
+        sendPayload(endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
     func getNextSong(_ deviceID: String, _ completion: @escaping (Data) -> ()) {
         let endpoint:String = "/v1/titan/get_next_song/\(deviceID)"
         let httpMethod:String = "GET"
-        sendPayload(payload:nil, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
+        sendPayload(endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
     func addSong(deviceID: String, name: String, artist: String, duration: String, durationInSeconds: Double, imageURL:String, songURL:String, _ completion: @escaping (Data) -> ()) {
@@ -87,13 +119,20 @@ class Api: NSObject {
     func registerDevice(_ deviceID: String, _ completion: @escaping (Data) -> ()) {
         let endpoint:String = "/v1/titan/register_device/\(deviceID)"
         let httpMethod:String = "GET"
-        sendPayload(payload:nil, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
+        sendPayload(endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
     func joinParty(_ deviceID: String, _ completion: @escaping (Data) -> ()) {
         let endpoint:String = "/v1/titan/join_party/\(deviceID)"
         let httpMethod:String = "GET"
-        sendPayload(payload:nil, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
+        sendPayload(endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
-
+    
+    func reorderQueue(deviceID: String, songs: [String], _ completion: @escaping (Data) -> ()) {
+        let endpoint:String = "/v1/titan/reorder_queue"
+        let httpMethod:String = "POST"
+        let payload:QueueData = QueueData(deviceID:deviceID, songs:songs)
+        sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
+    }
+    
 }

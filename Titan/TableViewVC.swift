@@ -16,7 +16,9 @@ class TableViewVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
+    @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var viewPartyButton: UIButton!
     @IBOutlet weak var partyIDHeader: UINavigationItem!
     
@@ -26,6 +28,7 @@ class TableViewVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        toolbar.isHidden = true
         
         // Sets the previously defined AVAudioSession (in AppDelegate.swift) to active
         // Apple suggests doing it only right before your app will play audio
@@ -54,6 +57,9 @@ class TableViewVC: UIViewController {
         // When the user asks to see the current Queue, go get the Queue,
         // clear the search results, then update the search results with
         // the response from the server.
+        if Globals.partyDeviceId == nil {
+            toolbar.isHidden = false
+        }
         self.tableView.allowsSelection = false
         if var deviceID = UIDevice.current.identifierForVendor?.uuidString {
             if Globals.partyDeviceId != nil {
@@ -154,6 +160,7 @@ extension TableViewVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.tableView.allowsSelection = true
+        toolbar.isHidden = true
         let keywords = searchBar.text!.replacingOccurrences(of: " ", with: "+")
         //Every time the searchBar is "clicked", the searchURL is updated
         song.searchURL = "https://api.spotify.com/v1/search?q=\(keywords)&type=track"
@@ -172,6 +179,19 @@ extension TableViewVC: UISearchBarDelegate {
 
 
 extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
+    
+    @IBAction func editButtonClicked(_ sender: UIBarButtonItem) {
+        if let title = sender.title {
+            if title == "Edit" {
+                tableView.setEditing(true, animated: true)
+                sender.title = "Done"
+            }
+            else {
+                tableView.setEditing(false, animated: true)
+                sender.title = "Edit"
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return song.songArray.count
@@ -254,13 +274,41 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    // Do not show delete option on swipe if the user is not the host and viewing the queue.
+    //Do not show delete option on swipe if the user is not the host and viewing the queue.
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        if viewingQueue && Globals.partyDeviceId == nil{
+        if viewingQueue && Globals.partyDeviceId == nil && tableView.isEditing{
             return .delete
         }
-        
-        return .none
+        else {
+            return .none
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedCell = songCellArray[sourceIndexPath.row]
+        let movedSong = song.songArray[sourceIndexPath.row]
+        songCellArray.remove(at: sourceIndexPath.row)
+        song.songArray.remove(at: sourceIndexPath.row)
+        songCellArray.insert(movedCell, at: destinationIndexPath.row)
+        song.songArray.insert(movedSong, at: destinationIndexPath.row)
+        var newQueue = [String]()
+        for song in song.songArray {
+            newQueue.append(song.songURL)
+        }
+        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+            Api.shared.reorderQueue(deviceID: deviceID, songs: newQueue) { (response) in
+                let json = JSON(response)
+                if json["meta"]["message"] == "OK" {
+                    // Do nothing reorder successful
+                }
+                else {
+                    // Should never happen!!!!
+                    let title = "Rearranging Queue Failed"
+                    let message = "The songs could not be rearranged"
+                    showAlert(title: title, message: message)
+                }
+            }
+        }
     }
 }
 

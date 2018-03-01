@@ -26,8 +26,11 @@ class TableViewVC: UIViewController {
     var songCellArray = [SongCell]()
     var viewingQueue = false
     
+    private let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         toolbar.isHidden = true
         
         // Sets the previously defined AVAudioSession (in AppDelegate.swift) to active
@@ -53,7 +56,41 @@ class TableViewVC: UIViewController {
         }
     }
     
+    @objc func refreshQueue(_ sender: Any) {
+        if var deviceID = UIDevice.current.identifierForVendor?.uuidString {
+            if Globals.partyDeviceId != nil {
+                deviceID = Globals.partyDeviceId! //If this user had joined a party, add the song to the parties queue.
+            }
+            Api.shared.getQueue(deviceID) { (responseDict) in
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    let response = try jsonDecoder.decode(
+                        QueueResponse.self,
+                        from: responseDict)
+                    self.song.songArray = []
+                    for s in response.data.results {
+                        self.song.songArray.append(s)
+                    }
+                    self.viewingQueue = true
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        self.refreshControl.endRefreshing()
+                    }
+                } catch {
+                    print("ERROR IN displayQueueButtonClicked: \(error)")
+                }
+            }
+        }
+    }
+    
     @IBAction func displayQueueButtonClicked(_ sender: UIButton) {
+        // Add refresh view.
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshQueue(_:)), for: .valueChanged)
         // When the user asks to see the current Queue, go get the Queue,
         // clear the search results, then update the search results with
         // the response from the server.
@@ -159,6 +196,8 @@ class TableViewVC: UIViewController {
 extension TableViewVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //Remove Refresh view, Disable selection of songs, hide edit toolbar.
+        self.tableView.refreshControl = nil
         self.tableView.allowsSelection = true
         toolbar.isHidden = true
         let keywords = searchBar.text!.replacingOccurrences(of: " ", with: "+")

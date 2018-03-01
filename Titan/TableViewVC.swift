@@ -73,8 +73,10 @@ class TableViewVC: UIViewController {
                     let response = try jsonDecoder.decode(
                         QueueResponse.self,
                         from: responseDict)
-                    for s in self.song.songArray {
-                        self.previousSongs.append(s)
+                    if self.previousSongs.count == 0 {
+                        for s in self.song.songArray {
+                            self.previousSongs.append(s)
+                        }
                     }
                     self.song.songArray = []
                     for s in response.data.results {

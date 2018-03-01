@@ -54,6 +54,8 @@ class LoginManager {
             let safariVC = SFSafariViewController(url: auth.spotifyWebAuthenticationURL())
             UIApplication.shared.keyWindow?.rootViewController?.present(
                 safariVC, animated: true, completion: nil)
+        } else {
+            self.delegate?.loginManagerDidLoginWithSuccess()
         }
     }
     

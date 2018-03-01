@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 import AVFoundation
 
@@ -16,22 +15,20 @@ class TableViewVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var editButton: UIBarButtonItem!
-    
-    @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var viewPartyButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var viewQueue: UIButton!
+    @IBOutlet weak var viewPartyButton: UIBarButtonItem!
     @IBOutlet weak var partyIDHeader: UINavigationItem!
     
     var song = Song()
     var songCellArray = [SongCell]()
+    var previousSongs = [SongData]()
     var viewingQueue = false
     
     private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        toolbar.isHidden = true
         
         // Sets the previously defined AVAudioSession (in AppDelegate.swift) to active
         // Apple suggests doing it only right before your app will play audio
@@ -46,20 +43,25 @@ class TableViewVC: UIViewController {
         // Login to Spotify
         LoginManager.shared.preparePlayer()
         
+        // Initialize the components
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag
         
+        // Only the party host can view the party
         if Globals.partyDeviceId != nil {
-            self.viewPartyButton.isHidden = true
+            self.viewPartyButton.isEnabled = false
         }
     }
     
-    @objc func refreshQueue(_ sender: Any) {
+    func updateQueue() {
+        // Whenever we update the Queue, we keep track of what is currently in the search
+        // results. We will use this to go back if the user selects the Search button.
         if var deviceID = UIDevice.current.identifierForVendor?.uuidString {
             if Globals.partyDeviceId != nil {
-                deviceID = Globals.partyDeviceId! //If this user had joined a party, add the song to the parties queue.
+                // If this user had joined a party, add the song to the parties queue.
+                deviceID = Globals.partyDeviceId!
             }
             Api.shared.getQueue(deviceID) { (responseDict) in
                 do {
@@ -67,6 +69,9 @@ class TableViewVC: UIViewController {
                     let response = try jsonDecoder.decode(
                         QueueResponse.self,
                         from: responseDict)
+                    for s in self.song.songArray {
+                        self.previousSongs.append(s)
+                    }
                     self.song.songArray = []
                     for s in response.data.results {
                         self.song.songArray.append(s)
@@ -77,117 +82,54 @@ class TableViewVC: UIViewController {
                         self.refreshControl.endRefreshing()
                     }
                 } catch {
-                    print("ERROR IN displayQueueButtonClicked: \(error)")
+                    print("ERROR IN updateQueue: \(error)")
                 }
             }
         }
+    }
+    
+    @objc func refreshQueue(_ sender: Any) {
+        self.updateQueue()
+    }
+    
+    func switchToSearch() {
+        self.viewQueue.setTitle("View Queue", for: .normal)
+        tableView.setEditing(false, animated: true)
+        self.editButton.isHidden = true
+        self.editButton.setTitle("Edit", for: .normal)
+        self.tableView.refreshControl = nil
+        self.tableView.allowsSelection = true
     }
     
     @IBAction func displayQueueButtonClicked(_ sender: UIButton) {
-        // Add refresh view.
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
+        if self.viewQueue.titleLabel?.text == "Search" {
+            // If the button that was clicked was the Search button, revert the user
+            // back to their previous search results stored in the previousSongs list.
+            self.switchToSearch()
+            self.song.songArray = []
+            for s in self.previousSongs {
+                self.song.songArray.append(s)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         } else {
-            tableView.addSubview(refreshControl)
-        }
-        refreshControl.addTarget(self, action: #selector(refreshQueue(_:)), for: .valueChanged)
-        // When the user asks to see the current Queue, go get the Queue,
-        // clear the search results, then update the search results with
-        // the response from the server.
-        if Globals.partyDeviceId == nil {
-            toolbar.isHidden = false
-        }
-        self.tableView.allowsSelection = false
-        if var deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            if Globals.partyDeviceId != nil {
-                deviceID = Globals.partyDeviceId! //If this user had joined a party, add the song to the parties queue.
+            // If the button that was clicked was the View Queue button, replace the data
+            // in the search results with the current queue.
+            self.viewQueue.setTitle("Search", for: .normal)
+            if Globals.partyDeviceId == nil {
+                // Only the host can edit the queue
+                self.editButton.isHidden = false
             }
-            Api.shared.getQueue(deviceID) { (responseDict) in
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    let response = try jsonDecoder.decode(
-                        QueueResponse.self,
-                        from: responseDict)
-                    self.song.songArray = []
-                    for s in response.data.results {
-                        self.song.songArray.append(s)
-                    }
-                    self.viewingQueue = true
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                } catch {
-                    print("ERROR IN displayQueueButtonClicked: \(error)")
-                }
-            }
-        }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "tableToMusic" {
-            if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-                var response: NextSongResponse?
-                Api.shared.getNextSong(deviceID) { (responseDict) in
-                    do {
-                        let jsonDecoder = JSONDecoder()
-                        response = try jsonDecoder.decode(NextSongResponse.self, from: responseDict)
-                    } catch {
-                        print("ERROR IN shouldPerformSegue: \(error)")
-                    }
-                }
-                
-                // Wait for the server to respond. TEMPORARY
-                while (response == nil) {
-                    sleep(1)
-                }
-                
-                // The queue has an item.
-                if response!.data.results != nil {
-                    return true
-                }
-                
-                //There is nothing in the Queue, don't let them proceed.
-                showAlert(title: "No song in queue",
-                          message: "Add a song to the queue to get this party started!")
-                return false
-            }
-        }
-        return true
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! MusicVC
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            if !MediaPlayer.shared.isPlaying {
-                // If there is no music playing, generate the destination with the first item in the Queue.
-                Api.shared.getNextSong(deviceID) { (responseDict) in
-                    do {
-                        let jsonDecoder = JSONDecoder()
-                        let response = try jsonDecoder.decode(NextSongResponse.self, from: responseDict)
-                        if let results = response.data.results {
-                            destination.song = results.name
-                            destination.artist = results.artist
-                            destination.imageURL = results.imageURL
-                            destination.songURL = results.songURL
-                            destination.durationInSeconds = results.durationInSeconds
-                        }
-                    } catch {
-                        print("ERROR IN prepare: \(error)")
-                    }
-                }
+            // Add refresh view.
+            if #available(iOS 10.0, *) {
+                tableView.refreshControl = refreshControl
             } else {
-                // If there is music playing, generate the destination with the song playing.
-                if let player = MediaPlayer.shared.player {
-                    if let currentTrack = player.metadata.currentTrack {
-                        destination.song = currentTrack.name
-                        destination.artist = currentTrack.artistName
-                        destination.imageURL = currentTrack.albumCoverArtURL
-                        destination.songURL = currentTrack.uri
-                        destination.durationInSeconds = currentTrack.duration
-                        destination.timeElapsed = Float(player.playbackState.position)
-                    }
-                }
+                tableView.addSubview(refreshControl)
             }
+            refreshControl.addTarget(self, action: #selector(refreshQueue(_:)), for: .valueChanged)
+            self.tableView.allowsSelection = false
+            self.updateQueue()
         }
     }
 }
@@ -196,12 +138,11 @@ class TableViewVC: UIViewController {
 extension TableViewVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //Remove Refresh view, Disable selection of songs, hide edit toolbar.
-        self.tableView.refreshControl = nil
-        self.tableView.allowsSelection = true
-        toolbar.isHidden = true
+        // Remove Refresh view, Disable selection of songs, hide edit toolbar.
+        self.switchToSearch()
+        self.previousSongs = []
         let keywords = searchBar.text!.replacingOccurrences(of: " ", with: "+")
-        //Every time the searchBar is "clicked", the searchURL is updated
+        // Every time the searchBar is "clicked", the searchURL is updated
         song.searchURL = "https://api.spotify.com/v1/search?q=\(keywords)&type=track"
         self.view.endEditing(true)
     }
@@ -214,23 +155,22 @@ extension TableViewVC: UISearchBarDelegate {
         }
         return true
     }
+    
+    @IBAction func editButtonClicked(_ sender: UIButton) {
+        if let title = sender.currentTitle {
+            if title == "Edit" {
+                tableView.setEditing(true, animated: true)
+                self.editButton.setTitle("Done", for: .normal)
+            } else {
+                tableView.setEditing(false, animated: true)
+                self.editButton.setTitle("Edit", for: .normal)
+            }
+        }
+    }
 }
 
 
 extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
-    
-    @IBAction func editButtonClicked(_ sender: UIBarButtonItem) {
-        if let title = sender.title {
-            if title == "Edit" {
-                tableView.setEditing(true, animated: true)
-                sender.title = "Done"
-            }
-            else {
-                tableView.setEditing(false, animated: true)
-                sender.title = "Edit"
-            }
-        }
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return song.songArray.count
@@ -240,7 +180,8 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         if var deviceID = UIDevice.current.identifierForVendor?.uuidString {
             if Globals.partyDeviceId != nil {
-                deviceID = Globals.partyDeviceId! //If this user had joined a party, add the song to the parties queue.
+                // If this user had joined a party, add the song to the parties queue.
+                deviceID = Globals.partyDeviceId!
             }
             let selectedSong = song.songArray[indexPath.row]
             Api.shared.addSong(
@@ -274,7 +215,8 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
         cell.accessoryType = UITableViewCellAccessoryType.none
         guard let url = URL(string: selectedSong.imageURL) else {
             songCellArray.append(cell)
-            return cell //Don't bother continuing, the resrt has to do with the image.
+            // Don't bother continuing, the rest has to do with the image.
+            return cell
         }
         do {
             let data = try Data(contentsOf: url)
@@ -302,8 +244,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                         DispatchQueue.main.async {
                             tableView.deleteRows(at: [indexPath], with: .fade)
                         }
-                    }
-                    else {
+                    } else {
                         let title = "Song Could Not Be Deleted"
                         let message = "This song is no longer in the queue"
                         showAlert(title: title, message: message)
@@ -313,12 +254,11 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    //Do not show delete option on swipe if the user is not the host and viewing the queue.
+    // Do not show delete option on swipe if the user is not the host and viewing the queue.
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         if viewingQueue && Globals.partyDeviceId == nil && tableView.isEditing{
             return .delete
-        }
-        else {
+        } else {
             return .none
         }
     }
@@ -339,8 +279,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                 let json = JSON(response)
                 if json["meta"]["message"] == "OK" {
                     // Do nothing reorder successful
-                }
-                else {
+                } else {
                     // Should never happen!!!!
                     let title = "Rearranging Queue Failed"
                     let message = "The songs could not be rearranged"

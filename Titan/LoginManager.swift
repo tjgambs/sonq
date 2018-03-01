@@ -50,9 +50,11 @@ class LoginManager {
     }
     
     func login() {
-        let safariVC = SFSafariViewController(url: auth.spotifyWebAuthenticationURL())
-        UIApplication.shared.keyWindow?.rootViewController?.present(
-            safariVC, animated: true, completion: nil)
+        if !self.isLogged {
+            let safariVC = SFSafariViewController(url: auth.spotifyWebAuthenticationURL())
+            UIApplication.shared.keyWindow?.rootViewController?.present(
+                safariVC, animated: true, completion: nil)
+        }
     }
     
     func handled(url: URL) -> Bool {

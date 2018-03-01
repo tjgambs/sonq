@@ -170,18 +170,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oxa-tO-Qq2">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8p-Gp-64L">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.53549861907958984" green="0.68680715560913086" blue="0.87800300121307373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="QlN-Kq-t2f"/>
-                                    <barButtonItem title="Edit" id="gTE-sg-xFB">
+                                    <barButtonItem title="Options" id="O3J-PS-wn3">
                                         <connections>
-                                            <action selector="editButtonClicked:" destination="nHa-xF-Um8" id="l1d-pB-YGK"/>
+                                            <segue destination="BYZ-38-t0r" kind="showDetail" id="ZNW-Xu-stO"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Gnm-1P-q4S"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3kc-ux-6M1"/>
+                                    <barButtonItem title="Party QR Code" id="omU-mo-5Ut">
+                                        <connections>
+                                            <segue destination="Two-KP-3h5" kind="show" id="loB-OF-0GU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lUl-P2-Rwn"/>
+                                    <barButtonItem title="View Party" id="PNO-B4-VbU">
+                                        <connections>
+                                            <segue destination="vDj-bj-6iy" kind="show" id="RTX-tn-Nlc"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.53549861907958984" green="0.68680715560913086" blue="0.87800300121307373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -200,7 +213,7 @@
                                 <rect key="frame" x="20" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View Queue">
-                                    <color key="titleColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="displayQueueButtonClicked:" destination="1XN-Bz-T1o" eventType="touchUpInside" id="Dzp-ug-1CB"/>
@@ -208,26 +221,27 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="dbc-3G-OD4">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eWR-9e-ufc">
-                                <rect key="frame" x="320" y="7" width="74" height="30"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="pvG-DI-ol9">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XrR-5V-N7a">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="View Party"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
-                                    <segue destination="vDj-bj-6iy" kind="show" identifier="tableToMusic" id="rA5-pJ-Muh"/>
+                                    <action selector="editButtonClicked:" destination="nHa-xF-Um8" eventType="touchUpInside" id="i7Q-Ah-PHO"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editButton" destination="gTE-sg-xFB" id="6kf-tL-2oS"/>
+                        <outlet property="editButton" destination="XrR-5V-N7a" id="Fkk-xt-yAO"/>
                         <outlet property="partyIDHeader" destination="E2h-lm-Hhd" id="yc3-Xe-jFf"/>
                         <outlet property="searchBar" destination="dzy-4D-GQ1" id="g8c-ya-hdY"/>
                         <outlet property="tableView" destination="DD9-0c-z2n" id="DYL-eX-d6H"/>
-                        <outlet property="toolbar" destination="oxa-tO-Qq2" id="8Np-Gg-I5c"/>
                         <outlet property="view" destination="dEy-W0-2Di" id="BVy-ni-Uc8"/>
-                        <outlet property="viewPartyButton" destination="eWR-9e-ufc" id="Og3-3f-yH1"/>
+                        <outlet property="viewPartyButton" destination="PNO-B4-VbU" id="peg-wK-gvq"/>
+                        <outlet property="viewQueue" destination="Al8-i5-nbG" id="mBS-ee-ltR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1XN-Bz-T1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -372,5 +386,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="njt-u3-chu"/>
+        <segue reference="yZK-ye-Ja6"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -33,11 +33,15 @@ class TableViewVC: UIViewController {
         // Sets the previously defined AVAudioSession (in AppDelegate.swift) to active
         // Apple suggests doing it only right before your app will play audio
         // Otherwise, just opening the app the the menu screen will cancel all other audio
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setActive(true)
-        } catch {
-            print("Activating AVAudioSession failed.")
+        // Only the hosts current music is cut when entering this view because clients won't be
+        // able to play the music from their devices.
+        if Globals.partyDeviceId == nil {
+            let audioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setActive(true)
+            } catch {
+                print("Activating AVAudioSession failed.")
+            }
         }
         
         // Login to Spotify

@@ -17,14 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Audio Set-up. Set audio to "Playback" mode.
-        
-        if Globals.partyDeviceId != nil {
-            let audioSession = AVAudioSession.sharedInstance()
-            do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-            } catch {
-                print("Setting category to AVAudioSessionCategoryPlayback failed.")
-            }
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+        } catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
         }
         // If the user has not logged in yet, go to login screen
         if !LoginManager.shared.isLogged {

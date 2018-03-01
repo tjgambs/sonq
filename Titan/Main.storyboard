@@ -87,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-293" y="-280"/>
+            <point key="canvasLocation" x="-688" y="-210"/>
         </scene>
         <!--Scan-->
         <scene sceneID="9oz-6F-mX6">
@@ -105,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WzJ-Bt-RxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-292.5" y="721.47887323943667"/>
+            <point key="canvasLocation" x="-688" y="651"/>
         </scene>
         <!--DJ TITAN-->
         <scene sceneID="gn7-s2-n9V">
@@ -244,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1XN-Bz-T1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1304.3478260869567" y="-114.1304347826087"/>
+            <point key="canvasLocation" x="1135" y="-969"/>
         </scene>
         <!-- -->
         <scene sceneID="mID-7r-o6x">
@@ -314,7 +314,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2041.875" y="-113.02816901408451"/>
+            <point key="canvasLocation" x="1952" y="-210"/>
         </scene>
         <!--CodeVC-->
         <scene sceneID="4z5-Jm-kHE">
@@ -345,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0DU-rk-yZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1304" y="796"/>
+            <point key="canvasLocation" x="1135" y="-210"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fCo-fl-Grr">
@@ -367,14 +367,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="caA-w3-4Uw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="493" y="-113"/>
+            <point key="canvasLocation" x="204" y="-210"/>
         </scene>
     </scenes>
     <resources>
         <image name="pause" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="njt-u3-chu"/>
+        <segue reference="ncY-4V-0it"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

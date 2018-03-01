@@ -173,19 +173,19 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.53549861907958984" green="0.68680715560913086" blue="0.87800300121307373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <barButtonItem title="Options" id="O3J-PS-wn3">
+                                    <barButtonItem title="Options" image="gear-toolbar" id="O3J-PS-wn3">
                                         <connections>
                                             <segue destination="BYZ-38-t0r" kind="showDetail" id="ZNW-Xu-stO"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem systemItem="flexibleSpace" id="3kc-ux-6M1"/>
-                                    <barButtonItem title="QR Code" id="omU-mo-5Ut">
+                                    <barButtonItem title="QR Code" image="qr-toolbar" id="omU-mo-5Ut">
                                         <connections>
                                             <segue destination="Two-KP-3h5" kind="show" id="loB-OF-0GU"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem systemItem="flexibleSpace" id="lUl-P2-Rwn"/>
-                                    <barButtonItem title="View Party" id="PNO-B4-VbU">
+                                    <barButtonItem systemItem="play" id="PNO-B4-VbU">
                                         <connections>
                                             <segue destination="vDj-bj-6iy" kind="show" id="RTX-tn-Nlc"/>
                                         </connections>
@@ -371,7 +371,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gear-toolbar" width="25" height="25"/>
         <image name="pause" width="512" height="512"/>
+        <image name="qr-toolbar" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ncY-4V-0it"/>

@@ -33,10 +33,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7s-sr-ERc">
-                                <rect key="frame" x="10" y="137" width="394" height="101"/>
+                                <rect key="frame" x="82" y="122" width="250" height="75"/>
                                 <color key="backgroundColor" red="0.53330451250076294" green="0.68197578191757202" blue="0.87416887283325195" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="l7s-sr-ERc" secondAttribute="height" multiplier="254:65" id="CIf-nB-wYX"/>
+                                    <constraint firstAttribute="height" constant="75" id="41h-ow-Gq2"/>
+                                    <constraint firstAttribute="width" constant="250" id="6mw-L6-Nlz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                 <state key="normal" title="HOST A PARTY">
@@ -47,49 +48,46 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DJ TITAN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHH-4x-0QJ">
-                                <rect key="frame" x="33" y="45" width="348" height="52"/>
+                                <rect key="frame" x="112.66666666666667" y="45" width="188.66666666666663" height="52"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvP-vD-gAr">
-                                <rect key="frame" x="50" y="278" width="314" height="80.333333333333314"/>
+                                <rect key="frame" x="82" y="222" width="250" height="75"/>
                                 <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="qvP-vD-gAr" secondAttribute="height" multiplier="254:65" id="aW6-4a-cgN"/>
+                                    <constraint firstAttribute="height" constant="75" id="Kyk-64-pQB"/>
+                                    <constraint firstAttribute="width" constant="250" id="NyI-80-RE6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                 <state key="normal" title="JOIN A PARTY">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="LNO-7W-87b" kind="show" id="5X4-xQ-teu"/>
+                                    <segue destination="LNO-7W-87b" kind="show" identifier="toQR" id="5X4-xQ-teu"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="l7s-sr-ERc" secondAttribute="trailing" constant="10" id="7pF-aL-XKZ"/>
-                            <constraint firstItem="l7s-sr-ERc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="8ch-kc-azM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AHH-4x-0QJ" secondAttribute="trailing" constant="33" id="AhN-Ot-HKE"/>
-                            <constraint firstItem="AHH-4x-0QJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="Kby-gv-Uzf"/>
-                            <constraint firstItem="AHH-4x-0QJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="33" id="WJx-0U-UFP"/>
-                            <constraint firstItem="qvP-vD-gAr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="XRe-FQ-vVu"/>
-                            <constraint firstItem="qvP-vD-gAr" firstAttribute="width" secondItem="qvP-vD-gAr" secondAttribute="height" multiplier="254:65" id="gF1-eX-TVh"/>
-                            <constraint firstItem="qvP-vD-gAr" firstAttribute="top" secondItem="l7s-sr-ERc" secondAttribute="bottom" constant="40" id="jIZ-ds-N0g"/>
-                            <constraint firstItem="l7s-sr-ERc" firstAttribute="top" secondItem="AHH-4x-0QJ" secondAttribute="bottom" constant="40" id="wa1-mR-2NM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qvP-vD-gAr" secondAttribute="trailing" constant="50" id="zAu-Ae-peG"/>
+                            <constraint firstItem="l7s-sr-ERc" firstAttribute="top" secondItem="AHH-4x-0QJ" secondAttribute="bottom" constant="25" id="SBx-oQ-8Sq"/>
+                            <constraint firstItem="AHH-4x-0QJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Tf2-DF-rAM"/>
+                            <constraint firstItem="qvP-vD-gAr" firstAttribute="top" secondItem="l7s-sr-ERc" secondAttribute="bottom" constant="25" id="b1S-nH-IOg"/>
+                            <constraint firstItem="l7s-sr-ERc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ehL-HZ-FZR"/>
+                            <constraint firstItem="qvP-vD-gAr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pZw-dM-usi"/>
+                            <constraint firstItem="AHH-4x-0QJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="xzZ-V8-0Rs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="w7T-t7-bXB"/>
                     <connections>
-                        <segue destination="7f1-ae-Z4a" kind="show" id="njt-u3-chu"/>
+                        <segue destination="7f1-ae-Z4a" kind="show" identifier="toNavigation" id="njt-u3-chu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-279.375" y="-114.08450704225352"/>
+            <point key="canvasLocation" x="-293" y="-280"/>
         </scene>
         <!--Scan-->
         <scene sceneID="9oz-6F-mX6">
@@ -170,18 +168,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oxa-tO-Qq2">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8p-Gp-64L">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.53549861907958984" green="0.68680715560913086" blue="0.87800300121307373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="QlN-Kq-t2f"/>
-                                    <barButtonItem title="Edit" id="gTE-sg-xFB">
+                                    <barButtonItem title="Options" id="O3J-PS-wn3">
                                         <connections>
-                                            <action selector="editButtonClicked:" destination="nHa-xF-Um8" id="l1d-pB-YGK"/>
+                                            <segue destination="BYZ-38-t0r" kind="showDetail" id="ZNW-Xu-stO"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Gnm-1P-q4S"/>
+                                    <barButtonItem systemItem="flexibleSpace" id="3kc-ux-6M1"/>
+                                    <barButtonItem title="QR Code" id="omU-mo-5Ut">
+                                        <connections>
+                                            <segue destination="Two-KP-3h5" kind="show" id="loB-OF-0GU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="lUl-P2-Rwn"/>
+                                    <barButtonItem title="View Party" id="PNO-B4-VbU">
+                                        <connections>
+                                            <segue destination="vDj-bj-6iy" kind="show" id="RTX-tn-Nlc"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.53549861907958984" green="0.68680715560913086" blue="0.87800300121307373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -195,12 +206,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="DJ TITAN" id="E2h-lm-Hhd">
                         <barButtonItem key="backBarButtonItem" title=" " id="JZe-MW-36P"/>
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="xd0-Qr-q2i">
+                        <barButtonItem key="leftBarButtonItem" id="xd0-Qr-q2i">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Al8-i5-nbG" userLabel="ViewQueue">
                                 <rect key="frame" x="20" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View Queue">
-                                    <color key="titleColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="displayQueueButtonClicked:" destination="1XN-Bz-T1o" eventType="touchUpInside" id="Dzp-ug-1CB"/>
@@ -208,26 +219,27 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="dbc-3G-OD4">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eWR-9e-ufc">
-                                <rect key="frame" x="320" y="7" width="74" height="30"/>
+                        <barButtonItem key="rightBarButtonItem" id="pvG-DI-ol9">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XrR-5V-N7a">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="View Party"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
-                                    <segue destination="vDj-bj-6iy" kind="show" identifier="tableToMusic" id="rA5-pJ-Muh"/>
+                                    <action selector="editButtonClicked:" destination="nHa-xF-Um8" eventType="touchUpInside" id="i7Q-Ah-PHO"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editButton" destination="gTE-sg-xFB" id="6kf-tL-2oS"/>
+                        <outlet property="editButton" destination="XrR-5V-N7a" id="Fkk-xt-yAO"/>
                         <outlet property="partyIDHeader" destination="E2h-lm-Hhd" id="yc3-Xe-jFf"/>
                         <outlet property="searchBar" destination="dzy-4D-GQ1" id="g8c-ya-hdY"/>
                         <outlet property="tableView" destination="DD9-0c-z2n" id="DYL-eX-d6H"/>
-                        <outlet property="toolbar" destination="oxa-tO-Qq2" id="8Np-Gg-I5c"/>
                         <outlet property="view" destination="dEy-W0-2Di" id="BVy-ni-Uc8"/>
-                        <outlet property="viewPartyButton" destination="eWR-9e-ufc" id="Og3-3f-yH1"/>
+                        <outlet property="viewPartyButton" destination="PNO-B4-VbU" id="peg-wK-gvq"/>
+                        <outlet property="viewQueue" destination="Al8-i5-nbG" id="mBS-ee-ltR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1XN-Bz-T1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -270,27 +282,18 @@
                                     <outletCollection property="gestureRecognizers" destination="1ro-Du-ZY2" appends="YES" id="GGj-A0-yDq"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utu-gg-cg5">
-                                <rect key="frame" x="156" y="686" width="102" height="30"/>
-                                <state key="normal" title="Party QR Code"/>
-                                <connections>
-                                    <segue destination="Two-KP-3h5" kind="show" id="yZK-ye-Ja6"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OfS-N4-Ie2" firstAttribute="top" secondItem="lxl-ME-F9R" secondAttribute="bottom" constant="17" id="0B7-r2-OQZ"/>
                             <constraint firstItem="OfS-N4-Ie2" firstAttribute="leading" secondItem="Hzl-7L-fhT" secondAttribute="leading" constant="132" id="CLG-FV-Rau"/>
                             <constraint firstItem="lxl-ME-F9R" firstAttribute="leading" secondItem="Hzl-7L-fhT" secondAttribute="leading" constant="41" id="KpJ-3h-zJ1"/>
-                            <constraint firstItem="Utu-gg-cg5" firstAttribute="centerX" secondItem="rRG-K3-tHd" secondAttribute="centerX" id="MeB-UT-3dW"/>
                             <constraint firstItem="Zju-Ug-VsJ" firstAttribute="leading" secondItem="Hzl-7L-fhT" secondAttribute="leading" constant="42" id="O3e-q0-LOv"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="Zju-Ug-VsJ" secondAttribute="trailing" constant="37" id="QRI-y8-sK4"/>
                             <constraint firstItem="05M-94-1Tp" firstAttribute="top" secondItem="Hzl-7L-fhT" secondAttribute="top" constant="42" id="ZxQ-xD-EVX"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="OfS-N4-Ie2" secondAttribute="trailing" constant="128" id="fPQ-HR-DsX"/>
                             <constraint firstItem="lxl-ME-F9R" firstAttribute="top" secondItem="Zju-Ug-VsJ" secondAttribute="bottom" constant="23.5" id="g38-gI-S2O"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="05M-94-1Tp" secondAttribute="trailing" constant="37" id="iJJ-MR-bBL"/>
-                            <constraint firstItem="Hzl-7L-fhT" firstAttribute="bottom" secondItem="Utu-gg-cg5" secondAttribute="bottom" constant="20" id="kFN-ds-VZD"/>
                             <constraint firstItem="Hzl-7L-fhT" firstAttribute="trailing" secondItem="lxl-ME-F9R" secondAttribute="trailing" constant="37" id="kNA-4E-tDM"/>
                             <constraint firstItem="05M-94-1Tp" firstAttribute="leading" secondItem="Hzl-7L-fhT" secondAttribute="leading" constant="42" id="lPB-4x-CJ4"/>
                             <constraint firstItem="Zju-Ug-VsJ" firstAttribute="top" secondItem="05M-94-1Tp" secondAttribute="bottom" constant="8" id="oGL-BA-bnb"/>
@@ -342,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0DU-rk-yZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2801" y="-114"/>
+            <point key="canvasLocation" x="1304" y="796"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fCo-fl-Grr">
@@ -373,4 +376,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="njt-u3-chu"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

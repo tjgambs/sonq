@@ -50,9 +50,15 @@ class LoginManager {
     }
     
     func login() {
-        let safariVC = SFSafariViewController(url: auth.spotifyWebAuthenticationURL())
-        UIApplication.shared.keyWindow?.rootViewController?.present(
-            safariVC, animated: true, completion: nil)
+        if !self.isLogged {
+            // If they are not logged in, have them navigate to Safari to authenticate
+            let safariVC = SFSafariViewController(url: auth.spotifyWebAuthenticationURL())
+            UIApplication.shared.keyWindow?.rootViewController?.present(
+                safariVC, animated: true, completion: nil)
+        } else {
+            // Otherwise, just let them in to their party because they are already authorized.
+            self.delegate?.loginManagerDidLoginWithSuccess()
+        }
     }
     
     func handled(url: URL) -> Bool {

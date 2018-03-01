@@ -17,7 +17,6 @@ class Api: NSObject {
     let host = "35.184.31.17"
     let port = 80
     
-    
     struct SongData: Codable {
         var deviceID: String
         var name: String?

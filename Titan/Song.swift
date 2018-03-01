@@ -26,7 +26,7 @@ class Song {
     }
     
     @objc func updateAuthorization() {
-        //This function allows anyone to be able to search for songs.
+        // This function allows anyone to be able to search for songs.
         let headers = ["Authorization": "Basic MzYyZmM1YmRkMGQ1NDYxNDk5Y2NmNmU0ZTc0ODM4MDA6ODhiNGNlOWVhMTQ2NDdjOTlkOGI0YjU3MGYxYTk5OGE="]
         let para = ["grant_type": "client_credentials"]
         let url = "https://accounts.spotify.com/api/token"
@@ -46,7 +46,7 @@ class Song {
         }
     }
 
-    //Whenever the searchURL changes, collect the search results from the Spotify API.
+    // Whenever the searchURL changes, collect the search results from the Spotify API.
     func getSongDetails(callback: @escaping () -> ()) {
         if (searchURL == nil) {
             return

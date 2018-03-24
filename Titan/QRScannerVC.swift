@@ -75,7 +75,7 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 return
             }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            Globals.partyDeviceId = stringValue 
+            Globals.partyDeviceId = stringValue
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "JoinParty", sender: self)
             }

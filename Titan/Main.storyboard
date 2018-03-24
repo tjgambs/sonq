@@ -106,8 +106,6 @@
         <!--Scan-->
         <scene sceneID="9oz-6F-mX6">
             <objects>
-                <exit id="sdx-uA-D4u" userLabel="Exit" sceneMemberID="exit"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WzJ-Bt-RxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Scan" id="LNO-7W-87b" customClass="QRScannerVC" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BwG-rD-L5U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -147,6 +145,8 @@
                         <segue destination="sdx-uA-D4u" kind="unwind" identifier="unwindToMenu" unwindAction="unwindToMenuWithSegue:" id="zn9-kG-2pF"/>
                     </connections>
                 </viewController>
+                <exit id="sdx-uA-D4u" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WzJ-Bt-RxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-165.59999999999999" y="-1541.3793103448277"/>
         </scene>
@@ -259,16 +259,17 @@
                     <connections>
                         <outlet property="editButton" destination="v3v-Wz-Fxi" id="9cO-Yk-2jV"/>
                         <outlet property="tableView" destination="ZCY-gv-kOt" id="krU-8g-WFg"/>
+                        <segue destination="TZb-G4-fhN" kind="unwind" identifier="unwindToMenu1" unwindAction="unwindToMenuWithSegue:" id="RiD-vW-32l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1F-Qg-p3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TZb-G4-fhN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2140" y="-2268"/>
         </scene>
         <!--Search-->
         <scene sceneID="gn7-s2-n9V">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1XN-Bz-T1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="nHa-xF-Um8" customClass="TableViewVC" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dEy-W0-2Di">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -369,15 +370,17 @@
                         <outlet property="searchBar" destination="dzy-4D-GQ1" id="g8c-ya-hdY"/>
                         <outlet property="tableView" destination="DD9-0c-z2n" id="DYL-eX-d6H"/>
                         <outlet property="view" destination="dEy-W0-2Di" id="BVy-ni-Uc8"/>
+                        <segue destination="gQf-Wp-H4D" kind="unwind" identifier="unwindToMenu2" unwindAction="unwindToMenuWithSegue:" id="u2j-mZ-nbk"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1XN-Bz-T1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gQf-Wp-H4D" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1377" y="-2267"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9YZ-Ss-nq2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NFu-hO-xVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController storyboardIdentifier="TabBarController" id="gb0-T5-zau" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0eL-bR-duU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -391,18 +394,13 @@
                         <segue destination="vDj-bj-6iy" kind="relationship" relationship="viewControllers" id="5LL-iE-l1l"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NFu-hO-xVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="616" y="-1938"/>
         </scene>
         <!-- -->
         <scene sceneID="mID-7r-o6x">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="clj-va-lsj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="1ro-Du-ZY2">
-                    <connections>
-                        <action selector="playButtonTapped:" destination="vDj-bj-6iy" id="HrS-bc-lbL"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <viewController title=" " id="vDj-bj-6iy" customClass="MusicVC" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rRG-K3-tHd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -470,15 +468,22 @@
                         <outlet property="playButton" destination="OfS-N4-Ie2" id="XLG-3s-G2b"/>
                         <outlet property="slider" destination="lxl-ME-F9R" id="MJd-fv-zGQ"/>
                         <outlet property="songName" destination="Zju-Ug-VsJ" id="Ybz-aQ-ZuV"/>
+                        <segue destination="VGH-oN-lQL" kind="unwind" identifier="unwindToMenu3" unwindAction="unwindToMenuWithSegue:" id="NSd-oQ-DHA"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="clj-va-lsj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="VGH-oN-lQL" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="1ro-Du-ZY2">
+                    <connections>
+                        <action selector="playButtonTapped:" destination="vDj-bj-6iy" id="HrS-bc-lbL"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2140" y="-1598"/>
         </scene>
         <!--QR Code-->
         <scene sceneID="4z5-Jm-kHE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0DU-rk-yZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Two-KP-3h5" customClass="QRCodeVC" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zid-VA-YwO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -522,8 +527,11 @@
                     <tabBarItem key="tabBarItem" title="QR Code" image="toolbar-qr" landscapeImage="toolbar-qr" selectedImage="toolbar-qr" id="vzC-dh-Dt2"/>
                     <connections>
                         <outlet property="qrCodeImage" destination="dCe-UE-AW8" id="Foj-P2-MrJ"/>
+                        <segue destination="f8M-LR-u2H" kind="unwind" identifier="unwindToMenu4" unwindAction="unwindToMenuWithSegue:" id="q8H-50-86d"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0DU-rk-yZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="f8M-LR-u2H" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1376.8115942028987" y="-1597.0108695652175"/>
         </scene>
@@ -18146,7 +18154,7 @@ WQAAAAAAAAAAAAAAAAAQHLk
         <image name="toolbar-search" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Dy-31-77F"/>
+        <segue reference="DMH-Iw-upl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

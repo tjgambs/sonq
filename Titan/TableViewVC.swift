@@ -47,6 +47,7 @@ class TableViewVC: UIViewController {
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag
     }
+    
 }
 
 extension TableViewVC: UISearchBarDelegate {

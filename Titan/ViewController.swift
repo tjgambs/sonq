@@ -14,6 +14,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         LoginManager.shared.delegate = self
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Globals.partyDeviceId = nil
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

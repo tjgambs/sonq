@@ -259,11 +259,9 @@
                     <connections>
                         <outlet property="editButton" destination="v3v-Wz-Fxi" id="9cO-Yk-2jV"/>
                         <outlet property="tableView" destination="ZCY-gv-kOt" id="krU-8g-WFg"/>
-                        <segue destination="TZb-G4-fhN" kind="unwind" identifier="unwindToMenu1" unwindAction="unwindToMenuWithSegue:" id="RiD-vW-32l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1F-Qg-p3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="TZb-G4-fhN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2140" y="-2268"/>
         </scene>
@@ -370,11 +368,9 @@
                         <outlet property="searchBar" destination="dzy-4D-GQ1" id="g8c-ya-hdY"/>
                         <outlet property="tableView" destination="DD9-0c-z2n" id="DYL-eX-d6H"/>
                         <outlet property="view" destination="dEy-W0-2Di" id="BVy-ni-Uc8"/>
-                        <segue destination="gQf-Wp-H4D" kind="unwind" identifier="unwindToMenu2" unwindAction="unwindToMenuWithSegue:" id="u2j-mZ-nbk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1XN-Bz-T1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="gQf-Wp-H4D" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1377" y="-2267"/>
         </scene>
@@ -468,11 +464,9 @@
                         <outlet property="playButton" destination="OfS-N4-Ie2" id="XLG-3s-G2b"/>
                         <outlet property="slider" destination="lxl-ME-F9R" id="MJd-fv-zGQ"/>
                         <outlet property="songName" destination="Zju-Ug-VsJ" id="Ybz-aQ-ZuV"/>
-                        <segue destination="VGH-oN-lQL" kind="unwind" identifier="unwindToMenu3" unwindAction="unwindToMenuWithSegue:" id="NSd-oQ-DHA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clj-va-lsj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="VGH-oN-lQL" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="1ro-Du-ZY2">
                     <connections>
                         <action selector="playButtonTapped:" destination="vDj-bj-6iy" id="HrS-bc-lbL"/>
@@ -527,11 +521,9 @@
                     <tabBarItem key="tabBarItem" title="QR Code" image="toolbar-qr" landscapeImage="toolbar-qr" selectedImage="toolbar-qr" id="vzC-dh-Dt2"/>
                     <connections>
                         <outlet property="qrCodeImage" destination="dCe-UE-AW8" id="Foj-P2-MrJ"/>
-                        <segue destination="f8M-LR-u2H" kind="unwind" identifier="unwindToMenu4" unwindAction="unwindToMenuWithSegue:" id="q8H-50-86d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0DU-rk-yZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="f8M-LR-u2H" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1376.8115942028987" y="-1597.0108695652175"/>
         </scene>

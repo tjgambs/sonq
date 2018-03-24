@@ -14,6 +14,7 @@
 		224483BD202BE6210042591F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224483BB202BE6210042591F /* LaunchScreen.storyboard */; };
 		224483C8202BE6210042591F /* TitanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483C7202BE6210042591F /* TitanTests.swift */; };
 		224483D3202BE6210042591F /* TitanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483D2202BE6210042591F /* TitanUITests.swift */; };
+		2254F2F32065B90A003B0944 /* QueueViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254F2F22065B90A003B0944 /* QueueViewVC.swift */; };
 		22793977203A087B00FA454E /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22793976203A087B00FA454E /* QRCodeVC.swift */; };
 		22A25FCE203806EF00E4D0DB /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FCD203806EF00E4D0DB /* LoginManager.swift */; };
 		22A25FD02038074A00E4D0DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FCF2038074A00E4D0DB /* ViewController.swift */; };
@@ -63,6 +64,7 @@
 		224483CE202BE6210042591F /* TitanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TitanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		224483D2202BE6210042591F /* TitanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitanUITests.swift; sourceTree = "<group>"; };
 		224483D4202BE6210042591F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2254F2F22065B90A003B0944 /* QueueViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewVC.swift; sourceTree = "<group>"; };
 		22793976203A087B00FA454E /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		22A25FCD203806EF00E4D0DB /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		22A25FCF2038074A00E4D0DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				22A25FD92038081500E4D0DB /* MediaPlayer.swift */,
 				E1199749203A1C2400C9AC12 /* QRScannerVC.swift */,
 				22A25FD3203807BC00E4D0DB /* TableViewVC.swift */,
+				2254F2F22065B90A003B0944 /* QueueViewVC.swift */,
 				22A25FDB2038081D00E4D0DB /* SongCell.swift */,
 				22A25FDD2038082200E4D0DB /* Song.swift */,
 				22793976203A087B00FA454E /* QRCodeVC.swift */,
@@ -530,6 +533,7 @@
 				224483B3202BE6210042591F /* AppDelegate.swift in Sources */,
 				22A25FDC2038081D00E4D0DB /* SongCell.swift in Sources */,
 				22A25FEF2038146300E4D0DB /* Api.swift in Sources */,
+				2254F2F32065B90A003B0944 /* QueueViewVC.swift in Sources */,
 				22A25FD6203807E100E4D0DB /* MusicVC.swift in Sources */,
 				22A25FD02038074A00E4D0DB /* ViewController.swift in Sources */,
 				22A25FDA2038081500E4D0DB /* MediaPlayer.swift in Sources */,
@@ -701,6 +705,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Titan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tim-Gamble.Titan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -725,6 +730,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Titan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tim-Gamble.Titan";
 				PRODUCT_NAME = "$(TARGET_NAME)";

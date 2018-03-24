@@ -36,13 +36,17 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func unwindToMenu(segue: UIStoryboardSegue) {}
+    
 }
 
 extension ViewController: LoginManagerDelegate {
     
     func loginManagerDidLoginWithSuccess() {
         UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "TableViewNC")
+            .instantiateViewController(withIdentifier: "TabBarController")
         dismiss(animated: true, completion: nil)
     }
+    
 }

@@ -35,7 +35,7 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             previewLayer.frame = view.layer.bounds
             previewLayer.videoGravity = .resizeAspectFill
-            view.layer.addSublayer(previewLayer)
+            view.layer.insertSublayer(previewLayer!, below: qrCodeFrameView?.layer)
             
             // Initialize QR Code Frame to highlight the QR code
             qrCodeFrameView = UIView()
@@ -83,4 +83,9 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             dismiss(animated: true)
         }
     }
+    
+    @IBAction func QRCodeButtonTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "unwindToMenu", sender: self)
+    }
+    
 }

@@ -70,4 +70,5 @@ class LoginManager {
         })
         return true
     }
+    
 }

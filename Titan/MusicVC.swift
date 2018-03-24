@@ -35,6 +35,16 @@ class MusicVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Globals.partyDeviceId != nil {
+            // Only the host can adjust the player.
+            self.slider.isHidden = true
+            self.playButton.isHidden = true
+            self.songName.text = "Sorry, only the host can adjust the music."
+            return
+        }
+        
+        
         // When the view is first loaded and a song is currently playing, update the interface.
         if MediaPlayer.shared.isPlaying {
             // Update the interface with the information for the current song.

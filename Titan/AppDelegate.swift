@@ -16,19 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Audio Set-up. Set audio to "Playback" mode.
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-        } catch {
-            print("Setting category to AVAudioSessionCategoryPlayback failed.")
-        }
         // If the user has not logged in yet, go to login screen
         if !LoginManager.shared.isLogged {
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             self.window?.makeKeyAndVisible()
         } else {
-            // Else go to the navigation controller
+            // Else go to the tab bar controller
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
         }
         return true

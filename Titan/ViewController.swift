@@ -10,16 +10,14 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var usernameField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        LoginManager.shared.delegate = self
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         self.usernameField.delegate = self
+        LoginManager.shared.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,8 +82,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         } catch {}
                     }
                 }
-            }
-            else {
+            } else {
                 let title = "Please Enter a Username"
                 let message = "Your username cannot be blank."
                 showAlert(title: title, message: message)

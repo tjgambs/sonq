@@ -82,24 +82,6 @@ def delete_song():
         )
     )
 
-
-@mod.route("/register_device/<deviceID>", methods=["GET"])
-def register_device(deviceID):
-    message = "OK"
-    try:
-        db.session.add(Device(id=deviceID))
-        db.session.commit()
-    except IntegrityError:
-        message = "PARTY ALREADY EXISTS"
-        db.session.close()
-    return jsonify(
-        prepare_json_response(
-            message=message,
-            success=True
-        )
-    )
-
-
 @mod.route("/join_party/<deviceID>", methods=["GET"])
 def join_party(deviceID):
     q = db.session.query(Device).filter(Device.id == deviceID)
@@ -122,5 +104,39 @@ def reorder_queue():
         prepare_json_response(
             message="OK",
             success=True
+        )
+    )
+
+@mod.route("/update_username/<deviceID>", methods=["POST"])
+def update_username(deviceID):
+    username = request.json['username']
+    q = db.session.query(Device).filter(Device.id == deviceID)
+    # DeviceId Exists.
+    if q.first():
+        q.first().username = username
+    # DeviceId does not exist, create it now.
+    else:
+        db.session.add(Device(id=deviceID, username=username))
+    db.session.commit()
+    return jsonify(
+        prepare_json_response(
+            message="OK",
+            success=True
+        )
+    )
+
+@mod.route("/get_username", methods=["POST"])
+def get_username():
+    req_content = request.json
+    partyID = req_content['partyID']
+    songURL = req_content['songURL']
+    q = db.session.query(Queue).filter(Queue.deviceID == partyID).filter(Queue.songURL == songURL)
+    username_query = db.session.query(Device).filter(Device.id == q.first().added_by)
+    data = {'username': username_query.first().username if username_query.first() else None}
+    return jsonify(
+        prepare_json_response(
+            message="OK",
+            success=True,
+            data=data
         )
     )

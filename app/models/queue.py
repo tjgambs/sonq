@@ -16,6 +16,7 @@ class Queue(db.Model):
     songURL = db.Column(db.String, primary_key=True)
     created_at = db.Column(db.Date, default=datetime.datetime.utcnow)
     position = db.Column(db.Integer)
+    added_by = db.Column(db.String, db.ForeignKey('device.id', ondelete='CASCADE'))
 
     @property
     def serialize(self):
@@ -26,4 +27,5 @@ class Queue(db.Model):
                 'durationInSeconds': self.durationInSeconds,
                 'imageURL': self.imageURL,
                 'songURL': self.songURL,
-                'position:': self.position}
+                'position:': self.position,
+                'added_by:': self.added_by}

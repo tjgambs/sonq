@@ -84,20 +84,24 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if var deviceID = UIDevice.current.identifierForVendor?.uuidString {
+        // Get device UUID, set partyID to that. If joined a party, then switch it to the right ID.
+        // deviceID is sent with who requested the song.
+        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+            var partyID = deviceID
             if Globals.partyDeviceId != nil {
                 // If this user had joined a party, add the song to the parties queue.
-                deviceID = Globals.partyDeviceId!
+                partyID = Globals.partyDeviceId!
             }
             let selectedSong = song.songArray[indexPath.row]
             Api.shared.addSong(
-                deviceID: deviceID,
+                deviceID: partyID,
                 name: selectedSong.name,
                 artist: selectedSong.artist,
                 duration: selectedSong.duration,
                 durationInSeconds: selectedSong.durationInSeconds,
                 imageURL: selectedSong.imageURL,
-                songURL: selectedSong.songURL) { (responseDict) in
+                songURL: selectedSong.songURL,
+                addedBy: deviceID) { (responseDict) in
                     let json = JSON(responseDict)
                     if json["meta"]["message"] == "OK" {
                         DispatchQueue.main.async {

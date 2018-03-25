@@ -61,3 +61,7 @@ struct NextSong: Codable {
 struct NoDataResponse: Codable {
     let meta: MetaVariable
 }
+
+struct usernameResponse: Codable {
+    let username: String?
+}

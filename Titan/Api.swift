@@ -25,11 +25,21 @@ class Api: NSObject {
         var durationInSeconds: Double?
         var imageURL: String?
         var songURL: String
+        var added_by: String?
     }
     
     struct QueueData: Codable {
         var deviceID: String
         var songs: [String]
+    }
+    
+    struct UsernameData: Codable {
+        var username: String
+    }
+    
+    struct UsernameGet: Codable {
+        var partyID: String
+        var songURL: String
     }
     
     func sendPayload<T:Codable>(payload:T, endpoint:String, httpMethod:String, completion: @escaping (Data) -> ()) {
@@ -99,17 +109,17 @@ class Api: NSObject {
         sendPayload(endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
-    func addSong(deviceID: String, name: String, artist: String, duration: String, durationInSeconds: Double, imageURL:String, songURL:String, _ completion: @escaping (Data) -> ()) {
+    func addSong(deviceID: String, name: String, artist: String, duration: String, durationInSeconds: Double, imageURL:String, songURL:String, addedBy:String, _ completion: @escaping (Data) -> ()) {
         let endpoint:String = "/v1/titan/add_song"
         let httpMethod:String = "POST"
-        let payload: SongData = SongData(deviceID:deviceID, name:name, artist:artist, duration:duration, durationInSeconds: durationInSeconds, imageURL:imageURL, songURL:songURL)
+        let payload: SongData = SongData(deviceID:deviceID, name:name, artist:artist, duration:duration, durationInSeconds: durationInSeconds, imageURL:imageURL, songURL:songURL, added_by:addedBy)
         sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
     func deleteSong(deviceID: String, songURL: String, _ completion: @escaping (Data) -> ()) {
         let endpoint:String = "/v1/titan/delete_song"
         let httpMethod:String = "DELETE"
-        let payload: SongData = SongData(deviceID:deviceID, name:nil, artist:nil, duration:nil, durationInSeconds: nil, imageURL:nil, songURL:songURL)
+        let payload: SongData = SongData(deviceID:deviceID, name:nil, artist:nil, duration:nil, durationInSeconds: nil, imageURL:nil, songURL:songURL, added_by:nil)
         sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
@@ -129,6 +139,20 @@ class Api: NSObject {
         let endpoint:String = "/v1/titan/reorder_queue"
         let httpMethod:String = "POST"
         let payload:QueueData = QueueData(deviceID:deviceID, songs:songs)
+        sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
+    }
+    
+    func updateUsername(deviceID: String, username: String, _ completion: @escaping (Data) -> ()) {
+        let endpoint:String = "/v1/titan/update_username/\(deviceID)"
+        let httpMethod:String = "POST"
+        let payload:UsernameData = UsernameData(username:username)
+        sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
+    }
+
+    func getUsername(partyID: String, songURL: String, _ completion: @escaping (Data) -> ()) {
+        let endpoint:String = "/v1/titan/get_username"
+        let httpMethod:String = "POST"
+        let payload:UsernameGet = UsernameGet(partyID: partyID, songURL: songURL)
         sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     

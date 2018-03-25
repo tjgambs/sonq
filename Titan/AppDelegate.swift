@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // If the user has not logged in yet, go to login screen
         if !LoginManager.shared.isLogged {
+            // If the user has not logged in yet, go to login screen
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             self.window?.makeKeyAndVisible()
         } else {

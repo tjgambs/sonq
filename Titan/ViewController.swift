@@ -14,7 +14,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self, action: #selector(ViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         self.usernameField.delegate = self
         LoginManager.shared.delegate = self

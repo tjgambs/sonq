@@ -1,4 +1,5 @@
 from app import db
+from .device import Device
 import datetime
 
 
@@ -17,6 +18,7 @@ class Queue(db.Model):
     created_at = db.Column(db.Date, default=datetime.datetime.utcnow)
     position = db.Column(db.Integer)
     added_by = db.Column(db.String, db.ForeignKey('device.id', ondelete='CASCADE'))
+    added_by_key = db.relationship(Device, backref='queue', foreign_keys=added_by)
 
     @property
     def serialize(self):
@@ -28,4 +30,4 @@ class Queue(db.Model):
                 'imageURL': self.imageURL,
                 'songURL': self.songURL,
                 'position:': self.position,
-                'added_by:': self.added_by}
+                'added_by': self.added_by_key.username}

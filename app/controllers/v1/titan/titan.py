@@ -125,18 +125,3 @@ def update_username(deviceID):
         )
     )
 
-@mod.route("/get_username", methods=["POST"])
-def get_username():
-    req_content = request.json
-    partyID = req_content['partyID']
-    songURL = req_content['songURL']
-    q = db.session.query(Queue).filter(Queue.deviceID == partyID).filter(Queue.songURL == songURL)
-    username_query = db.session.query(Device).filter(Device.id == q.first().added_by)
-    data = {'username': username_query.first().username if username_query.first() else None}
-    return jsonify(
-        prepare_json_response(
-            message="OK",
-            success=True,
-            data=data
-        )
-    )

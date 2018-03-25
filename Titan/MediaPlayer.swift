@@ -23,6 +23,7 @@ class MediaPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         return false
     }
     
+    
     func play(track: String) {
         player?.playSpotifyURI(track, startingWith: 0, startingWithPosition: 0, callback: { (error) in
             if let error = error {

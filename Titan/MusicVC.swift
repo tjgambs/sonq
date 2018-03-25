@@ -15,6 +15,7 @@ class MusicVC: UIViewController {
     @IBOutlet weak var songName: UILabel!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var playButton: UIImageView!
+    @IBOutlet weak var skipButton: UIButton!
     
     let jsonDecoder = JSONDecoder()
     
@@ -26,12 +27,12 @@ class MusicVC: UIViewController {
     
     var timeElapsed: Float = 0
     var songFinished: Bool = false
-    var previousSliderValue: Float = 0
     
     var playTimer: Timer!
     var sliderTimer: Timer!
     var nextSongTimer: Timer!
     
+    var resumeNotAllowed: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +41,10 @@ class MusicVC: UIViewController {
             // Only the host can adjust the player.
             self.slider.isHidden = true
             self.playButton.isHidden = true
+            self.skipButton.isHidden = true
             self.songName.text = "Sorry, only the host can adjust the music."
             return
         }
-        
         
         // When the view is first loaded and a song is currently playing, update the interface.
         if MediaPlayer.shared.isPlaying {
@@ -107,7 +108,6 @@ class MusicVC: UIViewController {
                             self.durationInSeconds = nextSong.durationInSeconds
                             self.timeElapsed = 0
                             self.songFinished = true
-                            self.previousSliderValue = 0
                             self.slider.setValue(0, animated: true)
                             if playOnceReceived {
                                 MediaPlayer.shared.play(track: self.songURL)
@@ -115,35 +115,38 @@ class MusicVC: UIViewController {
                             }
                             self.updateUserInterface()
                             self.updatePlayButton()
-                            self.updateSlider()
                             if let x = self.nextSongTimer {
                                 x.invalidate()
                             }
+                            self.resumeNotAllowed = false
                         }
                     } else {
                         // There aren't any more songs in the queue.
+                        // Also, we want to turn off the music playing if there is any.
                         DispatchQueue.main.async {
+                            self.song = ""
+                            self.artist = ""
+                            self.imageURL = ""
+                            self.songURL = ""
+                            self.durationInSeconds = 0.0
+                            self.timeElapsed = 0
+                            self.songFinished = false
+                            self.slider.setValue(1, animated: true)
+                            self.updateUserInterface()
                             self.playButton.image = UIImage(named: "play")
-                            self.songFinished = true
                             if self.nextSongTimer == nil || !self.nextSongTimer.isValid {
                                 self.initNextSongTimer()
                             }
+                            // We don't allow the play button to be tapped during this time.
+                            self.resumeNotAllowed = true
                         }
                     }
                 } catch {
-                    // There aren't any more songs in the queue.
-                    DispatchQueue.main.async {
-                        self.playButton.image = UIImage(named: "play")
-                        self.songFinished = true
-                        if self.nextSongTimer == nil || !self.nextSongTimer.isValid {
-                            self.initNextSongTimer()
-                        }
-                    }
+                    print("There was an error in getNextSong()")
                 }
             }
         }
     }
-
     
     func updateUserInterface() {
         self.songName.text = song
@@ -156,11 +159,11 @@ class MusicVC: UIViewController {
         } catch {}
         self.slider.isContinuous = false
     }
-    
 
-    @objc func updatePlayButton(){
+    @objc func updatePlayButton() {
         if !MediaPlayer.shared.isPlaying && slider.value == 1 {
-            // If there is no music playing and the slider is at the end, then go get the next song in the queue.
+            // If there is no music playing and the slider is at the end, then go get
+            // the next song in the queue and invalidate the timers.
             if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
                 Api.shared.deleteSong(deviceID: deviceID, songURL: self.songURL, { (r) in
                     self.getNextSong(playOnceReceived: true)
@@ -169,8 +172,8 @@ class MusicVC: UIViewController {
                 })
             }
         } else if !MediaPlayer.shared.isPlaying {
-            // If the slider is not at the end and no music is playing, then this means that the party hasn't
-            // started yet so display the play button.
+            // If the slider is not at the end and no music is playing, then this
+            // means that the party hasn't started yet so display the play button.
             self.playButton.image = UIImage(named: "play")
             self.songFinished = true
         } else {
@@ -184,40 +187,51 @@ class MusicVC: UIViewController {
     }
     
     @IBAction func sliderDragged(_ sender: UISlider) {
-        if self.songFinished {
-            MediaPlayer.shared.play(track: self.songURL)
-            MediaPlayer.shared.seek(progress: self.slider.value, songDuration: self.durationInSeconds)
-            self.songFinished = false
-            if !self.playTimer.isValid && !self.sliderTimer.isValid {
-                self.initTimers()
-            }
-        } else {
-            MediaPlayer.shared.seek(progress: self.slider.value, songDuration: self.durationInSeconds)
+        if resumeNotAllowed {
+            return
         }
+        MediaPlayer.shared.seek(progress: self.slider.value, songDuration: self.durationInSeconds)
         self.timeElapsed = self.slider.value * Float(self.durationInSeconds)
     }
     
+    @IBAction func skipButtonTapped(_ sender: UIButton) {
+        if resumeNotAllowed {
+            return
+        }
+        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+            // When the skip button is pressed, delete the current song and start
+            // playing the next song. Invalidate the play and slider timers.
+            Api.shared.deleteSong(deviceID: deviceID, songURL: self.songURL, { (r) in
+                MediaPlayer.shared.pause()
+                self.getNextSong(playOnceReceived: true)
+                self.playTimer.invalidate()
+                self.sliderTimer.invalidate()
+            })
+        }
+    }
+    
     @IBAction func playButtonTapped(_ sender: UITapGestureRecognizer) {
+        if resumeNotAllowed {
+            return
+        }
         if MediaPlayer.shared.isPlaying {
-            // If the music is playing, then pause it and invalidate the timers.
+            // If there is music playing and this function is run, then we want
+            // to pause the music, set the image to play and invalidate the timers.
             MediaPlayer.shared.pause()
             playButton.image = UIImage(named: "play")
-            if playTimer.isValid && sliderTimer.isValid {
-                playTimer.invalidate()
-                sliderTimer.invalidate()
-            }
+            playTimer.invalidate()
+            sliderTimer.invalidate()
+        } else if MediaPlayer.shared.player?.metadata == nil {
+            // If music has never been started, then we want to start the music from
+            // the beginning. We then initalize the timers and set the image to pause.
+            MediaPlayer.shared.play(track: self.songURL)
+            self.initTimers()
+            self.playButton.image = UIImage(named: "pause")
         } else {
-            // If the music has never been started, start the music for the first time.
-            if MediaPlayer.shared.player?.metadata == nil {
-                MediaPlayer.shared.play(track: self.songURL)
-                self.initTimers()
-            } else {
-                // If the music is not playing, then resume the music.
-                MediaPlayer.shared.resume()
-                if !self.playTimer.isValid && !self.sliderTimer.isValid {
-                    self.initTimers()
-                }
-            }
+            // If there was no music playing but there was music playing before, then
+            // resume the music.
+            MediaPlayer.shared.resume()
+            self.initTimers()
             self.playButton.image = UIImage(named: "pause")
         }
     }

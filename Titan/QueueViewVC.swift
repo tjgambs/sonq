@@ -123,18 +123,7 @@ extension QueueViewVC: UITableViewDelegate, UITableViewDataSource {
         cell.cellSongName.text = selectedSong.name
         cell.cellSongDuration.text = selectedSong.duration
         cell.cellSongArtist.text = selectedSong.artist
-        if var partyID = UIDevice.current.identifierForVendor?.uuidString {
-            if Globals.partyDeviceId != nil {
-                partyID = Globals.partyDeviceId!
-            }
-            Api.shared.getUsername(partyID: partyID, songURL: selectedSong.songURL) { (response) in
-                let json = JSON(response)
-                let username = json["data"]["username"]
-                DispatchQueue.main.async {
-                    cell.cellSongAddedBy.text = String(describing: username)
-                }
-            }
-        }
+        cell.cellSongAddedBy.text = selectedSong.added_by! // Will be present in queue, not in search.
         cell.accessoryType = UITableViewCellAccessoryType.none
         guard let url = URL(string: selectedSong.imageURL) else {
             songCellArray.append(cell)

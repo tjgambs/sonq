@@ -14,8 +14,10 @@ class Api: NSObject {
     static let shared = Api()
     
     let scheme = "http"
-    let host = "35.184.31.17"
-    let port = 80
+    //let host = "35.184.31.17"
+    //let port = 80
+    let host = "0.0.0.0"
+    let port = 5000
     
     struct SongData: Codable {
         var deviceID: String
@@ -146,13 +148,6 @@ class Api: NSObject {
         let endpoint:String = "/v1/titan/update_username/\(deviceID)"
         let httpMethod:String = "POST"
         let payload:UsernameData = UsernameData(username:username)
-        sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
-    }
-
-    func getUsername(partyID: String, songURL: String, _ completion: @escaping (Data) -> ()) {
-        let endpoint:String = "/v1/titan/get_username"
-        let httpMethod:String = "POST"
-        let payload:UsernameGet = UsernameGet(partyID: partyID, songURL: songURL)
         sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     

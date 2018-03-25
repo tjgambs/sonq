@@ -87,7 +87,10 @@ class Song {
                                         duration: duration,
                                         durationInSeconds: durationInSeconds,
                                         imageURL: item["album"]["images"][0]["url"].stringValue,
-                                        songURL: item["uri"].stringValue))
+                                        songURL: item["uri"].stringValue,
+                                        added_by: nil
+                                        )
+                            )
                         }
                     case .failure(let error):
                         print("ERROR: \(error) failed to get data from url \(self.searchURL)")

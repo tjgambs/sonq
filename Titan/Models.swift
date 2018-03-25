@@ -20,6 +20,7 @@ struct SongData: Codable {
     var durationInSeconds: Double
     var imageURL: String
     var songURL: String
+    var added_by: String?
 }
 
 struct QueueResponse: Codable {

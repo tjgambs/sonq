@@ -4,3 +4,6 @@ app/controllers/*.pyc
 app/controllers/v1/*.pyc
 app/controllers/v1/titan/*.pyc
 app/models/*.pyc
+.DS_STORE
+*.pyc
+*.zip

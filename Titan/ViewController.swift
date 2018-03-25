@@ -43,7 +43,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func joinButtonPressed(_ sender: UIButton) {
         if let username = usernameField.text {
             if !username.isEmpty {
-                LoginManager.shared.login()
                 if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
                     Api.shared.updateUsername(deviceID: deviceID, username: username) { (responseDict) in
                         do {
@@ -60,8 +59,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         } catch {}
                     }
                 }
-            }
-            else {
+            } else {
                 let title = "Please Enter a Username"
                 let message = "Your username cannot be blank."
                 showAlert(title: title, message: message)

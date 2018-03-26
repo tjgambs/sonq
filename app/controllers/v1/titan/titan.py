@@ -20,7 +20,7 @@ def add_song():
     message = "OK"
     try:
         q = (db.session.query(Queue)
-             .filter(Queue.deviceID == request.json['deviceID'])
+             .filter(Queue.partyID == request.json['partyID'])
              .order_by(Queue.position.desc()))
         last_position = q.first().position if q.first() else -1
         request.json['position'] = last_position + 1
@@ -37,10 +37,10 @@ def add_song():
     )
 
 
-@mod.route("/get_next_song/<deviceID>", methods=["GET"])
-def get_next_song(deviceID):
+@mod.route("/get_next_song/<partyID>", methods=["GET"])
+def get_next_song(partyID):
     q = (db.session.query(Queue)
-         .filter(Queue.deviceID == deviceID)
+         .filter(Queue.partyID == partyID)
          .order_by(Queue.position.asc()))
     data = {'results': q.first().serialize if q.first() else None}
     return jsonify(
@@ -52,10 +52,10 @@ def get_next_song(deviceID):
     )
 
 
-@mod.route("/get_queue/<deviceID>", methods=["GET"])
-def get_queue(deviceID):
+@mod.route("/get_queue/<partyID>", methods=["GET"])
+def get_queue(partyID):
     q = (db.session.query(Queue)
-         .filter(Queue.deviceID == deviceID)
+         .filter(Queue.partyID == partyID)
          .order_by(Queue.position.asc()))
     payload = [x.serialize for x in q.all()]
     data = {'results': payload}
@@ -72,7 +72,7 @@ def get_queue(deviceID):
 def delete_song():
     req_content = request.json
     db.session.query(Queue).filter(
-        (Queue.deviceID == req_content['deviceID'])
+        (Queue.partyID == req_content['partyID'])
         & (Queue.songURL == req_content['songURL'])).delete()
     db.session.commit()
     return jsonify(
@@ -82,9 +82,9 @@ def delete_song():
         )
     )
 
-@mod.route("/join_party/<deviceID>", methods=["GET"])
-def join_party(deviceID):
-    q = db.session.query(Device).filter(Device.id == deviceID)
+@mod.route("/join_party/<partyID>", methods=["GET"])
+def join_party(partyID):
+    q = db.session.query(Device).filter(Device.id == partyID)
     data = {'party_exists': bool(len(q.all()))}
     return jsonify(
         prepare_json_response(
@@ -97,7 +97,7 @@ def join_party(deviceID):
 @mod.route("/reorder_queue", methods=["POST"])
 def reorder_queue():
     for idx, s in enumerate(request.json['songs']):
-        q = (db.session.query(Queue).filter(Queue.deviceID == request.json['deviceID']).filter(Queue.songURL == s))
+        q = (db.session.query(Queue).filter(Queue.partyID == request.json['partyID']).filter(Queue.songURL == s))
         q.first().position = idx
     db.session.commit()
     return jsonify(

@@ -7,7 +7,7 @@ class Queue(db.Model):
 
     __tablename__ = "queue"
 
-    deviceID = db.Column(db.String, db.ForeignKey(
+    partyID = db.Column(db.String, db.ForeignKey(
         'device.id', ondelete='CASCADE'), primary_key=True)
     name = db.Column(db.String)
     artist = db.Column(db.String)
@@ -22,7 +22,7 @@ class Queue(db.Model):
 
     @property
     def serialize(self):
-        return {'deviceID': self.deviceID,
+        return {'partyID': self.partyID,
                 'name': self.name,
                 'artist': self.artist,
                 'duration': self.duration,

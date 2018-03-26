@@ -80,7 +80,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
             }
             let selectedSong = song.songArray[indexPath.row]
             Api.shared.addSong(
-                deviceID: partyID,
+                partyID: partyID,
                 name: selectedSong.name,
                 artist: selectedSong.artist,
                 duration: selectedSong.duration,

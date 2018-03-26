@@ -95,8 +95,8 @@ class MusicVC: UIViewController {
     }
 
     func getNextSong(playOnceReceived: Bool) {
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            Api.shared.getNextSong(deviceID) { (responseDict) in
+        if let partyID = UIDevice.current.identifierForVendor?.uuidString {
+            Api.shared.getNextSong(partyID) { (responseDict) in
                 do {
                     let response = try self.jsonDecoder.decode(NextSongResponse.self, from: responseDict)
                     if let nextSong = response.data.results {
@@ -164,8 +164,8 @@ class MusicVC: UIViewController {
         if !MediaPlayer.shared.isPlaying && slider.value == 1 {
             // If there is no music playing and the slider is at the end, then go get
             // the next song in the queue and invalidate the timers.
-            if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-                Api.shared.deleteSong(deviceID: deviceID, songURL: self.songURL, { (r) in
+            if let partyID = UIDevice.current.identifierForVendor?.uuidString {
+                Api.shared.deleteSong(partyID: partyID, songURL: self.songURL, { (r) in
                     self.getNextSong(playOnceReceived: true)
                     self.playTimer.invalidate()
                     self.sliderTimer.invalidate()
@@ -198,10 +198,10 @@ class MusicVC: UIViewController {
         if resumeNotAllowed {
             return
         }
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+        if let partyID = UIDevice.current.identifierForVendor?.uuidString {
             // When the skip button is pressed, delete the current song and start
             // playing the next song. Invalidate the play and slider timers.
-            Api.shared.deleteSong(deviceID: deviceID, songURL: self.songURL, { (r) in
+            Api.shared.deleteSong(partyID: partyID, songURL: self.songURL, { (r) in
                 MediaPlayer.shared.pause()
                 self.getNextSong(playOnceReceived: true)
                 self.playTimer.invalidate()

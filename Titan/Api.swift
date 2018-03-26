@@ -18,7 +18,7 @@ class Api: NSObject {
     let port = 80
     
     struct SongData: Codable {
-        var deviceID: String
+        var partyID: String
         var name: String?
         var artist: String?
         var duration: String?
@@ -29,7 +29,7 @@ class Api: NSObject {
     }
     
     struct QueueData: Codable {
-        var deviceID: String
+        var partyID: String
         var songs: [String]
     }
     
@@ -97,48 +97,42 @@ class Api: NSObject {
     }
 
     
-    func getQueue(_ deviceID: String, _ completion: @escaping (Data) -> ()) {
-        let endpoint:String = "/v1/titan/get_queue/\(deviceID)"
+    func getQueue(_ partyID: String, _ completion: @escaping (Data) -> ()) {
+        let endpoint:String = "/v1/titan/get_queue/\(partyID)"
         let httpMethod:String = "GET"
         sendPayload(endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
-    func getNextSong(_ deviceID: String, _ completion: @escaping (Data) -> ()) {
-        let endpoint:String = "/v1/titan/get_next_song/\(deviceID)"
+    func getNextSong(_ partyID: String, _ completion: @escaping (Data) -> ()) {
+        let endpoint:String = "/v1/titan/get_next_song/\(partyID)"
         let httpMethod:String = "GET"
         sendPayload(endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
-    func addSong(deviceID: String, name: String, artist: String, duration: String, durationInSeconds: Double, imageURL:String, songURL:String, addedBy:String, _ completion: @escaping (Data) -> ()) {
+    func addSong(partyID: String, name: String, artist: String, duration: String, durationInSeconds: Double, imageURL:String, songURL:String, addedBy:String, _ completion: @escaping (Data) -> ()) {
         let endpoint:String = "/v1/titan/add_song"
         let httpMethod:String = "POST"
-        let payload: SongData = SongData(deviceID:deviceID, name:name, artist:artist, duration:duration, durationInSeconds: durationInSeconds, imageURL:imageURL, songURL:songURL, added_by:addedBy)
+        let payload: SongData = SongData(partyID:partyID, name:name, artist:artist, duration:duration, durationInSeconds: durationInSeconds, imageURL:imageURL, songURL:songURL, added_by:addedBy)
         sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
-    func deleteSong(deviceID: String, songURL: String, _ completion: @escaping (Data) -> ()) {
+    func deleteSong(partyID: String, songURL: String, _ completion: @escaping (Data) -> ()) {
         let endpoint:String = "/v1/titan/delete_song"
         let httpMethod:String = "DELETE"
-        let payload: SongData = SongData(deviceID:deviceID, name:nil, artist:nil, duration:nil, durationInSeconds: nil, imageURL:nil, songURL:songURL, added_by:nil)
+        let payload: SongData = SongData(partyID:partyID, name:nil, artist:nil, duration:nil, durationInSeconds: nil, imageURL:nil, songURL:songURL, added_by:nil)
         sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
-    func registerDevice(_ deviceID: String, _ completion: @escaping (Data) -> ()) {
-        let endpoint:String = "/v1/titan/register_device/\(deviceID)"
+    func joinParty(_ partyID: String, _ completion: @escaping (Data) -> ()) {
+        let endpoint:String = "/v1/titan/join_party/\(partyID)"
         let httpMethod:String = "GET"
         sendPayload(endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     
-    func joinParty(_ deviceID: String, _ completion: @escaping (Data) -> ()) {
-        let endpoint:String = "/v1/titan/join_party/\(deviceID)"
-        let httpMethod:String = "GET"
-        sendPayload(endpoint:endpoint, httpMethod:httpMethod, completion:completion)
-    }
-    
-    func reorderQueue(deviceID: String, songs: [String], _ completion: @escaping (Data) -> ()) {
+    func reorderQueue(partyID: String, songs: [String], _ completion: @escaping (Data) -> ()) {
         let endpoint:String = "/v1/titan/reorder_queue"
         let httpMethod:String = "POST"
-        let payload:QueueData = QueueData(deviceID:deviceID, songs:songs)
+        let payload:QueueData = QueueData(partyID:partyID, songs:songs)
         sendPayload(payload:payload, endpoint:endpoint, httpMethod:httpMethod, completion:completion)
     }
     

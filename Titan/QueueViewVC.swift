@@ -49,12 +49,12 @@ class QueueViewVC: UIViewController {
     }
     
     func updateQueue() {
-        if var deviceID = UIDevice.current.identifierForVendor?.uuidString {
+        if var partyID = UIDevice.current.identifierForVendor?.uuidString {
             if Globals.partyDeviceId != nil {
                 // If this user had joined a party, add the song to the parties queue.
-                deviceID = Globals.partyDeviceId!
+                partyID = Globals.partyDeviceId!
             }
-            Api.shared.getQueue(deviceID) { (responseDict) in
+            Api.shared.getQueue(partyID) { (responseDict) in
                 do {
                     let jsonDecoder = JSONDecoder()
                     let response = try jsonDecoder.decode(
@@ -132,8 +132,8 @@ extension QueueViewVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete && Globals.partyDeviceId == nil {
             // Send delete request
-            if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-                Api.shared.deleteSong(deviceID: deviceID, songURL: song.songArray[indexPath.row].songURL) { (response) in
+            if let partyID = UIDevice.current.identifierForVendor?.uuidString {
+                Api.shared.deleteSong(partyID: partyID, songURL: song.songArray[indexPath.row].songURL) { (response) in
                     let json = JSON(response)
                     if json["meta"]["message"] == "OK" {
                         // Delete the cell
@@ -172,8 +172,8 @@ extension QueueViewVC: UITableViewDelegate, UITableViewDataSource {
         for song in song.songArray {
             newQueue.append(song.songURL)
         }
-        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
-            Api.shared.reorderQueue(deviceID: deviceID, songs: newQueue) { (response) in
+        if let partyID = UIDevice.current.identifierForVendor?.uuidString {
+            Api.shared.reorderQueue(partyID: partyID, songs: newQueue) { (response) in
                 let json = JSON(response)
                 if json["meta"]["message"] == "OK" {
                     // Do nothing reorder successful

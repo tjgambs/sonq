@@ -14,14 +14,14 @@ import SwiftyJSON
 class Song {
     
     let auth = SPTAuth.defaultInstance()!
-    var songArray = [SongData]()
+    var songArray:[[SongData]] = [[],[]]
+    var suggestIDArray = [String]()
     var searchURL: String!
     var accessToken: String?
-    
     var updateAuthTimer: Timer!
     
     public init() {
-        self.updateAuthorization()
+        updateAuthorization()
         updateAuthTimer = Timer.scheduledTimer(timeInterval: 1800, target: self, selector: #selector(updateAuthorization), userInfo: nil, repeats: true)
     }
     
@@ -37,9 +37,9 @@ class Song {
             encoding: URLEncoding.default,
             headers : headers).responseJSON { response in
                 switch response.result {
-                    case .success(let value):
-                        let json = JSON(value)
-                        self.accessToken = json.dictionary!["access_token"]?.stringValue
+                case .success(let value):
+                    let json = JSON(value)
+                    self.accessToken = json.dictionary!["access_token"]?.stringValue
                 case .failure(let error):
                     print(error)
                 }
@@ -52,8 +52,7 @@ class Song {
             return
         }
         let param = ["q":"", "type":"track"]
-        
-        let headers = ["Authorization": "Bearer " + self.accessToken!]
+        let headers = ["Authorization": "Bearer " + accessToken!]
         Alamofire.request(
             searchURL,
             method: .get,
@@ -76,12 +75,12 @@ class Song {
                         
                         // If the query returns results, clear what is currently
                         // shown then add the results.
-                        self.songArray = []
+                        self.songArray = [[],[]]
                         for item in JSONSongsArray.arrayValue {
                             let durationInMS = item["duration_ms"].doubleValue
                             let durationInSeconds = Double(durationInMS) / 1000
                             let duration = durationInSeconds.minuteSecondMS
-                            self.songArray.append(
+                            self.songArray[0].append(
                                 SongData(name: item["name"].stringValue,
                                         artist: item["album"]["artists"][0]["name"].stringValue,
                                         duration: duration,
@@ -92,10 +91,70 @@ class Song {
                                         )
                             )
                         }
+                        self.getSuggestedSongs(callback: callback)
                     case .failure(let error):
                         print("ERROR: \(error) failed to get data from url \(self.searchURL)")
                 }
-            callback()
+        }
+    }
+    
+    func getSuggestedSongs(callback: @escaping () -> ()) {
+        var suggestURL = "https://api.spotify.com/v1/recommendations?limit=5&seed_tracks="
+        if var partyID = UIDevice.current.identifierForVendor?.uuidString {
+            if Globals.partyDeviceId != nil {
+                partyID = Globals.partyDeviceId!
+            }
+            Api.shared.getQueue(partyID) { (responseDict) in
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    let response = try jsonDecoder.decode(
+                        QueueResponse.self,
+                        from: responseDict)
+                    self.suggestIDArray = []
+                    for s in response.data.results.prefix(5) {
+                        let songID = s.songURL.split(separator: ":").last
+                        self.suggestIDArray.append(String(songID!))
+                    }
+                    suggestURL = suggestURL + self.suggestIDArray.joined(separator: ",")
+                    if (self.accessToken == nil) {
+                        // NEED A BETTER SOLUTION
+                        sleep(1)
+                    }
+                    let headers = ["Authorization": "Bearer " + self.accessToken!]
+                    Alamofire.request(
+                        suggestURL,
+                        method: .get,
+                        parameters: nil,
+                        encoding: URLEncoding.default,
+                        headers: headers).responseJSON { response in
+                            switch response.result {
+                                case .success(let value):
+                                    let json = JSON(value)
+                                    let JSONSongsArray = json["tracks"]
+                                    for track in JSONSongsArray.arrayValue {
+                                        let durationInMS = track["duration_ms"].doubleValue
+                                        let durationInSeconds = Double(durationInMS) / 1000
+                                        let duration = durationInSeconds.minuteSecondMS
+                                        self.songArray[1].append(
+                                            SongData(name: track["name"].stringValue,
+                                                     artist: track["album"]["artists"][0]["name"].stringValue,
+                                                     duration: duration,
+                                                     durationInSeconds: durationInSeconds,
+                                                     imageURL: track["album"]["images"][0]["url"].stringValue,
+                                                     songURL: track["uri"].stringValue,
+                                                     added_by: nil
+                                            )
+                                        )
+                                    }
+                                    callback()
+                                case .failure(let error):
+                                    print("ERROR: \(error) failed to get data from url \(suggestURL)")
+                            }
+                            
+                    }
+                    
+                } catch {}
+            }
         }
     }
 }

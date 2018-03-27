@@ -16,7 +16,7 @@ class QueueViewVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editButton: UIButton!
     
-    var song = Song()
+    var songArray = [SongData]()
     var songCellArray = [SongCell]()
     
     private let refreshControl = UIRefreshControl()
@@ -60,9 +60,9 @@ class QueueViewVC: UIViewController {
                     let response = try jsonDecoder.decode(
                         QueueResponse.self,
                         from: responseDict)
-                    self.song.songArray = []
+                    self.songArray = []
                     for s in response.data.results {
-                        self.song.songArray.append(s)
+                        self.songArray.append(s)
                     }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -100,12 +100,12 @@ extension QueueViewVC: UISearchBarDelegate {
 extension QueueViewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return song.songArray.count
+        return songArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! SongCell
-        let selectedSong = song.songArray[indexPath.row]
+        let selectedSong = songArray[indexPath.row]
         cell.cellSongName.text = selectedSong.name
         cell.cellSongDuration.text = selectedSong.duration
         cell.cellSongArtist.text = selectedSong.artist
@@ -133,11 +133,11 @@ extension QueueViewVC: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete && Globals.partyDeviceId == nil {
             // Send delete request
             if let partyID = UIDevice.current.identifierForVendor?.uuidString {
-                Api.shared.deleteSong(partyID: partyID, songURL: song.songArray[indexPath.row].songURL) { (response) in
+                Api.shared.deleteSong(partyID: partyID, songURL: songArray[indexPath.row].songURL) { (response) in
                     let json = JSON(response)
                     if json["meta"]["message"] == "OK" {
                         // Delete the cell
-                        self.song.songArray.remove(at: indexPath.row)
+                        self.songArray.remove(at: indexPath.row)
                         self.songCellArray.remove(at: indexPath.row)
                         DispatchQueue.main.async {
                             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -163,13 +163,13 @@ extension QueueViewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let movedCell = songCellArray[sourceIndexPath.row]
-        let movedSong = song.songArray[sourceIndexPath.row]
+        let movedSong = songArray[sourceIndexPath.row]
         songCellArray.remove(at: sourceIndexPath.row)
-        song.songArray.remove(at: sourceIndexPath.row)
+        songArray.remove(at: sourceIndexPath.row)
         songCellArray.insert(movedCell, at: destinationIndexPath.row)
-        song.songArray.insert(movedSong, at: destinationIndexPath.row)
+        songArray.insert(movedSong, at: destinationIndexPath.row)
         var newQueue = [String]()
-        for song in song.songArray {
+        for song in songArray {
             newQueue.append(song.songURL)
         }
         if let partyID = UIDevice.current.identifierForVendor?.uuidString {

@@ -17,7 +17,7 @@ class TableViewVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var song = Song()
-    var songCellArray = [SongCell]()
+    var songCellArray:[[SongCell]] = [[],[]]
     
     private let refreshControl = UIRefreshControl()
 
@@ -32,7 +32,13 @@ class TableViewVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag
+        
+        //Load initial suggestions
+        song.getSuggestedSongs {
+            self.tableView.reloadData()
+        }
     }
+    
     
     @IBAction func goHome(_ sender: Any) {
         UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil)
@@ -54,7 +60,7 @@ extension TableViewVC: UISearchBarDelegate {
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         song.getSongDetails {
-            self.songCellArray = []
+            self.songCellArray = [[],[]]
             self.tableView.reloadData()
         }
         return true
@@ -65,7 +71,7 @@ extension TableViewVC: UISearchBarDelegate {
 extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return song.songArray.count
+        return song.songArray[section].count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,7 +84,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                 // If this user had joined a party, add the song to the parties queue.
                 partyID = Globals.partyDeviceId!
             }
-            let selectedSong = song.songArray[indexPath.row]
+            let selectedSong = song.songArray[indexPath.section][indexPath.row]
             Api.shared.addSong(
                 partyID: partyID,
                 name: selectedSong.name,
@@ -91,7 +97,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                     let json = JSON(responseDict)
                     if json["meta"]["message"] == "OK" {
                         DispatchQueue.main.async {
-                            self.songCellArray[indexPath.row].accessoryType = UITableViewCellAccessoryType.checkmark
+                            self.songCellArray[indexPath.section][indexPath.row].accessoryType = UITableViewCellAccessoryType.checkmark
                         }
                     } else {
                         let title = "Song Already in Queue"
@@ -104,13 +110,13 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! SongCell
-        let selectedSong = song.songArray[indexPath.row]
+        let selectedSong = song.songArray[indexPath.section][indexPath.row]
         cell.cellSongName.text = selectedSong.name
         cell.cellSongDuration.text = selectedSong.duration
         cell.cellSongArtist.text = selectedSong.artist
         cell.accessoryType = UITableViewCellAccessoryType.none
         guard let url = URL(string: selectedSong.imageURL) else {
-            songCellArray.append(cell)
+            songCellArray[indexPath.section].append(cell)
             // Don't bother continuing, the rest has to do with the image.
             return cell
         }
@@ -118,12 +124,24 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
             let data = try Data(contentsOf: url)
             cell.cellSongImage.image = UIImage(data: data)
         } catch {}
-        songCellArray.append(cell)
+        songCellArray[indexPath.section].append(cell)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "Suggested Songs"
+        }
+        return nil
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
 }
 

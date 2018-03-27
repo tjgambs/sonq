@@ -8,13 +8,10 @@
 
 import Foundation
 import SwiftyJSON
-import Alamofire
 
 class Api: NSObject {
     
     static let shared = Api()
-    
-    var accessToken: String?
     
     let scheme = "http"
     let host = "35.184.31.17"

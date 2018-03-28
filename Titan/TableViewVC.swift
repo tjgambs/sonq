@@ -15,9 +15,8 @@ class TableViewVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    var song = Song()
-    var songCellArray:[[SongCell]] = [[],[]]
+
+    fileprivate let songViewModelController = SongViewModelController()
     
     private let refreshControl = UIRefreshControl()
 
@@ -34,7 +33,7 @@ class TableViewVC: UIViewController {
         tableView.keyboardDismissMode = .onDrag
         
         //Load initial suggestions
-        song.getSuggestedSongs {
+        songViewModelController.getSuggestedSongs {
             self.tableView.reloadData()
         }
     }
@@ -54,13 +53,12 @@ extension TableViewVC: UISearchBarDelegate {
         // Remove Refresh view, Disable selection of songs, hide edit toolbar.
         let keywords = searchBar.text!.replacingOccurrences(of: " ", with: "+")
         // Every time the searchBar is "clicked", the searchURL is updated
-        song.searchURL = "https://api.spotify.com/v1/search?q=\(keywords)&type=track"
+        songViewModelController.searchURL = "https://api.spotify.com/v1/search?q=\(keywords)&type=track"
         self.view.endEditing(true)
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        song.getSongDetails {
-            self.songCellArray = [[],[]]
+        songViewModelController.getSongDetails {
             self.tableView.reloadData()
         }
         return true
@@ -71,7 +69,7 @@ extension TableViewVC: UISearchBarDelegate {
 extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return song.songArray[section].count
+        return songViewModelController.numInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -84,7 +82,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                 // If this user had joined a party, add the song to the parties queue.
                 partyID = Globals.partyDeviceId!
             }
-            let selectedSong = song.songArray[indexPath.section][indexPath.row]
+            let selectedSong = songViewModelController.viewModel(section: indexPath.section, index: indexPath.row)
             Api.shared.addSong(
                 partyID: partyID,
                 name: selectedSong.name,
@@ -97,7 +95,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                     let json = JSON(responseDict)
                     if json["meta"]["message"] == "OK" {
                         DispatchQueue.main.async {
-                            self.songCellArray[indexPath.section][indexPath.row].accessoryType = UITableViewCellAccessoryType.checkmark
+                            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
                         }
                     } else {
                         let title = "Song Already in Queue"
@@ -110,21 +108,8 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! SongCell
-        let selectedSong = song.songArray[indexPath.section][indexPath.row]
-        cell.cellSongName.text = selectedSong.name
-        cell.cellSongDuration.text = selectedSong.duration
-        cell.cellSongArtist.text = selectedSong.artist
-        cell.accessoryType = UITableViewCellAccessoryType.none
-        guard let url = URL(string: selectedSong.imageURL) else {
-            songCellArray[indexPath.section].append(cell)
-            // Don't bother continuing, the rest has to do with the image.
-            return cell
-        }
-        do {
-            let data = try Data(contentsOf: url)
-            cell.cellSongImage.image = UIImage(data: data)
-        } catch {}
-        songCellArray[indexPath.section].append(cell)
+        let viewModel = songViewModelController.viewModel(section: indexPath.section, index: indexPath.row)
+        cell.configure(viewModel)
         return cell
     }
     

@@ -20,4 +20,14 @@ class SongCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    func configure(_ viewModel: SongViewModel) {
+        cellSongImage.af_setImage(withURL: URL(string: viewModel.imageURL)!)
+        cellSongName.text = viewModel.name
+        cellSongArtist.text = viewModel.artist
+        cellSongDuration.text = viewModel.duration
+        if viewModel.added_by != nil {
+            cellSongAddedBy.text = viewModel.added_by
+        }
+    }
 }

@@ -95,7 +95,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                     let json = JSON(responseDict)
                     if json["meta"]["message"] == "OK" {
                         DispatchQueue.main.async {
-                            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+                            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
                         }
                     } else {
                         let title = "Song Already in Queue"
@@ -110,6 +110,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! SongCell
         let viewModel = songViewModelController.viewModel(section: indexPath.section, index: indexPath.row)
         cell.configure(viewModel)
+        cell.accessoryType = .none
         return cell
     }
     

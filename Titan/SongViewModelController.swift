@@ -153,6 +153,32 @@ class SongViewModelController {
         }
     }
     
+    func getQueue(partyID: String, callback: @escaping () -> ()) {
+        Api.shared.getQueue(partyID) { (responseDict) in
+            do {
+                let jsonDecoder = JSONDecoder()
+                let response = try jsonDecoder.decode(
+                    QueueResponse.self,
+                    from: responseDict)
+                var queueSongs = [Song]()
+                var addedByArray = [String]()
+                for s in response.data.results {
+                    let duration = s.durationInSeconds * 1000
+                    queueSongs.append(Song(name: s.name,
+                                           artist: s.artist,
+                                           duration: duration,
+                                           imageURL: s.imageURL,
+                                           songURL: s.songURL))
+                    addedByArray.append(s.added_by ?? "")
+                }
+                self.viewModels[0] = SongViewModelController.initViewModels(queueSongs, addedByArray)
+                callback()
+            } catch {
+                print("ERROR IN updateQueue: \(error)")
+            }
+        }
+    }
+    
     func numInSection(section: Int) -> Int {
         return viewModels[section].count
     }
@@ -160,12 +186,34 @@ class SongViewModelController {
     func viewModel(section: Int, index: Int) -> SongViewModel {
         return viewModels[section][index]
     }
+    
+    func deleteModel(section: Int, index: Int) {
+        viewModels[section].remove(at: index)
+    }
+    
+    func moveModel(oldSection: Int, oldIndex: Int, newSection: Int, newIndex: Int) {
+        let toMove = viewModels[oldSection].remove(at: oldIndex)
+        viewModels[newSection].insert(toMove, at: newIndex)
+    }
+    
+    func returnModels(section: Int) -> [SongViewModel] {
+        return viewModels[section]
+    }
 }
 
 private extension SongViewModelController {
-    static func initViewModels(_ songs: [Song]) -> [SongViewModel] {
-        return songs.map { song in
-            return SongViewModel(song: song, added: nil)
+    static func initViewModels(_ songs: [Song], _ added_by: [String]? = nil) -> [SongViewModel] {
+        if added_by == nil {
+            return songs.map { song in
+                return SongViewModel(song: song, added: nil)
+            }
+        }
+        else {
+            var queueModel = [SongViewModel]()
+            for (song, name) in zip(songs, added_by!) {
+                queueModel.append(SongViewModel(song: song, added: name))
+            }
+            return queueModel
         }
     }
 }

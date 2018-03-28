@@ -16,8 +16,7 @@ class QueueViewVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editButton: UIButton!
     
-    var songArray = [SongData]()
-    var songCellArray = [SongCell]()
+    fileprivate let songViewModelController = SongViewModelController()
     
     private let refreshControl = UIRefreshControl()
     
@@ -48,35 +47,28 @@ class QueueViewVC: UIViewController {
         self.updateQueue()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Load queue each time the user views it
+        updateQueue()
+    }
+    
     func updateQueue() {
         if var partyID = UIDevice.current.identifierForVendor?.uuidString {
             if Globals.partyDeviceId != nil {
                 // If this user had joined a party, add the song to the parties queue.
                 partyID = Globals.partyDeviceId!
             }
-            Api.shared.getQueue(partyID) { (responseDict) in
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    let response = try jsonDecoder.decode(
-                        QueueResponse.self,
-                        from: responseDict)
-                    self.songArray = []
-                    for s in response.data.results {
-                        self.songArray.append(s)
-                    }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.refreshControl.endRefreshing()
-                    }
-                } catch {
-                    print("ERROR IN updateQueue: \(error)")
-                }
+            songViewModelController.getQueue(partyID: partyID) {
+                self.tableView.reloadData()
             }
         }
     }
     
     @objc func refreshQueue(_ sender: Any) {
         self.updateQueue()
+        self.refreshControl.endRefreshing()
     }
 }
 
@@ -100,27 +92,13 @@ extension QueueViewVC: UISearchBarDelegate {
 extension QueueViewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songArray.count
+        return songViewModelController.numInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! SongCell
-        let selectedSong = songArray[indexPath.row]
-        cell.cellSongName.text = selectedSong.name
-        cell.cellSongDuration.text = selectedSong.duration
-        cell.cellSongArtist.text = selectedSong.artist
-        cell.cellSongAddedBy.text = selectedSong.added_by! // Will be present in queue, not in search.
-        cell.accessoryType = UITableViewCellAccessoryType.none
-        guard let url = URL(string: selectedSong.imageURL) else {
-            songCellArray.append(cell)
-            // Don't bother continuing, the rest has to do with the image.
-            return cell
-        }
-        do {
-            let data = try Data(contentsOf: url)
-            cell.cellSongImage.image = UIImage(data: data)
-        } catch {}
-        songCellArray.append(cell)
+        let viewModel = songViewModelController.viewModel(section: indexPath.section, index: indexPath.row)
+        cell.configure(viewModel)
         return cell
     }
     
@@ -133,12 +111,12 @@ extension QueueViewVC: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete && Globals.partyDeviceId == nil {
             // Send delete request
             if let partyID = UIDevice.current.identifierForVendor?.uuidString {
-                Api.shared.deleteSong(partyID: partyID, songURL: songArray[indexPath.row].songURL) { (response) in
+                let url = songViewModelController.viewModel(section: indexPath.section, index: indexPath.row).songURL
+                Api.shared.deleteSong(partyID: partyID, songURL: url) { (response) in
                     let json = JSON(response)
                     if json["meta"]["message"] == "OK" {
                         // Delete the cell
-                        self.songArray.remove(at: indexPath.row)
-                        self.songCellArray.remove(at: indexPath.row)
+                        self.songViewModelController.deleteModel(section: indexPath.section, index: indexPath.row)
                         DispatchQueue.main.async {
                             tableView.deleteRows(at: [indexPath], with: .fade)
                         }
@@ -162,14 +140,13 @@ extension QueueViewVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let movedCell = songCellArray[sourceIndexPath.row]
-        let movedSong = songArray[sourceIndexPath.row]
-        songCellArray.remove(at: sourceIndexPath.row)
-        songArray.remove(at: sourceIndexPath.row)
-        songCellArray.insert(movedCell, at: destinationIndexPath.row)
-        songArray.insert(movedSong, at: destinationIndexPath.row)
+        songViewModelController.moveModel(oldSection: sourceIndexPath.section,
+                                          oldIndex: sourceIndexPath.row,
+                                          newSection: destinationIndexPath.section,
+                                          newIndex: destinationIndexPath.row)
         var newQueue = [String]()
-        for song in songArray {
+        let oldQueue = songViewModelController.returnModels(section: sourceIndexPath.section)
+        for song in oldQueue {
             newQueue.append(song.songURL)
         }
         if let partyID = UIDevice.current.identifierForVendor?.uuidString {

@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         if !LoginManager.shared.isLogged {
             // If the user has not logged in yet, go to login screen
             self.window?.rootViewController = UIStoryboard(

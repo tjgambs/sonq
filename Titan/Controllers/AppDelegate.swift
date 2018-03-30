@@ -18,11 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if !LoginManager.shared.isLogged {
             // If the user has not logged in yet, go to login screen
-            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            self.window?.rootViewController = UIStoryboard(
+                name: "Main", bundle: nil).instantiateInitialViewController()
             self.window?.makeKeyAndVisible()
         } else {
             // Else go to the tab bar controller
-            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
+            self.window?.rootViewController = UIStoryboard(
+                name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
         }
         return true
     }

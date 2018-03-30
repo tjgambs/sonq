@@ -61,7 +61,9 @@ class QueueViewVC: UIViewController {
                 partyID = Globals.partyDeviceId!
             }
             songViewModelController.getQueue(partyID: partyID) {
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }

@@ -35,8 +35,8 @@ class QRCodeVC: UIViewController {
     }
     
     @IBAction func goHome(_ sender: Any) {
-        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "Home")
+        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(
+            name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Home")
         dismiss(animated: true, completion: nil)
     }
 

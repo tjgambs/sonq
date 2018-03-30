@@ -60,8 +60,14 @@ class MusicVC: UIViewController {
                 }
             }
             self.updateUserInterface()
-            playTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePlayButton), userInfo: nil, repeats: true)
-            sliderTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+            playTimer = Timer.scheduledTimer(
+                timeInterval: 1, target: self,
+                selector: #selector(updatePlayButton),
+                userInfo: nil, repeats: true)
+            sliderTimer = Timer.scheduledTimer(
+                timeInterval: 1, target: self,
+                selector: #selector(updateSlider),
+                userInfo: nil, repeats: true)
             self.updatePlayButton()
             self.updateSlider()
         } else {
@@ -76,18 +82,21 @@ class MusicVC: UIViewController {
     }
     
     func initTimers() {
-        self.playTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                              selector: #selector(self.updatePlayButton),
-                                              userInfo: nil, repeats: true)
-        self.sliderTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                                selector: #selector(self.updateSlider),
-                                                userInfo: nil, repeats: true)
+        self.playTimer = Timer.scheduledTimer(
+            timeInterval: 1, target: self,
+            selector: #selector(self.updatePlayButton),
+            userInfo: nil, repeats: true)
+        self.sliderTimer = Timer.scheduledTimer(
+            timeInterval: 1, target: self,
+            selector: #selector(self.updateSlider),
+            userInfo: nil, repeats: true)
     }
     
     func initNextSongTimer() {
-        self.nextSongTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                                  selector: #selector(self.handleNextSongTimer),
-                                                  userInfo: nil, repeats: true)
+        self.nextSongTimer = Timer.scheduledTimer(
+            timeInterval: 1, target: self,
+            selector: #selector(self.handleNextSongTimer),
+            userInfo: nil, repeats: true)
     }
     
     @objc func handleNextSongTimer() {
@@ -98,7 +107,8 @@ class MusicVC: UIViewController {
         if let partyID = UIDevice.current.identifierForVendor?.uuidString {
             Api.shared.getNextSong(partyID) { (responseDict) in
                 do {
-                    let response = try self.jsonDecoder.decode(NextSongResponse.self, from: responseDict)
+                    let response = try self.jsonDecoder.decode(
+                        NextSongResponse.self, from: responseDict)
                     if let nextSong = response.data.results {
                         DispatchQueue.main.async {
                             self.song = nextSong.name
@@ -190,7 +200,9 @@ class MusicVC: UIViewController {
         if resumeNotAllowed {
             return
         }
-        MediaPlayer.shared.seek(progress: self.slider.value, songDuration: self.durationInSeconds)
+        MediaPlayer.shared.seek(
+            progress: self.slider.value,
+            songDuration: self.durationInSeconds)
         self.timeElapsed = self.slider.value * Float(self.durationInSeconds)
     }
     
@@ -237,8 +249,8 @@ class MusicVC: UIViewController {
     }
     
     @IBAction func goHome(_ sender: Any) {
-        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "Home")
+        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(
+            name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Home")
         dismiss(animated: true, completion: nil)
     }
     

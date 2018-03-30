@@ -24,7 +24,10 @@ class SongViewModelController {
     
     public init() {
         updateAuthorization()
-        updateAuthTimer = Timer.scheduledTimer(timeInterval: 1800, target: self, selector: #selector(updateAuthorization), userInfo: nil, repeats: true)
+        updateAuthTimer = Timer.scheduledTimer(
+            timeInterval: 1800, target: self,
+            selector: #selector(updateAuthorization),
+            userInfo: nil, repeats: true)
     }
     
     @objc func updateAuthorization() {
@@ -133,10 +136,10 @@ class SongViewModelController {
                                     for track in JSONSongsArray.arrayValue {
                                         suggestSongs.append(
                                             Song(name: track["name"].stringValue,
-                                                     artist: track["album"]["artists"][0]["name"].stringValue,
-                                                     duration: track["duration_ms"].doubleValue,
-                                                     imageURL: track["album"]["images"][0]["url"].stringValue,
-                                                     songURL: track["uri"].stringValue
+                                                 artist: track["album"]["artists"][0]["name"].stringValue,
+                                                 duration: track["duration_ms"].doubleValue,
+                                                 imageURL: track["album"]["images"][0]["url"].stringValue,
+                                                 songURL: track["uri"].stringValue
                                             )
                                         )
                                     }

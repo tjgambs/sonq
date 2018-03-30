@@ -7,6 +7,7 @@
 //
 
 struct SongViewModel {
+    
     let name: String
     let artist: String
     let durationInSeconds: Double
@@ -14,11 +15,8 @@ struct SongViewModel {
     let imageURL: String
     let songURL: String
     let added_by: String?
-    
-    
-    
-    
-    init(song: Song, added: String?) {
+
+    init (song: Song, added: String?) {
         name = song.name
         artist = song.artist
         durationInSeconds = Double(song.durationInMS) / 1000

@@ -12,7 +12,6 @@ struct Globals {
     static var partyDeviceId: String?
 }
 
-
 struct SongData: Codable {
     var name: String
     var artist: String
@@ -43,12 +42,10 @@ struct MetaVariable: Codable {
     var success: Bool
 }
 
-
 struct SongResponse: Codable {
     let data: [SongData]
     let meta: MetaVariable
 }
-
 
 struct NextSongResponse: Codable {
     let data: NextSong

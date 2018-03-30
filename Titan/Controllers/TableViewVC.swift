@@ -17,6 +17,7 @@ class TableViewVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
 
     fileprivate let songViewModelController = SongViewModelController()
+    var selectedCells = [IndexPath]()
     
     private let refreshControl = UIRefreshControl()
 
@@ -55,6 +56,7 @@ extension TableViewVC: UISearchBarDelegate {
         // Every time the searchBar is "clicked", the searchURL is updated
         songViewModelController.searchURL = "https://api.spotify.com/v1/search?q=\(keywords)&type=track"
         self.view.endEditing(true)
+        self.selectedCells = []
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
@@ -94,6 +96,7 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
                 addedBy: deviceID) { (responseDict) in
                     let json = JSON(responseDict)
                     if json["meta"]["message"] == "OK" {
+                        self.selectedCells.append(indexPath)
                         DispatchQueue.main.async {
                             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
                         }
@@ -111,9 +114,14 @@ extension TableViewVC: UITableViewDelegate, UITableViewDataSource {
         let viewModel = songViewModelController.viewModel(section: indexPath.section, index: indexPath.row)
         cell.configure(viewModel)
         cell.accessoryType = .none
+        for s in selectedCells {
+            if s == indexPath {
+                cell.accessoryType = .checkmark
+            }
+        }
         return cell
     }
-    
+        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }

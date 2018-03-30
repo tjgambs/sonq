@@ -131,30 +131,70 @@ class MusicVC: UIViewController {
                             self.resumeNotAllowed = false
                         }
                     } else {
-                        // There aren't any more songs in the queue.
-                        // Also, we want to turn off the music playing if there is any.
-                        DispatchQueue.main.async {
-                            self.song = ""
-                            self.artist = ""
-                            self.imageURL = ""
-                            self.songURL = ""
-                            self.durationInSeconds = 0.0
-                            self.timeElapsed = 0
-                            self.songFinished = false
-                            self.slider.setValue(1, animated: true)
-                            self.updateUserInterface()
-                            self.playButton.image = UIImage(named: "play")
-                            if self.nextSongTimer == nil || !self.nextSongTimer.isValid {
-                                self.initNextSongTimer()
+                        if let playlist = Globals.defaultPlaylist {
+                            if playlist.name! != "None" {
+                                let auth = SPTAuth.defaultInstance()!
+                                SPTPlaylistSnapshot.playlist(withURI: playlist.uri, accessToken: auth.session.accessToken) { (error, snap) in
+                                    if let s = snap as? SPTPlaylistSnapshot {
+                                        if let items = s.firstTrackPage.items {
+                                            if Globals.defaultPlaylistIndex! > items.count - 1 {
+                                                Globals.defaultPlaylistIndex = 0
+                                            }
+                                            let defaultSong = items[Globals.defaultPlaylistIndex!] as! SPTPlaylistTrack
+                                            Globals.defaultPlaylistIndex = Globals.defaultPlaylistIndex! + 1
+                                            Api.shared.addSong(
+                                                partyID: partyID,
+                                                name: defaultSong.name,
+                                                artist: (defaultSong.artists[0] as! SPTPartialArtist).name!,
+                                                duration: defaultSong.duration.minuteSecondMS,
+                                                durationInSeconds: defaultSong.duration,
+                                                imageURL: defaultSong.album.largestCover.imageURL!.absoluteString,
+                                                songURL: defaultSong.playableUri!.absoluteString,
+                                                addedBy: partyID) { (responseDict) in
+                                                    self.getNextSong(playOnceReceived: playOnceReceived)
+                                                    self.playTimer.invalidate()
+                                                    self.sliderTimer.invalidate()
+                                            }
+                                        } else {
+                                           self.endPlayer()
+                                        }
+                                    } else {
+                                        self.endPlayer()
+                                    }
+                                }
+                            } else {
+                                self.endPlayer()
                             }
-                            // We don't allow the play button to be tapped during this time.
-                            self.resumeNotAllowed = true
+                        } else {
+                            self.endPlayer()
                         }
                     }
                 } catch {
                     print("There was an error in getNextSong()")
                 }
             }
+        }
+    }
+    
+    func endPlayer() {
+        // There aren't any more songs in the queue.
+        // Also, we want to turn off the music playing if there is any.
+        DispatchQueue.main.async {
+            self.song = ""
+            self.artist = ""
+            self.imageURL = ""
+            self.songURL = ""
+            self.durationInSeconds = 0.0
+            self.timeElapsed = 0
+            self.songFinished = false
+            self.slider.setValue(1, animated: true)
+            self.updateUserInterface()
+            self.playButton.image = UIImage(named: "play")
+            if self.nextSongTimer == nil || !self.nextSongTimer.isValid {
+                self.initNextSongTimer()
+            }
+            // We don't allow the play button to be tapped during this time.
+            self.resumeNotAllowed = true
         }
     }
     
@@ -253,5 +293,7 @@ class MusicVC: UIViewController {
             name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Home")
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func unwindToPlayer(segue: UIStoryboardSegue) {}
     
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0700CAFD20694A7DA44CC779 /* Pods_Titan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE7349BC1BB936B231F777A /* Pods_Titan.framework */; };
 		1555EBDF1F48D55D39DDE9E9 /* Pods_TitanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E21CF0F4FC41DE3E1331BA /* Pods_TitanUITests.framework */; };
+		220D9E95206DF7BD00808AA5 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D9E94206DF7BD00808AA5 /* SettingsVC.swift */; };
 		224483B3202BE6210042591F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483B2202BE6210042591F /* AppDelegate.swift */; };
 		224483BA202BE6210042591F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 224483B9202BE6210042591F /* Assets.xcassets */; };
 		224483BD202BE6210042591F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224483BB202BE6210042591F /* LaunchScreen.storyboard */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		220D9E94206DF7BD00808AA5 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		224483AF202BE6210042591F /* Titan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Titan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		224483B2202BE6210042591F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		224483B9202BE6210042591F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				226E9F9D206B45C500F23A7F /* SongViewModelController.swift */,
 				22793976203A087B00FA454E /* QRCodeVC.swift */,
 				22A25FD5203807E100E4D0DB /* MusicVC.swift */,
+				220D9E94206DF7BD00808AA5 /* SettingsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				22A25FD02038074A00E4D0DB /* ViewController.swift in Sources */,
 				22A25FDA2038081500E4D0DB /* MediaPlayer.swift in Sources */,
 				22A25FDE2038082200E4D0DB /* Song.swift in Sources */,
+				220D9E95206DF7BD00808AA5 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,6 +761,18 @@
 				INFOPLIST_FILE = Titan/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AlamofireImage\"",
+					"-framework",
+					"\"QRCode\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Tim-Gamble.Titan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Titan-Bridging-Header.h";
@@ -782,6 +798,18 @@
 				INFOPLIST_FILE = Titan/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AlamofireImage\"",
+					"-framework",
+					"\"QRCode\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Tim-Gamble.Titan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Titan-Bridging-Header.h";

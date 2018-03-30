@@ -10,6 +10,8 @@ import Foundation
 
 struct Globals {
     static var partyDeviceId: String?
+    static var defaultPlaylist: SPTPartialPlaylist?
+    static var defaultPlaylistIndex: Int?
 }
 
 struct SongData: Codable {

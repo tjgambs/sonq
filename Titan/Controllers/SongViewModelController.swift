@@ -202,6 +202,10 @@ class SongViewModelController {
     func returnModels(section: Int) -> [SongViewModel] {
         return viewModels[section]
     }
+    
+    func clearSearchResults() {
+        viewModels[0] = []
+    }
 }
 
 private extension SongViewModelController {

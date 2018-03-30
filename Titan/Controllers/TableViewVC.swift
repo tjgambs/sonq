@@ -39,7 +39,6 @@ class TableViewVC: UIViewController {
         }
     }
     
-    
     @IBAction func goHome(_ sender: Any) {
         UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil)
                 .instantiateViewController(withIdentifier: "Home")
@@ -60,11 +59,21 @@ extension TableViewVC: UISearchBarDelegate {
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        songViewModelController.getSongDetails {
-            self.tableView.reloadData()
+        if searchBar.text! != "" {
+            songViewModelController.getSongDetails {
+                self.tableView.reloadData()
+            }
         }
         return true
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            songViewModelController.clearSearchResults()
+            tableView.reloadData()
+        }
+    }
+    
 }
 
 

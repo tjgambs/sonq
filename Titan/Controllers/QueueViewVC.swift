@@ -14,7 +14,7 @@ import AVFoundation
 class QueueViewVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var editButton: UIButton!
+    var editButton: UIBarButtonItem!
     
     fileprivate let songViewModelController = SongViewModelController()
     
@@ -31,9 +31,11 @@ class QueueViewVC: UIViewController {
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag
         
-        if Globals.partyDeviceId != nil {
-            // Only the host can edit the queue
-            self.editButton.isHidden = true
+        if Globals.partyDeviceId == nil {
+            
+            //******************************************************************************************************//
+            //*******// TODO: Create the edit button and place it on the right side of the navigaiton bar. //*******//
+            //******************************************************************************************************//
         }
         
         // Add refresh view.
@@ -77,14 +79,16 @@ class QueueViewVC: UIViewController {
 
 extension QueueViewVC: UISearchBarDelegate {
     
-    @IBAction func editButtonClicked(_ sender: UIButton) {
-        if let title = sender.currentTitle {
+    @objc func editButtonClicked(_ sender: UIBarButtonItem) {
+        if let title = sender.title {
             if title == "Edit" {
                 tableView.setEditing(true, animated: true)
-                self.editButton.setTitle("Done", for: .normal)
+//                self.editButton.title = "Done"
+//                self.editButton.setTitle("Done", for: .normal)
             } else {
-                tableView.setEditing(false, animated: true)
-                self.editButton.setTitle("Edit", for: .normal)
+                self.editButton.title = "Edit"
+//                tableView.setEditing(false, animated: true)
+//                self.editButton.setTitle("Edit", for: .normal)
             }
         }
     }
@@ -165,13 +169,6 @@ extension QueueViewVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-    
-    @IBAction func goHome(_ sender: Any) {
-        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "Home")
-        dismiss(animated: true, completion: nil)
-    }
-
 }
 
 

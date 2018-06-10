@@ -14,24 +14,16 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        if !LoginManager.shared.isLogged {
-            // If the user has not logged in yet, go to login screen
-            self.window?.rootViewController = UIStoryboard(
-                name: "Main", bundle: nil).instantiateInitialViewController()
-            self.window?.makeKeyAndVisible()
-        } else {
-            // Else go to the tab bar controller
-            self.window?.rootViewController = UIStoryboard(
-                name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
-        }
+        // Because we are using dark colors, set the status bar to light colors.
+        application.statusBarStyle = .lightContent
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        //Intercept the callback and execute the LogInManager handler.
         return LoginManager.shared.handled(url: url)
     }
-    
 }

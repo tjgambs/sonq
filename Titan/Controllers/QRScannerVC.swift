@@ -15,16 +15,13 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var qrCodeFrameView: UIView?
-    var partyDeviceId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.black
+        // Configure the camera and prepare it to scan for QR Codes.
         captureSession = AVCaptureSession()
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
-            return
-        }
+        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
         do {
             let videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
             captureSession.addInput(videoInput)
@@ -45,13 +42,12 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 view.addSubview(qrCodeFrameView)
                 view.bringSubview(toFront: qrCodeFrameView)
             }
-            
             captureSession.startRunning()
         } catch {}
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
+        // Before we appear, start up the camera.
         super.viewWillAppear(animated)
         if (captureSession?.isRunning == false) {
             captureSession.startRunning()
@@ -59,6 +55,7 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        // Before we segue, stop running the camera.
         super.viewWillDisappear(animated)
         if (captureSession?.isRunning == true) {
             captureSession.stopRunning()
@@ -66,26 +63,27 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        // Executes when a QR code is found.
         captureSession.stopRunning()
         if let metadataObject = metadataObjects.first {
             let barCodeObject = previewLayer?.transformedMetadataObject(for: metadataObject)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
-            guard let stringValue = readableObject.stringValue else {
-                return
-            }
+            guard let stringValue = readableObject.stringValue else { return }
+            // Vibrate the phone to say that a QR code was found.
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            
+            //************************************************************************//
+            //*******// TODO: Confirm the scanned barcode to be a real Party //*******//
+            //************************************************************************//
+            
+            // Set the scanned barcode value as the party ID. This will be used as a way to add songs to the queue.
             Globals.partyDeviceId = stringValue
             DispatchQueue.main.async {
+                // Segue to the JoinParty View
                 self.performSegue(withIdentifier: "JoinParty", sender: self)
             }
-        } else {
-            dismiss(animated: true)
         }
-    }
-    
-    @IBAction func QRCodeButtonTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "unwindToMenu", sender: self)
     }
     
 }

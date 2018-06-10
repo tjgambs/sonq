@@ -60,8 +60,9 @@ class SettingsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         return privatePlaylists.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return privatePlaylists[row].name!
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let myTitle = NSAttributedString(string: privatePlaylists[row].name!, attributes: [NSAttributedStringKey.font:UIFont(name: "Georgia", size: 14.0)!,NSAttributedStringKey.foregroundColor:UIColor.white])
+        return myTitle
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -75,8 +76,4 @@ class SettingsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func backButtonTapped(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "unwindToPlayer", sender: self)
-    }
-    
 }

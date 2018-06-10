@@ -18,6 +18,7 @@ class LoginManager {
     static var shared = LoginManager()
     weak var delegate: LoginManagerDelegate?
     var auth = SPTAuth.defaultInstance()!
+    var safariVC: SFSafariViewController!
 
     private init() {
         auth.sessionUserDefaultsKey = "kCurrentSession"
@@ -52,7 +53,7 @@ class LoginManager {
     func login() {
         if !self.isLogged {
             // If they are not logged in, have them navigate to Safari to authenticate
-            let safariVC = SFSafariViewController(url: auth.spotifyWebAuthenticationURL())
+            safariVC = SFSafariViewController(url: auth.spotifyWebAuthenticationURL())
             UIApplication.shared.keyWindow?.rootViewController?.present(
                 safariVC, animated: true, completion: nil)
         } else {
@@ -66,9 +67,11 @@ class LoginManager {
             return false
         }
         auth.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error, session) in
+            //If we have successfully authenticated, dismiss the browser then execute whatever
+            //the delegate has determined to execute on success.
+            self.safariVC.dismiss(animated: false)
             self.delegate?.loginManagerDidLoginWithSuccess()
         })
         return true
     }
-    
 }

@@ -10,6 +10,9 @@
 		0700CAFD20694A7DA44CC779 /* Pods_Titan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE7349BC1BB936B231F777A /* Pods_Titan.framework */; };
 		1555EBDF1F48D55D39DDE9E9 /* Pods_TitanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E21CF0F4FC41DE3E1331BA /* Pods_TitanUITests.framework */; };
 		220D9E95206DF7BD00808AA5 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D9E94206DF7BD00808AA5 /* SettingsVC.swift */; };
+		223FE28620CC606C00AFC092 /* JoinPartyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223FE28520CC606C00AFC092 /* JoinPartyController.swift */; };
+		223FE28A20CC60AB00AFC092 /* CreatePartyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223FE28920CC60AB00AFC092 /* CreatePartyController.swift */; };
+		223FE28C20CC60C400AFC092 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223FE28B20CC60C400AFC092 /* HomeController.swift */; };
 		224483B3202BE6210042591F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224483B2202BE6210042591F /* AppDelegate.swift */; };
 		224483BA202BE6210042591F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 224483B9202BE6210042591F /* Assets.xcassets */; };
 		224483BD202BE6210042591F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224483BB202BE6210042591F /* LaunchScreen.storyboard */; };
@@ -20,7 +23,6 @@
 		226E9F9F206B45C500F23A7F /* SongViewModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E9F9D206B45C500F23A7F /* SongViewModelController.swift */; };
 		22793977203A087B00FA454E /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22793976203A087B00FA454E /* QRCodeVC.swift */; };
 		22A25FCE203806EF00E4D0DB /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FCD203806EF00E4D0DB /* LoginManager.swift */; };
-		22A25FD02038074A00E4D0DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FCF2038074A00E4D0DB /* ViewController.swift */; };
 		22A25FD4203807BC00E4D0DB /* TableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FD3203807BC00E4D0DB /* TableViewVC.swift */; };
 		22A25FD6203807E100E4D0DB /* MusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FD5203807E100E4D0DB /* MusicVC.swift */; };
 		22A25FDA2038081500E4D0DB /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A25FD92038081500E4D0DB /* MediaPlayer.swift */; };
@@ -57,6 +59,9 @@
 
 /* Begin PBXFileReference section */
 		220D9E94206DF7BD00808AA5 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		223FE28520CC606C00AFC092 /* JoinPartyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPartyController.swift; sourceTree = "<group>"; };
+		223FE28920CC60AB00AFC092 /* CreatePartyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePartyController.swift; sourceTree = "<group>"; };
+		223FE28B20CC60C400AFC092 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		224483AF202BE6210042591F /* Titan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Titan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		224483B2202BE6210042591F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		224483B9202BE6210042591F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,7 +78,6 @@
 		226E9F9D206B45C500F23A7F /* SongViewModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewModelController.swift; sourceTree = "<group>"; };
 		22793976203A087B00FA454E /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		22A25FCD203806EF00E4D0DB /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		22A25FCF2038074A00E4D0DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		22A25FD3203807BC00E4D0DB /* TableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewVC.swift; sourceTree = "<group>"; };
 		22A25FD5203807E100E4D0DB /* MusicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVC.swift; sourceTree = "<group>"; };
 		22A25FD92038081500E4D0DB /* MediaPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
@@ -225,17 +229,19 @@
 			isa = PBXGroup;
 			children = (
 				224483B2202BE6210042591F /* AppDelegate.swift */,
-				22A25FCF2038074A00E4D0DB /* ViewController.swift */,
 				22A25FCD203806EF00E4D0DB /* LoginManager.swift */,
-				E1199749203A1C2400C9AC12 /* QRScannerVC.swift */,
 				2254F2F22065B90A003B0944 /* QueueViewVC.swift */,
+				22793976203A087B00FA454E /* QRCodeVC.swift */,
 				22A25FD3203807BC00E4D0DB /* TableViewVC.swift */,
 				22A25FD92038081500E4D0DB /* MediaPlayer.swift */,
 				22A25FDB2038081D00E4D0DB /* SongCell.swift */,
 				226E9F9D206B45C500F23A7F /* SongViewModelController.swift */,
-				22793976203A087B00FA454E /* QRCodeVC.swift */,
 				22A25FD5203807E100E4D0DB /* MusicVC.swift */,
 				220D9E94206DF7BD00808AA5 /* SettingsVC.swift */,
+				E1199749203A1C2400C9AC12 /* QRScannerVC.swift */,
+				223FE28520CC606C00AFC092 /* JoinPartyController.swift */,
+				223FE28920CC60AB00AFC092 /* CreatePartyController.swift */,
+				223FE28B20CC60C400AFC092 /* HomeController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -341,7 +347,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Tim Gamble";
 				TargetAttributes = {
 					224483AE202BE6210042591F = {
@@ -576,7 +582,9 @@
 			files = (
 				22793977203A087B00FA454E /* QRCodeVC.swift in Sources */,
 				226E9F9E206B45C500F23A7F /* SongViewModel.swift in Sources */,
+				223FE28C20CC60C400AFC092 /* HomeController.swift in Sources */,
 				22D89ED0203A4C710036D5EF /* Helpers.swift in Sources */,
+				223FE28620CC606C00AFC092 /* JoinPartyController.swift in Sources */,
 				22D89ECE203A44A20036D5EF /* Structures.swift in Sources */,
 				22A25FD4203807BC00E4D0DB /* TableViewVC.swift in Sources */,
 				E119974A203A1C2400C9AC12 /* QRScannerVC.swift in Sources */,
@@ -585,10 +593,10 @@
 				22A25FCE203806EF00E4D0DB /* LoginManager.swift in Sources */,
 				224483B3202BE6210042591F /* AppDelegate.swift in Sources */,
 				22A25FDC2038081D00E4D0DB /* SongCell.swift in Sources */,
+				223FE28A20CC60AB00AFC092 /* CreatePartyController.swift in Sources */,
 				22A25FEF2038146300E4D0DB /* Api.swift in Sources */,
 				2254F2F32065B90A003B0944 /* QueueViewVC.swift in Sources */,
 				22A25FD6203807E100E4D0DB /* MusicVC.swift in Sources */,
-				22A25FD02038074A00E4D0DB /* ViewController.swift in Sources */,
 				22A25FDA2038081500E4D0DB /* MediaPlayer.swift in Sources */,
 				22A25FDE2038082200E4D0DB /* Song.swift in Sources */,
 				220D9E95206DF7BD00808AA5 /* SettingsVC.swift in Sources */,
@@ -652,6 +660,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -659,6 +668,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -709,6 +719,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -716,6 +727,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

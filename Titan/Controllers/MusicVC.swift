@@ -37,6 +37,10 @@ class MusicVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //**************************************************************************//
+        //*******// TODO: Move the settings button into the navigation bar //*******//
+        //**************************************************************************//
+        
         if Globals.partyDeviceId != nil {
             // Only the host can adjust the player.
             self.slider.isHidden = true

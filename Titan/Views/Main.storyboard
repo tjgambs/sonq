@@ -41,7 +41,6 @@
         <!--Join Party-->
         <scene sceneID="zNZ-60-t0Y">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Amg-tP-Sww" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Leb-Fa-EjO" customClass="JoinPartyController" customModule="Titan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mcI-wr-QlR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -154,6 +153,7 @@
                         <segue destination="gb0-T5-zau" kind="show" identifier="JoinPartyFromID" id="lLw-dp-8zq"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Amg-tP-Sww" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2988" y="-1754.1871921182267"/>
         </scene>
@@ -814,7 +814,7 @@
         <image name="toolbar-search" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5I3-E6-htx"/>
+        <segue reference="lLw-dp-8zq"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

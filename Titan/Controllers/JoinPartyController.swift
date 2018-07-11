@@ -8,18 +8,37 @@
 
 import UIKit
 
-class JoinPartyController: UIViewController {
+class JoinPartyController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var partyIdInput: UITextField!
     @IBOutlet weak var usernameField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // When the user presses outside of the keyboard, dismiss the keeyboard.
+        view.addGestureRecognizer(UITapGestureRecognizer(
+            target: self, action: #selector(JoinPartyController.dismissKeyboard)))
+        
+        // Set the delegates
+        self.partyIdInput.delegate = self
+        self.usernameField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // When the user presses the return button, dismiss the keyboard.
+        self.dismissKeyboard()
+        return false
+    }
+    
+    @objc func dismissKeyboard() {
+        // Dismiss the keyboard
+        view.endEditing(true)
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

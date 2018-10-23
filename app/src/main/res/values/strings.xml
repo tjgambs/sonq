@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SongQ</string>
+    <string name="name_input">Name</string>
+    <string name="join_party_button">Join Party</string>
+    <string name="create_party_button">Create Party</string>
+    <string name="scan_qr_code">Scan a QR Code to Join!</string>
+    <string name="title_search">Search</string>
+    <string name="title_queue">Queue</string>
+    <string name="title_qr_code">QR Code</string>
+</resources>

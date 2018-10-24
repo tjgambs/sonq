@@ -63,7 +63,7 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
                     break;
                 case R.id.createPartyButton:
                     // Show Spotify Auth
-                    break;
+                    startActivity(new Intent(JoinCreateActivity.this, SpotifyLoginActivity.class));
             }
         } else {
             showAToast("Please enter a name!");

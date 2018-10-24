@@ -17,7 +17,7 @@ import com.spotify.protocol.types.Track;
 public class SpotifyLoginActivity extends AppCompatActivity {
 
     private static final String CLIENT_ID = "1df21b37504648758e66548b7aa15e11";
-    private static final String REDIRECT_URI = "com.tgcd.songq://login";
+    private static final String REDIRECT_URI = "sonq.app.songq://login";
     private SpotifyAppRemote mSpotifyAppRemote;
 
     protected void onCreate(Bundle savedInstanceState) {

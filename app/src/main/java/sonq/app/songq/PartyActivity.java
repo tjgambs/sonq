@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,9 @@ public class PartyActivity extends AppCompatActivity {
     private FragmentQRCode fragmentQRCode;
     private FragmentPlayer fragmentPlayer;
     private BottomNavigationView navigation;
-    private Stack<Integer> pageHistory;
+
+    public static String PARTY_ID;
+    public static String USERNAME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,9 @@ public class PartyActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(mOnPageChangeListener);
         setupViewPager(viewPager);
 
-        pageHistory = new Stack<>();
+        PARTY_ID = getIntent().getStringExtra("partyID");
+        USERNAME = getIntent().getStringExtra("username");
+        setTitle("Welcome to " + PARTY_ID + " " + USERNAME);
     }
 
     private void setupViewPager(ViewPager viewPager) {

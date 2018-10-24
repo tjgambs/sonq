@@ -35,13 +35,14 @@ public class ScanQRCodeActivity extends AppCompatActivity {
     private BarcodeDetector barcodeDetector;
     private CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
-    String intentData = "";
+    String partyID = "";
     private RelativeLayout mRelativeLayout;
     private DrawQRRectangle qrRectangle;
     private Toast toast;
     Vibrator v;
     private final long[] VIBRATION_PATTERN = {0, 200, 50, 200};
     private boolean qrCodeFound;
+    private String username;
 
 
     @Override
@@ -61,6 +62,8 @@ public class ScanQRCodeActivity extends AppCompatActivity {
         qrRectangle = new DrawQRRectangle(this);
         qrRectangle.setLayoutParams(params);
         mRelativeLayout.addView(qrRectangle);
+
+        username = getIntent().getStringExtra("username");
     }
 
     private void initViews() {
@@ -68,7 +71,7 @@ public class ScanQRCodeActivity extends AppCompatActivity {
         surfaceView = findViewById(R.id.surfaceView);
     }
 
-    public void showAToast (String message){
+    public void showAToast (String message) {
         if (toast != null) {
             toast.cancel();
         }
@@ -142,9 +145,13 @@ public class ScanQRCodeActivity extends AppCompatActivity {
                                 qrRectangle.postInvalidate();
                                 v.vibrate(VibrationEffect.createWaveform(VIBRATION_PATTERN, -1));
                                 txtBarcodeValue.removeCallbacks(null);
-                                intentData = qrCodes.valueAt(0).rawValue;
-                                txtBarcodeValue.setText(intentData);
-                                startActivity(new Intent(ScanQRCodeActivity.this, PartyActivity.class));
+                                partyID = qrCodes.valueAt(0).rawValue;
+                                txtBarcodeValue.setText(partyID);
+                                startActivity(
+                                        new Intent(ScanQRCodeActivity.this, PartyActivity.class)
+                                                .putExtra("partyID", partyID)
+                                                .putExtra("username", username)
+                                );
                             }
                         }
                     });

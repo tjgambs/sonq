@@ -7,4 +7,6 @@
     <string name="title_search">Search</string>
     <string name="title_queue">Queue</string>
     <string name="title_qr_code">QR Code</string>
+    <string name="title_player">Play</string>
+    <string name="qr_code_desc">QR Code for joining a party</string>
 </resources>

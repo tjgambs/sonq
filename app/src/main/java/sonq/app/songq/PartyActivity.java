@@ -53,8 +53,8 @@ public class PartyActivity extends AppCompatActivity {
 
     private void setupAlertDialog() {
         alertDialogBuilder = new AlertDialog.Builder(PartyActivity.this);
-        alertDialogBuilder.setTitle("Leave Party");
-        alertDialogBuilder.setMessage("Are you sure you want to leave this party?");
+        alertDialogBuilder.setTitle(R.string.leave_party_title);
+        alertDialogBuilder.setMessage(R.string.leave_party_msg);
         alertDialogBuilder.setCancelable(true);
 
         alertDialogBuilder.setPositiveButton(

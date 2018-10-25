@@ -1,5 +1,6 @@
 package sonq.app.songq;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -24,6 +26,8 @@ public class PartyActivity extends AppCompatActivity {
     private FragmentQRCode fragmentQRCode;
     private FragmentPlayer fragmentPlayer;
     private BottomNavigationView navigation;
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog leavePartyDialog;
 
     public static String PARTY_ID;
     public static String USERNAME;
@@ -40,9 +44,41 @@ public class PartyActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(mOnPageChangeListener);
         setupViewPager(viewPager);
 
+        setupAlertDialog();
+
         PARTY_ID = getIntent().getStringExtra("partyID");
         USERNAME = getIntent().getStringExtra("username");
         setTitle("Welcome to " + PARTY_ID + " " + USERNAME);
+    }
+
+    private void setupAlertDialog() {
+        alertDialogBuilder = new AlertDialog.Builder(PartyActivity.this);
+        alertDialogBuilder.setTitle("Leave Party");
+        alertDialogBuilder.setMessage("Are you sure you want to leave this party?");
+        alertDialogBuilder.setCancelable(true);
+
+        alertDialogBuilder.setPositiveButton(
+                android.R.string.yes,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton(
+                android.R.string.no,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        alertDialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+        leavePartyDialog = alertDialogBuilder.create();
+    }
+
+    @Override
+    public void onBackPressed() {
+        leavePartyDialog.show();
     }
 
     private void setupViewPager(ViewPager viewPager) {

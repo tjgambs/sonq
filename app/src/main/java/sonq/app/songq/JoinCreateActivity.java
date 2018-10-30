@@ -62,7 +62,7 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
                     }
                     break;
                 case R.id.createPartyButton:
-                    // Show Spotify Auth
+                    // Show SpotifyAPI Auth
                     startActivity(new Intent(JoinCreateActivity.this, SpotifyLoginActivity.class));
             }
         } else {

@@ -13,4 +13,5 @@
     <string name="party_id_input">Enter Party ID</string>
     <string name="leave_party_title">Leave Party</string>
     <string name="leave_party_msg">Are you sure you want to leave this party?</string>
+    <string name="search_hint">Search for Song, Artist, Album...</string>
 </resources>

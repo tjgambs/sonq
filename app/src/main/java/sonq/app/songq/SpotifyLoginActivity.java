@@ -1,6 +1,7 @@
 package sonq.app.songq;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
@@ -36,8 +37,9 @@ public class SpotifyLoginActivity extends AppCompatActivity {
                 // Response was successful and contains auth token
                 case TOKEN:
                     startActivity(
-                            new Intent(SpotifyLoginActivity.this, SearchActivity.class)
+                            new Intent(SpotifyLoginActivity.this, PartyActivity.class)
                                     .putExtra("token", response.getAccessToken())
+                                    .putExtra("partyID", Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID))
                     );
                     // Handle successful response
                     break;

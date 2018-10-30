@@ -1,9 +1,11 @@
 package sonq.app.songq;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,17 +18,19 @@ import net.glxn.qrgen.android.QRCode;
 public class FragmentQRCode extends Fragment {
 
     private ImageView imageView;
+    private SharedPreferences settings;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.qr_code_view, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Bitmap bitmap = QRCode.from(PartyActivity.PARTY_ID)
+        Bitmap bitmap = QRCode.from(settings.getString("party_id_preference", "None"))
                 .withSize(250, 250)
                 .bitmap();
 

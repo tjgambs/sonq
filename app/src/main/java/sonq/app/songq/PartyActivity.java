@@ -1,7 +1,10 @@
 package sonq.app.songq;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -10,33 +13,49 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+
+import sonq.app.songq.api.GenericCallback;
+import sonq.app.songq.api.SpotifyAPI;
 
 public class PartyActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
-    private FragmentSearch fragmentSearch;
     private FragmentQueue fragmentQueue;
     private FragmentQRCode fragmentQRCode;
     private FragmentPlayer fragmentPlayer;
+    private FragmentSettings fragmentSettings;
     private BottomNavigationView navigation;
     private AlertDialog.Builder alertDialogBuilder;
     private AlertDialog leavePartyDialog;
+    private Activity mActivity;
+    private SharedPreferences settings;
 
-    public static String PARTY_ID;
-    public static String USERNAME;
+    public static SpotifyAPI spotifyAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_party);
+        mActivity = this;
+        settings = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences.Editor settingsEditor = settings.edit();
+
+        String token = getIntent().getStringExtra("token");
+        spotifyAPI = new SpotifyAPI(token);
+
+        // Log user info, set username
+        spotifyAPI.onGetUserProfileClicked(new GenericCallback<String>() {
+            @Override
+            public void onValue(String value) {
+                settingsEditor.putString("username_preference", value);
+                settingsEditor.apply();
+            }
+        });
 
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -47,9 +66,16 @@ public class PartyActivity extends AppCompatActivity {
 
         setupAlertDialog();
 
-        PARTY_ID = getIntent().getStringExtra("partyID");
-        USERNAME = getIntent().getStringExtra("username");
-        setTitle("Welcome to " + PARTY_ID + " " + USERNAME);
+        String partyID = getIntent().getStringExtra("partyID");
+        String username_extra = getIntent().getStringExtra("username");
+        if (username_extra != null) {
+            settingsEditor.putString("username_preference", username_extra);
+        }
+        settingsEditor.putString("party_id_preference", partyID);
+        settingsEditor.apply();
+        setTitle(R.string.title_queue);
+        Log.i("settingsTEST", settings.getString("username_preference", "None"));
+        Log.i("settingsTEST", settings.getString("party_id_preference", "None"));
     }
 
     private void setupAlertDialog() {
@@ -84,14 +110,14 @@ public class PartyActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        fragmentSearch = new FragmentSearch();
         fragmentQueue = new FragmentQueue();
         fragmentQRCode = new FragmentQRCode();
         fragmentPlayer = new FragmentPlayer();
-        viewPagerAdapter.addFragment(fragmentSearch);
+        fragmentSettings = new FragmentSettings();
         viewPagerAdapter.addFragment(fragmentQueue);
         viewPagerAdapter.addFragment(fragmentQRCode);
         viewPagerAdapter.addFragment(fragmentPlayer);
+        viewPagerAdapter.addFragment(fragmentSettings);
         viewPager.setAdapter(viewPagerAdapter);
     }
 
@@ -101,21 +127,21 @@ public class PartyActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_search:
-                    viewPager.setCurrentItem(0);
-                    setTitle(R.string.title_search);
-                    return true;
                 case R.id.navigation_queue:
-                    viewPager.setCurrentItem(1);
+                    viewPager.setCurrentItem(0);
                     setTitle(R.string.title_queue);
                     return true;
                 case R.id.navigation_qr_code:
-                    viewPager.setCurrentItem(2);
+                    viewPager.setCurrentItem(1);
                     setTitle(R.string.title_qr_code);
                     return true;
                 case R.id.navigation_player:
-                    viewPager.setCurrentItem(3);
+                    viewPager.setCurrentItem(2);
                     setTitle(R.string.title_player);
+                    return true;
+                case R.id.navigation_settings:
+                    viewPager.setCurrentItem(3);
+                    setTitle(R.string.title_settings);
                     return true;
             }
             return false;
@@ -133,16 +159,16 @@ public class PartyActivity extends AppCompatActivity {
             navigation.getMenu().getItem(position).setChecked(true);
             switch (position) {
                 case 0:
-                    setTitle(R.string.title_search);
-                    break;
-                case 1:
                     setTitle(R.string.title_queue);
                     break;
-                case 2:
+                case 1:
                     setTitle(R.string.title_qr_code);
                     break;
-                case 3:
+                case 2:
                     setTitle(R.string.title_player);
+                    break;
+                case 3:
+                    setTitle(R.string.title_settings);
                     break;
             }
         }

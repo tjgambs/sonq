@@ -6,13 +6,11 @@ import org.json.JSONObject;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okio.BufferedSink;
-import sonq.app.songq.PartyActivity;
+import sonq.app.songq.FragmentQueue;
 
 import java.io.IOException;
 import android.util.Log;
@@ -55,7 +53,7 @@ public class SpotifyAPI {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
-                    Log.i("search", jsonObject.toString(3));
+                    FragmentQueue.updateSearch(jsonObject);
                 } catch (JSONException e) {
                     Log.e("search", "Failed to parse data: " + e);
                 }

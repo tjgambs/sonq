@@ -9,7 +9,6 @@ import com.spotify.sdk.android.authentication.AuthenticationResponse;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import android.content.Intent;
 
-
 public class SpotifyLoginActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 1337;
@@ -41,6 +40,7 @@ public class SpotifyLoginActivity extends AppCompatActivity {
                                     .putExtra("token", response.getAccessToken())
                                     .putExtra("partyID", Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID))
                     );
+                    finish();
                     // Handle successful response
                     break;
 

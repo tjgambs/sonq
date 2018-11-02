@@ -44,9 +44,9 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
     public void onClick(View v) {
         String username = usernameInput.getText().toString();
         String partyID = partyIDInput.getText().toString();
-        if (!username.isEmpty()) {
-            switch (v.getId()) {
-                case R.id.joinPartyButton:
+        switch (v.getId()) {
+            case R.id.joinPartyButton:
+                if (!username.isEmpty()) {
                     if (partyID.isEmpty()) {
                         // Show QR Scanner
                         startActivity(
@@ -60,13 +60,13 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
                                         .putExtra("username", username)
                         );
                     }
-                    break;
-                case R.id.createPartyButton:
-                    // Show SpotifyAPI Auth
-                    startActivity(new Intent(JoinCreateActivity.this, SpotifyLoginActivity.class));
-            }
-        } else {
-            showAToast("Please enter a name!");
+                } else {
+                    showAToast("Please enter a name!");
+                }
+                break;
+            case R.id.createPartyButton:
+                // Show SpotifyAPI Auth
+                startActivity(new Intent(JoinCreateActivity.this, SpotifyLoginActivity.class));
         }
     }
 }

@@ -1,4 +1,4 @@
-package sonq.app.songq.models;
+package sonq.app.songq.Models;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,4 +1,4 @@
-package sonq.app.songq.models;
+package sonq.app.songq.Models;
 
 public class SearchResponseModel {
     Tracks tracks;

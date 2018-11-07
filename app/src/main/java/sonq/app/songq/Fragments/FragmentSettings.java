@@ -1,4 +1,4 @@
-package sonq.app.songq;
+package sonq.app.songq.Fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
+
+import sonq.app.songq.R;
 
 public class FragmentSettings extends PreferenceFragmentCompat {
 

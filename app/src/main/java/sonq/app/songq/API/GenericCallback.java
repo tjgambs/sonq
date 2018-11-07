@@ -1,4 +1,4 @@
-package sonq.app.songq.api;
+package sonq.app.songq.API;
 
 public interface GenericCallback<T> {
     void onValue(T value);

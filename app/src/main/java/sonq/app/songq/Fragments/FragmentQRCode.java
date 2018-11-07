@@ -1,9 +1,7 @@
-package sonq.app.songq;
+package sonq.app.songq.Fragments;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -14,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import net.glxn.qrgen.android.QRCode;
+
+import sonq.app.songq.R;
 
 public class FragmentQRCode extends Fragment {
 

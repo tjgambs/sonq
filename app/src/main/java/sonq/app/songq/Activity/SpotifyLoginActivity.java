@@ -1,4 +1,4 @@
-package sonq.app.songq;
+package sonq.app.songq.Activity;
 
 import android.os.Bundle;
 import android.provider.Settings;

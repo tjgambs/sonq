@@ -1,4 +1,4 @@
-package sonq.app.songq;
+package sonq.app.songq.View;
 
 import android.animation.ObjectAnimator;
 import android.animation.RectEvaluator;
@@ -10,6 +10,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import sonq.app.songq.R;
 
 public class DrawQRRectangle extends View {
 

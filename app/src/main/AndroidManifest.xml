@@ -12,20 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".JoinCreateActivity">
+        <activity android:name=".Activity.JoinCreateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScanQRCodeActivity" />
-        <activity android:name=".SpotifyLoginActivity" />
+        <activity android:name=".Activity.ScanQRCodeActivity" />
+        <activity android:name=".Activity.SpotifyLoginActivity" />
         <activity
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".PartyActivity"
+            android:name=".Activity.PartyActivity"
             android:label="@string/app_name">
         </activity>
 

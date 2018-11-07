@@ -1,10 +1,12 @@
-package sonq.app.songq;
+package sonq.app.songq.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import sonq.app.songq.R;
 
 public class FragmentPlayer extends Fragment {
 

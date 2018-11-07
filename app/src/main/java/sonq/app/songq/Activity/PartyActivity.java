@@ -1,4 +1,4 @@
-package sonq.app.songq;
+package sonq.app.songq.Activity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -7,20 +7,20 @@ import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import sonq.app.songq.api.GenericCallback;
-import sonq.app.songq.api.SpotifyAPI;
+import sonq.app.songq.API.GenericCallback;
+import sonq.app.songq.API.SpotifyAPI;
+import sonq.app.songq.Adapter.ViewPagerAdapter;
+import sonq.app.songq.Fragments.FragmentPlayer;
+import sonq.app.songq.Fragments.FragmentQRCode;
+import sonq.app.songq.Fragments.FragmentQueue;
+import sonq.app.songq.Fragments.FragmentSettings;
+import sonq.app.songq.R;
 
 public class PartyActivity extends AppCompatActivity {
 
@@ -32,7 +32,6 @@ public class PartyActivity extends AppCompatActivity {
     private BottomNavigationView navigation;
     private AlertDialog.Builder alertDialogBuilder;
     private AlertDialog leavePartyDialog;
-    private Activity mActivity;
     private SharedPreferences settings;
 
     public static SpotifyAPI spotifyAPI;
@@ -41,7 +40,6 @@ public class PartyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_party);
-        mActivity = this;
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor settingsEditor = settings.edit();
 
@@ -178,25 +176,4 @@ public class PartyActivity extends AppCompatActivity {
 
         }
     };
-}
-
-class ViewPagerAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-
-    public ViewPagerAdapter(FragmentManager manager) {
-        super(manager);
-    }
-    @Override
-    public Fragment getItem(int position) {
-        return mFragmentList.get(position);
-    }
-
-    @Override
-    public int getCount() {
-        return mFragmentList.size();
-    }
-
-    public void addFragment(Fragment fragment) {
-        mFragmentList.add(fragment);
-    }
 }

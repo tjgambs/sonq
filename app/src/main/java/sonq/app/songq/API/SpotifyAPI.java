@@ -1,4 +1,4 @@
-package sonq.app.songq.api;
+package sonq.app.songq.API;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,10 +10,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import sonq.app.songq.FragmentQueue;
-import sonq.app.songq.models.SearchResponseModel;
+import sonq.app.songq.Models.SearchResponseModel;
 
 import java.io.IOException;
+
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -40,7 +40,7 @@ public class SpotifyAPI {
         }
     }
 
-    public void search(String query) {
+    public void search(String query, final GenericCallback<SearchResponseModel> callback) {
         String keywords = query.replace(" ", "+");
         String searchURL = String.format("https://api.spotify.com/v1/search?q=%s&type=track", keywords);
         final Request request = new Request.Builder()
@@ -63,7 +63,7 @@ public class SpotifyAPI {
                         json,
                         SearchResponseModel.class
                 );
-                FragmentQueue.updateSearch(searchResponseModel);
+                callback.onValue(searchResponseModel);
             }
         });
     }

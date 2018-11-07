@@ -97,20 +97,6 @@ public class FragmentQueue extends Fragment {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // handle back event.
-                Log.i("testing...", "yay");
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
     private void updateSearch(SearchResponseModel searchResponseModel) {
         if (searchResponseModel != null) {
             songs = searchResponseModel.getTracks().getSongList();

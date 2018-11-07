@@ -11,9 +11,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import sonq.app.songq.FragmentQueue;
+import sonq.app.songq.models.SearchResponseModel;
 
 import java.io.IOException;
 import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 public class SpotifyAPI {
@@ -23,6 +27,9 @@ public class SpotifyAPI {
 
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
     private Call mCall;
+
+    final GsonBuilder builder = new GsonBuilder();
+    final Gson gson = builder.create();
 
     public SpotifyAPI(String token) {
         if (token == null) {
@@ -51,12 +58,12 @@ public class SpotifyAPI {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    final JSONObject jsonObject = new JSONObject(response.body().string());
-                    FragmentQueue.updateSearch(jsonObject);
-                } catch (JSONException e) {
-                    Log.e("search", "Failed to parse data: " + e);
-                }
+                String json = response.body().string();
+                final SearchResponseModel searchResponseModel = gson.fromJson(
+                        json,
+                        SearchResponseModel.class
+                );
+                FragmentQueue.updateSearch(searchResponseModel);
             }
         });
     }

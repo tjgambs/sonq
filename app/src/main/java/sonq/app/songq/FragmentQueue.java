@@ -11,13 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.List;
 
-import sonq.app.songq.entites.Song;
+import sonq.app.songq.models.SearchResponseModel;
+import sonq.app.songq.models.Song;
 
-import java.util.ArrayList;
 
 public class FragmentQueue extends Fragment {
 
@@ -45,24 +43,22 @@ public class FragmentQueue extends Fragment {
             @Override
             public boolean onQueryTextChange(String query) {
                 System.out.println("Change");
-                PartyActivity.spotifyAPI.search(query);
+                if (query != null && !query.isEmpty()) {
+                    PartyActivity.spotifyAPI.search(query);
+                }
                 return false;
             }
         });
     }
 
-    public static void updateSearch(JSONObject jsonObject) {
-        try {
-            final JSONArray items = jsonObject.getJSONObject("tracks").getJSONArray("items");
-            ArrayList songs = new ArrayList<Song>();
-            for (int i = 0; i < items.length(); i++) {
-                songs.add(new Song(items.getJSONObject(i)));
-            }
+    public static void updateSearch(SearchResponseModel searchResponseModel) {
+        if (searchResponseModel != null) {
+            final List<Song> songs = searchResponseModel.getTracks().getSongList();
             if (!songs.isEmpty()) {
                 Log.i("search", "First result -> " + songs.get(0).toString());
             }
-        } catch (JSONException e) {
-            Log.e("search","updateSearch failed");
+        } else {
+            Log.i("search", "No results");
         }
     }
 

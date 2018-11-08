@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Tracks {
     @SerializedName("items")
-    private List<Song> songList;
+    private List<SearchResult> songList;
 
-    public List<Song> getSongList() {
+    public List<SearchResult> getSongList() {
         return songList;
     }
 }

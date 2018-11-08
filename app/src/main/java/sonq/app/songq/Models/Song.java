@@ -1,92 +1,40 @@
 package sonq.app.songq.Models;
 
+import android.graphics.Bitmap;
 
-import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+public class Song  {
 
-public class Song {
+    public String name;
+    public String artist;
+    public String preview_url;
 
-    private String uri;
-    private String type;
-    @SerializedName("track_number")
-    private int trackNumber;
-    @SerializedName("preview_url")
-    private String previewUrl;
-    private int popularity;
-    private String name;
-    @SerializedName("is_local")
-    private Boolean isLocal;
-    private String id;
-    private String href;
-    private Boolean explicit;
-    @SerializedName("duration_ms")
-    private int durationMs;
-    @SerializedName("disc_number")
-    private int discNumber;
+    //thumbnail
+    public String thumbnail_url;
+    public int thumbnail_width;
+    public int thumbnail_height;
 
-    private List<Artist> artists;
-    private Album album;
+    public Bitmap thumbnail;
 
-    public String getUri() {
-        return uri;
+    public Song() { }
+
+    public Song(SearchResult item) {
+        name = item.getName();
+        preview_url = item.getPreviewUrl();
+
+        if (item.getArtists().size() > 0)
+            artist = item.getArtists().get(0).getName();
+
+        Image img = null;
+        if (item.getAlbum().getImages().size() > 1) {
+            img = item.getAlbum().getImages().get(1);
+        } else if (item.getAlbum().getImages().size() > 0) {
+            img = item.getAlbum().getImages().get(0);
+        }
+        if (img != null) {
+            thumbnail_url = img.getUrl();
+            thumbnail_width = img.getWidth();
+            thumbnail_height = img.getHeight();
+        }
     }
-
-    public String getType() {
-        return type;
-    }
-
-    public int getTrackNumber() {
-        return trackNumber;
-    }
-
-    public String getPreviewUrl() {
-        return previewUrl;
-    }
-
-    public int getPopularity() {
-        return popularity;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Boolean getLocal() {
-        return isLocal;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getHref() {
-        return href;
-    }
-
-    public Boolean getExplicit() {
-        return explicit;
-    }
-
-    public int getDurationMs() {
-        return durationMs;
-    }
-
-    public int getDiscNumber() {
-        return discNumber;
-    }
-
-    public List<Artist> getArtists() {
-        return artists;
-    }
-
-    public Album getAlbum() {
-        return album;
-    }
-
-    @Override
-    public String toString() {
-        return this.name + " - " + this.album.toString() + " - " + this.artists.get(0).toString();
-    }
-
 }

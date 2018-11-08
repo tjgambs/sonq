@@ -19,7 +19,7 @@ public class DrawQRRectangle extends View {
     private Paint paint;
     private ObjectAnimator anim;
 
-    public DrawQRRectangle(Context context){
+    public DrawQRRectangle(Context context) {
         super(context);
         init();
     }
@@ -34,7 +34,7 @@ public class DrawQRRectangle extends View {
             to.left += 100;
 
             RelativeLayout mRelativeLayout = findViewById(R.id.activity_scan_qr_code_layout);
-            anim = ObjectAnimator.ofObject(mRelativeLayout,"clipBounds", new RectEvaluator(), this.qrCodeRect, to);
+            anim = ObjectAnimator.ofObject(mRelativeLayout, "clipBounds", new RectEvaluator(), this.qrCodeRect, to);
             anim.setDuration(1000);
             anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

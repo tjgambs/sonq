@@ -1,6 +1,6 @@
 package sonq.app.songq.Fragments;
 
-import android.media.AudioManager;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -133,7 +133,11 @@ public class PlaySongPreviewFragment extends Fragment implements Runnable, IPlay
         } else {
             //prepare:
             playButton.setImageResource(R.drawable.ic_pause_white_24dp);
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mediaPlayer.setAudioAttributes(
+                    new AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_MEDIA)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                        .build());
             try {
                 mediaPlayer.reset();
                 mediaPlayer.setDataSource(songUrl);

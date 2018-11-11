@@ -5,7 +5,7 @@ import java.util.Map;
 
 import sonq.app.songq.Common.Constants;
 import sonq.app.songq.Interfaces.IPlaySongPreviewView;
-import sonq.app.songq.Models.Song;
+import sonq.app.songq.Models.SpotifyAPIModels.Song;
 
 
 public class PlaySongPreviewPresenter {
@@ -22,14 +22,14 @@ public class PlaySongPreviewPresenter {
         Map<String, Serializable> args = view.getBundleArguments();
         if(args != null) {
             if (args.containsKey(Constants.PREVIEW_TRACK_URL))
-                model.preview_url = (String) args.get(Constants.PREVIEW_TRACK_URL);
+                model.setPreviewURL((String) args.get(Constants.PREVIEW_TRACK_URL));
             if (args.containsKey(Constants.TRACK_NAME))
-                model.name = (String) args.get(Constants.TRACK_NAME);
+                model.setName((String) args.get(Constants.TRACK_NAME));
             if (args.containsKey(Constants.TRACK_ARTIST))
-                model.artist = (String) args.get(Constants.TRACK_ARTIST);
+                model.setArtist((String) args.get(Constants.TRACK_ARTIST));
 
-            view.setSongName(model.name);
-            view.setArtistName(model.artist);
+            view.setSongName(model.getName());
+            view.setArtistName(model.getArtist());
             view.initializePlayer();
 
             onClickedPlay();
@@ -47,10 +47,10 @@ public class PlaySongPreviewPresenter {
             return;
         }
         //play
-        if(model.preview_url != null) {
-            String url = model.preview_url;
-            if (!model.preview_url.contains(".mp3"))
-                url = model.preview_url + ".mp3";
+        if(model.getPreviewURL() != null) {
+            String url = model.getPreviewURL();
+            if (!model.getPreviewURL().contains(".mp3"))
+                url = model.getPreviewURL() + ".mp3";
 
             view.playSong(url);
         }
@@ -63,13 +63,13 @@ public class PlaySongPreviewPresenter {
     }
 
     public void setSong(String songPreviewUrl, String name, String artist) {
-        model.preview_url = songPreviewUrl;
-        model.name = name;
-        model.artist = artist;
+        model.setPreviewURL(songPreviewUrl);
+        model.setName(name);
+        model.setArtist(artist);
 
         view.stopPlayer();
-        view.setSongName(model.name);
-        view.setArtistName(model.artist);
+        view.setSongName(model.getName());
+        view.setArtistName(model.getArtist());
         view.initializePlayer();
     }
 }

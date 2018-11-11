@@ -1,10 +1,12 @@
 package sonq.app.songq.Fragments;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -21,22 +23,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import sonq.app.songq.API.CloudAPI;
 import sonq.app.songq.API.GenericCallback;
 import sonq.app.songq.Common.Constants;
 import sonq.app.songq.Interfaces.ICompletedPlaySongPreview;
 import sonq.app.songq.Interfaces.IPlaySongPreviewView;
 import sonq.app.songq.Interfaces.ISearchSongsView;
-import sonq.app.songq.Models.SearchResponseModel;
-import sonq.app.songq.Models.SearchResult;
+import sonq.app.songq.Models.SpotifyAPIModels.SearchResponseModel;
+import sonq.app.songq.Models.SpotifyAPIModels.SearchResult;
 import sonq.app.songq.Activity.PartyActivity;
 import sonq.app.songq.Adapter.QueueAdapter;
-import sonq.app.songq.Models.Song;
+import sonq.app.songq.Models.SpotifyAPIModels.Song;
+import sonq.app.songq.Models.SpotifyAPIModels.SongList;
 import sonq.app.songq.Presenters.PlaySongPreviewPresenter;
 import sonq.app.songq.R;
 
@@ -53,7 +58,22 @@ public class FragmentQueue extends Fragment implements
     private FrameLayout progressBarFrameLayout = null;
     private ProgressBar progressBar = null;
 
-    private List<SearchResult> songs = new ArrayList<>();
+    private List<Song> songs = new ArrayList<>();
+
+    private CloudAPI cloudAPI;
+    private String deviceID;
+    private String partyID;
+    private boolean searchOpen = false;
+
+    private Toast toast;
+
+    public void showAToast (String message) {
+        if (toast != null) {
+            toast.cancel();
+        }
+        toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,6 +94,11 @@ public class FragmentQueue extends Fragment implements
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         mAdapter = new QueueAdapter(songs, this);
         mRecyclerView.setAdapter(mAdapter);
+        cloudAPI = CloudAPI.getCloudAPI();
+        deviceID = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
+        partyID = PreferenceManager.getDefaultSharedPreferences(getContext())
+                    .getString("party_id_preference", "");
+        returnToQueue();
     }
 
     @Override
@@ -90,6 +115,7 @@ public class FragmentQueue extends Fragment implements
 
             @Override
             public boolean onQueryTextChange(String query) {
+                searchOpen = true;
                 System.out.println("Change");
                 if (query != null && !query.isEmpty()) {
                     PartyActivity.spotifyAPI.search(query, new GenericCallback<SearchResponseModel>() {
@@ -119,58 +145,89 @@ public class FragmentQueue extends Fragment implements
         });
     }
 
-    public void onClickedPlayPreview(Song song) {
-        if (this.mAdapter != null) {
-            if (song != null && song.preview_url != null && !TextUtils.isEmpty(song.preview_url)) {
-
-                IPlaySongPreviewView playSongPreviewView = this.getPlaySongPreviewView();
-                if (playSongPreviewView == null) {
-
-                    HashMap<String, Serializable> data = new HashMap<>();
-                    data.put(Constants.PREVIEW_TRACK_URL, song.preview_url);
-                    data.put(Constants.TRACK_NAME, song.name);
-                    data.put(Constants.TRACK_ARTIST, song.artist);
-
-                    playSongPreviewView = this.showPlaySongPreviewView(data);
-                } else {
-
-                    PlaySongPreviewPresenter playSongPreviewPresenter = playSongPreviewView.getPresenterInstance();
-                    if (playSongPreviewPresenter != null) {
-                        playSongPreviewPresenter.setSong(song.preview_url, song.name, song.artist);
+    public void onClickedSong(Song song) {
+        if (searchOpen) {
+            cloudAPI.addSong(partyID, deviceID, song, new GenericCallback<Boolean>() {
+                @Override
+                public void onValue(Boolean success) {
+                    if (success) {
+                        Log.d("onClickedSong", "Song added to queue!");
+                    } else {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                showAToast("Song already in queue!");
+                            }
+                        });
                     }
                 }
-                playSongPreviewView.setOnCompletedPlaySongPreviewListener(this);
-            }
+            });
+            /* Disable preview, not sure if using?
+            if (this.mAdapter != null) {
+                if (song != null && song.getPreviewURL() != null && !TextUtils.isEmpty(song.getPreviewURL())) {
+
+                    IPlaySongPreviewView playSongPreviewView = this.getPlaySongPreviewView();
+                    if (playSongPreviewView == null) {
+
+                        HashMap<String, Serializable> data = new HashMap<>();
+                        data.put(Constants.PREVIEW_TRACK_URL, song.getPreviewURL());
+                        data.put(Constants.TRACK_NAME, song.getName());
+                        data.put(Constants.TRACK_ARTIST, song.getArtist());
+
+                        playSongPreviewView = this.showPlaySongPreviewView(data);
+                    } else {
+
+                        PlaySongPreviewPresenter playSongPreviewPresenter = playSongPreviewView.getPresenterInstance();
+                        if (playSongPreviewPresenter != null) {
+                            playSongPreviewPresenter.setSong(song.getPreviewURL(), song.getName(), song.getArtist());
+                        }
+                    }
+                    playSongPreviewView.setOnCompletedPlaySongPreviewListener(this);
+                }
+            }*/
         }
     }
 
     private void updateSearch(SearchResponseModel searchResponseModel) {
         if (searchResponseModel != null) {
-            songs = searchResponseModel.getTracks().getSongList();
+            songs = new SongList(searchResponseModel.getTracks().getSongList()).getSongList();
             if (songs != null && !songs.isEmpty()) {
                 Log.i("search", "Size: " + songs.size());
-                Log.i("search", "First result -> " + songs.get(0).toString());
+                Log.i("search", "First result -> " + songs.get(0).getName());
             }
         } else {
             Log.i("search", "No results");
             songs.clear();
         }
         // Update recycler view
-        getActivity().runOnUiThread(new Runnable() {
+        cloudAPI.checkInQueue(partyID, songs, new GenericCallback<List<Integer>>() {
             @Override
-            public void run() {
-                mAdapter.update(songs);
+            public void onValue(List<Integer> songsInQueue) {
+                for (int idx : songsInQueue) {
+                    songs.get(idx).setInQueue(true);
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter.update(songs, true);
+                    }
+                });
             }
         });
     }
 
     private void returnToQueue() {
         // Fetch queue here
-        songs = new ArrayList<>();
-        getActivity().runOnUiThread(new Runnable() {
+        searchOpen = false;
+        cloudAPI.getQueue(partyID, new GenericCallback<List<Song>>() {
             @Override
-            public void run() {
-                mAdapter.update(songs);
+            public void onValue(final List<Song> songs) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter.update(songs, false);
+                    }
+                });
             }
         });
     }

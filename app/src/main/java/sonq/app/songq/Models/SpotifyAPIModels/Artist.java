@@ -1,4 +1,4 @@
-package sonq.app.songq.Models;
+package sonq.app.songq.Models.SpotifyAPIModels;
 
 public class Artist {
 

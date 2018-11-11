@@ -10,7 +10,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import sonq.app.songq.Models.SearchResponseModel;
+import sonq.app.songq.Models.SpotifyAPIModels.SearchResponseModel;
 
 import java.io.IOException;
 
@@ -28,8 +28,8 @@ public class SpotifyAPI {
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
     private Call mCall;
 
-    final GsonBuilder builder = new GsonBuilder();
-    final Gson gson = builder.create();
+    private final GsonBuilder builder = new GsonBuilder();
+    private final Gson gson = builder.create();
 
     public SpotifyAPI(String token) {
         if (token == null) {
@@ -68,7 +68,7 @@ public class SpotifyAPI {
         });
     }
 
-    public void onGetUserProfileClicked(final GenericCallback<String> callback) {
+    public void getUsername(final GenericCallback<String> callback) {
         final Request request = new Request.Builder()
                 .url("https://api.spotify.com/v1/me")
                 .addHeader("Authorization","Bearer " + this.token)
@@ -79,18 +79,18 @@ public class SpotifyAPI {
         this.mCall.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("onGetUserProfileClicked", "Failed to fetch data: " + e);
+                Log.e("getUsername", "Failed to fetch data: " + e);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
-                    Log.i("onGetUserProfileClicked", jsonObject.toString(3));
+                    Log.i("getUsername", jsonObject.toString(3));
                     String username = jsonObject.getString("display_name");
                     callback.onValue(username);
                 } catch (JSONException e) {
-                    Log.e("onGetUserProfileClicked", "Failed to parse data: " + e);
+                    Log.e("getUsername", "Failed to parse data: " + e);
                 }
             }
         });

@@ -8,19 +8,23 @@ import android.widget.ImageView;
 
 import java.io.InputStream;
 
-public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+import sonq.app.songq.Models.SpotifyAPIModels.Song;
+
+public class DownloadImageTask extends AsyncTask<Song, Void, Bitmap> {
     ImageView bmImage;
 
     public DownloadImageTask(ImageView bmImage) {
         this.bmImage = bmImage;
     }
 
-    protected Bitmap doInBackground(String... urls) {
-        String urldisplay = urls[0];
+    protected Bitmap doInBackground(Song... songs) {
+        Song song = songs[0];
+        String url = song.getImageURL();
         Bitmap mIcon11 = null;
         try {
-            InputStream in = new java.net.URL(urldisplay).openStream();
+            InputStream in = new java.net.URL(url).openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
+            song.setThumbnail(mIcon11);
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();

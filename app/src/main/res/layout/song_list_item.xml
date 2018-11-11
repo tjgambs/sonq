@@ -35,18 +35,26 @@
         android:layout_marginStart="16dp"/>
 
     <TextView
-        android:id="@+id/song_album"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/song_artist"
-        android:layout_toEndOf="@+id/song_image"
-        android:layout_marginStart="16dp"/>
-
-    <TextView
         android:id="@+id/song_length"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/added_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/song_length"
+        android:layout_alignParentEnd="true" />
+
+    <CheckBox
+        android:id="@+id/added_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:clickable="false"
+        android:layout_below="@id/song_length"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"/>
+        android:visibility="invisible"/>
 
 </RelativeLayout>

@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import sonq.app.songq.API.CloudAPI;
+import sonq.app.songq.API.GenericCallback;
 import sonq.app.songq.R;
 
 public class JoinCreateActivity extends AppCompatActivity implements  View.OnClickListener {
@@ -15,6 +17,7 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
     private Button joinPartyButton, createPartyButton;
     private EditText usernameInput, partyIDInput;
     private Toast toast;
+    private CloudAPI cloudAPI;
 
     public void showAToast (String message) {
         if (toast != null) {
@@ -29,6 +32,7 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_create);
         initViews();
+        cloudAPI = CloudAPI.getCloudAPI();
     }
 
     private void initViews() {
@@ -42,8 +46,8 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
 
     @Override
     public void onClick(View v) {
-        String username = usernameInput.getText().toString();
-        String partyID = partyIDInput.getText().toString();
+        final String username = usernameInput.getText().toString();
+        final String partyID = partyIDInput.getText().toString();
         switch (v.getId()) {
             case R.id.joinPartyButton:
                 if (!username.isEmpty()) {
@@ -54,11 +58,25 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
                                         .putExtra("username", username)
                         );
                     } else {
-                        startActivity(
-                                new Intent(JoinCreateActivity.this, PartyActivity.class)
-                                        .putExtra("partyID", partyID)
-                                        .putExtra("username", username)
-                        );
+                        cloudAPI.joinParty(partyID, new GenericCallback<Boolean>() {
+                            @Override
+                            public void onValue(Boolean partyExists) {
+                                if (partyExists) {
+                                    startActivity(
+                                            new Intent(JoinCreateActivity.this, PartyActivity.class)
+                                                    .putExtra("partyID", partyID)
+                                                    .putExtra("username", username)
+                                    );
+                                } else {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            showAToast("Party does not exist!");
+                                        }
+                                    });
+                                }
+                            }
+                        });
                     }
                 } else {
                     showAToast("Please enter a name!");

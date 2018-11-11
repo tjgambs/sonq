@@ -8,15 +8,21 @@ import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import android.content.Intent;
+import android.util.Log;
+
+import sonq.app.songq.API.CloudAPI;
+import sonq.app.songq.API.GenericCallback;
 
 public class SpotifyLoginActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 1337;
-    private static final String CLIENT_ID = "1df21b37504648758e66548b7aa15e11";
+    private static final String CLIENT_ID = "3dcb2de0605f45139b2ab9168eece07d";
     private static final String REDIRECT_URI = "sonq.app.songq://login";
+    private CloudAPI cloudAPI;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        cloudAPI = CloudAPI.getCloudAPI();
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(
                 CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI);
         builder.setScopes(new String[]{"streaming"});
@@ -30,16 +36,25 @@ public class SpotifyLoginActivity extends AppCompatActivity {
 
         // Check if result comes from the correct activity
         if (requestCode == REQUEST_CODE) {
-            AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
+            final AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
 
             switch (response.getType()) {
                 // Response was successful and contains auth token
                 case TOKEN:
-                    startActivity(
-                            new Intent(SpotifyLoginActivity.this, PartyActivity.class)
-                                    .putExtra("token", response.getAccessToken())
-                                    .putExtra("partyID", Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID))
-                    );
+                    // Create a new party
+                    cloudAPI.createParty(Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
+                    , new GenericCallback<String>() {
+                        @Override
+                        public void onValue(String partyID) {
+                            if (partyID != null) {
+                                startActivity(
+                                        new Intent(SpotifyLoginActivity.this, PartyActivity.class)
+                                                .putExtra("token", response.getAccessToken())
+                                                .putExtra("partyID", partyID)
+                                );
+                            }
+                        }
+                    });
                     finish();
                     // Handle successful response
                     break;
@@ -47,6 +62,8 @@ public class SpotifyLoginActivity extends AppCompatActivity {
                 // Auth flow returned an error
                 case ERROR:
                     // Handle error response
+                    Log.e("SpotifyLoginActivity", "Authentication Failed - " + response.getError());
+                    finish();
                     break;
 
                 // Most likely auth flow was cancelled

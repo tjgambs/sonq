@@ -46,4 +46,7 @@ dependencies {
     implementation 'com.github.kenglxn.QRGen:android:2.5.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'org.apache.commons:commons-text:1.6'
+
+
 }

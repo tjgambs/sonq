@@ -25,6 +25,8 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
+import sonq.app.songq.API.CloudAPI;
+import sonq.app.songq.API.GenericCallback;
 import sonq.app.songq.R;
 import sonq.app.songq.View.DrawQRRectangle;
 
@@ -43,6 +45,7 @@ public class ScanQRCodeActivity extends AppCompatActivity {
     private final long[] VIBRATION_PATTERN = {0, 200, 50, 200};
     private boolean qrCodeFound;
     private String username;
+    private CloudAPI cloudAPI;
 
 
     @Override
@@ -51,6 +54,7 @@ public class ScanQRCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scan_qr_code);
 
         initViews();
+        cloudAPI = CloudAPI.getCloudAPI();
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         //add RelativeLayout
@@ -139,7 +143,6 @@ public class ScanQRCodeActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             if (qrCodes.valueAt(0).rawValue != null) {
-                                showAToast("QR Code Found!");
                                 Rect qrCodeBox = qrCodes.valueAt(0).getBoundingBox();
                                 qrRectangle.setQRCode(qrCodeBox);
                                 qrRectangle.postInvalidate();
@@ -147,11 +150,27 @@ public class ScanQRCodeActivity extends AppCompatActivity {
                                 txtBarcodeValue.removeCallbacks(null);
                                 partyID = qrCodes.valueAt(0).rawValue;
                                 txtBarcodeValue.setText(partyID);
-                                startActivity(
-                                        new Intent(ScanQRCodeActivity.this, PartyActivity.class)
-                                                .putExtra("partyID", partyID)
-                                                .putExtra("username", username)
-                                );
+                                cloudAPI.joinParty(partyID, new GenericCallback<Boolean>() {
+                                    @Override
+                                    public void onValue(Boolean partyExists) {
+                                        if (partyExists) {
+                                            startActivity(
+                                                    new Intent(ScanQRCodeActivity.this, PartyActivity.class)
+                                                            .putExtra("partyID", partyID)
+                                                            .putExtra("username", username)
+                                            );
+                                        } else {
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    showAToast("Party does not exist!");
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                                // Finish for now. TODO: Reset view so it can scan again
+                                finish();
                             }
                         }
                     });

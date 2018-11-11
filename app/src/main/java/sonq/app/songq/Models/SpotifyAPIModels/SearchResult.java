@@ -1,4 +1,4 @@
-package sonq.app.songq.Models;
+package sonq.app.songq.Models.SpotifyAPIModels;
 
 
 import com.google.gson.annotations.SerializedName;

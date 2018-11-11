@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import sonq.app.songq.API.CloudAPI;
 import sonq.app.songq.API.GenericCallback;
 import sonq.app.songq.API.SpotifyAPI;
 import sonq.app.songq.Adapter.ViewPagerAdapter;
@@ -24,6 +26,7 @@ import sonq.app.songq.R;
 
 public class PartyActivity extends AppCompatActivity {
 
+    private String deviceID;
     private ViewPager viewPager;
     private FragmentQueue fragmentQueue;
     private FragmentQRCode fragmentQRCode;
@@ -35,23 +38,30 @@ public class PartyActivity extends AppCompatActivity {
     private SharedPreferences settings;
 
     public static SpotifyAPI spotifyAPI;
+    private CloudAPI cloudAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_party);
+        deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        cloudAPI = CloudAPI.getCloudAPI();
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor settingsEditor = settings.edit();
 
         String token = getIntent().getStringExtra("token");
         spotifyAPI = new SpotifyAPI(token);
 
-        // Log user info, set username
-        spotifyAPI.onGetUserProfileClicked(new GenericCallback<String>() {
+        // Log user info, set username. Only works for party host
+        spotifyAPI.getUsername(new GenericCallback<String>() {
             @Override
-            public void onValue(String value) {
-                settingsEditor.putString("username_preference", value);
+            public void onValue(String username) {
+                // Get first name
+                username = username.split(" ")[0];
+                settingsEditor.putString("username_preference", username);
                 settingsEditor.apply();
+
+                cloudAPI.updateUsername(deviceID, username);
             }
         });
 
@@ -72,8 +82,6 @@ public class PartyActivity extends AppCompatActivity {
         settingsEditor.putString("party_id_preference", partyID);
         settingsEditor.apply();
         setTitle(R.string.title_queue);
-        Log.i("settingsTEST", settings.getString("username_preference", "None"));
-        Log.i("settingsTEST", settings.getString("party_id_preference", "None"));
     }
 
     private void setupAlertDialog() {

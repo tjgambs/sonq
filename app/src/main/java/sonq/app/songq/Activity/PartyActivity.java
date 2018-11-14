@@ -1,23 +1,28 @@
 package sonq.app.songq.Activity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 import sonq.app.songq.API.CloudAPI;
 import sonq.app.songq.API.GenericCallback;
 import sonq.app.songq.API.SpotifyAPI;
-import sonq.app.songq.Adapter.ViewPagerAdapter;
+import sonq.app.songq.Adapter.BottomBarAdapter;
+import sonq.app.songq.Adapter.NoSwipePager;
 import sonq.app.songq.Fragments.FragmentPlayer;
 import sonq.app.songq.Fragments.FragmentQRCode;
 import sonq.app.songq.Fragments.FragmentQueue;
@@ -27,15 +32,17 @@ import sonq.app.songq.R;
 public class PartyActivity extends AppCompatActivity {
 
     private String deviceID;
-    private ViewPager viewPager;
+    private AHBottomNavigation navigation;
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog leavePartyDialog;
+    private SharedPreferences settings;
+    private NoSwipePager viewPager;
+    private BottomBarAdapter pagerAdapter;
+
     private FragmentQueue fragmentQueue;
     private FragmentQRCode fragmentQRCode;
     private FragmentPlayer fragmentPlayer;
     private FragmentSettings fragmentSettings;
-    private BottomNavigationView navigation;
-    private AlertDialog.Builder alertDialogBuilder;
-    private AlertDialog leavePartyDialog;
-    private SharedPreferences settings;
 
     public static SpotifyAPI spotifyAPI;
     private CloudAPI cloudAPI;
@@ -65,12 +72,42 @@ public class PartyActivity extends AppCompatActivity {
             }
         });
 
-        navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
         viewPager = findViewById(R.id.viewpager);
-        viewPager.addOnPageChangeListener(mOnPageChangeListener);
+        viewPager.setPagingEnabled(false);
+        viewPager.setOffscreenPageLimit(4);
         setupViewPager(viewPager);
+
+
+        navigation = findViewById(R.id.navigation);
+        addButtons(navigation);
+        navigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
+            @Override
+            public boolean onTabSelected(int position, boolean wasSelected) {
+                if (!wasSelected) {
+                    viewPager.setCurrentItem(position);
+                }
+                switch (position) {
+                    case 0:
+                        setTitle(R.string.title_queue);
+                        return true;
+                    case 1:
+                        setTitle(R.string.title_qr_code);
+                        return true;
+                    case 2:
+                        setTitle(R.string.title_player);
+                        return true;
+                    case 3:
+                        setTitle(R.string.title_settings);
+                        return true;
+                }
+                return  false;
+            }
+        });
+        navigation.setBehaviorTranslationEnabled(true);
+        navigation.setCurrentItem(0);
+        navigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
+        navigation.setDefaultBackgroundColor(getColor(R.color.background_material_dark));
+        navigation.setAccentColor(getColor(R.color.colorAccent));
 
         setupAlertDialog();
 
@@ -78,10 +115,40 @@ public class PartyActivity extends AppCompatActivity {
         String username_extra = getIntent().getStringExtra("username");
         if (username_extra != null) {
             settingsEditor.putString("username_preference", username_extra);
+            cloudAPI.updateUsername(deviceID, username_extra);
         }
         settingsEditor.putString("party_id_preference", partyID);
         settingsEditor.apply();
         setTitle(R.string.title_queue);
+    }
+
+    private void addButtons(AHBottomNavigation navigation) {
+        AHBottomNavigationItem queue = new AHBottomNavigationItem(
+                getString(R.string.title_queue), getDrawable(R.drawable.ic_queue_music_black_24dp));
+        AHBottomNavigationItem qrCode = new AHBottomNavigationItem(
+                getString(R.string.title_qr_code), getDrawable(R.drawable.ic_qrcode));
+        AHBottomNavigationItem player = new AHBottomNavigationItem(
+                getString(R.string.title_player), getDrawable(R.drawable.ic_play_arrow_black_24dp));
+        AHBottomNavigationItem settings = new AHBottomNavigationItem(
+                getString(R.string.title_settings), getDrawable(R.drawable.ic_settings_black_24dp));
+
+        navigation.addItem(queue);
+        navigation.addItem(qrCode);
+        navigation.addItem(player);
+        navigation.addItem(settings);
+    }
+
+    private void setupViewPager(NoSwipePager viewPager) {
+        BottomBarAdapter viewPagerAdapter = new BottomBarAdapter(getSupportFragmentManager());
+        fragmentQueue = new FragmentQueue();
+        fragmentQRCode = new FragmentQRCode();
+        fragmentPlayer = new FragmentPlayer();
+        fragmentSettings = new FragmentSettings();
+        viewPagerAdapter.addFragments(fragmentQueue);
+        viewPagerAdapter.addFragments(fragmentQRCode);
+        viewPagerAdapter.addFragments(fragmentPlayer);
+        viewPagerAdapter.addFragments(fragmentSettings);
+        viewPager.setAdapter(viewPagerAdapter);
     }
 
     private void setupAlertDialog() {
@@ -113,75 +180,4 @@ public class PartyActivity extends AppCompatActivity {
     public void onBackPressed() {
         leavePartyDialog.show();
     }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        fragmentQueue = new FragmentQueue();
-        fragmentQRCode = new FragmentQRCode();
-        fragmentPlayer = new FragmentPlayer();
-        fragmentSettings = new FragmentSettings();
-        viewPagerAdapter.addFragment(fragmentQueue);
-        viewPagerAdapter.addFragment(fragmentQRCode);
-        viewPagerAdapter.addFragment(fragmentPlayer);
-        viewPagerAdapter.addFragment(fragmentSettings);
-        viewPager.setAdapter(viewPagerAdapter);
-    }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_queue:
-                    viewPager.setCurrentItem(0);
-                    setTitle(R.string.title_queue);
-                    return true;
-                case R.id.navigation_qr_code:
-                    viewPager.setCurrentItem(1);
-                    setTitle(R.string.title_qr_code);
-                    return true;
-                case R.id.navigation_player:
-                    viewPager.setCurrentItem(2);
-                    setTitle(R.string.title_player);
-                    return true;
-                case R.id.navigation_settings:
-                    viewPager.setCurrentItem(3);
-                    setTitle(R.string.title_settings);
-                    return true;
-            }
-            return false;
-        }
-    };
-
-    private ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int i, float v, int i1) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            navigation.getMenu().getItem(position).setChecked(true);
-            switch (position) {
-                case 0:
-                    setTitle(R.string.title_queue);
-                    break;
-                case 1:
-                    setTitle(R.string.title_qr_code);
-                    break;
-                case 2:
-                    setTitle(R.string.title_player);
-                    break;
-                case 3:
-                    setTitle(R.string.title_settings);
-                    break;
-            }
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int i) {
-
-        }
-    };
 }

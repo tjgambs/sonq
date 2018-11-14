@@ -1,12 +1,15 @@
 package sonq.app.songq.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import net.glxn.qrgen.android.QRCode;
 
 import sonq.app.songq.API.CloudAPI;
 import sonq.app.songq.API.GenericCallback;

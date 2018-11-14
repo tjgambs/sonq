@@ -48,6 +48,7 @@ public class SpotifyAPI {
                 .addHeader("Authorization","Bearer " + this.token)
                 .build();
 
+        cancelCall();
         this.mCall = this.mOkHttpClient.newCall(request);
 
         this.mCall.enqueue(new Callback() {

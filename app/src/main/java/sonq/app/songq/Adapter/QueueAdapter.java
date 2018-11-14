@@ -1,13 +1,17 @@
 package sonq.app.songq.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import sonq.app.songq.Common.Constants;
@@ -20,7 +24,7 @@ import sonq.app.songq.Task.DownloadImageTask;
 
 
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHolder> {
-    private List<Song> songList;
+    private List<Song> songList = new ArrayList<>();
     private FragmentQueue parent;
     private boolean isSearch = false;
 
@@ -55,9 +59,8 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHol
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public QueueAdapter(List<Song> songList, FragmentQueue parent) {
+    public QueueAdapter(FragmentQueue parent) {
         this.parent = parent;
-        this.songList = songList;
     }
 
     // Create new views (invoked by the layout manager)
@@ -110,10 +113,22 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHol
         return songList.size();
     }
 
-    public void update(List<Song> data, boolean isSearch) {
+    public void update(List<Song> data, boolean isSearch, RecyclerView recyclerView) {
         this.isSearch = isSearch;
         songList.clear();
-        songList.addAll(data);
-        notifyDataSetChanged();
+        if (data != null) {
+            songList.addAll(data);
+        }
+        runLayoutAnimation(recyclerView);
+    }
+
+    private void runLayoutAnimation(final RecyclerView recyclerView) {
+        final Context context = recyclerView.getContext();
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+
+        recyclerView.setLayoutAnimation(controller);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
     }
 }

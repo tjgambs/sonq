@@ -2,6 +2,7 @@ package sonq.app.songq.Fragments;
 
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -58,8 +59,6 @@ public class FragmentQueue extends Fragment implements
     private FrameLayout progressBarFrameLayout = null;
     private ProgressBar progressBar = null;
 
-    private List<Song> songs = new ArrayList<>();
-
     private CloudAPI cloudAPI;
     private String deviceID;
     private String partyID;
@@ -76,7 +75,7 @@ public class FragmentQueue extends Fragment implements
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
@@ -84,15 +83,14 @@ public class FragmentQueue extends Fragment implements
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         mRecyclerView = getView().findViewById(R.id.queue_recycler_view);
         playPreviewContainer = getView().findViewById(R.id.cv_playPreviewContainer);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
-        mAdapter = new QueueAdapter(songs, this);
+        mAdapter = new QueueAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
         cloudAPI = CloudAPI.getCloudAPI();
         deviceID = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -190,30 +188,33 @@ public class FragmentQueue extends Fragment implements
 
     private void updateSearch(SearchResponseModel searchResponseModel) {
         if (searchResponseModel != null) {
-            songs = new SongList(searchResponseModel.getTracks().getSongList()).getSongList();
+            final List<Song> songs = new SongList(searchResponseModel.getTracks().getSongList()).getSongList();
             if (songs != null && !songs.isEmpty()) {
-                Log.i("search", "Size: " + songs.size());
-                Log.i("search", "First result -> " + songs.get(0).getName());
-            }
-        } else {
-            Log.i("search", "No results");
-            songs.clear();
-        }
-        // Update recycler view
-        cloudAPI.checkInQueue(partyID, songs, new GenericCallback<List<Integer>>() {
-            @Override
-            public void onValue(List<Integer> songsInQueue) {
-                for (int idx : songsInQueue) {
-                    songs.get(idx).setInQueue(true);
-                }
-                getActivity().runOnUiThread(new Runnable() {
+                // Update recycler view
+                cloudAPI.checkInQueue(partyID, songs, new GenericCallback<List<Integer>>() {
                     @Override
-                    public void run() {
-                        mAdapter.update(songs, true);
+                    public void onValue(List<Integer> songsInQueue) {
+                        for (int idx : songsInQueue) {
+                            songs.get(idx).setInQueue(true);
+                        }
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAdapter.update(songs, true, mRecyclerView);
+                            }
+                        });
                     }
                 });
             }
-        });
+        } else {
+            Log.i("search", "No results");
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mAdapter.update(null, true, mRecyclerView);
+                }
+            });
+        }
     }
 
     private void returnToQueue() {
@@ -225,7 +226,7 @@ public class FragmentQueue extends Fragment implements
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter.update(songs, false);
+                        mAdapter.update(songs, false, mRecyclerView);
                     }
                 });
             }
@@ -292,5 +293,4 @@ public class FragmentQueue extends Fragment implements
     public IPlaySongPreviewView getPlaySongPreviewView() {
         return playSongPreviewFragment;
     }
-
 }

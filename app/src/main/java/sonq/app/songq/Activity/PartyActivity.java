@@ -2,18 +2,11 @@ package sonq.app.songq.Activity;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
@@ -37,7 +30,6 @@ public class PartyActivity extends AppCompatActivity {
     private AlertDialog leavePartyDialog;
     private SharedPreferences settings;
     private NoSwipePager viewPager;
-    private BottomBarAdapter pagerAdapter;
 
     private FragmentQueue fragmentQueue;
     private FragmentQRCode fragmentQRCode;
@@ -45,6 +37,7 @@ public class PartyActivity extends AppCompatActivity {
     private FragmentSettings fragmentSettings;
 
     public static SpotifyAPI spotifyAPI;
+    public static boolean isHost;
     private CloudAPI cloudAPI;
 
     @Override
@@ -55,6 +48,8 @@ public class PartyActivity extends AppCompatActivity {
         cloudAPI = CloudAPI.getCloudAPI();
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor settingsEditor = settings.edit();
+
+        isHost = getIntent().getBooleanExtra("isHost", false);
 
         String token = getIntent().getStringExtra("token");
         spotifyAPI = new SpotifyAPI(token);
@@ -94,7 +89,11 @@ public class PartyActivity extends AppCompatActivity {
                         setTitle(R.string.title_qr_code);
                         return true;
                     case 2:
-                        setTitle(R.string.title_player);
+                        if (isHost) {
+                            setTitle(R.string.title_player);
+                        } else {
+                            setTitle(R.string.title_settings);
+                        }
                         return true;
                     case 3:
                         setTitle(R.string.title_settings);
@@ -134,7 +133,10 @@ public class PartyActivity extends AppCompatActivity {
 
         navigation.addItem(queue);
         navigation.addItem(qrCode);
-        navigation.addItem(player);
+        if (isHost) {
+            // Could enable this still and have no controls for guests? Just the progress bar?
+            navigation.addItem(player);
+        }
         navigation.addItem(settings);
     }
 
@@ -146,7 +148,9 @@ public class PartyActivity extends AppCompatActivity {
         fragmentSettings = new FragmentSettings();
         viewPagerAdapter.addFragments(fragmentQueue);
         viewPagerAdapter.addFragments(fragmentQRCode);
-        viewPagerAdapter.addFragments(fragmentPlayer);
+        if (isHost) {
+            viewPagerAdapter.addFragments(fragmentPlayer);
+        }
         viewPagerAdapter.addFragments(fragmentSettings);
         viewPager.setAdapter(viewPagerAdapter);
     }

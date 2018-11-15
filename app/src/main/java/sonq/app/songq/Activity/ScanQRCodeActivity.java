@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
@@ -27,6 +28,8 @@ import java.io.IOException;
 
 import sonq.app.songq.API.CloudAPI;
 import sonq.app.songq.API.GenericCallback;
+import sonq.app.songq.Models.CloudAPIModels.GenericCloudResponse;
+import sonq.app.songq.Models.CloudAPIModels.JoinPartyResponse;
 import sonq.app.songq.R;
 import sonq.app.songq.View.DrawQRRectangle;
 
@@ -46,6 +49,7 @@ public class ScanQRCodeActivity extends AppCompatActivity {
     private boolean qrCodeFound;
     private String username;
     private CloudAPI cloudAPI;
+    private String deviceID;
 
 
     @Override
@@ -55,6 +59,8 @@ public class ScanQRCodeActivity extends AppCompatActivity {
 
         initViews();
         cloudAPI = CloudAPI.getCloudAPI();
+
+        deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         //add RelativeLayout
@@ -150,14 +156,16 @@ public class ScanQRCodeActivity extends AppCompatActivity {
                                 txtBarcodeValue.removeCallbacks(null);
                                 partyID = qrCodes.valueAt(0).rawValue;
                                 txtBarcodeValue.setText(partyID);
-                                cloudAPI.joinParty(partyID, new GenericCallback<Boolean>() {
+                                cloudAPI.joinParty(partyID, new GenericCallback<GenericCloudResponse<JoinPartyResponse>>() {
                                     @Override
-                                    public void onValue(Boolean partyExists) {
-                                        if (partyExists) {
+                                    public void onValue(GenericCloudResponse<JoinPartyResponse> joinPartyResponse) {
+                                        if (joinPartyResponse.getData().getPartyExists()) {
+                                            boolean isHost = deviceID.equals(joinPartyResponse.getData().getCreatedBy());
                                             startActivity(
                                                     new Intent(ScanQRCodeActivity.this, PartyActivity.class)
                                                             .putExtra("partyID", partyID)
                                                             .putExtra("username", username)
+                                                            .putExtra("isHost", isHost)
                                             );
                                         } else {
                                             runOnUiThread(new Runnable() {

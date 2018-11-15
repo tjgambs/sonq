@@ -51,6 +51,7 @@ public class SpotifyLoginActivity extends AppCompatActivity {
                                         new Intent(SpotifyLoginActivity.this, PartyActivity.class)
                                                 .putExtra("token", response.getAccessToken())
                                                 .putExtra("partyID", partyID)
+                                                .putExtra("isHost", true)
                                 );
                             }
                         }
@@ -68,6 +69,7 @@ public class SpotifyLoginActivity extends AppCompatActivity {
 
                 // Most likely auth flow was cancelled
                 default:
+                    finish();
                     // Handle other cases
             }
         }

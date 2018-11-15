@@ -19,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+
 import java.util.List;
 
 import sonq.app.songq.API.CloudAPI;
@@ -36,6 +38,7 @@ public class FragmentQueue extends Fragment {
     private RecyclerView mRecyclerView;
     private QueueAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private AHBottomNavigation navigation;
 
     private CloudAPI cloudAPI;
     private String deviceID;
@@ -71,6 +74,7 @@ public class FragmentQueue extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         cloudAPI = CloudAPI.getCloudAPI();
         deviceID = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
+        navigation = view.getRootView().findViewById(R.id.navigation);
         partyID = PreferenceManager.getDefaultSharedPreferences(getContext())
                     .getString("party_id_preference", "");
         returnToQueue();
@@ -173,6 +177,7 @@ public class FragmentQueue extends Fragment {
 
     private void returnToQueue() {
         // Fetch queue here
+        navigation.restoreBottomNavigation();
         searchOpen = false;
         cloudAPI.getQueue(partyID, new GenericCallback<List<Song>>() {
             @Override

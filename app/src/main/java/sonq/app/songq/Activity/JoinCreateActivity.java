@@ -2,8 +2,10 @@ package sonq.app.songq.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,8 @@ import net.glxn.qrgen.android.QRCode;
 
 import sonq.app.songq.API.CloudAPI;
 import sonq.app.songq.API.GenericCallback;
+import sonq.app.songq.Models.CloudAPIModels.GenericCloudResponse;
+import sonq.app.songq.Models.CloudAPIModels.JoinPartyResponse;
 import sonq.app.songq.R;
 
 public class JoinCreateActivity extends AppCompatActivity implements  View.OnClickListener {
@@ -21,6 +25,7 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
     private EditText usernameInput, partyIDInput;
     private Toast toast;
     private CloudAPI cloudAPI;
+    private String deviceID;
 
     public void showAToast (String message) {
         if (toast != null) {
@@ -36,6 +41,7 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
         setContentView(R.layout.activity_join_create);
         initViews();
         cloudAPI = CloudAPI.getCloudAPI();
+        deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
     private void initViews() {
@@ -61,14 +67,17 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
                                         .putExtra("username", username)
                         );
                     } else {
-                        cloudAPI.joinParty(partyID, new GenericCallback<Boolean>() {
+                        cloudAPI.joinParty(partyID, new GenericCallback<GenericCloudResponse<JoinPartyResponse>>() {
                             @Override
-                            public void onValue(Boolean partyExists) {
-                                if (partyExists) {
+                            public void onValue(GenericCloudResponse<JoinPartyResponse> joinPartyResponse) {
+                                if (joinPartyResponse.getData().getPartyExists()) {
+                                    Log.d("JoinCreateActivity", "deviceID: " + deviceID + " createdBy: " + joinPartyResponse.getData().getCreatedBy());
+                                    boolean isHost = deviceID.equals(joinPartyResponse.getData().getCreatedBy());
                                     startActivity(
                                             new Intent(JoinCreateActivity.this, PartyActivity.class)
                                                     .putExtra("partyID", partyID)
                                                     .putExtra("username", username)
+                                                    .putExtra("isHost", isHost)
                                     );
                                 } else {
                                     runOnUiThread(new Runnable() {

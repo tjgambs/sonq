@@ -26,6 +26,8 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,6 +56,7 @@ public class FragmentQueue extends Fragment implements
     private QueueAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private CardView playPreviewContainer;
+    private AHBottomNavigation navigation;
 
     private PlaySongPreviewFragment playSongPreviewFragment = null;
     private FrameLayout progressBarFrameLayout = null;
@@ -84,8 +87,8 @@ public class FragmentQueue extends Fragment implements
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        mRecyclerView = getView().findViewById(R.id.queue_recycler_view);
-        playPreviewContainer = getView().findViewById(R.id.cv_playPreviewContainer);
+        mRecyclerView = view.findViewById(R.id.queue_recycler_view);
+        playPreviewContainer = view.findViewById(R.id.cv_playPreviewContainer);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(false);
@@ -94,6 +97,7 @@ public class FragmentQueue extends Fragment implements
         mRecyclerView.setAdapter(mAdapter);
         cloudAPI = CloudAPI.getCloudAPI();
         deviceID = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
+        navigation = view.getRootView().findViewById(R.id.navigation);
         partyID = PreferenceManager.getDefaultSharedPreferences(getContext())
                     .getString("party_id_preference", "");
         returnToQueue();
@@ -219,6 +223,7 @@ public class FragmentQueue extends Fragment implements
 
     private void returnToQueue() {
         // Fetch queue here
+        navigation.restoreBottomNavigation();
         searchOpen = false;
         cloudAPI.getQueue(partyID, new GenericCallback<List<Song>>() {
             @Override

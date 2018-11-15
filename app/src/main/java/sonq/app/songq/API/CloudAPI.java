@@ -64,7 +64,6 @@ public class CloudAPI {
                 .post(body)
                 .build();
 
-        cancelCall();
         this.mCall = this.mOkHttpClient.newCall(request);
         this.mCall.enqueue(callback);
     }
@@ -78,7 +77,6 @@ public class CloudAPI {
                         .addPathSegments(path).build())
                 .build();
 
-        cancelCall();
         this.mCall = this.mOkHttpClient.newCall(request);
         this.mCall.enqueue(callback);
     }
@@ -132,7 +130,7 @@ public class CloudAPI {
         });
     }
 
-    public void joinParty(String partyID, final GenericCallback<Boolean> callback) {
+    public void joinParty(String partyID, final GenericCallback<GenericCloudResponse<JoinPartyResponse>> callback) {
         String path = String.format("v1/titan/join_party/%s", partyID);
 
         getRequest(path, new Callback() {
@@ -148,7 +146,7 @@ public class CloudAPI {
                         json,
                         new TypeToken<GenericCloudResponse<JoinPartyResponse>>(){}.getType()
                 );
-                callback.onValue(joinPartyResponse.getData().getPartyExists());
+                callback.onValue(joinPartyResponse);
             }
         });
     }
@@ -200,7 +198,7 @@ public class CloudAPI {
     public void checkInQueue(String partyID, List<Song> songs, final GenericCallback<List<Integer>> callback) {
         RequestBody body = RequestBody.create(JSON, gson.toJson(new CheckInQueueRequest(songs)));
         String path = String.format("v1/titan/check_in_queue/%s", partyID);
-
+        cancelCall();
         postRequest(body, path, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

@@ -61,11 +61,14 @@ public class FragmentPlayer extends Fragment implements Runnable {
         playButton = getView().findViewById(R.id.iv_play);
         playButton.setOnClickListener(onClickPlayListener);
         seekBar = getView().findViewById(R.id.seekBar_playMusic);
+        resetSeekBar();
 
         if (song == null) {
             setNextSong(false);
         }
+    }
 
+    private void resetSeekBar() {
         if (seekBar != null) {
             seekBar.setProgress(0);
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -88,19 +91,20 @@ public class FragmentPlayer extends Fragment implements Runnable {
             @Override
             public void onValue(Song nextSong) {
                 song = nextSong;
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tv_name.setText(song.getName());
-                        tv_artist.setText(song.getArtist());
-                        duration.setText(song.getDuration());
-
-                        // TODO: Set an album image on the player
-                    }
-                });
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        tv_name.setText(song.getName());
+//                        tv_artist.setText(song.getArtist());
+//                        duration.setText(song.getDuration());
+//
+//                        // TODO: Set an album image on the player
+//                    }
+//                });
 
                 if (playAfter) {
                     initializePlayer();
+                    resetSeekBar();
                     onClickPlayListener.onClick(getView());
                 }
 

@@ -5,16 +5,11 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.preference.PreferenceManager;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,42 +17,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import sonq.app.songq.API.CloudAPI;
 import sonq.app.songq.API.GenericCallback;
-import sonq.app.songq.Common.Constants;
-import sonq.app.songq.Interfaces.ICompletedPlaySongPreview;
-import sonq.app.songq.Interfaces.IPlaySongPreviewView;
-import sonq.app.songq.Interfaces.ISearchSongsView;
 import sonq.app.songq.Models.SpotifyAPIModels.SearchResponseModel;
-import sonq.app.songq.Models.SpotifyAPIModels.SearchResult;
 import sonq.app.songq.Activity.PartyActivity;
 import sonq.app.songq.Adapter.QueueAdapter;
 import sonq.app.songq.Models.SpotifyAPIModels.Song;
 import sonq.app.songq.Models.SpotifyAPIModels.SongList;
-import sonq.app.songq.Presenters.PlaySongPreviewPresenter;
 import sonq.app.songq.R;
 
 
-public class FragmentQueue extends Fragment implements
-        ICompletedPlaySongPreview, ISearchSongsView {
+public class FragmentQueue extends Fragment {
 
     private RecyclerView mRecyclerView;
     private QueueAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private CardView playPreviewContainer;
-
-    private PlaySongPreviewFragment playSongPreviewFragment = null;
-    private FrameLayout progressBarFrameLayout = null;
-    private ProgressBar progressBar = null;
 
     private CloudAPI cloudAPI;
     private String deviceID;
@@ -85,7 +63,6 @@ public class FragmentQueue extends Fragment implements
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         mRecyclerView = getView().findViewById(R.id.queue_recycler_view);
-        playPreviewContainer = getView().findViewById(R.id.cv_playPreviewContainer);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(false);
@@ -160,29 +137,6 @@ public class FragmentQueue extends Fragment implements
                     }
                 }
             });
-            /* Disable preview, not sure if using?
-            if (this.mAdapter != null) {
-                if (song != null && song.getPreviewURL() != null && !TextUtils.isEmpty(song.getPreviewURL())) {
-
-                    IPlaySongPreviewView playSongPreviewView = this.getPlaySongPreviewView();
-                    if (playSongPreviewView == null) {
-
-                        HashMap<String, Serializable> data = new HashMap<>();
-                        data.put(Constants.PREVIEW_TRACK_URL, song.getPreviewURL());
-                        data.put(Constants.TRACK_NAME, song.getName());
-                        data.put(Constants.TRACK_ARTIST, song.getArtist());
-
-                        playSongPreviewView = this.showPlaySongPreviewView(data);
-                    } else {
-
-                        PlaySongPreviewPresenter playSongPreviewPresenter = playSongPreviewView.getPresenterInstance();
-                        if (playSongPreviewPresenter != null) {
-                            playSongPreviewPresenter.setSong(song.getPreviewURL(), song.getName(), song.getArtist());
-                        }
-                    }
-                    playSongPreviewView.setOnCompletedPlaySongPreviewListener(this);
-                }
-            }*/
         }
     }
 
@@ -233,64 +187,4 @@ public class FragmentQueue extends Fragment implements
         });
     }
 
-    @Override
-    public void closePlaySongPreview() {
-        this.hidePlaySongPreviewView();
-    }
-
-    @Override
-    public void showProgressBar() {
-        if (progressBarFrameLayout != null) {
-            progressBarFrameLayout.setVisibility(View.VISIBLE);
-        }
-        if (progressBar != null) {
-            progressBar.setIndeterminate(true);
-        }
-    }
-
-    @Override
-    public void hideProgressBar() {
-        if (progressBarFrameLayout != null) {
-            progressBarFrameLayout.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    @Override
-    public IPlaySongPreviewView showPlaySongPreviewView(HashMap<String, Serializable> bundleArguments) {
-        if (playPreviewContainer != null) {
-            playPreviewContainer.setVisibility(View.VISIBLE);
-        }
-        playSongPreviewFragment = new PlaySongPreviewFragment();
-        if (bundleArguments != null) {
-            Bundle arguments = new Bundle();
-            arguments.putSerializable(Constants.PREVIEW_TRACK_URL, bundleArguments.get(Constants.PREVIEW_TRACK_URL));
-            arguments.putSerializable(Constants.TRACK_NAME, bundleArguments.get(Constants.TRACK_NAME));
-            arguments.putSerializable(Constants.TRACK_ARTIST, bundleArguments.get(Constants.TRACK_ARTIST));
-            playSongPreviewFragment.setArguments(arguments);
-        }
-
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.cv_playPreviewContainer, playSongPreviewFragment);
-        ft.commit();
-
-        return playSongPreviewFragment;
-    }
-
-    @Override
-    public void hidePlaySongPreviewView() {
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        if (playSongPreviewFragment != null && fm != null) {
-            fm.beginTransaction().remove(playSongPreviewFragment).commit();
-        }
-        if (playPreviewContainer != null) {
-            playPreviewContainer.setVisibility(View.GONE);
-        }
-        playSongPreviewFragment = null;
-    }
-
-    @Override
-    public IPlaySongPreviewView getPlaySongPreviewView() {
-        return playSongPreviewFragment;
-    }
 }

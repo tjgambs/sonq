@@ -23,6 +23,7 @@ import sonq.app.songq.Models.CloudAPIModels.CheckInQueueResponse;
 import sonq.app.songq.Models.CloudAPIModels.CreatePartyRequest;
 import sonq.app.songq.Models.CloudAPIModels.CreatePartyResponse;
 import sonq.app.songq.Models.CloudAPIModels.GenericCloudResponse;
+import sonq.app.songq.Models.CloudAPIModels.GetNextSongResponse;
 import sonq.app.songq.Models.CloudAPIModels.GetQueueResponse;
 import sonq.app.songq.Models.CloudAPIModels.JoinPartyResponse;
 import sonq.app.songq.Models.CloudAPIModels.UpdateUsernameRequest;
@@ -193,6 +194,27 @@ public class CloudAPI {
                         new TypeToken<GenericCloudResponse<GetQueueResponse>>(){}.getType()
                 );
                 callback.onValue(getQueueResponse.getData().getQueue());
+            }
+        });
+    }
+
+    public void getNextSong(String partyID, final GenericCallback<Song> callback) {
+        String path = String.format("v1/titan/get_next_song/%s", partyID);
+
+        getRequest(path, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("getNextSong", "Failed to fetch data: " + e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                final GenericCloudResponse<GetNextSongResponse> getNextSongResponse = gson.fromJson(
+                        json,
+                        new TypeToken<GenericCloudResponse<GetNextSongResponse>>(){}.getType()
+                );
+                callback.onValue(getNextSongResponse.getData().getNextSong());
             }
         });
     }

@@ -82,6 +82,21 @@ public class CloudAPI {
         this.mCall.enqueue(callback);
     }
 
+    private void deleteRequest(RequestBody body, String path, Callback callback) {
+        final Request request = new Request.Builder()
+                .url(new HttpUrl.Builder()
+                        .scheme(SCHEME)
+                        .host(HOST)
+                        .port(PORT)
+                        .addPathSegments(path).build())
+                .addHeader("Content-Type","application/json")
+                .delete(body)
+                .build();
+
+        this.mCall = this.mOkHttpClient.newCall(request);
+        this.mCall.enqueue(callback);
+    }
+
     public void createParty(String deviceID, final GenericCallback<String> callback) {
         RequestBody body = RequestBody.create(JSON, gson.toJson(new CreatePartyRequest(deviceID)));
         String path = "v1/titan/create_party";
@@ -213,6 +228,24 @@ public class CloudAPI {
                         new TypeToken<GenericCloudResponse<GetNextSongResponse>>(){}.getType()
                 );
                 callback.onValue(getNextSongResponse.getData().getNextSong());
+            }
+        });
+    }
+
+    public void deleteSong(Song song, final GenericCallback callback) {
+        String path = "v1/titan/delete_song";
+        RequestBody body = RequestBody.create(JSON, gson.toJson(song));
+
+        deleteRequest(body, path, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("deleteSong", "Failed to fetch data: " + e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                callback.onValue(json);
             }
         });
     }

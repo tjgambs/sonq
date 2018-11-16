@@ -40,6 +40,8 @@ public class PartyActivity extends AppCompatActivity {
     public static boolean isHost;
     private CloudAPI cloudAPI;
 
+    private String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,7 @@ public class PartyActivity extends AppCompatActivity {
 
         isHost = getIntent().getBooleanExtra("isHost", false);
 
-        String token = getIntent().getStringExtra("token");
+        token = getIntent().getStringExtra("token");
         spotifyAPI = new SpotifyAPI(token);
 
         // Log user info, set username. Only works for party host
@@ -144,7 +146,7 @@ public class PartyActivity extends AppCompatActivity {
         BottomBarAdapter viewPagerAdapter = new BottomBarAdapter(getSupportFragmentManager());
         fragmentQueue = new FragmentQueue();
         fragmentQRCode = new FragmentQRCode();
-        fragmentPlayer = new FragmentPlayer();
+        fragmentPlayer = new FragmentPlayer(token);
         fragmentSettings = new FragmentSettings();
         viewPagerAdapter.addFragments(fragmentQueue);
         viewPagerAdapter.addFragments(fragmentQRCode);

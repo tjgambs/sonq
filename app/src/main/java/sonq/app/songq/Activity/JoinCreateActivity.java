@@ -73,12 +73,19 @@ public class JoinCreateActivity extends AppCompatActivity implements  View.OnCli
                                 if (joinPartyResponse.getData().getPartyExists()) {
                                     Log.d("JoinCreateActivity", "deviceID: " + deviceID + " createdBy: " + joinPartyResponse.getData().getCreatedBy());
                                     boolean isHost = deviceID.equals(joinPartyResponse.getData().getCreatedBy());
-                                    startActivity(
-                                            new Intent(JoinCreateActivity.this, PartyActivity.class)
-                                                    .putExtra("partyID", partyID)
-                                                    .putExtra("username", username)
-                                                    .putExtra("isHost", isHost)
-                                    );
+                                    if (isHost) {
+                                        startActivity(
+                                                new Intent(JoinCreateActivity.this, SpotifyLoginActivity.class)
+                                                        .putExtra("partyID", partyID)
+                                        );
+                                    } else {
+                                        startActivity(
+                                                new Intent(JoinCreateActivity.this, PartyActivity.class)
+                                                        .putExtra("partyID", partyID)
+                                                        .putExtra("username", username)
+                                                        .putExtra("isHost", isHost)
+                                        );
+                                    }
                                 } else {
                                     runOnUiThread(new Runnable() {
                                         @Override

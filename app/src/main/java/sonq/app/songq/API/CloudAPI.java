@@ -232,7 +232,7 @@ public class CloudAPI {
         });
     }
 
-    public void deleteSong(Song song, final GenericCallback callback) {
+    public void deleteSong(Song song, final GenericCallback<Boolean> callback) {
         String path = "v1/titan/delete_song";
         RequestBody body = RequestBody.create(JSON, gson.toJson(song));
 
@@ -244,8 +244,7 @@ public class CloudAPI {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                String json = response.body().string();
-                callback.onValue(json);
+                callback.onValue(true);
             }
         });
     }

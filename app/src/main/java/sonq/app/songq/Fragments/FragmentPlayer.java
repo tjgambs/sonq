@@ -16,6 +16,7 @@ import sonq.app.songq.API.CloudAPI;
 import sonq.app.songq.API.GenericCallback;
 import sonq.app.songq.Models.SpotifyAPIModels.Song;
 import sonq.app.songq.R;
+import sonq.app.songq.Task.DownloadImageTask;
 
 import com.spotify.sdk.android.player.Config;
 import com.spotify.sdk.android.player.Error;
@@ -40,11 +41,15 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
     private TextView tv_artist;
     private ImageView albumArtwork;
     private SpotifyPlayer mediaPlayer;
+    private FragmentQueue fragmentQueue;
 
     private String token;
 
     public FragmentPlayer() { }
-    public FragmentPlayer(String tk) { token = tk; }
+    public FragmentPlayer(String token, FragmentQueue fragmentQueue) {
+        this.token = token;
+        this.fragmentQueue = fragmentQueue;
+    }
 
     private final Player.OperationCallback mOperationCallback = new Player.OperationCallback() {
         @Override
@@ -102,7 +107,11 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                         if (song != null) {
                             tv_name.setText(song.getName());
                             tv_artist.setText(song.getArtist());
-                            // TODO: Set an album image on the player
+                            if (song.getThumbnail() == null) {
+                                new DownloadImageTask(albumArtwork).execute(song);
+                            } else {
+                                albumArtwork.setImageBitmap(song.getThumbnail());
+                            }
 
                             if (playAfter) {
                                 onClickPlayListener.onClick(getView());
@@ -165,10 +174,13 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
     public void onPlaybackEvent(PlayerEvent playerEvent) {
         switch (playerEvent) {
             case kSpPlaybackNotifyAudioDeliveryDone:
-                cloudAPI.deleteSong(song, new GenericCallback() {
+                cloudAPI.deleteSong(song, new GenericCallback<Boolean>() {
                     @Override
-                    public void onValue(Object value) {
-                        setNextSong(true);
+                    public void onValue(Boolean success) {
+                        if (success) {
+                            setNextSong(true);
+                            fragmentQueue.notifyQueueChanged();
+                        }
                     }
                 });
                 break;

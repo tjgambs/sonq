@@ -57,17 +57,19 @@ public class PartyActivity extends AppCompatActivity {
         spotifyAPI = new SpotifyAPI(token);
 
         // Log user info, set username. Only works for party host
-        spotifyAPI.getUsername(new GenericCallback<String>() {
-            @Override
-            public void onValue(String username) {
-                // Get first name
-                username = username.split(" ")[0];
-                settingsEditor.putString("username_preference", username);
-                settingsEditor.apply();
+        if (isHost) {
+            spotifyAPI.getUsername(new GenericCallback<String>() {
+                @Override
+                public void onValue(String username) {
+                    // Get first name
+                    username = username.split(" ")[0];
+                    settingsEditor.putString("username_preference", username);
+                    settingsEditor.apply();
 
-                cloudAPI.updateUsername(deviceID, username);
-            }
-        });
+                    cloudAPI.updateUsername(deviceID, username);
+                }
+            });
+        }
 
         viewPager = findViewById(R.id.viewpager);
         viewPager.setPagingEnabled(false);
@@ -146,7 +148,7 @@ public class PartyActivity extends AppCompatActivity {
         BottomBarAdapter viewPagerAdapter = new BottomBarAdapter(getSupportFragmentManager());
         fragmentQueue = new FragmentQueue();
         fragmentQRCode = new FragmentQRCode();
-        fragmentPlayer = new FragmentPlayer(token);
+        fragmentPlayer = new FragmentPlayer(token, fragmentQueue);
         fragmentSettings = new FragmentSettings();
         viewPagerAdapter.addFragments(fragmentQueue);
         viewPagerAdapter.addFragments(fragmentQRCode);

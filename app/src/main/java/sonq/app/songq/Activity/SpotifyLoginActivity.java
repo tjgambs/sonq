@@ -19,10 +19,12 @@ public class SpotifyLoginActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "3dcb2de0605f45139b2ab9168eece07d";
     private static final String REDIRECT_URI = "sonq.app.songq://login";
     private CloudAPI cloudAPI;
+    private String partyID;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cloudAPI = CloudAPI.getCloudAPI();
+        partyID = getIntent().getStringExtra("partyID");
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(
                 CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI);
         builder.setScopes(new String[]{"streaming"});
@@ -42,20 +44,29 @@ public class SpotifyLoginActivity extends AppCompatActivity {
                 // Response was successful and contains auth token
                 case TOKEN:
                     // Create a new party
-                    cloudAPI.createParty(Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
-                    , new GenericCallback<String>() {
-                        @Override
-                        public void onValue(String partyID) {
-                            if (partyID != null) {
-                                startActivity(
-                                        new Intent(SpotifyLoginActivity.this, PartyActivity.class)
-                                                .putExtra("token", response.getAccessToken())
-                                                .putExtra("partyID", partyID)
-                                                .putExtra("isHost", true)
-                                );
-                            }
-                        }
-                    });
+                    if (partyID != null) {
+                        startActivity(
+                                new Intent(SpotifyLoginActivity.this, PartyActivity.class)
+                                        .putExtra("token", response.getAccessToken())
+                                        .putExtra("partyID", partyID)
+                                        .putExtra("isHost", true)
+                        );
+                    } else {
+                        cloudAPI.createParty(Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
+                                , new GenericCallback<String>() {
+                                    @Override
+                                    public void onValue(String partyID) {
+                                        if (partyID != null) {
+                                            startActivity(
+                                                    new Intent(SpotifyLoginActivity.this, PartyActivity.class)
+                                                            .putExtra("token", response.getAccessToken())
+                                                            .putExtra("partyID", partyID)
+                                                            .putExtra("isHost", true)
+                                            );
+                                        }
+                                    }
+                                });
+                    }
                     finish();
                     // Handle successful response
                     break;

@@ -192,4 +192,18 @@ public class FragmentQueue extends Fragment {
         });
     }
 
+    public void notifyQueueChanged() {
+        cloudAPI.getQueue(partyID, new GenericCallback<List<Song>>() {
+            @Override
+            public void onValue(final List<Song> songs) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter.update(songs, false, mRecyclerView);
+                    }
+                });
+            }
+        });
+    }
+
 }

@@ -9,7 +9,9 @@
     <string name="title_qr_code">QR Code</string>
     <string name="title_player">Play</string>
     <string name="qr_code_desc">QR Code for joining a party</string>
-    <string name="qr_code_text_view">Use this QR Code to have others join the party!</string>
+    <string name="qr_code_text_view_desc">Use this QR Code to have others join the party!</string>
+    <string name="qr_code_party_id_desc">Or have them enter this code:</string>
+    <string name="qr_code_party_id_sample">123456</string>
     <string name="party_id_input">Enter Party ID</string>
     <string name="leave_party_title">Leave Party</string>
     <string name="leave_party_msg">Are you sure you want to leave this party?</string>

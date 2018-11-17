@@ -43,6 +43,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
     private ImageView albumArtwork;
     private SpotifyPlayer mediaPlayer;
     private FragmentQueue fragmentQueue;
+    private boolean songChanged = false;
 
     private String token;
 
@@ -115,9 +116,9 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                             } else {
                                 albumArtwork.setImageBitmap(song.getThumbnail());
                             }
-
+                            songChanged = true;
+                            previousMs = 0;
                             if (playAfter) {
-                                previousMs = 0;
                                 onClickPlayListener.onClick(getView());
                             }
                         } else {
@@ -142,9 +143,10 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
 
     public void startPlayer() {
         playButton.setImageResource(R.drawable.ic_pause_white_24dp);
-        if (previousMs != 0) {
+        if (previousMs != 0 && !songChanged) {
             mediaPlayer.resume(mOperationCallback);
         } else {
+            songChanged = false;
             mediaPlayer.playUri(mOperationCallback, song.getSongURL(), 0, previousMs);
         }
         previousMs = 0;

@@ -37,6 +37,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
     private int previousMs = 0;
 
     private ImageView playButton;
+    private ImageView skipButton;
     private TextView tv_name;
     private TextView tv_artist;
     private ImageView albumArtwork;
@@ -79,6 +80,8 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
         albumArtwork = getView().findViewById(R.id.albumArtwork);
         playButton = getView().findViewById(R.id.iv_play);
         playButton.setOnClickListener(onClickPlayListener);
+        skipButton = getView().findViewById(R.id.iv_skip);
+        skipButton.setOnClickListener(onClickSkipListener);
         initializePlayer();
 
         if (song == null) {
@@ -114,10 +117,15 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                             }
 
                             if (playAfter) {
+                                previousMs = 0;
                                 onClickPlayListener.onClick(getView());
                             }
                         } else {
                             pausePlayer();
+                            song = null;
+                            tv_name.setText("");
+                            tv_artist.setText("");
+                            albumArtwork.setImageResource(0);
                         }
                     }
                 });
@@ -160,6 +168,35 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                 }
             } else {
                 setNextSong(true);
+            }
+        }
+    };
+
+    private View.OnClickListener onClickSkipListener  = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (song != null) {
+                if (mediaPlayer.getPlaybackState().isPlaying) {
+                    cloudAPI.deleteSong(song, new GenericCallback<Boolean>() {
+                        @Override
+                        public void onValue(Boolean success) {
+                            if (success) {
+                                setNextSong(true);
+                                fragmentQueue.notifyQueueChanged();
+                            }
+                        }
+                    });
+                } else {
+                    cloudAPI.deleteSong(song, new GenericCallback<Boolean>() {
+                        @Override
+                        public void onValue(Boolean success) {
+                            if (success) {
+                                setNextSong(false);
+                                fragmentQueue.notifyQueueChanged();
+                            }
+                        }
+                    });
+                }
             }
         }
     };

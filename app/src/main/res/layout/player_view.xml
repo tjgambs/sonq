@@ -56,4 +56,14 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/item_background" />
+
+    <ImageView
+        android:id="@+id/iv_skip"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_play"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@drawable/ic_skip_button" />
 </android.support.constraint.ConstraintLayout>

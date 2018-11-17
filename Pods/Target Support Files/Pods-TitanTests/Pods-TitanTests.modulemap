@@ -1,0 +1,6 @@
+framework module Pods_TitanTests {
+  umbrella header "Pods-TitanTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

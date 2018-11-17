@@ -14,22 +14,23 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.JoinCreateActivity">
+        <activity android:name=".Activity.JoinCreateActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.ScanQRCodeActivity" />
-        <activity android:name=".Activity.SpotifyLoginActivity" />
+        <activity android:name=".Activity.ScanQRCodeActivity" android:screenOrientation="portrait" />
+        <activity android:name=".Activity.SpotifyLoginActivity" android:screenOrientation="portrait" />
         <activity
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".Activity.PartyActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
         </activity>
 
     </application>

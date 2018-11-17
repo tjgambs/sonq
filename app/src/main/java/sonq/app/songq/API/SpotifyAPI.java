@@ -87,7 +87,6 @@ public class SpotifyAPI {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
-                    Log.i("getUsername", jsonObject.toString(3));
                     String username = jsonObject.getString("display_name");
                     callback.onValue(username);
                 } catch (JSONException e) {

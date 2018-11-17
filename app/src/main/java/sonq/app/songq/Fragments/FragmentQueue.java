@@ -5,6 +5,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +37,7 @@ import sonq.app.songq.R;
 public class FragmentQueue extends Fragment {
 
     private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout pullToRefresh;
     private QueueAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private AHBottomNavigation navigation;
@@ -77,6 +79,16 @@ public class FragmentQueue extends Fragment {
         navigation = view.getRootView().findViewById(R.id.navigation);
         partyID = PreferenceManager.getDefaultSharedPreferences(getContext())
                     .getString("party_id_preference", "");
+
+        pullToRefresh = getView().findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                notifyQueueChanged();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
         returnToQueue();
     }
 

@@ -85,7 +85,6 @@ public class FragmentQueue extends Fragment {
             @Override
             public void onRefresh() {
                 notifyQueueChanged();
-                pullToRefresh.setRefreshing(false);
             }
         });
 
@@ -214,6 +213,7 @@ public class FragmentQueue extends Fragment {
                         mAdapter.update(songs, false, mRecyclerView);
                     }
                 });
+                pullToRefresh.setRefreshing(false);
             }
         });
     }

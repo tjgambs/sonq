@@ -177,6 +177,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
         public void onClick(View view) {
             if (song != null) {
                 if (mediaPlayer.getPlaybackState().isPlaying) {
+                    pausePlayer();
                     cloudAPI.deleteSong(song, new GenericCallback<Boolean>() {
                         @Override
                         public void onValue(Boolean success) {

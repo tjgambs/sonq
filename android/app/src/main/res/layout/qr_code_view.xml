@@ -22,7 +22,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/qr_code_party_id_desc" />
+            app:layout_constraintTop_toBottomOf="@+id/QRimageView" />
 
         <ImageView
             android:id="@+id/QRimageView"
@@ -44,25 +44,11 @@
             android:text="@string/qr_code_text_view_desc"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textSize="30sp"
+            android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/qr_code_party_id_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/qr_code_party_id_desc"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccent"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.521"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/QRimageView" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

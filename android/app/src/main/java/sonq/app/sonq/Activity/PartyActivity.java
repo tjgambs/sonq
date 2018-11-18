@@ -96,11 +96,15 @@ public class PartyActivity extends AppCompatActivity {
                         setTitle(R.string.title_queue);
                         return true;
                     case 1:
-                        setTitle(R.string.title_qr_code);
+                        if (isHost) {
+                            setTitle(R.string.title_player);
+                        } else {
+                            setTitle(R.string.title_qr_code);
+                        }
                         return true;
                     case 2:
                         if (isHost) {
-                            setTitle(R.string.title_player);
+                            setTitle(R.string.title_qr_code);
                         } else {
                             setTitle(R.string.title_settings);
                         }
@@ -134,19 +138,19 @@ public class PartyActivity extends AppCompatActivity {
     private void addButtons(AHBottomNavigation navigation) {
         AHBottomNavigationItem queue = new AHBottomNavigationItem(
                 getString(R.string.title_queue), getDrawable(R.drawable.ic_queue_music_black_24dp));
-        AHBottomNavigationItem qrCode = new AHBottomNavigationItem(
-                getString(R.string.title_qr_code), getDrawable(R.drawable.ic_qrcode));
         AHBottomNavigationItem player = new AHBottomNavigationItem(
                 getString(R.string.title_player), getDrawable(R.drawable.ic_play_arrow_black_24dp));
+        AHBottomNavigationItem qrCode = new AHBottomNavigationItem(
+                getString(R.string.title_qr_code), getDrawable(R.drawable.ic_qrcode));
         AHBottomNavigationItem settings = new AHBottomNavigationItem(
                 getString(R.string.title_settings), getDrawable(R.drawable.ic_settings_black_24dp));
 
         navigation.addItem(queue);
-        navigation.addItem(qrCode);
         if (isHost) {
             // Could enable this still and have no controls for guests? Just the progress bar?
             navigation.addItem(player);
         }
+        navigation.addItem(qrCode);
         navigation.addItem(settings);
     }
 
@@ -157,10 +161,10 @@ public class PartyActivity extends AppCompatActivity {
         fragmentPlayer = new FragmentPlayer();
         fragmentSettings = new FragmentSettings();
         viewPagerAdapter.addFragments(fragmentQueue);
-        viewPagerAdapter.addFragments(fragmentQRCode);
         if (isHost) {
             viewPagerAdapter.addFragments(fragmentPlayer);
         }
+        viewPagerAdapter.addFragments(fragmentQRCode);
         viewPagerAdapter.addFragments(fragmentSettings);
         viewPager.setAdapter(viewPagerAdapter);
     }

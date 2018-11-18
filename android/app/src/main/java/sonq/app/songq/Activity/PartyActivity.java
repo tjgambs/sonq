@@ -148,7 +148,7 @@ public class PartyActivity extends AppCompatActivity {
         BottomBarAdapter viewPagerAdapter = new BottomBarAdapter(getSupportFragmentManager());
         fragmentQueue = new FragmentQueue();
         fragmentQRCode = new FragmentQRCode();
-        fragmentPlayer = new FragmentPlayer(token, fragmentQueue);
+        fragmentPlayer = new FragmentPlayer();
         fragmentSettings = new FragmentSettings();
         viewPagerAdapter.addFragments(fragmentQueue);
         viewPagerAdapter.addFragments(fragmentQRCode);
@@ -187,5 +187,13 @@ public class PartyActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         leavePartyDialog.show();
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void notifyQueueChanged() {
+        fragmentQueue.notifyQueueChanged();
     }
 }

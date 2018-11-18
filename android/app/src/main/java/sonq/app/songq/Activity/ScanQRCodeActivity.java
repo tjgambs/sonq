@@ -161,12 +161,19 @@ public class ScanQRCodeActivity extends AppCompatActivity {
                                     public void onValue(GenericCloudResponse<JoinPartyResponse> joinPartyResponse) {
                                         if (joinPartyResponse.getData().getPartyExists()) {
                                             boolean isHost = deviceID.equals(joinPartyResponse.getData().getCreatedBy());
-                                            startActivity(
-                                                    new Intent(ScanQRCodeActivity.this, PartyActivity.class)
-                                                            .putExtra("partyID", partyID)
-                                                            .putExtra("username", username)
-                                                            .putExtra("isHost", isHost)
-                                            );
+                                            if (isHost) {
+                                                startActivity(
+                                                        new Intent(ScanQRCodeActivity.this, SpotifyLoginActivity.class)
+                                                                .putExtra("partyID", partyID)
+                                                );
+                                            } else {
+                                                startActivity(
+                                                        new Intent(ScanQRCodeActivity.this, PartyActivity.class)
+                                                                .putExtra("partyID", partyID)
+                                                                .putExtra("username", username)
+                                                                .putExtra("isHost", isHost)
+                                                );
+                                            }
                                         } else {
                                             runOnUiThread(new Runnable() {
                                                 @Override

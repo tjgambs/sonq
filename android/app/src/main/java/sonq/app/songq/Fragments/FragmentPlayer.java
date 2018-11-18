@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import sonq.app.songq.API.CloudAPI;
 import sonq.app.songq.API.GenericCallback;
+import sonq.app.songq.Activity.PartyActivity;
 import sonq.app.songq.Models.SpotifyAPIModels.Song;
 import sonq.app.songq.R;
 import sonq.app.songq.Task.DownloadImageTask;
@@ -42,16 +44,12 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
     private TextView tv_artist;
     private ImageView albumArtwork;
     private SpotifyPlayer mediaPlayer;
-    private FragmentQueue fragmentQueue;
+    private PartyActivity partyActivity;
     private boolean songChanged = false;
 
     private String token;
 
     public FragmentPlayer() { }
-    public FragmentPlayer(String token, FragmentQueue fragmentQueue) {
-        this.token = token;
-        this.fragmentQueue = fragmentQueue;
-    }
 
     private final Player.OperationCallback mOperationCallback = new Player.OperationCallback() {
         @Override
@@ -72,6 +70,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         cloudAPI = CloudAPI.getCloudAPI();
+        partyActivity = (PartyActivity) getActivity();
         deviceID = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
         partyID = PreferenceManager.getDefaultSharedPreferences(getContext())
                 .getString("party_id_preference", "");
@@ -83,6 +82,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
         playButton.setOnClickListener(onClickPlayListener);
         skipButton = getView().findViewById(R.id.iv_skip);
         skipButton.setOnClickListener(onClickSkipListener);
+        token = partyActivity.getToken();
         initializePlayer();
 
         if (song == null) {
@@ -185,7 +185,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                         public void onValue(Boolean success) {
                             if (success) {
                                 setNextSong(true);
-                                fragmentQueue.notifyQueueChanged();
+                                partyActivity.notifyQueueChanged();
                             }
                         }
                     });
@@ -195,7 +195,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                         public void onValue(Boolean success) {
                             if (success) {
                                 setNextSong(false);
-                                fragmentQueue.notifyQueueChanged();
+                                partyActivity.notifyQueueChanged();
                             }
                         }
                     });
@@ -206,6 +206,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
 
     @Override
     public void onDestroy() {
+        mediaPlayer.shutdown();
         Spotify.destroyPlayer(this);
         super.onDestroy();
     }
@@ -219,7 +220,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                     public void onValue(Boolean success) {
                         if (success) {
                             setNextSong(true);
-                            fragmentQueue.notifyQueueChanged();
+                            partyActivity.notifyQueueChanged();
                         }
                     }
                 });

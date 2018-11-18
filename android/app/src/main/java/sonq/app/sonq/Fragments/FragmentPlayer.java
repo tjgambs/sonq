@@ -138,6 +138,16 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
         playButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
         previousMs = (int) mediaPlayer.getPlaybackState().positionMs;
         mediaPlayer.pause(mOperationCallback);
+        if (song != null) {
+            cloudAPI.setPlaying(partyID, song.getSongURL(), false, new GenericCallback<Boolean>() {
+                @Override
+                public void onValue(Boolean success) {
+                    if (success) {
+                        partyActivity.notifyQueueChanged();
+                    }
+                }
+            });
+        }
     }
 
     public void startPlayer() {
@@ -149,6 +159,15 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
             mediaPlayer.playUri(mOperationCallback, song.getSongURL(), 0, previousMs);
         }
         previousMs = 0;
+        cloudAPI.setPlaying(partyID, song.getSongURL(), true, new GenericCallback<Boolean>() {
+            @Override
+            public void onValue(Boolean success) {
+                if (success) {
+                    partyActivity.notifyQueueChanged();
+                }
+            }
+        });
+        partyActivity.notifyQueueChanged();
     }
 
     private View.OnClickListener onClickPlayListener  = new View.OnClickListener() {
@@ -205,6 +224,12 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
 
     @Override
     public void onDestroy() {
+        cloudAPI.setPlaying(partyID, song.getSongURL(), false, new GenericCallback<Boolean>() {
+            @Override
+            public void onValue(Boolean success) {
+                // Do nothing we are dead
+            }
+        });
         mediaPlayer.shutdown();
         Spotify.destroyPlayer(this);
         super.onDestroy();

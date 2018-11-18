@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
@@ -13,8 +14,9 @@
         android:id="@+id/song_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true" />
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/song_list_image_desc" />
 
     <TextView
         android:id="@+id/song_title"
@@ -55,6 +57,14 @@
         android:clickable="false"
         android:layout_below="@id/song_length"
         android:layout_alignParentEnd="true"
+        android:visibility="invisible"/>
+
+    <sonq.app.sonq.View.LoopGifImageView
+        android:id="@+id/is_playing_gif"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toStartOf="@id/added_checkbox"
+        android:layout_centerVertical="true"
         android:visibility="invisible"/>
 
 </RelativeLayout>

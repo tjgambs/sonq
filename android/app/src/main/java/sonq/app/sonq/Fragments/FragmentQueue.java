@@ -22,8 +22,11 @@ import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 
+import java.io.IOException;
 import java.util.List;
 
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 import sonq.app.sonq.API.CloudAPI;
 import sonq.app.sonq.API.GenericCallback;
 import sonq.app.sonq.Models.SpotifyAPIModels.SearchResponseModel;

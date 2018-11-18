@@ -26,6 +26,7 @@ import sonq.app.sonq.Models.CloudAPIModels.GenericCloudResponse;
 import sonq.app.sonq.Models.CloudAPIModels.GetNextSongResponse;
 import sonq.app.sonq.Models.CloudAPIModels.GetQueueResponse;
 import sonq.app.sonq.Models.CloudAPIModels.JoinPartyResponse;
+import sonq.app.sonq.Models.CloudAPIModels.SetPlayingRequest;
 import sonq.app.sonq.Models.CloudAPIModels.UpdateUsernameRequest;
 import sonq.app.sonq.Models.SpotifyAPIModels.Song;
 
@@ -63,6 +64,21 @@ public class CloudAPI {
                         .addPathSegments(path).build())
                 .addHeader("Content-Type","application/json")
                 .post(body)
+                .build();
+
+        this.mCall = this.mOkHttpClient.newCall(request);
+        this.mCall.enqueue(callback);
+    }
+
+    private void putRequest(RequestBody body, String path, Callback callback) {
+        final Request request = new Request.Builder()
+                .url(new HttpUrl.Builder()
+                        .scheme(SCHEME)
+                        .host(HOST)
+                        .port(PORT)
+                        .addPathSegments(path).build())
+                .addHeader("Content-Type","application/json")
+                .put(body)
                 .build();
 
         this.mCall = this.mOkHttpClient.newCall(request);
@@ -267,6 +283,30 @@ public class CloudAPI {
                         new TypeToken<GenericCloudResponse<CheckInQueueResponse>>(){}.getType()
                 );
                 callback.onValue(checkInQueueResponse.getData().getInQueue());
+            }
+        });
+    }
+
+    public void setPlaying(String partyID, String songURL, boolean isPlaying, final GenericCallback<Boolean> callback) {
+        RequestBody body = RequestBody.create(JSON, gson.toJson(new SetPlayingRequest(songURL, isPlaying)));
+        String path = String.format("v1/titan/set_playing/%s", partyID);
+
+        putRequest(body, path, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("setPlaying", "Failed to fetch data: " + e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.code() == 400) {
+                    Log.e("setPlaying", "Song not found");
+                    callback.onValue(false);
+                }
+                else if (response.code() == 200){
+                    Log.d("setPlaying", "Song playing status set");
+                    callback.onValue(true);
+                }
             }
         });
     }

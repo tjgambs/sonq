@@ -7,10 +7,16 @@ import android.provider.Settings;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
+import pl.droidsonroids.gif.GifTexImage2D;
 import sonq.app.sonq.API.CloudAPI;
 import sonq.app.sonq.API.GenericCallback;
 import sonq.app.sonq.API.SpotifyAPI;

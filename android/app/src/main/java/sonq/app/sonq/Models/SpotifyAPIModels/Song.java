@@ -31,6 +31,9 @@ public class Song  {
 
     private boolean isInQueue = false;
 
+    @SerializedName("is_playing")
+    private boolean isPlaying;
+
     public Song() { }
 
     public Song(SearchResult item) {
@@ -125,5 +128,9 @@ public class Song  {
 
     public void setInQueue(boolean inQueue) {
         isInQueue = inQueue;
+    }
+
+    public boolean isPlaying() {
+        return isPlaying;
     }
 }

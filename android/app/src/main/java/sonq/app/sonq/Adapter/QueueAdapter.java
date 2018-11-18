@@ -31,7 +31,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHol
     public static class QueueViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
         public TextView songTitle, songArtist, songLength, addedBy;
-        public ImageView songImage;
+        public ImageView songImage, isPlaying;
         public CheckBox addedCheckbox;
         public Song song;
         public FragmentQueue parent;
@@ -44,6 +44,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHol
             songLength = view.findViewById(R.id.song_length);
             addedBy = view.findViewById(R.id.added_by);
             addedCheckbox = view.findViewById(R.id.added_checkbox);
+            isPlaying = view.findViewById(R.id.is_playing_gif);
         }
 
         @Override
@@ -98,6 +99,13 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHol
             holder.addedCheckbox.setVisibility(View.VISIBLE);
         } else {
             holder.addedCheckbox.setVisibility(View.INVISIBLE);
+        }
+
+        //Show playing
+        if (song.isPlaying()) {
+            holder.isPlaying.setVisibility(View.VISIBLE);
+        } else {
+            holder.isPlaying.setVisibility(View.INVISIBLE);
         }
 
         // Set search result object

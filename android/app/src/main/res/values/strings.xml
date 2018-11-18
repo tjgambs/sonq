@@ -16,4 +16,5 @@
     <string name="leave_party_msg">Are you sure you want to leave this party?</string>
     <string name="search_hint">Search for Songs...</string>
     <string name="title_party_id_preference">Party ID</string>
+    <string name="song_list_image_desc">Album Artwork</string>
 </resources>

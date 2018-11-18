@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="sonq.app.songq">
+    package="sonq.app.sonq">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -14,20 +14,20 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.JoinCreateActivity" android:screenOrientation="portrait">
+        <activity android:name="sonq.app.sonq.Activity.JoinCreateActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.ScanQRCodeActivity" android:screenOrientation="portrait" />
-        <activity android:name=".Activity.SpotifyLoginActivity" android:screenOrientation="portrait" />
+        <activity android:name="sonq.app.sonq.Activity.ScanQRCodeActivity" android:screenOrientation="portrait" />
+        <activity android:name="sonq.app.sonq.Activity.SpotifyLoginActivity" android:screenOrientation="portrait" />
         <activity
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".Activity.PartyActivity"
+            android:name="sonq.app.sonq.Activity.PartyActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">

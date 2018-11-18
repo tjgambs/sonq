@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SongQ</string>
+    <string name="app_name">Sonq</string>
     <string name="name_input">Name</string>
     <string name="join_party_button">Join Party</string>
     <string name="create_party_button">Create Party</string>

@@ -2,7 +2,7 @@ import os
 
 _basedir = os.path.abspath(os.path.dirname(__file__))
 
-SQLALCHEMY_DATABASE_URI = "postgres://postgres:Jbu6xi8jmf2oy00g@35.188.8.242:5432/titan"
+SQLALCHEMY_DATABASE_URI = "postgresql://root:V8*FjNZTq5{@songq.c7m8zkgs7cmh.us-east-2.rds.amazonaws.com/songq"
 SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_POOL_TIMEOUT	= 10

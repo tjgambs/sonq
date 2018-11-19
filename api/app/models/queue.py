@@ -19,6 +19,7 @@ class Queue(db.Model):
     position = db.Column(db.Integer)
     added_by = db.Column(db.String, db.ForeignKey('device.id', ondelete='CASCADE'))
     added_by_key = db.relationship(Device, backref='queue', foreign_keys=added_by)
+    is_playing = db.Column(db.Boolean)
 
     @property
     def serialize(self):
@@ -30,4 +31,5 @@ class Queue(db.Model):
                 'imageURL': self.imageURL,
                 'songURL': self.songURL,
                 'position:': self.position,
-                'added_by': self.added_by_key.username}
+                'added_by': self.added_by_key.username,
+                'is_playing': self.is_playing}

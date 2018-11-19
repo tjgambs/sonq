@@ -1,6 +1,7 @@
 package sonq.app.sonq.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHol
         public CheckBox addedCheckbox;
         public Song song;
         public FragmentQueue parent;
+        public View itemView;
         public QueueViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
@@ -45,6 +47,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHol
             addedBy = view.findViewById(R.id.added_by);
             addedCheckbox = view.findViewById(R.id.added_checkbox);
             isPlaying = view.findViewById(R.id.is_playing_gif);
+            itemView = view;
         }
 
         @Override
@@ -96,9 +99,13 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHol
         //Set checkbox visible
         if (isSearch) {
             holder.addedCheckbox.setChecked(song.isInQueue());
+            holder.itemView.setEnabled(!song.isInQueue());
+            holder.itemView.setAlpha(song.isInQueue() ? 0.4f : 1);
             holder.addedCheckbox.setVisibility(View.VISIBLE);
         } else {
             holder.addedCheckbox.setVisibility(View.INVISIBLE);
+            holder.itemView.setEnabled(false);
+            holder.itemView.setAlpha(1);
         }
 
         //Show playing

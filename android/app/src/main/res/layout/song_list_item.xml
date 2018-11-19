@@ -63,7 +63,7 @@
         android:id="@+id/is_playing_gif"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_toStartOf="@id/added_checkbox"
+        android:layout_toStartOf="@id/added_by"
         android:layout_centerVertical="true"
         android:visibility="invisible"/>
 

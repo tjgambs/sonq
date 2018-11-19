@@ -141,12 +141,14 @@ public class Song  {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Song song = (Song) o;
-        return Objects.equals(songURL, song.songURL);
+        return isPlaying == song.isPlaying &&
+                Objects.equals(songURL, song.songURL) &&
+                Objects.equals(addedBy, song.addedBy);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(songURL);
+        return Objects.hash(songURL, addedBy, isPlaying);
     }
 }

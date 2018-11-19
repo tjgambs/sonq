@@ -8,6 +8,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import sonq.app.sonq.API.CloudAPI;
 import sonq.app.sonq.R;
@@ -46,13 +47,20 @@ public class FragmentSettings extends PreferenceFragmentCompat {
             public boolean onPreferenceChange(Preference preference, Object o) {
                 Log.i("SettingsFragment", "onPreferenceChange");
                 String newValue = o.toString();
-                settings.edit().putString(key, newValue).apply();
-                preference.setSummary(newValue);
+                if (key.equals("username_preference") && newValue.isEmpty()) {
+                    Toast toast = Toast.makeText(getContext(), "Name cannot be blank!", Toast.LENGTH_SHORT);
+                    toast.show();
+                    return true;
+                } else {
+                    settings.edit().putString(key, newValue).apply();
+                    preference.setSummary(newValue);
 
-                if (key.equals("username_preference")) {
-                    cloudAPI.updateUsername(deviceID, newValue);
+                    if (key.equals("username_preference")) {
+                        cloudAPI.updateUsername(deviceID, newValue);
+                    }
+                    return true;
+
                 }
-                return true;
             }
         });
     }

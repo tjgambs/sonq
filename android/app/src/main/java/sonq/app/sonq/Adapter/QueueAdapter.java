@@ -118,13 +118,18 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHol
         return songList.size();
     }
 
-    public void update(List<Song> data, boolean isSearch, RecyclerView recyclerView) {
+    public void update(List<Song> data, boolean isSearch, RecyclerView recyclerView, boolean runAnimation) {
         this.isSearch = isSearch;
         songList.clear();
         if (data != null) {
             songList.addAll(data);
         }
-        runLayoutAnimation(recyclerView);
+
+        if (runAnimation) {
+            runLayoutAnimation(recyclerView);
+        } else {
+            notifyDataSetChanged();
+        }
     }
 
     private void runLayoutAnimation(final RecyclerView recyclerView) {
@@ -133,7 +138,11 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHol
                 AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
 
         recyclerView.setLayoutAnimation(controller);
-        recyclerView.getAdapter().notifyDataSetChanged();
+        notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
+    }
+
+    public List<Song> getSongList() {
+        return songList;
     }
 }

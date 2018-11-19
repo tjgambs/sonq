@@ -87,11 +87,11 @@ public class FragmentQueue extends Fragment {
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                notifyQueueChanged();
+                notifyQueueChanged(true);
             }
         });
 
-        returnToQueue();
+        returnToQueue(true);
     }
 
     @Override
@@ -108,6 +108,7 @@ public class FragmentQueue extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String query) {
+                pullToRefresh.setEnabled(false);
                 searchOpen = true;
                 System.out.println("Change");
                 if (query != null && !query.isEmpty()) {
@@ -132,7 +133,7 @@ public class FragmentQueue extends Fragment {
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
-                returnToQueue();
+                returnToQueue(true);
                 return true;
             }
         });
@@ -172,7 +173,7 @@ public class FragmentQueue extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                mAdapter.update(songs, true, mRecyclerView);
+                                mAdapter.update(songs, true, mRecyclerView, true);
                             }
                         });
                     }
@@ -183,42 +184,52 @@ public class FragmentQueue extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mAdapter.update(null, true, mRecyclerView);
+                    mAdapter.update(null, true, mRecyclerView, true);
                 }
             });
         }
     }
 
-    private void returnToQueue() {
+    private void returnToQueue(final boolean runAnimation) {
         // Fetch queue here
         navigation.restoreBottomNavigation();
         searchOpen = false;
+        pullToRefresh.setEnabled(true);
         cloudAPI.getQueue(partyID, new GenericCallback<List<Song>>() {
             @Override
             public void onValue(final List<Song> songs) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter.update(songs, false, mRecyclerView);
-                    }
-                });
+                if (checkQueueChanged(songs)) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter.update(songs, false, mRecyclerView, runAnimation);
+                        }
+                    });
+                }
             }
         });
     }
 
-    public void notifyQueueChanged() {
+    public void notifyQueueChanged(final boolean runAnimation) {
         cloudAPI.getQueue(partyID, new GenericCallback<List<Song>>() {
             @Override
             public void onValue(final List<Song> songs) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter.update(songs, false, mRecyclerView);
-                    }
-                });
+                if (checkQueueChanged(songs)) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter.update(songs, false, mRecyclerView, runAnimation);
+                        }
+                    });
+                }
                 pullToRefresh.setRefreshing(false);
             }
         });
+    }
+
+    private boolean checkQueueChanged(List<Song> newSongList) {
+        List<Song> currentSongList = mAdapter.getSongList();
+        return !currentSongList.equals(newSongList);
     }
 
 }

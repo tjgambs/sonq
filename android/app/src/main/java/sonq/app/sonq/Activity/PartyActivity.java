@@ -94,6 +94,7 @@ public class PartyActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         setTitle(R.string.title_queue);
+                        notifyQueueChanged(true);
                         return true;
                     case 1:
                         if (isHost) {
@@ -117,7 +118,6 @@ public class PartyActivity extends AppCompatActivity {
             }
         });
         navigation.setBehaviorTranslationEnabled(true);
-        navigation.setCurrentItem(0);
         navigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         navigation.setDefaultBackgroundColor(getColor(R.color.background_material_dark));
         navigation.setAccentColor(getColor(R.color.colorAccent));
@@ -195,6 +195,11 @@ public class PartyActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public void onBackPressed() {
         leavePartyDialog.show();
     }
@@ -203,7 +208,7 @@ public class PartyActivity extends AppCompatActivity {
         return token;
     }
 
-    public void notifyQueueChanged() {
-        fragmentQueue.notifyQueueChanged();
+    public void notifyQueueChanged(boolean runAnimation) {
+        fragmentQueue.notifyQueueChanged(runAnimation);
     }
 }

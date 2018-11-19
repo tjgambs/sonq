@@ -143,7 +143,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                 @Override
                 public void onValue(Boolean success) {
                     if (success) {
-                        partyActivity.notifyQueueChanged();
+                        partyActivity.notifyQueueChanged(false);
                     }
                 }
             });
@@ -163,11 +163,10 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
             @Override
             public void onValue(Boolean success) {
                 if (success) {
-                    partyActivity.notifyQueueChanged();
+                    partyActivity.notifyQueueChanged(false);
                 }
             }
         });
-        partyActivity.notifyQueueChanged();
     }
 
     private View.OnClickListener onClickPlayListener  = new View.OnClickListener() {
@@ -203,7 +202,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                         public void onValue(Boolean success) {
                             if (success) {
                                 setNextSong(true);
-                                partyActivity.notifyQueueChanged();
+                                partyActivity.notifyQueueChanged(false);
                             }
                         }
                     });
@@ -213,7 +212,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                         public void onValue(Boolean success) {
                             if (success) {
                                 setNextSong(false);
-                                partyActivity.notifyQueueChanged();
+                                partyActivity.notifyQueueChanged(false);
                             }
                         }
                     });
@@ -244,7 +243,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                     public void onValue(Boolean success) {
                         if (success) {
                             setNextSong(true);
-                            partyActivity.notifyQueueChanged();
+                            partyActivity.notifyQueueChanged(true);
                         }
                     }
                 });

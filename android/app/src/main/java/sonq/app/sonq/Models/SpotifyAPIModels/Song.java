@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 import sonq.app.sonq.Common.Utils;
 
 
@@ -132,5 +134,19 @@ public class Song  {
 
     public boolean isPlaying() {
         return isPlaying;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Song song = (Song) o;
+        return Objects.equals(songURL, song.songURL);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(songURL);
     }
 }

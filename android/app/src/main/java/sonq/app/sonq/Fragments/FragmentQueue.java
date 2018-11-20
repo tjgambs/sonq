@@ -108,10 +108,10 @@ public class FragmentQueue extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String query) {
-                pullToRefresh.setEnabled(false);
-                searchOpen = true;
                 System.out.println("Change");
                 if (query != null && !query.isEmpty()) {
+                    pullToRefresh.setEnabled(false);
+                    searchOpen = true;
                     PartyActivity.spotifyAPI.search(query, new GenericCallback<SearchResponseModel>() {
                         @Override
                         public void onValue(SearchResponseModel value) {

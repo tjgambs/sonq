@@ -14,8 +14,8 @@ class Api: NSObject {
     static let shared = Api()
     
     let scheme = "http"
-    let host = "35.184.31.17"
-    let port = 80
+    let host = "192.168.1.16"
+    let port = 5000
     
     struct SongData: Codable {
         var partyID: String

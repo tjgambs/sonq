@@ -35,8 +35,8 @@ public class CloudAPI {
     private static CloudAPI shared = new CloudAPI();
     private final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private final String SCHEME = "http";
-    private final String HOST = "ec2-18-222-250-104.us-east-2.compute.amazonaws.com";
-    private final int PORT = 80;
+    private final String HOST = "192.168.1.16"; // @cody - you have to set this to your IP or the servers IP address
+    private final int PORT = 5000;
 
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
     private Call mCall;

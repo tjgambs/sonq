@@ -34,7 +34,7 @@ struct PostResponse: Codable {
 }
 
 struct Queue: Codable {
-    var results: [SongData]
+    var queue: [SongData]
 }
 
 struct MetaVariable: Codable {

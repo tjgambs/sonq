@@ -1,6 +1,7 @@
 package sonq.app.sonq.Fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import sonq.app.sonq.API.CloudAPI;
@@ -42,9 +44,11 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
     private TextView tv_name;
     private TextView tv_artist;
     private ImageView albumArtwork;
+    private SeekBar seekBar;
     private SpotifyPlayer mediaPlayer;
     private PartyActivity partyActivity;
     private boolean songChanged = false;
+    private Handler mHandler;
 
     private String token;
 
@@ -77,6 +81,7 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
         tv_name = getView().findViewById(R.id.tv_previewName);
         tv_artist = getView().findViewById(R.id.tv_previewArtist);
         albumArtwork = getView().findViewById(R.id.albumArtwork);
+        seekBar = getView().findViewById(R.id.seekBar);
         playButton = getView().findViewById(R.id.iv_play);
         playButton.setOnClickListener(onClickPlayListener);
         skipButton = getView().findViewById(R.id.iv_skip);
@@ -87,6 +92,38 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
         if (song == null) {
             setNextSong(false);
         }
+
+        mHandler = new Handler();
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    double currentPosition = mediaPlayer.getPlaybackState().positionMs;
+                    seekBar.setProgress((int) currentPosition);
+                } catch (Exception e) { }
+                mHandler.postDelayed(this, 1000);
+            }
+        });
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser && mediaPlayer != null) {
+                    mediaPlayer.seekToPosition(mOperationCallback, progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
 
     private void initializePlayer() {
@@ -110,6 +147,8 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                         if (song != null) {
                             tv_name.setText(song.getName());
                             tv_artist.setText(song.getArtist());
+                            seekBar.setMax((int) song.getDurationInSeconds() * 1000);
+                            seekBar.setProgress(0);
                             if (song.getThumbnail() == null) {
                                 new DownloadImageTask(albumArtwork).execute(song);
                             } else {
@@ -123,6 +162,8 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
                         } else {
                             pausePlayer();
                             song = null;
+                            seekBar.setMax(1);
+                            seekBar.setProgress(0);
                             tv_name.setText("");
                             tv_artist.setText("");
                             albumArtwork.setImageResource(0);
@@ -232,6 +273,8 @@ public class FragmentPlayer extends Fragment implements Player.NotificationCallb
         mediaPlayer.shutdown();
         Spotify.destroyPlayer(this);
         super.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
+
     }
 
     @Override

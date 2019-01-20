@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0700CAFD20694A7DA44CC779 /* Pods_Titan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE7349BC1BB936B231F777A /* Pods_Titan.framework */; };
-		1555EBDF1F48D55D39DDE9E9 /* Pods_TitanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E21CF0F4FC41DE3E1331BA /* Pods_TitanUITests.framework */; };
+		1F5130310C12CCCBF881EF89 /* Pods_Titan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E1E41461C3FC7F1FE79095 /* Pods_Titan.framework */; };
 		220D9E95206DF7BD00808AA5 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D9E94206DF7BD00808AA5 /* SettingsVC.swift */; };
 		223FE28620CC606C00AFC092 /* JoinPartyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223FE28520CC606C00AFC092 /* JoinPartyController.swift */; };
 		223FE28A20CC60AB00AFC092 /* CreatePartyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223FE28920CC60AB00AFC092 /* CreatePartyController.swift */; };
@@ -36,7 +35,8 @@
 		22D89ECE203A44A20036D5EF /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D89ECD203A44A20036D5EF /* Structures.swift */; };
 		22D89ED0203A4C710036D5EF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D89ECF203A4C710036D5EF /* Helpers.swift */; };
 		22EDCC01202BF1DF00CA1CA0 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EDCBFE202BF1DF00CA1CA0 /* SpotifyAuthentication.framework */; };
-		B1068FCDFD634B2F97406D0B /* Pods_TitanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8B626CA516BE4E7CA821A7 /* Pods_TitanTests.framework */; };
+		5A20F74B83D6AA9891D5F7EB /* Pods_TitanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A4B44149D63205A1911C758 /* Pods_TitanUITests.framework */; };
+		BE768151F017CA41B085906B /* Pods_TitanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8A4F9A18992D26CF64B3E8 /* Pods_TitanTests.framework */; };
 		E119974A203A1C2400C9AC12 /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1199749203A1C2400C9AC12 /* QRScannerVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17E1E41461C3FC7F1FE79095 /* Pods_Titan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Titan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		220D9E94206DF7BD00808AA5 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		223FE28520CC606C00AFC092 /* JoinPartyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPartyController.swift; sourceTree = "<group>"; };
 		223FE28920CC60AB00AFC092 /* CreatePartyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePartyController.swift; sourceTree = "<group>"; };
@@ -93,16 +94,15 @@
 		22D89ECD203A44A20036D5EF /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		22D89ECF203A4C710036D5EF /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		22EDCBFE202BF1DF00CA1CA0 /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
-		3350B69A1FF07679D266E0AB /* Pods-TitanUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests.release.xcconfig"; sourceTree = "<group>"; };
-		38B25543CB0A8FE2A390A1C1 /* Pods-Titan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Titan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Titan/Pods-Titan.release.xcconfig"; sourceTree = "<group>"; };
-		3EE7349BC1BB936B231F777A /* Pods_Titan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Titan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3FB3B3097538A7765B2087A /* Pods-TitanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AB7BC43FDF99DC80E3B3DB8A /* Pods-Titan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Titan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Titan/Pods-Titan.debug.xcconfig"; sourceTree = "<group>"; };
-		B9E21CF0F4FC41DE3E1331BA /* Pods_TitanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TitanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD8B626CA516BE4E7CA821A7 /* Pods_TitanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TitanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7466FA659C7CE816E1DD241 /* Pods-TitanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests.release.xcconfig"; sourceTree = "<group>"; };
+		2D8A4F9A18992D26CF64B3E8 /* Pods_TitanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TitanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A4B44149D63205A1911C758 /* Pods_TitanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TitanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70B0C92C4B60F053EE090137 /* Pods-Titan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Titan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Titan/Pods-Titan.release.xcconfig"; sourceTree = "<group>"; };
+		7E2BA6B8FFE26A71E115C951 /* Pods-TitanUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A430E5415122C69FFD961E74 /* Pods-TitanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests.release.xcconfig"; sourceTree = "<group>"; };
+		A53F0C8C698AAC3492B0281E /* Pods-TitanUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BCA4F9BD1A79C161214CC8BE /* Pods-TitanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CCA2B6982CB7899E66DAB6D4 /* Pods-Titan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Titan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Titan/Pods-Titan.debug.xcconfig"; sourceTree = "<group>"; };
 		E1199749203A1C2400C9AC12 /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
-		EC42DC0BE5AA35ECACA56337 /* Pods-TitanUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TitanUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +112,8 @@
 			files = (
 				22A38816206DB21700E5CEDF /* SpotifyMetadata.framework in Frameworks */,
 				22EDCC01202BF1DF00CA1CA0 /* SpotifyAuthentication.framework in Frameworks */,
-				0700CAFD20694A7DA44CC779 /* Pods_Titan.framework in Frameworks */,
 				22A38815206DB21700E5CEDF /* SpotifyAudioPlayback.framework in Frameworks */,
+				1F5130310C12CCCBF881EF89 /* Pods_Titan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1068FCDFD634B2F97406D0B /* Pods_TitanTests.framework in Frameworks */,
+				BE768151F017CA41B085906B /* Pods_TitanTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1555EBDF1F48D55D39DDE9E9 /* Pods_TitanUITests.framework in Frameworks */,
+				5A20F74B83D6AA9891D5F7EB /* Pods_TitanUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,8 +147,8 @@
 				224483C6202BE6210042591F /* TitanTests */,
 				224483D1202BE6210042591F /* TitanUITests */,
 				224483B0202BE6210042591F /* Products */,
-				224483E0202BE68E0042591F /* Frameworks */,
-				EA717578E36437366CCAA7EB /* Pods */,
+				451FD3B7755FF720D24D333E /* Pods */,
+				F86CFE753BEEC60BCFC4D39E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,16 +193,6 @@
 				224483D4202BE6210042591F /* Info.plist */,
 			);
 			path = TitanUITests;
-			sourceTree = "<group>";
-		};
-		224483E0202BE68E0042591F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3EE7349BC1BB936B231F777A /* Pods_Titan.framework */,
-				CD8B626CA516BE4E7CA821A7 /* Pods_TitanTests.framework */,
-				B9E21CF0F4FC41DE3E1331BA /* Pods_TitanUITests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		22A3880E206DAFA200E5CEDF /* Models */ = {
@@ -262,17 +252,27 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		EA717578E36437366CCAA7EB /* Pods */ = {
+		451FD3B7755FF720D24D333E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AB7BC43FDF99DC80E3B3DB8A /* Pods-Titan.debug.xcconfig */,
-				38B25543CB0A8FE2A390A1C1 /* Pods-Titan.release.xcconfig */,
-				A3FB3B3097538A7765B2087A /* Pods-TitanTests.debug.xcconfig */,
-				D7466FA659C7CE816E1DD241 /* Pods-TitanTests.release.xcconfig */,
-				EC42DC0BE5AA35ECACA56337 /* Pods-TitanUITests.debug.xcconfig */,
-				3350B69A1FF07679D266E0AB /* Pods-TitanUITests.release.xcconfig */,
+				CCA2B6982CB7899E66DAB6D4 /* Pods-Titan.debug.xcconfig */,
+				70B0C92C4B60F053EE090137 /* Pods-Titan.release.xcconfig */,
+				BCA4F9BD1A79C161214CC8BE /* Pods-TitanTests.debug.xcconfig */,
+				A430E5415122C69FFD961E74 /* Pods-TitanTests.release.xcconfig */,
+				7E2BA6B8FFE26A71E115C951 /* Pods-TitanUITests.debug.xcconfig */,
+				A53F0C8C698AAC3492B0281E /* Pods-TitanUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F86CFE753BEEC60BCFC4D39E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17E1E41461C3FC7F1FE79095 /* Pods_Titan.framework */,
+				2D8A4F9A18992D26CF64B3E8 /* Pods_TitanTests.framework */,
+				6A4B44149D63205A1911C758 /* Pods_TitanUITests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,12 +282,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 224483D7202BE6210042591F /* Build configuration list for PBXNativeTarget "Titan" */;
 			buildPhases = (
-				8843A5003CB4AC76B271BC0E /* [CP] Check Pods Manifest.lock */,
+				517DD6168DEB4D3C2AAE3B38 /* [CP] Check Pods Manifest.lock */,
 				224483AB202BE6210042591F /* Sources */,
 				224483AC202BE6210042591F /* Frameworks */,
 				224483AD202BE6210042591F /* Resources */,
-				91A4003C539B8FA0DD1FF28D /* [CP] Embed Pods Frameworks */,
-				F0E842E58232A8AD98F45F74 /* [CP] Copy Pods Resources */,
+				7FDFC1CAB7177E6F666076E4 /* [CP] Embed Pods Frameworks */,
+				442BB665E861A7F5BA0E7170 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -302,12 +302,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 224483DA202BE6210042591F /* Build configuration list for PBXNativeTarget "TitanTests" */;
 			buildPhases = (
-				32F6F0FB644DC7E9F3E5003E /* [CP] Check Pods Manifest.lock */,
+				B3A1889C65FDC0FF22EB986C /* [CP] Check Pods Manifest.lock */,
 				224483BF202BE6210042591F /* Sources */,
 				224483C0202BE6210042591F /* Frameworks */,
 				224483C1202BE6210042591F /* Resources */,
-				D723D65E9CA38C90150C8D28 /* [CP] Embed Pods Frameworks */,
-				BA157CF7FA0236128B820524 /* [CP] Copy Pods Resources */,
+				23CDB20819EC80B95520277E /* [CP] Embed Pods Frameworks */,
+				F54A65E2E2909DF6993A5921 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -323,12 +323,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 224483DD202BE6210042591F /* Build configuration list for PBXNativeTarget "TitanUITests" */;
 			buildPhases = (
-				5CEE8ED6F32D8EA115DD88A6 /* [CP] Check Pods Manifest.lock */,
+				3820350AA55F0F9C2C980196 /* [CP] Check Pods Manifest.lock */,
 				224483CA202BE6210042591F /* Sources */,
 				224483CB202BE6210042591F /* Frameworks */,
 				224483CC202BE6210042591F /* Resources */,
-				CD1A66785EA254FC01C71C2E /* [CP] Embed Pods Frameworks */,
-				48876C80C270ADF1B1ABB912 /* [CP] Copy Pods Resources */,
+				8F70C26199FB17CCCD8DC92F /* [CP] Embed Pods Frameworks */,
+				53AF5DBEB711C3D8E6872740 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -420,40 +420,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32F6F0FB644DC7E9F3E5003E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TitanTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48876C80C270ADF1B1ABB912 /* [CP] Copy Pods Resources */ = {
+		23CDB20819EC80B95520277E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5CEE8ED6F32D8EA115DD88A6 /* [CP] Check Pods Manifest.lock */ = {
+		3820350AA55F0F9C2C980196 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -471,7 +453,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8843A5003CB4AC76B271BC0E /* [CP] Check Pods Manifest.lock */ = {
+		442BB665E861A7F5BA0E7170 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Titan/Pods-Titan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		517DD6168DEB4D3C2AAE3B38 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -489,7 +486,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		91A4003C539B8FA0DD1FF28D /* [CP] Embed Pods Frameworks */ = {
+		53AF5DBEB711C3D8E6872740 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FDFC1CAB7177E6F666076E4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -513,22 +525,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Titan/Pods-Titan-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BA157CF7FA0236128B820524 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CD1A66785EA254FC01C71C2E /* [CP] Embed Pods Frameworks */ = {
+		8F70C26199FB17CCCD8DC92F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -543,22 +540,25 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanUITests/Pods-TitanUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D723D65E9CA38C90150C8D28 /* [CP] Embed Pods Frameworks */ = {
+		B3A1889C65FDC0FF22EB986C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TitanTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F0E842E58232A8AD98F45F74 /* [CP] Copy Pods Resources */ = {
+		F54A65E2E2909DF6993A5921 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -570,7 +570,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Titan/Pods-Titan-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TitanTests/Pods-TitanTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -759,10 +759,11 @@
 		};
 		224483D8202BE6210042591F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB7BC43FDF99DC80E3B3DB8A /* Pods-Titan.debug.xcconfig */;
+			baseConfigurationReference = CCA2B6982CB7899E66DAB6D4 /* Pods-Titan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8RS6T43D5;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -787,6 +788,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Tim-Gamble.Titan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Titan-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -796,10 +798,11 @@
 		};
 		224483D9202BE6210042591F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38B25543CB0A8FE2A390A1C1 /* Pods-Titan.release.xcconfig */;
+			baseConfigurationReference = 70B0C92C4B60F053EE090137 /* Pods-Titan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8RS6T43D5;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -824,6 +827,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Tim-Gamble.Titan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Titan-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -832,7 +836,7 @@
 		};
 		224483DB202BE6210042591F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3FB3B3097538A7765B2087A /* Pods-TitanTests.debug.xcconfig */;
+			baseConfigurationReference = BCA4F9BD1A79C161214CC8BE /* Pods-TitanTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -850,7 +854,7 @@
 		};
 		224483DC202BE6210042591F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7466FA659C7CE816E1DD241 /* Pods-TitanTests.release.xcconfig */;
+			baseConfigurationReference = A430E5415122C69FFD961E74 /* Pods-TitanTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -868,7 +872,7 @@
 		};
 		224483DE202BE6210042591F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC42DC0BE5AA35ECACA56337 /* Pods-TitanUITests.debug.xcconfig */;
+			baseConfigurationReference = 7E2BA6B8FFE26A71E115C951 /* Pods-TitanUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -885,7 +889,7 @@
 		};
 		224483DF202BE6210042591F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3350B69A1FF07679D266E0AB /* Pods-TitanUITests.release.xcconfig */;
+			baseConfigurationReference = A53F0C8C698AAC3492B0281E /* Pods-TitanUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

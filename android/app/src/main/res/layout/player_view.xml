@@ -15,6 +15,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/iv_play"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -29,6 +30,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="?android:attr/listDivider"
+            android:visibility="invisible" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

@@ -17,7 +17,7 @@ public class Song  {
     private String songURL;
     private String duration;
     private int durationInMs;
-    private int durationInSeconds;
+    private double durationInSeconds;
 
     private String partyID;
 
@@ -59,7 +59,7 @@ public class Song  {
             imageWidth = img.getWidth();
             imageHeight = img.getHeight();
         }
-        durationInSeconds = durationInMs / 1000;
+        durationInSeconds = durationInMs / 1000.0;
     }
 
     public String getPartyID() { return partyID; }
@@ -86,7 +86,7 @@ public class Song  {
 
     public int getDurationInMs() { return durationInMs; }
 
-    public int getDurationInSeconds() { return durationInSeconds; }
+    public double getDurationInSeconds() { return durationInSeconds; }
 
     public String getImageURL() {
         return imageURL;

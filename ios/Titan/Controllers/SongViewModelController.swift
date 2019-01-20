@@ -112,7 +112,7 @@ class SongViewModelController {
                         QueueResponse.self,
                         from: responseDict)
                     self.suggestIDArray = []
-                    for s in response.data.results.prefix(5) {
+                    for s in response.data.queue.prefix(5) {
                         let songID = s.songURL.split(separator: ":").last
                         self.suggestIDArray.append(String(songID!))
                     }
@@ -165,7 +165,7 @@ class SongViewModelController {
                     from: responseDict)
                 var queueSongs = [Song]()
                 var addedByArray = [String]()
-                for s in response.data.results {
+                for s in response.data.queue {
                     let duration = s.durationInSeconds * 1000
                     queueSongs.append(Song(name: s.name,
                                            artist: s.artist,

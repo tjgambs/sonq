@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/navigation_searchqueue"
+            android:icon="@drawable/ic_queue_music"
+            android:title="@string/title_searchqueue"/>
+
+    <item
+            android:id="@+id/navigation_qrcode"
+            android:icon="@drawable/ic_qrcode"
+            android:title="@string/title_qr_code"/>
+
+    <item
+            android:id="@+id/navigation_more"
+            android:icon="@drawable/ic_more"
+            android:title="@string/title_more"/>
+
+</menu>

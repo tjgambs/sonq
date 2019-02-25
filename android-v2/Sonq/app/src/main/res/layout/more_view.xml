@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+            android:id="@+id/more_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/title_more"
+            android:textAlignment="center"
+            android:textColor="@color/colorTypography"
+            android:textSize="34sp"
+            android:fontFamily="@font/raleway_semi_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="16dp"/>
+
+    <TextView
+            android:id="@+id/more_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/about_more"
+            android:textAlignment="center"
+            android:textColor="@color/colorTypography"
+            android:textSize="24sp"
+            android:fontFamily="@font/raleway_semi_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/more_title"
+            android:layout_marginStart="16dp"/>
+
+    <TextView
+            android:id="@+id/more_about_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/about_more_text"
+            android:textColor="@color/colorTypography"
+            android:textSize="18sp"
+            android:fontFamily="@font/raleway_semi_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/more_about"
+            android:layout_marginStart="16dp"/>
+
+    <TextView
+            android:id="@+id/more_end_party"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/end_party_more"
+            android:textColor="@color/colorTypography"
+            android:textSize="24sp"
+            android:fontFamily="@font/raleway_semi_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/more_about_text"
+            android:layout_marginStart="16dp"/>
+
+    <TextView
+            android:id="@+id/more_end_party_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/end_party_more_desc"
+            android:textColor="@color/colorTypography"
+            android:textSize="18sp"
+            android:fontFamily="@font/raleway_semi_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/more_end_party"
+            android:layout_marginStart="16dp"/>
+    <Button
+            android:id="@+id/end_party"
+            android:text="@string/end_party_more"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/more_end_party_desc"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_button_active"
+            android:fontFamily="@font/raleway_semi_bold"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="180dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            android:layout_height="33dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

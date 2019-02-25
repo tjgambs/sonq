@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Sonq</string>
+    <string name="title_searchqueue">Queue</string>
+    <string name="title_qr_code">QR Code</string>
+    <string name="title_more">More</string>
+    <string name="qr_code_text_view_desc">Party guests can scan this QR code to add songs to the Queue.</string>
+    <string name="qr_code_desc">QR Code for joining a party</string>
+    <string name="empty_queue_text">The Queue is empty. Search for songs to add to the Queue.</string>
+    <string name="about_more">About</string>
+    <string name="about_more_text">sonq.fm was created by Tim Gamble, Cody Dietrich, and Nina Keoborakot. Party on!</string>
+    <string name="end_party_more">End Party</string>
+    <string name="end_party_more_desc">Ending the Party will clear the Queue and remove all party guests.</string>
+    <string name="host_party_main">Host Party</string>
+    <string name="join_party_main">Join Party</string>
+    <string name="logo_desc">sonq logo</string>
+</resources>

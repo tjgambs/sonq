@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/qr_code_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/title_qr_code"
+                android:textAlignment="center"
+                android:textColor="@color/colorTypography"
+                android:textSize="34sp"
+                android:fontFamily="@font/raleway_semi_bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="16dp"/>
+
+        <TextView
+                android:id="@+id/qr_code_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/qr_code_text_view_desc"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorTypography"
+                android:textSize="17sp"
+                android:fontFamily="@font/raleway_regular"
+                app:layout_constraintTop_toBottomOf="@id/qr_code_title"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+        />
+
+        <ImageView
+                android:id="@+id/QRimageView"
+                android:layout_width="314dp"
+                android:layout_height="228dp"
+                android:layout_marginTop="48dp"
+                android:contentDescription="@string/qr_code_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/qr_code_desc"
+                app:srcCompat="@drawable/ic_qrcode"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

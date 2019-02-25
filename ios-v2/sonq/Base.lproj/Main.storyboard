@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-SemiBold.ttf">
+            <string>Raleway-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="sonq" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="AOc-cW-wZA">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="eVt-71-5gh">
+                                <rect key="frame" x="82" y="144" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="9W3-dI-dLY"/>
+                                    <constraint firstAttribute="width" constant="250" id="BUE-cy-R2g"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMY-Cg-MzQ">
+                                <rect key="frame" x="82" y="702" width="250" height="35"/>
+                                <color key="backgroundColor" red="0.93481594324111938" green="0.16604864597320557" blue="0.39222827553749084" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="YEO-ID-UqL"/>
+                                    <constraint firstAttribute="width" constant="250" id="y8e-OX-spH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <state key="normal" title="Host party">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="d54-Qk-0Ut" kind="show" id="lOA-va-L1O"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNO-zd-AYm">
+                                <rect key="frame" x="82" y="752" width="250" height="35"/>
+                                <color key="backgroundColor" red="0.055188067257404327" green="0.058617353439331055" blue="0.14891493320465088" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Ikq-jN-GW4"/>
+                                    <constraint firstAttribute="height" constant="35" id="fC4-bk-g1m"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <state key="normal" title="Join party">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="d54-Qk-0Ut" kind="show" id="fUL-Bd-TIX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="AOc-cW-wZA" secondAttribute="bottom" id="3C7-f5-j08"/>
+                            <constraint firstItem="eVt-71-5gh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="7Zl-2Y-SQJ"/>
+                            <constraint firstItem="AOc-cW-wZA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BZn-dN-omu"/>
+                            <constraint firstItem="vMY-Cg-MzQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hqe-6r-sbM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MNO-zd-AYm" secondAttribute="bottom" constant="75" id="NHC-HH-lxz"/>
+                            <constraint firstItem="AOc-cW-wZA" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Pl2-98-w3K"/>
+                            <constraint firstItem="MNO-zd-AYm" firstAttribute="top" secondItem="vMY-Cg-MzQ" secondAttribute="bottom" constant="15" id="Vhv-gD-83C"/>
+                            <constraint firstItem="AOc-cW-wZA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Wsx-cD-7Xs"/>
+                            <constraint firstItem="eVt-71-5gh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rz8-sw-V0L"/>
+                            <constraint firstItem="MNO-zd-AYm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="z4o-eX-h20"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-596" y="112"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="QGZ-Ll-5RC">
+            <objects>
+                <viewController id="Xw9-hg-Xdh" customClass="SearchViewController" customModule="sonq" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HMH-T8-OcV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Ywv-OC-YAc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="8Fi-P3-une">
+                                <rect key="frame" x="10" y="74" width="394" height="56"/>
+                                <color key="tintColor" red="0.93481594320000005" green="0.16604864599999999" blue="0.3922282755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="searchField.textColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="Xw9-hg-Xdh" id="yvO-iO-lsQ"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ywv-OC-YAc" firstAttribute="top" secondItem="HMH-T8-OcV" secondAttribute="top" id="3Sj-y2-CqM"/>
+                            <constraint firstItem="Ywv-OC-YAc" firstAttribute="leading" secondItem="4kF-N7-icE" secondAttribute="leading" id="9vo-Ks-E0p"/>
+                            <constraint firstItem="8Fi-P3-une" firstAttribute="top" secondItem="4kF-N7-icE" secondAttribute="top" constant="30" id="DgE-o0-J3k"/>
+                            <constraint firstItem="Ywv-OC-YAc" firstAttribute="trailing" secondItem="4kF-N7-icE" secondAttribute="trailing" id="Htp-lI-flM"/>
+                            <constraint firstItem="8Fi-P3-une" firstAttribute="leading" secondItem="4kF-N7-icE" secondAttribute="leading" constant="10" id="OQH-VL-uUS"/>
+                            <constraint firstItem="4kF-N7-icE" firstAttribute="trailing" secondItem="8Fi-P3-une" secondAttribute="trailing" constant="10" id="Rsa-J1-MBw"/>
+                            <constraint firstAttribute="bottom" secondItem="Ywv-OC-YAc" secondAttribute="bottom" id="e0Q-H7-vbR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4kF-N7-icE"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Search" image="search" id="WHq-Vn-gRD"/>
+                    <connections>
+                        <outlet property="searchBar" destination="8Fi-P3-une" id="vmm-hI-s6L"/>
+                        <outlet property="searchDisplayController" destination="gLP-UV-dye" id="ddu-zA-Zv2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R3Y-BL-uKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="vGR-c3-Pp9">
+                    <connections>
+                        <outlet property="delegate" destination="Xw9-hg-Xdh" id="UNl-tm-gRu"/>
+                        <outlet property="searchContentsController" destination="Xw9-hg-Xdh" id="yg0-fc-oVR"/>
+                        <outlet property="searchResultsDataSource" destination="Xw9-hg-Xdh" id="Bhz-4q-UcM"/>
+                        <outlet property="searchResultsDelegate" destination="Xw9-hg-Xdh" id="VZP-qT-N7n"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="gLP-UV-dye">
+                    <connections>
+                        <outlet property="delegate" destination="Xw9-hg-Xdh" id="xK1-Uy-aea"/>
+                        <outlet property="searchContentsController" destination="Xw9-hg-Xdh" id="vOq-vZ-p8x"/>
+                        <outlet property="searchResultsDataSource" destination="Xw9-hg-Xdh" id="Mec-Ih-PPL"/>
+                        <outlet property="searchResultsDelegate" destination="Xw9-hg-Xdh" id="h5b-wt-BFz"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1637.68115942029" y="-226.33928571428569"/>
+        </scene>
+        <!--Queue-->
+        <scene sceneID="fvP-y7-t8H">
+            <objects>
+                <viewController id="LMw-HV-7TC" customClass="QueueViewController" customModule="sonq" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tKp-A4-gLX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="pyW-nd-92t">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Queue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLU-DZ-h1d">
+                                <rect key="frame" x="30" y="94" width="108" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pyW-nd-92t" firstAttribute="leading" secondItem="dzm-L3-Ful" secondAttribute="leading" id="0KK-Mf-ILy"/>
+                            <constraint firstAttribute="bottom" secondItem="pyW-nd-92t" secondAttribute="bottom" id="JTW-kQ-eaU"/>
+                            <constraint firstItem="pyW-nd-92t" firstAttribute="trailing" secondItem="dzm-L3-Ful" secondAttribute="trailing" id="KRa-hg-A0B"/>
+                            <constraint firstItem="rLU-DZ-h1d" firstAttribute="leading" secondItem="dzm-L3-Ful" secondAttribute="leading" constant="30" id="uaY-WY-UP1"/>
+                            <constraint firstItem="rLU-DZ-h1d" firstAttribute="top" secondItem="dzm-L3-Ful" secondAttribute="top" constant="50" id="w91-ma-Jby"/>
+                            <constraint firstItem="pyW-nd-92t" firstAttribute="top" secondItem="tKp-A4-gLX" secondAttribute="top" id="xKK-7S-4sX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dzm-L3-Ful"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Queue" image="queue" id="jzJ-Kj-A9o"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Imx-7I-PB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.72463768115949" y="-226.33928571428569"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="OnR-6G-G7h">
+            <objects>
+                <tabBarController id="d54-Qk-0Ut" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="Iiu-EP-nJS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.93481594320000005" green="0.16604864599999999" blue="0.3922282755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.93481594320000005" green="0.16604864599999999" blue="0.3922282755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="LMw-HV-7TC" kind="relationship" relationship="viewControllers" id="5tw-kP-Wux"/>
+                        <segue destination="Xw9-hg-Xdh" kind="relationship" relationship="viewControllers" id="R07-9x-G7i"/>
+                        <segue destination="J3y-AE-UKv" kind="relationship" relationship="viewControllers" id="P8R-cy-Esz"/>
+                        <segue destination="jZs-GA-Fkp" kind="relationship" relationship="viewControllers" id="Th4-29-1IG"/>
+                        <segue destination="5TS-6V-Tbw" kind="relationship" relationship="viewControllers" id="uXh-V4-peW"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kX5-Aj-rKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="178" y="112"/>
+        </scene>
+        <!--QR code-->
+        <scene sceneID="cex-cP-lOG">
+            <objects>
+                <viewController id="J3y-AE-UKv" customClass="QRViewController" customModule="sonq" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TqO-dC-mYy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="JUB-Z8-Qbn">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpV-Ws-0zR">
+                                <rect key="frame" x="30" y="94" width="142" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party guests can scan this QR code to add songs to the Queue." textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEy-WF-VzF">
+                                <rect key="frame" x="30" y="144" width="354" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DEy-WF-VzF" firstAttribute="leading" secondItem="hLH-lq-H0l" secondAttribute="leading" constant="30" id="0Sb-S3-XNN"/>
+                            <constraint firstItem="ZpV-Ws-0zR" firstAttribute="leading" secondItem="hLH-lq-H0l" secondAttribute="leading" constant="30" id="INT-e5-jsc"/>
+                            <constraint firstItem="hLH-lq-H0l" firstAttribute="trailing" secondItem="DEy-WF-VzF" secondAttribute="trailing" constant="30" id="LCF-VQ-iC5"/>
+                            <constraint firstItem="DEy-WF-VzF" firstAttribute="top" secondItem="ZpV-Ws-0zR" secondAttribute="bottom" constant="10" id="NKT-r8-gKz"/>
+                            <constraint firstItem="JUB-Z8-Qbn" firstAttribute="top" secondItem="TqO-dC-mYy" secondAttribute="top" id="RtC-pY-0cb"/>
+                            <constraint firstItem="JUB-Z8-Qbn" firstAttribute="leading" secondItem="hLH-lq-H0l" secondAttribute="leading" id="Vy6-UA-WbI"/>
+                            <constraint firstItem="ZpV-Ws-0zR" firstAttribute="top" secondItem="hLH-lq-H0l" secondAttribute="top" constant="50" id="qgh-aq-l9x"/>
+                            <constraint firstAttribute="bottom" secondItem="JUB-Z8-Qbn" secondAttribute="bottom" id="qp8-r8-hu4"/>
+                            <constraint firstItem="JUB-Z8-Qbn" firstAttribute="trailing" secondItem="hLH-lq-H0l" secondAttribute="trailing" id="zSb-mm-ycH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hLH-lq-H0l"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="QR code" image="qr" id="2vq-5C-D5l"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gKe-Bm-yUI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.72463768115949" y="470.75892857142856"/>
+        </scene>
+        <!--Player-->
+        <scene sceneID="MXh-as-JD0">
+            <objects>
+                <viewController id="jZs-GA-Fkp" customClass="PlayerViewController" customModule="sonq" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ykQ-qi-61E">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="D3y-aB-1JP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="D3y-aB-1JP" firstAttribute="top" secondItem="ykQ-qi-61E" secondAttribute="top" id="5Bl-yh-BYN"/>
+                            <constraint firstItem="D3y-aB-1JP" firstAttribute="trailing" secondItem="OMW-sb-Eho" secondAttribute="trailing" id="Nk7-el-Gu2"/>
+                            <constraint firstAttribute="bottom" secondItem="D3y-aB-1JP" secondAttribute="bottom" id="fgk-yF-uL7"/>
+                            <constraint firstItem="D3y-aB-1JP" firstAttribute="leading" secondItem="OMW-sb-Eho" secondAttribute="leading" id="y3B-Ax-Gkr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OMW-sb-Eho"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Player" image="play" id="nXG-BW-Poh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E0m-Ut-F1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1638" y="471"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="WEu-Md-26M">
+            <objects>
+                <viewController id="5TS-6V-Tbw" customClass="SettingsViewController" customModule="sonq" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6zl-kU-I4u">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="FzW-2N-Py9">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sonq.fm was created by Tim Gamble, Cody Dietrich and Nina Keoborakot. Party on!" textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZY-70-xKg">
+                                <rect key="frame" x="30" y="193" width="354" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ending the Party will clear the Queue and remove all party guests." textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Siq-KO-DGk">
+                                <rect key="frame" x="30" y="302" width="354" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gq4-aE-6bX">
+                                <rect key="frame" x="30" y="154" width="70" height="29"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Party" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0io-pP-GwY">
+                                <rect key="frame" x="30" y="263" width="110" height="29"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gf8-04-YcW">
+                                <rect key="frame" x="30" y="94" width="133" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJs-3b-e1V">
+                                <rect key="frame" x="30" y="352" width="200" height="35"/>
+                                <color key="backgroundColor" red="0.93481594320000005" green="0.16604864599999999" blue="0.3922282755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="8JI-g4-z04"/>
+                                    <constraint firstAttribute="height" constant="35" id="vVu-12-Lyh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <state key="normal" title="End Party">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="FzW-2N-Py9" secondAttribute="bottom" id="2Ru-t7-A1u"/>
+                            <constraint firstItem="xJs-3b-e1V" firstAttribute="leading" secondItem="wdS-fb-jRv" secondAttribute="leading" constant="30" id="6SG-U4-APm"/>
+                            <constraint firstItem="7ZY-70-xKg" firstAttribute="leading" secondItem="wdS-fb-jRv" secondAttribute="leading" constant="30" id="Du3-fv-7HH"/>
+                            <constraint firstItem="Siq-KO-DGk" firstAttribute="leading" secondItem="wdS-fb-jRv" secondAttribute="leading" constant="30" id="Fe4-jF-sdH"/>
+                            <constraint firstItem="7ZY-70-xKg" firstAttribute="top" secondItem="Gq4-aE-6bX" secondAttribute="bottom" constant="10" id="JSZ-Gq-h22"/>
+                            <constraint firstItem="Siq-KO-DGk" firstAttribute="top" secondItem="0io-pP-GwY" secondAttribute="bottom" constant="10" id="Q6E-h8-U19"/>
+                            <constraint firstItem="Gq4-aE-6bX" firstAttribute="leading" secondItem="wdS-fb-jRv" secondAttribute="leading" constant="30" id="R9F-0g-Eis"/>
+                            <constraint firstAttribute="trailing" secondItem="Siq-KO-DGk" secondAttribute="trailing" constant="30" id="af1-dA-IC9"/>
+                            <constraint firstItem="Gq4-aE-6bX" firstAttribute="top" secondItem="gf8-04-YcW" secondAttribute="bottom" constant="20" id="fSd-Gk-5FX"/>
+                            <constraint firstItem="gf8-04-YcW" firstAttribute="top" secondItem="wdS-fb-jRv" secondAttribute="top" constant="50" id="kZ3-7F-hiv"/>
+                            <constraint firstItem="0io-pP-GwY" firstAttribute="leading" secondItem="wdS-fb-jRv" secondAttribute="leading" constant="30" id="qoV-bd-ACF"/>
+                            <constraint firstItem="gf8-04-YcW" firstAttribute="leading" secondItem="wdS-fb-jRv" secondAttribute="leading" constant="30" id="rQv-L6-DPe"/>
+                            <constraint firstItem="FzW-2N-Py9" firstAttribute="trailing" secondItem="wdS-fb-jRv" secondAttribute="trailing" id="rZf-cT-WYi"/>
+                            <constraint firstItem="FzW-2N-Py9" firstAttribute="leading" secondItem="wdS-fb-jRv" secondAttribute="leading" id="s1B-uX-ehQ"/>
+                            <constraint firstItem="xJs-3b-e1V" firstAttribute="top" secondItem="Siq-KO-DGk" secondAttribute="bottom" constant="10" id="tth-Rv-Tsf"/>
+                            <constraint firstItem="FzW-2N-Py9" firstAttribute="top" secondItem="6zl-kU-I4u" secondAttribute="top" id="vYJ-y9-Ble"/>
+                            <constraint firstItem="0io-pP-GwY" firstAttribute="top" secondItem="7ZY-70-xKg" secondAttribute="bottom" constant="30" id="wcl-Vu-Msl"/>
+                            <constraint firstAttribute="trailing" secondItem="7ZY-70-xKg" secondAttribute="trailing" constant="30" id="xxg-fE-goC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wdS-fb-jRv"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="9Xn-3N-Vbe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yY7-Oa-mbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2311.594202898551" y="111.83035714285714"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="1804" height="1242"/>
+        <image name="logo" width="800.15997314453125" height="800.15997314453125"/>
+        <image name="play" width="30" height="30"/>
+        <image name="qr" width="30" height="30"/>
+        <image name="queue" width="30" height="30"/>
+        <image name="search" width="30" height="30"/>
+        <image name="settings" width="30" height="30"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="fUL-Bd-TIX"/>
+    </inferredMetricsTieBreakers>
+</document>

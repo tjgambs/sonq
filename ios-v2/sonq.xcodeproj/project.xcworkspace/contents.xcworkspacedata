@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-Black.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-BlackItalic.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-Bold.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-BoldItalic.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-ExtraBold.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-ExtraBoldItalic.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-ExtraLight.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-ExtraLightItalic.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-Italic.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-Light.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-LightItalic.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-Medium.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-MediumItalic.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-Regular.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-SemiBold.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-SemiBoldItalic.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-Thin.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tim/Documents/Github/sonq/ios-v2/sonq/Raleway-ThinItalic.ttf">
+   </FileRef>
+   <FileRef
+      location = "self:">
+   </FileRef>
+</Workspace>

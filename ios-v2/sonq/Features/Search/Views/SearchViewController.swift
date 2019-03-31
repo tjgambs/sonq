@@ -74,7 +74,7 @@ extension SearchViewController: UISearchBarDelegate {
                                 title:"No search results found",
                                 message:"Please try another search keyword.")
                         }
-                        self.searchResults = items.map{ SongModel(json: $0, addedBy: "") }
+                        self.searchResults = items.map{ SongModel(json: $0, addedBy: "Tim") }
                         self.view.endEditing(true)
                         self.searchResultTable.reloadData()
                         self.resultsLabel.text = "Results"
@@ -112,7 +112,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red: 14.0/255, green: 15.0/255, blue: 38.0/255, alpha: 0.33)
         cell.selectedBackgroundView = backgroundView
-        cell.accessoryType = .checkmark
+        // TODO: Put a check next to the cells containing this users queued songs. Clear the addedBy name to be blank for these songs and disable them.
+        // cell.accessoryType = .checkmark
         return cell
     }
     
@@ -120,7 +121,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedSong = self.searchResults[indexPath.row]
         // TODO: Check and make sure this song isn't in the queue, then add it.
-        print(selectedSong)        
+        print(selectedSong)
     }
     
 }

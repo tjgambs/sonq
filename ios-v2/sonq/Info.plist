@@ -23,6 +23,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Raleway-Semibold</string>
+		<string>Raleway-Italic</string>
+		<string>Raleway-Bold</string>
 		<string>Raleway-Regular</string>
 		<string>Raleway-Medium</string>
 	</array>

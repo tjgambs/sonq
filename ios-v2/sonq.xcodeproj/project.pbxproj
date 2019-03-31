@@ -16,12 +16,17 @@
 		2214CCE322226D7400843448 /* sonqUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214CCE222226D7400843448 /* sonqUITests.swift */; };
 		221F5C8622234EA700B9A39A /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 221F5C8522234EA700B9A39A /* fonts */; };
 		221F5C97222364D600B9A39A /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F5C96222364D600B9A39A /* PlayerViewController.swift */; };
-		221F5C9B2223656A00B9A39A /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F5C9A2223656A00B9A39A /* QueueViewController.swift */; };
 		221F5CA02223659300B9A39A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F5C9F2223659300B9A39A /* QRViewController.swift */; };
 		221F5CA4222365BE00B9A39A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F5CA3222365BE00B9A39A /* SettingsViewController.swift */; };
 		221F5CA8222365E300B9A39A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F5CA7222365E300B9A39A /* SearchViewController.swift */; };
 		221F5CAA2223677400B9A39A /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F5CA92223677400B9A39A /* QueueViewController.swift */; };
 		221F5CAF222367EC00B9A39A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F5CAE222367EC00B9A39A /* Utilities.swift */; };
+		2240420D22504B3A0041EDF4 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240420C22504B3A0041EDF4 /* Networking.swift */; };
+		224042102250573C0041EDF4 /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240420F2250573C0041EDF4 /* SongModel.swift */; };
+		22404212225062050041EDF4 /* SongCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22404211225062050041EDF4 /* SongCellModel.swift */; };
+		89A8765D5428E15010118CAC /* Pods_sonq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD9B433652C3A149F9201B6D /* Pods_sonq.framework */; };
+		8A60CF0F064CBCFC914BB617 /* Pods_sonqTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4035D3035E212E76FD63C1C /* Pods_sonqTests.framework */; };
+		A87507EDEE320C46022D7743 /* Pods_sonqUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD74030816FB0F99B000C0F6 /* Pods_sonqUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,12 +62,23 @@
 		2214CCE422226D7400843448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		221F5C8522234EA700B9A39A /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		221F5C96222364D600B9A39A /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		221F5C9A2223656A00B9A39A /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueueViewController.swift; path = sonq/Features/Queue/Views/QueueViewController.swift; sourceTree = "<group>"; };
 		221F5C9F2223659300B9A39A /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		221F5CA3222365BE00B9A39A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		221F5CA7222365E300B9A39A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		221F5CA92223677400B9A39A /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		221F5CAE222367EC00B9A39A /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		2240420C22504B3A0041EDF4 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		2240420F2250573C0041EDF4 /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModel.swift; sourceTree = "<group>"; };
+		22404211225062050041EDF4 /* SongCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCellModel.swift; sourceTree = "<group>"; };
+		2DF2B2A572F5965D6001D23A /* Pods-sonqTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonqTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sonqTests/Pods-sonqTests.release.xcconfig"; sourceTree = "<group>"; };
+		59C2911EF9364B4112FF21A7 /* Pods-sonq.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonq.release.xcconfig"; path = "Pods/Target Support Files/Pods-sonq/Pods-sonq.release.xcconfig"; sourceTree = "<group>"; };
+		7F85D6A4425AC270398D5D20 /* Pods-sonq.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonq.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sonq/Pods-sonq.debug.xcconfig"; sourceTree = "<group>"; };
+		824BE49D7BF6CE35AE787366 /* Pods-sonqUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonqUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sonqUITests/Pods-sonqUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BD9B433652C3A149F9201B6D /* Pods_sonq.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sonq.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDBBC97E86C4D9E06C909632 /* Pods-sonqTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonqTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sonqTests/Pods-sonqTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E4035D3035E212E76FD63C1C /* Pods_sonqTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sonqTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB388D53C6F07C5E540EBA19 /* Pods-sonqUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonqUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sonqUITests/Pods-sonqUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FD74030816FB0F99B000C0F6 /* Pods_sonqUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sonqUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89A8765D5428E15010118CAC /* Pods_sonq.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A60CF0F064CBCFC914BB617 /* Pods_sonqTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A87507EDEE320C46022D7743 /* Pods_sonqUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,11 +112,12 @@
 		2214CCB622226D7100843448 = {
 			isa = PBXGroup;
 			children = (
-				221F5C9A2223656A00B9A39A /* QueueViewController.swift */,
 				2214CCC122226D7100843448 /* sonq */,
 				2214CCD622226D7400843448 /* sonqTests */,
 				2214CCE122226D7400843448 /* sonqUITests */,
 				2214CCC022226D7100843448 /* Products */,
+				5A8FFB095A8EA2CACF0BC002 /* Pods */,
+				7B5BBB40E8B04F4ED1CEC3EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +167,7 @@
 		221F5C88222363A700B9A39A /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				22404207225043720041EDF4 /* Networking */,
 				221F5CAB222367C700B9A39A /* Party */,
 				221F5CA5222365CD00B9A39A /* Search */,
 				221F5CA1222365A200B9A39A /* Settings */,
@@ -224,6 +245,7 @@
 		221F5CA5222365CD00B9A39A /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				2240420E2250572F0041EDF4 /* Models */,
 				221F5CA6222365D600B9A39A /* Views */,
 			);
 			path = Search;
@@ -261,6 +283,46 @@
 			path = Logic;
 			sourceTree = "<group>";
 		};
+		22404207225043720041EDF4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2240420C22504B3A0041EDF4 /* Networking.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		2240420E2250572F0041EDF4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2240420F2250573C0041EDF4 /* SongModel.swift */,
+				22404211225062050041EDF4 /* SongCellModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5A8FFB095A8EA2CACF0BC002 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F85D6A4425AC270398D5D20 /* Pods-sonq.debug.xcconfig */,
+				59C2911EF9364B4112FF21A7 /* Pods-sonq.release.xcconfig */,
+				BDBBC97E86C4D9E06C909632 /* Pods-sonqTests.debug.xcconfig */,
+				2DF2B2A572F5965D6001D23A /* Pods-sonqTests.release.xcconfig */,
+				824BE49D7BF6CE35AE787366 /* Pods-sonqUITests.debug.xcconfig */,
+				FB388D53C6F07C5E540EBA19 /* Pods-sonqUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7B5BBB40E8B04F4ED1CEC3EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD9B433652C3A149F9201B6D /* Pods_sonq.framework */,
+				E4035D3035E212E76FD63C1C /* Pods_sonqTests.framework */,
+				FD74030816FB0F99B000C0F6 /* Pods_sonqUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -268,9 +330,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2214CCE722226D7400843448 /* Build configuration list for PBXNativeTarget "sonq" */;
 			buildPhases = (
+				517CC7499C24434A92EDDB29 /* [CP] Check Pods Manifest.lock */,
 				2214CCBB22226D7100843448 /* Sources */,
 				2214CCBC22226D7100843448 /* Frameworks */,
 				2214CCBD22226D7100843448 /* Resources */,
+				9E38781E584ED802522766FA /* [CP] Embed Pods Frameworks */,
+				1CEA2640996A6FC80CCA1C34 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -285,9 +350,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2214CCEA22226D7400843448 /* Build configuration list for PBXNativeTarget "sonqTests" */;
 			buildPhases = (
+				B7E69862A4097C362A979841 /* [CP] Check Pods Manifest.lock */,
 				2214CCCF22226D7400843448 /* Sources */,
 				2214CCD022226D7400843448 /* Frameworks */,
 				2214CCD122226D7400843448 /* Resources */,
+				813FA4E35DFA2124ADF305DD /* [CP] Embed Pods Frameworks */,
+				F49F1F87BE239C0763A542D9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -303,9 +371,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2214CCED22226D7400843448 /* Build configuration list for PBXNativeTarget "sonqUITests" */;
 			buildPhases = (
+				5B424396089CB7D9BD5B8144 /* [CP] Check Pods Manifest.lock */,
 				2214CCDA22226D7400843448 /* Sources */,
 				2214CCDB22226D7400843448 /* Frameworks */,
 				2214CCDC22226D7400843448 /* Resources */,
+				A27DE917A7A6201453497256 /* [CP] Embed Pods Frameworks */,
+				663B3B1D9C48FB4077B1D840 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -388,17 +459,177 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1CEA2640996A6FC80CCA1C34 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sonq/Pods-sonq-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		517CC7499C24434A92EDDB29 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sonq-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B424396089CB7D9BD5B8144 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sonqUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		663B3B1D9C48FB4077B1D840 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sonqUITests/Pods-sonqUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		813FA4E35DFA2124ADF305DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sonqTests/Pods-sonqTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E38781E584ED802522766FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-sonq/Pods-sonq-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/QRCode/QRCode.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCode.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sonq/Pods-sonq-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A27DE917A7A6201453497256 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sonqUITests/Pods-sonqUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7E69862A4097C362A979841 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sonqTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F49F1F87BE239C0763A542D9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sonqTests/Pods-sonqTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2214CCBB22226D7100843448 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				221F5CAA2223677400B9A39A /* QueueViewController.swift in Sources */,
-				221F5C9B2223656A00B9A39A /* QueueViewController.swift in Sources */,
 				221F5CA8222365E300B9A39A /* SearchViewController.swift in Sources */,
 				221F5CA02223659300B9A39A /* QRViewController.swift in Sources */,
+				2240420D22504B3A0041EDF4 /* Networking.swift in Sources */,
 				2214CCC522226D7100843448 /* ViewController.swift in Sources */,
 				2214CCC322226D7100843448 /* AppDelegate.swift in Sources */,
+				224042102250573C0041EDF4 /* SongModel.swift in Sources */,
+				22404212225062050041EDF4 /* SongCellModel.swift in Sources */,
 				221F5CAF222367EC00B9A39A /* Utilities.swift in Sources */,
 				221F5C97222364D600B9A39A /* PlayerViewController.swift in Sources */,
 				221F5CA4222365BE00B9A39A /* SettingsViewController.swift in Sources */,
@@ -574,14 +805,12 @@
 		};
 		2214CCE822226D7400843448 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F85D6A4425AC270398D5D20 /* Pods-sonq.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sonq/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -591,14 +820,12 @@
 		};
 		2214CCE922226D7400843448 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59C2911EF9364B4112FF21A7 /* Pods-sonq.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sonq/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -608,16 +835,13 @@
 		};
 		2214CCEB22226D7400843448 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDBBC97E86C4D9E06C909632 /* Pods-sonqTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sonqTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonqTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -628,16 +852,13 @@
 		};
 		2214CCEC22226D7400843448 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DF2B2A572F5965D6001D23A /* Pods-sonqTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sonqTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonqTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -648,15 +869,12 @@
 		};
 		2214CCEE22226D7400843448 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 824BE49D7BF6CE35AE787366 /* Pods-sonqUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sonqUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonqUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -667,15 +885,12 @@
 		};
 		2214CCEF22226D7400843448 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB388D53C6F07C5E540EBA19 /* Pods-sonqUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sonqUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonqUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

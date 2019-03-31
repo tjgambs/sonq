@@ -1,0 +1,25 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.3'
+
+target 'sonq' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Titan
+  pod 'Alamofire', '~> 4.8.2'
+  pod "PromiseKit", "~> 6.8"
+  pod 'AlamofireImage', '~> 3.3'
+  pod 'SwiftyJSON'
+  pod 'QRCode'
+  
+  target 'sonqTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'sonqUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

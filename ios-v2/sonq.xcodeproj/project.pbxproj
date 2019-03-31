@@ -24,6 +24,14 @@
 		2240420D22504B3A0041EDF4 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240420C22504B3A0041EDF4 /* Networking.swift */; };
 		224042102250573C0041EDF4 /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240420F2250573C0041EDF4 /* SongModel.swift */; };
 		22404212225062050041EDF4 /* SongCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22404211225062050041EDF4 /* SongCellModel.swift */; };
+		224042142250847D0041EDF4 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224042132250847D0041EDF4 /* Globals.swift */; };
+		22404222225089690041EDF4 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240421F225089680041EDF4 /* SpotifyAuthentication.framework */; };
+		22404223225089690041EDF4 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22404220225089680041EDF4 /* SpotifyAudioPlayback.framework */; };
+		22404224225089690041EDF4 /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22404221225089690041EDF4 /* SpotifyMetadata.framework */; };
+		2240422922508A780041EDF4 /* BridgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240422822508A780041EDF4 /* BridgeViewController.m */; };
+		2240422E22508EC50041EDF4 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240422D22508EC50041EDF4 /* HostViewController.swift */; };
+		2240423222509CE90041EDF4 /* SpotifyLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240423122509CE90041EDF4 /* SpotifyLogin.swift */; };
+		224042372250A7780041EDF4 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224042362250A7780041EDF4 /* MediaPlayer.swift */; };
 		89A8765D5428E15010118CAC /* Pods_sonq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD9B433652C3A149F9201B6D /* Pods_sonq.framework */; };
 		8A60CF0F064CBCFC914BB617 /* Pods_sonqTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4035D3035E212E76FD63C1C /* Pods_sonqTests.framework */; };
 		A87507EDEE320C46022D7743 /* Pods_sonqUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD74030816FB0F99B000C0F6 /* Pods_sonqUITests.framework */; };
@@ -70,6 +78,16 @@
 		2240420C22504B3A0041EDF4 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		2240420F2250573C0041EDF4 /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModel.swift; sourceTree = "<group>"; };
 		22404211225062050041EDF4 /* SongCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCellModel.swift; sourceTree = "<group>"; };
+		224042132250847D0041EDF4 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		2240421F225089680041EDF4 /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
+		22404220225089680041EDF4 /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
+		22404221225089690041EDF4 /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
+		2240422622508A770041EDF4 /* sonq-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sonq-Bridging-Header.h"; sourceTree = "<group>"; };
+		2240422722508A780041EDF4 /* BridgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeViewController.h; sourceTree = "<group>"; };
+		2240422822508A780041EDF4 /* BridgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BridgeViewController.m; sourceTree = "<group>"; };
+		2240422D22508EC50041EDF4 /* HostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		2240423122509CE90041EDF4 /* SpotifyLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLogin.swift; sourceTree = "<group>"; };
+		224042362250A7780041EDF4 /* MediaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
 		2DF2B2A572F5965D6001D23A /* Pods-sonqTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonqTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sonqTests/Pods-sonqTests.release.xcconfig"; sourceTree = "<group>"; };
 		59C2911EF9364B4112FF21A7 /* Pods-sonq.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonq.release.xcconfig"; path = "Pods/Target Support Files/Pods-sonq/Pods-sonq.release.xcconfig"; sourceTree = "<group>"; };
 		7F85D6A4425AC270398D5D20 /* Pods-sonq.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonq.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sonq/Pods-sonq.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,7 +104,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22404224225089690041EDF4 /* SpotifyMetadata.framework in Frameworks */,
 				89A8765D5428E15010118CAC /* Pods_sonq.framework in Frameworks */,
+				22404222225089690041EDF4 /* SpotifyAuthentication.framework in Frameworks */,
+				22404223225089690041EDF4 /* SpotifyAudioPlayback.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,12 +133,18 @@
 		2214CCB622226D7100843448 = {
 			isa = PBXGroup;
 			children = (
+				2240422722508A780041EDF4 /* BridgeViewController.h */,
+				2240422822508A780041EDF4 /* BridgeViewController.m */,
+				22404220225089680041EDF4 /* SpotifyAudioPlayback.framework */,
+				2240421F225089680041EDF4 /* SpotifyAuthentication.framework */,
+				22404221225089690041EDF4 /* SpotifyMetadata.framework */,
 				2214CCC122226D7100843448 /* sonq */,
 				2214CCD622226D7400843448 /* sonqTests */,
 				2214CCE122226D7400843448 /* sonqUITests */,
 				2214CCC022226D7100843448 /* Products */,
 				5A8FFB095A8EA2CACF0BC002 /* Pods */,
 				7B5BBB40E8B04F4ED1CEC3EF /* Frameworks */,
+				2240422622508A770041EDF4 /* sonq-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,6 +208,7 @@
 		221F5C8F2223641D00B9A39A /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				224042332250A7020041EDF4 /* Logic */,
 				221F5C932223644100B9A39A /* Views */,
 			);
 			path = Player;
@@ -262,6 +290,8 @@
 		221F5CAB222367C700B9A39A /* Party */ = {
 			isa = PBXGroup;
 			children = (
+				2240422A22508C9B0041EDF4 /* Create */,
+				224042132250847D0041EDF4 /* Globals.swift */,
 				221F5CAC222367D000B9A39A /* Main */,
 			);
 			path = Party;
@@ -298,6 +328,39 @@
 				22404211225062050041EDF4 /* SongCellModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2240422A22508C9B0041EDF4 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				2240423022509CDB0041EDF4 /* Logic */,
+				2240422C22508CC20041EDF4 /* Views */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		2240422C22508CC20041EDF4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2240422D22508EC50041EDF4 /* HostViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2240423022509CDB0041EDF4 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				2240423122509CE90041EDF4 /* SpotifyLogin.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		224042332250A7020041EDF4 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				224042362250A7780041EDF4 /* MediaPlayer.swift */,
+			);
+			path = Logic;
 			sourceTree = "<group>";
 		};
 		5A8FFB095A8EA2CACF0BC002 /* Pods */ = {
@@ -400,6 +463,7 @@
 				TargetAttributes = {
 					2214CCBE22226D7100843448 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					2214CCD222226D7400843448 = {
 						CreatedOnToolsVersion = 10.1;
@@ -624,12 +688,17 @@
 			files = (
 				221F5CAA2223677400B9A39A /* QueueViewController.swift in Sources */,
 				221F5CA8222365E300B9A39A /* SearchViewController.swift in Sources */,
+				224042372250A7780041EDF4 /* MediaPlayer.swift in Sources */,
 				221F5CA02223659300B9A39A /* QRViewController.swift in Sources */,
+				2240423222509CE90041EDF4 /* SpotifyLogin.swift in Sources */,
 				2240420D22504B3A0041EDF4 /* Networking.swift in Sources */,
 				2214CCC522226D7100843448 /* ViewController.swift in Sources */,
+				2240422922508A780041EDF4 /* BridgeViewController.m in Sources */,
 				2214CCC322226D7100843448 /* AppDelegate.swift in Sources */,
 				224042102250573C0041EDF4 /* SongModel.swift in Sources */,
 				22404212225062050041EDF4 /* SongCellModel.swift in Sources */,
+				224042142250847D0041EDF4 /* Globals.swift in Sources */,
+				2240422E22508EC50041EDF4 /* HostViewController.swift in Sources */,
 				221F5CAF222367EC00B9A39A /* Utilities.swift in Sources */,
 				221F5C97222364D600B9A39A /* PlayerViewController.swift in Sources */,
 				221F5CA4222365BE00B9A39A /* SettingsViewController.swift in Sources */,
@@ -808,11 +877,21 @@
 			baseConfigurationReference = 7F85D6A4425AC270398D5D20 /* Pods-sonq.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = sonq/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "sonq-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -823,11 +902,20 @@
 			baseConfigurationReference = 59C2911EF9364B4112FF21A7 /* Pods-sonq.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = sonq/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "sonq-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -841,7 +929,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sonqTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonqTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -858,7 +950,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sonqTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonqTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -874,7 +970,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sonqUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonqUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -890,7 +990,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sonqUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonq.sonqUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

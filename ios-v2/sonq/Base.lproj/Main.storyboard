@@ -24,6 +24,78 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Host View Controller-->
+        <scene sceneID="fmi-7R-dWp">
+            <objects>
+                <viewController id="SQF-u2-MaE" customClass="HostViewController" customModule="sonq" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cFW-AM-WO5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="ex0-qa-UIY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect your Spotify Premium account to host a party." textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7S-h8-4Xg">
+                                <rect key="frame" x="30" y="144" width="354" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiV-yH-N1e">
+                                <rect key="frame" x="30" y="194" width="250" height="35"/>
+                                <color key="backgroundColor" red="0.93481594320000005" green="0.16604864599999999" blue="0.3922282755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="jjC-E4-L0D"/>
+                                    <constraint firstAttribute="height" constant="35" id="qVF-Za-Bdg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <state key="normal" title="Connect to Spotify">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="connectToSpotify:" destination="SQF-u2-MaE" eventType="touchUpInside" id="EWF-z3-abg"/>
+                                    <segue destination="d54-Qk-0Ut" kind="show" identifier="CreateParty" id="pBu-9b-VdN"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Host party" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRy-fw-gYj">
+                                <rect key="frame" x="30" y="94" width="168" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party guests do not need a Spotify account to add music to the queue." textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnG-al-MYK">
+                                <rect key="frame" x="30" y="239" width="354" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="u7S-h8-4Xg" secondAttribute="trailing" constant="30" id="Dfo-dm-1fg"/>
+                            <constraint firstItem="u7S-h8-4Xg" firstAttribute="top" secondItem="SRy-fw-gYj" secondAttribute="bottom" constant="10" id="SZM-b9-Lm0"/>
+                            <constraint firstAttribute="trailing" secondItem="MnG-al-MYK" secondAttribute="trailing" constant="30" id="Srx-cT-0Bp"/>
+                            <constraint firstItem="u7S-h8-4Xg" firstAttribute="leading" secondItem="9jh-P8-H2c" secondAttribute="leading" constant="30" id="VDQ-xQ-sMh"/>
+                            <constraint firstItem="SRy-fw-gYj" firstAttribute="top" secondItem="9jh-P8-H2c" secondAttribute="top" constant="50" id="XRd-dD-AwM"/>
+                            <constraint firstItem="MnG-al-MYK" firstAttribute="leading" secondItem="9jh-P8-H2c" secondAttribute="leading" constant="30" id="aqx-rw-KSV"/>
+                            <constraint firstItem="jiV-yH-N1e" firstAttribute="top" secondItem="u7S-h8-4Xg" secondAttribute="bottom" constant="10" id="cre-yw-wj4"/>
+                            <constraint firstItem="MnG-al-MYK" firstAttribute="top" secondItem="jiV-yH-N1e" secondAttribute="bottom" constant="10" id="dtj-qj-Lxr"/>
+                            <constraint firstItem="jiV-yH-N1e" firstAttribute="leading" secondItem="9jh-P8-H2c" secondAttribute="leading" constant="30" id="iCC-BX-rHE"/>
+                            <constraint firstItem="SRy-fw-gYj" firstAttribute="leading" secondItem="9jh-P8-H2c" secondAttribute="leading" constant="30" id="w39-CX-ZZ2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9jh-P8-H2c"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qlv-Ze-uKm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="177" y="-594"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -59,7 +131,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="d54-Qk-0Ut" kind="show" id="lOA-va-L1O"/>
+                                    <segue destination="SQF-u2-MaE" kind="show" id="IOt-QE-Ugl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNO-zd-AYm">
@@ -300,7 +372,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Queue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLU-DZ-h1d">
-                                <rect key="frame" x="30" y="94" width="108" height="40"/>
+                                <rect key="frame" x="30" y="94" width="100.5" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -428,37 +500,37 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sonq.fm was created by Tim Gamble, Cody Dietrich and Nina Keoborakot. Party on!" textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZY-70-xKg">
-                                <rect key="frame" x="30" y="193" width="354" height="40"/>
+                                <rect key="frame" x="30" y="192" width="354" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ending the Party will clear the Queue and remove all party guests." textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Siq-KO-DGk">
-                                <rect key="frame" x="30" y="302" width="354" height="40"/>
+                                <rect key="frame" x="30" y="300" width="354" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gq4-aE-6bX">
-                                <rect key="frame" x="30" y="154" width="70" height="29"/>
+                                <rect key="frame" x="30" y="154" width="64.5" height="28"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Party" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0io-pP-GwY">
-                                <rect key="frame" x="30" y="263" width="110" height="29"/>
+                                <rect key="frame" x="30" y="262" width="105" height="28"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gf8-04-YcW">
-                                <rect key="frame" x="30" y="94" width="133" height="40"/>
+                                <rect key="frame" x="30" y="94" width="125" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJs-3b-e1V">
-                                <rect key="frame" x="30" y="352" width="200" height="35"/>
+                                <rect key="frame" x="30" y="350" width="200" height="35"/>
                                 <color key="backgroundColor" red="0.93481594320000005" green="0.16604864599999999" blue="0.3922282755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="8JI-g4-z04"/>
@@ -515,6 +587,6 @@
         <image name="settings" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fUL-Bd-TIX"/>
+        <segue reference="pBu-9b-VdN"/>
     </inferredMetricsTieBreakers>
 </document>

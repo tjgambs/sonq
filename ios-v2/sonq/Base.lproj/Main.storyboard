@@ -440,22 +440,36 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4f3-iF-TuT">
+                                <rect key="frame" x="57" y="298" width="300" height="300"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="jgg-m9-YL2"/>
+                                    <constraint firstAttribute="width" constant="300" id="qo3-B3-Wx7"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="DEy-WF-VzF" firstAttribute="leading" secondItem="hLH-lq-H0l" secondAttribute="leading" constant="30" id="0Sb-S3-XNN"/>
                             <constraint firstItem="ZpV-Ws-0zR" firstAttribute="leading" secondItem="hLH-lq-H0l" secondAttribute="leading" constant="30" id="INT-e5-jsc"/>
                             <constraint firstItem="hLH-lq-H0l" firstAttribute="trailing" secondItem="DEy-WF-VzF" secondAttribute="trailing" constant="30" id="LCF-VQ-iC5"/>
+                            <constraint firstItem="4f3-iF-TuT" firstAttribute="centerY" secondItem="TqO-dC-mYy" secondAttribute="centerY" id="LWl-gN-Crz"/>
                             <constraint firstItem="DEy-WF-VzF" firstAttribute="top" secondItem="ZpV-Ws-0zR" secondAttribute="bottom" constant="10" id="NKT-r8-gKz"/>
                             <constraint firstItem="JUB-Z8-Qbn" firstAttribute="top" secondItem="TqO-dC-mYy" secondAttribute="top" id="RtC-pY-0cb"/>
                             <constraint firstItem="JUB-Z8-Qbn" firstAttribute="leading" secondItem="hLH-lq-H0l" secondAttribute="leading" id="Vy6-UA-WbI"/>
                             <constraint firstItem="ZpV-Ws-0zR" firstAttribute="top" secondItem="hLH-lq-H0l" secondAttribute="top" constant="50" id="qgh-aq-l9x"/>
                             <constraint firstAttribute="bottom" secondItem="JUB-Z8-Qbn" secondAttribute="bottom" id="qp8-r8-hu4"/>
+                            <constraint firstItem="4f3-iF-TuT" firstAttribute="centerX" secondItem="TqO-dC-mYy" secondAttribute="centerX" id="wkY-vB-YRn"/>
                             <constraint firstItem="JUB-Z8-Qbn" firstAttribute="trailing" secondItem="hLH-lq-H0l" secondAttribute="trailing" id="zSb-mm-ycH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hLH-lq-H0l"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="QR code" image="qr" id="2vq-5C-D5l"/>
+                    <connections>
+                        <outlet property="qrCodeImage" destination="4f3-iF-TuT" id="aDh-GT-PTM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKe-Bm-yUI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

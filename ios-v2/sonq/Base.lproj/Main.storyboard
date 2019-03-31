@@ -371,6 +371,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="pyW-nd-92t">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Queue is empty. Search for songs to add to the queue." textAlignment="center" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqF-Lo-cdG">
+                                <rect key="frame" x="20" y="428" width="374" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Queue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLU-DZ-h1d">
                                 <rect key="frame" x="30" y="94" width="100.5" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
@@ -383,6 +389,10 @@
                             <constraint firstItem="pyW-nd-92t" firstAttribute="leading" secondItem="dzm-L3-Ful" secondAttribute="leading" id="0KK-Mf-ILy"/>
                             <constraint firstAttribute="bottom" secondItem="pyW-nd-92t" secondAttribute="bottom" id="JTW-kQ-eaU"/>
                             <constraint firstItem="pyW-nd-92t" firstAttribute="trailing" secondItem="dzm-L3-Ful" secondAttribute="trailing" id="KRa-hg-A0B"/>
+                            <constraint firstItem="lqF-Lo-cdG" firstAttribute="leading" secondItem="dzm-L3-Ful" secondAttribute="leading" constant="20" id="Rti-3X-VJU"/>
+                            <constraint firstItem="lqF-Lo-cdG" firstAttribute="centerY" secondItem="tKp-A4-gLX" secondAttribute="centerY" id="Sxl-Qa-K59"/>
+                            <constraint firstItem="lqF-Lo-cdG" firstAttribute="centerX" secondItem="tKp-A4-gLX" secondAttribute="centerX" id="TSJ-rP-caW"/>
+                            <constraint firstAttribute="trailing" secondItem="lqF-Lo-cdG" secondAttribute="trailing" constant="20" id="aHG-Rd-GqL"/>
                             <constraint firstItem="rLU-DZ-h1d" firstAttribute="leading" secondItem="dzm-L3-Ful" secondAttribute="leading" constant="30" id="uaY-WY-UP1"/>
                             <constraint firstItem="rLU-DZ-h1d" firstAttribute="top" secondItem="dzm-L3-Ful" secondAttribute="top" constant="50" id="w91-ma-Jby"/>
                             <constraint firstItem="pyW-nd-92t" firstAttribute="top" secondItem="tKp-A4-gLX" secondAttribute="top" id="xKK-7S-4sX"/>
@@ -390,6 +400,9 @@
                         <viewLayoutGuide key="safeArea" id="dzm-L3-Ful"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Queue" image="queue" id="jzJ-Kj-A9o"/>
+                    <connections>
+                        <outlet property="emptyText" destination="lqF-Lo-cdG" id="OQH-sa-6vw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Imx-7I-PB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

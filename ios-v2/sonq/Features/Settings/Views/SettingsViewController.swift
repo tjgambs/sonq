@@ -21,6 +21,7 @@ class SettingsViewController: ViewController {
             preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "End Party", style: .destructive, handler: { (_) in
             Globals.partyId = nil
+            MediaPlayer.shared.endParty()
             self.performSegue(withIdentifier: "EndParty", sender: self)
         }))
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))

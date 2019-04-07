@@ -34,6 +34,11 @@ class MediaPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         }
     }
     
+    func endParty() {
+        currentSong = nil
+        self.pause()
+    }
+    
     func play(song: SongModel) {
         self.currentSong = song
         player?.playSpotifyURI(song.songURL, startingWith: 0, startingWithPosition: 0, callback: { (error) in

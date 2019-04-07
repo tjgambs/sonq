@@ -14,9 +14,9 @@ class QRScannerViewController: UIViewController {
     var captureSession = AVCaptureSession()
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
+    @IBOutlet weak var backButton: UIButton!
     
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.qr]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +47,19 @@ class QRScannerViewController: UIViewController {
             qrCodeFrameView.layer.borderWidth = 2
             view.addSubview(qrCodeFrameView)
             view.bringSubviewToFront(qrCodeFrameView)
+            view.addSubview(backButton)
+            view.bringSubviewToFront(backButton)
+        }
+        let swipeRight = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(swipeRightAction))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc func swipeRightAction() {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "BackSegue", sender: self)
         }
     }
 }

@@ -13,6 +13,17 @@ class HostViewController: ViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         SpotifyLogin.shared.delegate = self
+        let swipeRight = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(swipeRightAction))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc func swipeRightAction() {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "BackSegue", sender: self)
+        }
     }
 
     @IBAction func connectToSpotify(_ sender: Any) {

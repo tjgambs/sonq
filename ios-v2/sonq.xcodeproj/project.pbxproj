@@ -10,7 +10,6 @@
 		2214CCC322226D7100843448 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214CCC222226D7100843448 /* AppDelegate.swift */; };
 		2214CCC522226D7100843448 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214CCC422226D7100843448 /* ViewController.swift */; };
 		2214CCC822226D7100843448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2214CCC622226D7100843448 /* Main.storyboard */; };
-		2214CCCA22226D7300843448 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2214CCC922226D7300843448 /* Assets.xcassets */; };
 		2214CCCD22226D7300843448 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2214CCCB22226D7300843448 /* LaunchScreen.storyboard */; };
 		2214CCD822226D7400843448 /* sonqTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214CCD722226D7400843448 /* sonqTests.swift */; };
 		2214CCE322226D7400843448 /* sonqUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214CCE222226D7400843448 /* sonqUITests.swift */; };
@@ -34,6 +33,9 @@
 		2240422E22508EC50041EDF4 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240422D22508EC50041EDF4 /* HostViewController.swift */; };
 		2240423222509CE90041EDF4 /* SpotifyLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240423122509CE90041EDF4 /* SpotifyLogin.swift */; };
 		224042372250A7780041EDF4 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224042362250A7780041EDF4 /* MediaPlayer.swift */; };
+		2251BD2D225A4B930042E43B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2251BD2C225A4B930042E43B /* Images.xcassets */; };
+		2251BD2F225A4C360042E43B /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2251BD2E225A4C360042E43B /* SegueFromLeft.swift */; };
+		2251BD31225A4D1D0042E43B /* SegueFromRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2251BD30225A4D1D0042E43B /* SegueFromRight.swift */; };
 		89A8765D5428E15010118CAC /* Pods_sonq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD9B433652C3A149F9201B6D /* Pods_sonq.framework */; };
 		8A60CF0F064CBCFC914BB617 /* Pods_sonqTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4035D3035E212E76FD63C1C /* Pods_sonqTests.framework */; };
 		A87507EDEE320C46022D7743 /* Pods_sonqUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD74030816FB0F99B000C0F6 /* Pods_sonqUITests.framework */; };
@@ -61,7 +63,6 @@
 		2214CCC222226D7100843448 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2214CCC422226D7100843448 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2214CCC722226D7100843448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2214CCC922226D7300843448 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2214CCCC22226D7300843448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2214CCCE22226D7300843448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2214CCD322226D7400843448 /* sonqTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sonqTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +93,9 @@
 		2240422D22508EC50041EDF4 /* HostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		2240423122509CE90041EDF4 /* SpotifyLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLogin.swift; sourceTree = "<group>"; };
 		224042362250A7780041EDF4 /* MediaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
+		2251BD2C225A4B930042E43B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
+		2251BD2E225A4C360042E43B /* SegueFromLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
+		2251BD30225A4D1D0042E43B /* SegueFromRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueFromRight.swift; sourceTree = "<group>"; };
 		2DF2B2A572F5965D6001D23A /* Pods-sonqTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonqTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sonqTests/Pods-sonqTests.release.xcconfig"; sourceTree = "<group>"; };
 		59C2911EF9364B4112FF21A7 /* Pods-sonq.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonq.release.xcconfig"; path = "Pods/Target Support Files/Pods-sonq/Pods-sonq.release.xcconfig"; sourceTree = "<group>"; };
 		7F85D6A4425AC270398D5D20 /* Pods-sonq.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sonq.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sonq/Pods-sonq.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,9 +172,9 @@
 				221F5C88222363A700B9A39A /* Features */,
 				221F5C8522234EA700B9A39A /* fonts */,
 				2214CCC222226D7100843448 /* AppDelegate.swift */,
+				2251BD2C225A4B930042E43B /* Images.xcassets */,
 				2214CCC422226D7100843448 /* ViewController.swift */,
 				2214CCC622226D7100843448 /* Main.storyboard */,
-				2214CCC922226D7300843448 /* Assets.xcassets */,
 				2214CCCB22226D7300843448 /* LaunchScreen.storyboard */,
 				2214CCCE22226D7300843448 /* Info.plist */,
 			);
@@ -314,6 +318,8 @@
 			isa = PBXGroup;
 			children = (
 				221F5CAE222367EC00B9A39A /* Utilities.swift */,
+				2251BD2E225A4C360042E43B /* SegueFromLeft.swift */,
+				2251BD30225A4D1D0042E43B /* SegueFromRight.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -523,7 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2214CCCD22226D7300843448 /* LaunchScreen.storyboard in Resources */,
-				2214CCCA22226D7300843448 /* Assets.xcassets in Resources */,
+				2251BD2D225A4B930042E43B /* Images.xcassets in Resources */,
 				2214CCC822226D7100843448 /* Main.storyboard in Resources */,
 				221F5C8622234EA700B9A39A /* fonts in Resources */,
 			);
@@ -714,7 +720,9 @@
 				224042372250A7780041EDF4 /* MediaPlayer.swift in Sources */,
 				221F5CA02223659300B9A39A /* QRViewController.swift in Sources */,
 				2240423222509CE90041EDF4 /* SpotifyLogin.swift in Sources */,
+				2251BD31225A4D1D0042E43B /* SegueFromRight.swift in Sources */,
 				2240420D22504B3A0041EDF4 /* Networking.swift in Sources */,
+				2251BD2F225A4C360042E43B /* SegueFromLeft.swift in Sources */,
 				2214CCC522226D7100843448 /* ViewController.swift in Sources */,
 				2240422922508A780041EDF4 /* BridgeViewController.m in Sources */,
 				2214CCC322226D7100843448 /* AppDelegate.swift in Sources */,

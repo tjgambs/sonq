@@ -6,23 +6,8 @@ app.config.from_object("config")
 
 db = SQLAlchemy(app)
 
-
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-
-spotify_client = spotipy.Spotify(
-    client_credentials_manager=SpotifyClientCredentials(
-        client_id='a9f554e8bb984585a1113624550330bb',
-        client_secret='5ba840288aad4545a879d0dad451720a',
-        proxies=None))
-
-
-from app.controllers import default
-from app.controllers.v1.titan import titan
-
-app.register_blueprint(default.mod)
-app.register_blueprint(titan.mod)
-
+from app.controllers import sonq
+app.register_blueprint(sonq.mod)
 
 def add_cors_headers(response):
     response.headers['Access-Control-Allow-Origin'] = '*'

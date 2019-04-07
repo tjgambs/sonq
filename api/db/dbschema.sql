@@ -1,34 +1,39 @@
 CREATE TABLE device (
-    id text PRIMARY KEY,
-    username text
+    id varchar primary key,
+    username varchar,
+    created_at timestamp
 );
-
-CREATE UNIQUE INDEX device_pkey ON device(id text_ops);
-
 
 CREATE TABLE party (
-    id text PRIMARY KEY,
-    created_by text REFERENCES device(id) ON DELETE CASCADE,
-    name text,
-    created_at timestamp without time zone DEFAULT now()
+    id varchar(8) primary key,
+    created_by varchar references device(id),
+    name varchar,
+    created_at timestamp,
+    ended_at timestamp
 );
+CREATE INDEX ON party (created_by);
 
-CREATE UNIQUE INDEX party_pkey ON party(id text_ops);
-
+CREATE TABLE guests (
+    device_id varchar references device(id),
+    party_id varchar(8) references party(id),
+    joined_at timestamp,
+    left_at timestamp
+);
+CREATE INDEX ON guests (party_id);
 
 CREATE TABLE queue (
-    "partyID" text REFERENCES party(id) ON DELETE CASCADE,
-    name text,
-    artist text,
-    duration text,
-    "durationInSeconds" double precision,
-    "imageURL" text,
-    "songURL" text,
-    created_at timestamp without time zone DEFAULT now(),
+    party_id varchar(8) references party(id),
+    name varchar,
+    artist varchar,
+    album varchar,
+    duration varchar,
+    duration_in_seconds double precision,
+    image_url varchar,
+    song_url varchar,
+    created_at timestamp,
+    deleted_at timestamp,
     position integer,
-    added_by text REFERENCES device(id) ON DELETE CASCADE,
-    is_playing boolean DEFAULT false,
-    CONSTRAINT queue_pkey PRIMARY KEY ("partyID", "songURL")
+    added_by varchar references device(id),
+    status integer
 );
-
-CREATE UNIQUE INDEX queue_pkey ON queue("partyID" text_ops,"songURL" text_ops);
+CREATE INDEX ON queue (party_id);

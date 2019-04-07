@@ -78,9 +78,19 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             qrCodeFrameView?.frame = barCodeObject!.bounds
             if metadataObj.stringValue != nil {
                 let partyId = metadataObj.stringValue!
-                print(partyId)
-                // TODO: Check to see if the party id is valid before proceeding
+                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                captureSession.stopRunning()
                 
+                // TODO: Register this deviceID if it has not been already.
+                // TODO: Check to see if the party id is valid
+                // TODO: Add this deviceID to the party
+                Globals.partyId = partyId
+                Globals.isHost = false
+                print(Globals.partyId!, Globals.deviceId!)
+                
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "JoinParty", sender: self)
+                }
             }
         }
     }

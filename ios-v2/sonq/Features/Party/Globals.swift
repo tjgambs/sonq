@@ -10,4 +10,6 @@ import Foundation
 
 struct Globals {
     static var partyId: String?
+    static let deviceId: String? = UIDevice.current.identifierForVendor?.uuidString
+    static var isHost: Bool?
 }

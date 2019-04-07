@@ -28,6 +28,17 @@ class JoinViewController: ViewController  {
     }
     
     @IBAction func submitPartyId(_ sender: UIButton) {
-        // TODO: Check and make sure this party id is legit
+        let partyId = partyIdTextField.text
+        
+        // TODO: Register this deviceID if it has not been already.
+        // TODO: Check to see if the party id is valid
+        // TODO: Add this deviceID to the party
+        Globals.partyId = partyId
+        Globals.isHost = false
+        print(Globals.partyId!, Globals.deviceId!)
+        
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "JoinParty", sender: self)
+        }
     }
 }

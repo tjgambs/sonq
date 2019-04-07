@@ -36,6 +36,12 @@ extension HostViewController: SpotifyLoginDelegate {
         DispatchQueue.main.async {
             SpotifyLogin.shared.preparePlayer()
             Globals.partyId = Utilities.generatePartyId()
+            Globals.isHost = true
+                
+            // TODO: Register this deviceID if it has not been already.
+            // TODO: Create a party with this partyID for this deviceID
+            print(Globals.partyId!, Globals.deviceId!)
+                
             self.performSegue(withIdentifier: "CreateParty", sender: self)
         }
     }

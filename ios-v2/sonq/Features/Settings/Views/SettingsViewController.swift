@@ -36,6 +36,8 @@ class SettingsViewController: ViewController {
             alert.addAction(UIAlertAction(title: "End Party", style: .destructive, handler: { (_) in
                 Globals.partyId = nil
                 MediaPlayer.shared.endParty()
+                
+                // TODO: Notify the API that this party has ended.
                 self.performSegue(withIdentifier: "EndParty", sender: self)
             }))
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
@@ -47,6 +49,8 @@ class SettingsViewController: ViewController {
                 preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "Leave Party", style: .destructive, handler: { (_) in
                 Globals.partyId = nil
+                
+                // TODO: Notify the API that this user has left the party.
                 self.performSegue(withIdentifier: "EndParty", sender: self)
             }))
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))

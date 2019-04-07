@@ -20,6 +20,7 @@ class SearchViewController: ViewController  {
     var refreshTokenTimer: Timer!
     
     fileprivate var searchResults: [SongModel] = []
+    var userAddedSongs: [SongModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class SearchViewController: ViewController  {
         self.searchResultTable.delegate = self
         self.searchResultTable.dataSource = self
         self.searchResultTable.keyboardDismissMode = .onDrag
+        // TODO: Fetch the songs added by this user and populate them into the userAddedSongs var
     }
 
     @objc func refreshToken() -> Void {
@@ -124,10 +126,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedSong = self.searchResults[indexPath.row]
         // TODO: Check and make sure this song isn't in the queue, then add it.
+        // TODO: Push this the the userAddedSongs variable to keep track of what's been added
         print(selectedSong)
         
         
-        
+        // TEMP: Play the song, delete once connected to the API.
         MediaPlayer.shared.play(song: selectedSong)
     }
     

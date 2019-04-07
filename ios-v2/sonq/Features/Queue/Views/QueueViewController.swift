@@ -40,7 +40,7 @@ class QueueViewController: ViewController {
     }
     
     @objc func refreshQueue() {
-        // TODO: Go fetch the queue and populate it into the searchResults
+        // TODO: Go fetch the queue from the API and populate it into the searchResults
         
         self.queueResultTable.reloadData()
         self.updateLabel()

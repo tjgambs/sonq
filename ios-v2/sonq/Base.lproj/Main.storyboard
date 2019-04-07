@@ -371,14 +371,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="pyW-nd-92t">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Queue is empty. Search for songs to add to the queue." textAlignment="center" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqF-Lo-cdG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The queue is empty. Search for songs to add to the queue." textAlignment="center" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqF-Lo-cdG">
                                 <rect key="frame" x="20" y="428" width="374" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Queue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLU-DZ-h1d">
-                                <rect key="frame" x="30" y="94" width="100.5" height="40"/>
+                                <rect key="frame" x="30" y="94" width="107.5" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -447,7 +447,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party guests can scan this QR code to add songs to the Queue." textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEy-WF-VzF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party guests can scan this QR code or enter the party id to add songs to the queue." textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEy-WF-VzF">
                                 <rect key="frame" x="30" y="144" width="354" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -462,14 +462,22 @@
                                     <constraint firstAttribute="width" constant="300" id="qo3-B3-Wx7"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party ID #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTn-Hy-o3g">
+                                <rect key="frame" x="128" y="608" width="158" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="DEy-WF-VzF" firstAttribute="leading" secondItem="hLH-lq-H0l" secondAttribute="leading" constant="30" id="0Sb-S3-XNN"/>
+                            <constraint firstItem="JTn-Hy-o3g" firstAttribute="centerX" secondItem="TqO-dC-mYy" secondAttribute="centerX" id="2c2-3y-hWz"/>
                             <constraint firstItem="ZpV-Ws-0zR" firstAttribute="leading" secondItem="hLH-lq-H0l" secondAttribute="leading" constant="30" id="INT-e5-jsc"/>
                             <constraint firstItem="hLH-lq-H0l" firstAttribute="trailing" secondItem="DEy-WF-VzF" secondAttribute="trailing" constant="30" id="LCF-VQ-iC5"/>
                             <constraint firstItem="4f3-iF-TuT" firstAttribute="centerY" secondItem="TqO-dC-mYy" secondAttribute="centerY" id="LWl-gN-Crz"/>
                             <constraint firstItem="DEy-WF-VzF" firstAttribute="top" secondItem="ZpV-Ws-0zR" secondAttribute="bottom" constant="10" id="NKT-r8-gKz"/>
+                            <constraint firstItem="JTn-Hy-o3g" firstAttribute="top" secondItem="4f3-iF-TuT" secondAttribute="bottom" constant="10" id="PCZ-Fi-t10"/>
                             <constraint firstItem="JUB-Z8-Qbn" firstAttribute="top" secondItem="TqO-dC-mYy" secondAttribute="top" id="RtC-pY-0cb"/>
                             <constraint firstItem="JUB-Z8-Qbn" firstAttribute="leading" secondItem="hLH-lq-H0l" secondAttribute="leading" id="Vy6-UA-WbI"/>
                             <constraint firstItem="ZpV-Ws-0zR" firstAttribute="top" secondItem="hLH-lq-H0l" secondAttribute="top" constant="50" id="qgh-aq-l9x"/>
@@ -481,6 +489,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="QR code" image="qr" id="2vq-5C-D5l"/>
                     <connections>
+                        <outlet property="partIdLabel" destination="JTn-Hy-o3g" id="A41-7D-5Za"/>
                         <outlet property="qrCodeImage" destination="4f3-iF-TuT" id="aDh-GT-PTM"/>
                     </connections>
                 </viewController>
@@ -539,19 +548,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gq4-aE-6bX">
-                                <rect key="frame" x="30" y="154" width="64.5" height="28"/>
+                                <rect key="frame" x="30" y="154" width="69.5" height="28"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Party" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0io-pP-GwY">
-                                <rect key="frame" x="30" y="262" width="105" height="28"/>
+                                <rect key="frame" x="30" y="262" width="109.5" height="28"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gf8-04-YcW">
-                                <rect key="frame" x="30" y="94" width="125" height="40"/>
+                                <rect key="frame" x="30" y="94" width="133" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

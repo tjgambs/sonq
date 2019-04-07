@@ -24,6 +24,7 @@ extension HostViewController: SpotifyLoginDelegate {
     func didLoginWithSuccess() {
         DispatchQueue.main.async {
             SpotifyLogin.shared.preparePlayer()
+            Globals.partyId = Utilities.generatePartyId()
             self.performSegue(withIdentifier: "CreateParty", sender: self)
         }
     }

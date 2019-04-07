@@ -9,5 +9,5 @@
 import Foundation
 
 struct Globals {
-    static var partyDeviceId: String?
+    static var partyId: String?
 }

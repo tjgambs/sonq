@@ -14,6 +14,7 @@ class MediaPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     static let shared = MediaPlayer()
     
     var player: SPTAudioStreamingController?
+    var currentSong: SongModel?
     
     var isPlaying: Bool {
         if let player = player,
@@ -33,10 +34,11 @@ class MediaPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         }
     }
     
-    func play(track: String) {
-        player?.playSpotifyURI(track, startingWith: 0, startingWithPosition: 0, callback: { (error) in
+    func play(song: SongModel) {
+        self.currentSong = song
+        player?.playSpotifyURI(song.songURL, startingWith: 0, startingWithPosition: 0, callback: { (error) in
             if let error = error {
-                print("There was an error playing the track \(track), this is the error: \(error)")
+                print("There was an error playing the track \(song.songURL), this is the error: \(error)")
             }
         })
     }

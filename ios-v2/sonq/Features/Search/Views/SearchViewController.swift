@@ -123,7 +123,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         // TODO: Check and make sure this song isn't in the queue, then add it.
         print(selectedSong)
         
-        MediaPlayer.shared.play(track: selectedSong.songURL)
+        MediaPlayer.shared.play(song: selectedSong)
     }
     
 }

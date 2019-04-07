@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -108,7 +108,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="eVt-71-5gh">
-                                <rect key="frame" x="82" y="144" width="250" height="250"/>
+                                <rect key="frame" x="82" y="144" width="250.00000000000091" height="250.00000000000091"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="9W3-dI-dLY"/>
                                     <constraint firstAttribute="width" constant="250" id="BUE-cy-R2g"/>
@@ -151,7 +151,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="d54-Qk-0Ut" kind="show" id="fUL-Bd-TIX"/>
+                                    <segue destination="ez6-C8-3r9" kind="show" id="NCH-el-85r"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -438,6 +438,143 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kX5-Aj-rKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="178" y="112"/>
+        </scene>
+        <!--Join View Controller-->
+        <scene sceneID="RUb-AG-B9d">
+            <objects>
+                <viewController id="ez6-C8-3r9" customClass="JoinViewController" customModule="sonq" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="K3W-eh-fJ7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Vz7-3W-V06">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bT-sZ-QYz">
+                                <rect key="frame" x="82" y="548" width="250" height="32"/>
+                                <color key="backgroundColor" red="0.055188067260000001" green="0.058617353439999999" blue="0.14891493319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="vyc-LB-rid"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submitPartyId:" destination="ez6-C8-3r9" eventType="touchUpInside" id="yPg-l2-D4c"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzp-de-4Yr">
+                                <rect key="frame" x="195" y="438" width="24.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a Party ID" textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxq-WJ-Yac">
+                                <rect key="frame" x="82" y="478" width="123" height="20"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YwG-1g-jK0">
+                                <rect key="frame" x="82" y="383" width="250" height="35"/>
+                                <color key="backgroundColor" red="0.93481594320000005" green="0.16604864599999999" blue="0.3922282755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="fNG-dQ-nms"/>
+                                    <constraint firstAttribute="width" constant="250" id="w87-7r-SLw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <state key="normal" title="Scan QR Code">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="bOZ-zp-00M" kind="show" id="k1t-Ib-Ijq"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="i.e. FTfCfNZo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pJH-oW-HW2">
+                                <rect key="frame" x="82" y="508" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="ulr-5F-Uye"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join Party" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksP-vK-e6U">
+                                <rect key="frame" x="30" y="94" width="158" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8bT-sZ-QYz" firstAttribute="top" secondItem="pJH-oW-HW2" secondAttribute="bottom" constant="10" id="1Xa-jd-9An"/>
+                            <constraint firstItem="pJH-oW-HW2" firstAttribute="centerX" secondItem="K3W-eh-fJ7" secondAttribute="centerX" id="2Cj-u5-YLd"/>
+                            <constraint firstItem="ksP-vK-e6U" firstAttribute="leading" secondItem="7Wb-lQ-bgB" secondAttribute="leading" constant="30" id="3Dl-6P-ULL"/>
+                            <constraint firstItem="YwG-1g-jK0" firstAttribute="centerX" secondItem="K3W-eh-fJ7" secondAttribute="centerX" id="9H9-Rb-swm"/>
+                            <constraint firstItem="Zzp-de-4Yr" firstAttribute="centerX" secondItem="K3W-eh-fJ7" secondAttribute="centerX" id="BKS-iy-ZgM"/>
+                            <constraint firstAttribute="bottom" secondItem="Vz7-3W-V06" secondAttribute="bottom" id="Hi0-NT-UGD"/>
+                            <constraint firstItem="pJH-oW-HW2" firstAttribute="top" secondItem="gxq-WJ-Yac" secondAttribute="bottom" constant="10" id="OGp-7m-s6Q"/>
+                            <constraint firstItem="Vz7-3W-V06" firstAttribute="leading" secondItem="7Wb-lQ-bgB" secondAttribute="leading" id="R7N-pI-81i"/>
+                            <constraint firstItem="Zzp-de-4Yr" firstAttribute="top" secondItem="YwG-1g-jK0" secondAttribute="bottom" constant="20" id="SeQ-VZ-mfS"/>
+                            <constraint firstItem="gxq-WJ-Yac" firstAttribute="top" secondItem="Zzp-de-4Yr" secondAttribute="bottom" constant="20" id="V9c-tu-1JB"/>
+                            <constraint firstItem="Vz7-3W-V06" firstAttribute="top" secondItem="K3W-eh-fJ7" secondAttribute="top" id="bWe-O6-r76"/>
+                            <constraint firstItem="Zzp-de-4Yr" firstAttribute="centerY" secondItem="K3W-eh-fJ7" secondAttribute="centerY" id="dXu-7c-OC3"/>
+                            <constraint firstItem="ksP-vK-e6U" firstAttribute="top" secondItem="7Wb-lQ-bgB" secondAttribute="top" constant="50" id="fB2-z3-D8m"/>
+                            <constraint firstItem="Vz7-3W-V06" firstAttribute="trailing" secondItem="7Wb-lQ-bgB" secondAttribute="trailing" id="hc5-ow-nA2"/>
+                            <constraint firstItem="pJH-oW-HW2" firstAttribute="leading" secondItem="gxq-WJ-Yac" secondAttribute="leading" id="ojr-9I-ZU9"/>
+                            <constraint firstItem="8bT-sZ-QYz" firstAttribute="centerX" secondItem="K3W-eh-fJ7" secondAttribute="centerX" id="v67-T4-5ad"/>
+                            <constraint firstItem="8bT-sZ-QYz" firstAttribute="top" secondItem="pJH-oW-HW2" secondAttribute="bottom" constant="10" id="yCS-zB-1qN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7Wb-lQ-bgB"/>
+                    </view>
+                    <connections>
+                        <outlet property="partyIdTextField" destination="pJH-oW-HW2" id="tlI-Nt-0PN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lsg-63-yYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-432" y="876"/>
+        </scene>
+        <!--Scanner View Controller-->
+        <scene sceneID="UbA-lL-bkC">
+            <objects>
+                <viewController id="bOZ-zp-00M" customClass="QRScannerViewController" customModule="sonq" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U9w-5K-hKq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="mx5-3O-Tsq">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="mx5-3O-Tsq" secondAttribute="bottom" id="50q-YM-y47"/>
+                            <constraint firstItem="mx5-3O-Tsq" firstAttribute="leading" secondItem="Wqp-hc-77S" secondAttribute="leading" id="etn-0E-4rb"/>
+                            <constraint firstItem="mx5-3O-Tsq" firstAttribute="trailing" secondItem="Wqp-hc-77S" secondAttribute="trailing" id="k3k-gf-zHl"/>
+                            <constraint firstItem="mx5-3O-Tsq" firstAttribute="top" secondItem="U9w-5K-hKq" secondAttribute="top" id="svw-zg-qC5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wqp-hc-77S"/>
+                    </view>
+                    <connections>
+                        <segue destination="d54-Qk-0Ut" kind="show" identifier="JoinParty" id="rLy-pe-SrQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kMf-N5-APU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="236" y="876"/>
         </scene>
         <!--QR code-->
         <scene sceneID="cex-cP-lOG">
@@ -746,7 +883,7 @@
     </scenes>
     <resources>
         <image name="background" width="1804" height="1242"/>
-        <image name="logo" width="800.15997314453125" height="800.15997314453125"/>
+        <image name="logo" width="3334" height="3334"/>
         <image name="play" width="30" height="30"/>
         <image name="play-button" width="1600" height="1600"/>
         <image name="qr" width="30" height="30"/>
@@ -756,6 +893,6 @@
         <image name="skip-button" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pBu-9b-VdN"/>
+        <segue reference="rLy-pe-SrQ"/>
     </inferredMetricsTieBreakers>
 </document>

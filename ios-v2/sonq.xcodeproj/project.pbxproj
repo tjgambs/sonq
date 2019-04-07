@@ -21,6 +21,8 @@
 		221F5CA8222365E300B9A39A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F5CA7222365E300B9A39A /* SearchViewController.swift */; };
 		221F5CAA2223677400B9A39A /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F5CA92223677400B9A39A /* QueueViewController.swift */; };
 		221F5CAF222367EC00B9A39A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F5CAE222367EC00B9A39A /* Utilities.swift */; };
+		223932E32259B5C300EEE078 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223932E22259B5C300EEE078 /* JoinViewController.swift */; };
+		223932E52259B9AE00EEE078 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223932E42259B9AE00EEE078 /* QRScannerViewController.swift */; };
 		2240420D22504B3A0041EDF4 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240420C22504B3A0041EDF4 /* Networking.swift */; };
 		224042102250573C0041EDF4 /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240420F2250573C0041EDF4 /* SongModel.swift */; };
 		22404212225062050041EDF4 /* SongCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22404211225062050041EDF4 /* SongCellModel.swift */; };
@@ -75,6 +77,8 @@
 		221F5CA7222365E300B9A39A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		221F5CA92223677400B9A39A /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		221F5CAE222367EC00B9A39A /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		223932E22259B5C300EEE078 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
+		223932E42259B9AE00EEE078 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		2240420C22504B3A0041EDF4 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		2240420F2250573C0041EDF4 /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModel.swift; sourceTree = "<group>"; };
 		22404211225062050041EDF4 /* SongCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCellModel.swift; sourceTree = "<group>"; };
@@ -290,6 +294,7 @@
 		221F5CAB222367C700B9A39A /* Party */ = {
 			isa = PBXGroup;
 			children = (
+				223932E02259B52000EEE078 /* Join */,
 				2240422A22508C9B0041EDF4 /* Create */,
 				224042132250847D0041EDF4 /* Globals.swift */,
 				221F5CAC222367D000B9A39A /* Main */,
@@ -311,6 +316,23 @@
 				221F5CAE222367EC00B9A39A /* Utilities.swift */,
 			);
 			path = Logic;
+			sourceTree = "<group>";
+		};
+		223932E02259B52000EEE078 /* Join */ = {
+			isa = PBXGroup;
+			children = (
+				223932E12259B59C00EEE078 /* Views */,
+			);
+			path = Join;
+			sourceTree = "<group>";
+		};
+		223932E12259B59C00EEE078 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				223932E22259B5C300EEE078 /* JoinViewController.swift */,
+				223932E42259B9AE00EEE078 /* QRScannerViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		22404207225043720041EDF4 /* Networking */ = {
@@ -687,6 +709,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				221F5CAA2223677400B9A39A /* QueueViewController.swift in Sources */,
+				223932E32259B5C300EEE078 /* JoinViewController.swift in Sources */,
 				221F5CA8222365E300B9A39A /* SearchViewController.swift in Sources */,
 				224042372250A7780041EDF4 /* MediaPlayer.swift in Sources */,
 				221F5CA02223659300B9A39A /* QRViewController.swift in Sources */,
@@ -699,6 +722,7 @@
 				22404212225062050041EDF4 /* SongCellModel.swift in Sources */,
 				224042142250847D0041EDF4 /* Globals.swift in Sources */,
 				2240422E22508EC50041EDF4 /* HostViewController.swift in Sources */,
+				223932E52259B9AE00EEE078 /* QRScannerViewController.swift in Sources */,
 				221F5CAF222367EC00B9A39A /* Utilities.swift in Sources */,
 				221F5C97222364D600B9A39A /* PlayerViewController.swift in Sources */,
 				221F5CA4222365BE00B9A39A /* SettingsViewController.swift in Sources */,
@@ -879,6 +903,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K8RS6T43D5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -904,6 +929,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K8RS6T43D5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

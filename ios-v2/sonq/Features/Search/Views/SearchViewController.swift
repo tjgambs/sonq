@@ -19,7 +19,7 @@ class SearchViewController: ViewController  {
     var accessToken: String?
     var refreshTokenTimer: Timer!
     
-    fileprivate var searchResults:[SongModel] = []
+    fileprivate var searchResults: [SongModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +75,7 @@ extension SearchViewController: UISearchBarDelegate {
                                 title:"No search results found",
                                 message:"Please try another search keyword.")
                         }
-                        self.searchResults = items.map{ SongModel(json: $0, addedBy: "Tim") }
+                        self.searchResults = items.map{ SongModel(json: $0, addedBy: Globals.deviceName!) }
                         self.view.endEditing(true)
                         self.searchResultTable.reloadData()
                         self.resultsLabel.text = "Results"

@@ -34,6 +34,7 @@ class JoinViewController: ViewController  {
         // TODO: Check to see if the party id is valid
         // TODO: Add this deviceID to the party
         Globals.partyId = partyId
+        Globals.deviceName = "Client"
         Globals.isHost = false
         print(Globals.partyId!, Globals.deviceId!)
         

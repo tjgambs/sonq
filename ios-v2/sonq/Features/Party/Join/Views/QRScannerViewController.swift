@@ -86,6 +86,7 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
                 // TODO: Add this deviceID to the party
                 Globals.partyId = partyId
                 Globals.isHost = false
+                Globals.deviceName = "Client"
                 print(Globals.partyId!, Globals.deviceId!)
                 
                 DispatchQueue.main.async {

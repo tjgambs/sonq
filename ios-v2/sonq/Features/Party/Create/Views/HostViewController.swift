@@ -37,6 +37,7 @@ extension HostViewController: SpotifyLoginDelegate {
             SpotifyLogin.shared.preparePlayer()
             Globals.partyId = Utilities.generatePartyId()
             Globals.isHost = true
+            Globals.deviceName = "Host"
                 
             // TODO: Register this deviceID if it has not been already.
             // TODO: Create a party with this partyID for this deviceID

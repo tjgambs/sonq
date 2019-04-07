@@ -12,4 +12,5 @@ struct Globals {
     static var partyId: String?
     static let deviceId: String? = UIDevice.current.identifierForVendor?.uuidString
     static var isHost: Bool?
+    static var deviceName: String?
 }

@@ -312,15 +312,23 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search results will appear here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hB5-iH-27m">
+                                <rect key="frame" x="87.5" y="437.5" width="239" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4kF-N7-icE" firstAttribute="trailing" secondItem="DfX-gO-DrR" secondAttribute="trailing" constant="20" id="1ms-YJ-Eo4"/>
                             <constraint firstItem="Ywv-OC-YAc" firstAttribute="top" secondItem="HMH-T8-OcV" secondAttribute="top" id="3Sj-y2-CqM"/>
                             <constraint firstItem="DfX-gO-DrR" firstAttribute="bottom" secondItem="4kF-N7-icE" secondAttribute="bottom" id="89a-z4-1r7"/>
+                            <constraint firstItem="hB5-iH-27m" firstAttribute="centerY" secondItem="HMH-T8-OcV" secondAttribute="centerY" id="9Rc-uI-0he"/>
                             <constraint firstItem="Ywv-OC-YAc" firstAttribute="leading" secondItem="4kF-N7-icE" secondAttribute="leading" id="9vo-Ks-E0p"/>
                             <constraint firstItem="8Fi-P3-une" firstAttribute="top" secondItem="4kF-N7-icE" secondAttribute="top" constant="30" id="DgE-o0-J3k"/>
                             <constraint firstItem="Ywv-OC-YAc" firstAttribute="trailing" secondItem="4kF-N7-icE" secondAttribute="trailing" id="Htp-lI-flM"/>
+                            <constraint firstItem="hB5-iH-27m" firstAttribute="centerX" secondItem="HMH-T8-OcV" secondAttribute="centerX" id="IM5-mN-rtS"/>
                             <constraint firstItem="8Fi-P3-une" firstAttribute="leading" secondItem="4kF-N7-icE" secondAttribute="leading" constant="10" id="OQH-VL-uUS"/>
                             <constraint firstItem="4kF-N7-icE" firstAttribute="trailing" secondItem="8Fi-P3-une" secondAttribute="trailing" constant="10" id="Rsa-J1-MBw"/>
                             <constraint firstItem="4kF-N7-icE" firstAttribute="trailing" secondItem="yk1-i1-lC9" secondAttribute="trailing" constant="20" id="UeF-6g-Ems"/>
@@ -338,6 +346,7 @@
                         <outlet property="searchBar" destination="8Fi-P3-une" id="vmm-hI-s6L"/>
                         <outlet property="searchDisplayController" destination="gLP-UV-dye" id="ddu-zA-Zv2"/>
                         <outlet property="searchResultTable" destination="DfX-gO-DrR" id="KIS-X4-gHw"/>
+                        <outlet property="searchResultsLabel" destination="hB5-iH-27m" id="Dbk-qU-h8n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3Y-BL-uKd" userLabel="First Responder" sceneMemberID="firstResponder"/>

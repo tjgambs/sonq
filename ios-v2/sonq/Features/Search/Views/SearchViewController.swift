@@ -14,7 +14,8 @@ class SearchViewController: ViewController  {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchResultTable: UITableView!
     @IBOutlet weak var resultsLabel: UILabel!
-    
+    @IBOutlet weak var searchResultsLabel: UILabel!
+
     var accessToken: String?
     var refreshTokenTimer: Timer!
     
@@ -78,6 +79,7 @@ extension SearchViewController: UISearchBarDelegate {
                         self.view.endEditing(true)
                         self.searchResultTable.reloadData()
                         self.resultsLabel.text = "Results"
+                        self.searchResultsLabel.text = ""
                     }
                     .catch { error in
                         print(error.localizedDescription)
@@ -91,6 +93,7 @@ extension SearchViewController: UISearchBarDelegate {
             self.searchResults = []
             self.searchResultTable.reloadData()
             self.resultsLabel.text = ""
+            self.searchResultsLabel.text = "Search results will appear here."
         }
     }
 }

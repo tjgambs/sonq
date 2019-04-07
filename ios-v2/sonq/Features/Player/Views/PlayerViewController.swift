@@ -72,6 +72,13 @@ class PlayerViewController: ViewController {
                     self.durationSlider.value = Float(Double(state.position) / self.currentSong!.durationInSeconds)
                 }
             }
+            if (MediaPlayer.shared.isPlaying) {
+                self.playPauseButton.setImage(
+                    UIImage(named: "pause-button"), for: UIControl.State.normal)
+            } else {
+                self.playPauseButton.setImage(
+                    UIImage(named: "play-button"), for: UIControl.State.normal)
+            }
         }
     }
     

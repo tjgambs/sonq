@@ -57,6 +57,9 @@ class PlayerViewController: ViewController {
         if MediaPlayer.shared.isPlaying {
             self.enableTimer()
         }
+        if (Globals.isHost != nil && !Globals.isHost!) {
+            // TODO: Fetch the current song playing and update the fields for it.
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

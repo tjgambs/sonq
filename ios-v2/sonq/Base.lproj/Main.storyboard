@@ -820,6 +820,7 @@
                         <outlet property="durationEndLabel" destination="ZmZ-pE-hJd" id="xJa-Ep-cZb"/>
                         <outlet property="durationSlider" destination="prg-zh-fpr" id="pjm-q9-saU"/>
                         <outlet property="playPauseButton" destination="6Vo-da-eWv" id="uXJ-gi-vpS"/>
+                        <outlet property="skipButton" destination="U8w-SG-Rlr" id="Fm2-oR-ebU"/>
                         <outlet property="songArtistLabel" destination="9dL-qW-H9a" id="EPG-tg-qbf"/>
                         <outlet property="songNameLabel" destination="nKo-6X-Ygp" id="hDp-bh-voW"/>
                     </connections>

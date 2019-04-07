@@ -17,6 +17,7 @@ class PlayerViewController: ViewController {
     @IBOutlet weak var durationEndLabel: UILabel!
     @IBOutlet weak var durationCurrentLabel: UILabel!
     @IBOutlet weak var durationSlider: UISlider!
+    @IBOutlet weak var skipButton: UIButton!
     
     var renderedSong: SongModel?
     var currentSong: SongModel? {
@@ -33,6 +34,13 @@ class PlayerViewController: ViewController {
             self,
             action: #selector(sliderDidEndSliding),
             for: ([.touchUpInside,.touchUpOutside]))
+        if (Globals.isHost != nil && !Globals.isHost!) {
+            playPauseButton.isHidden = true
+            skipButton.isHidden = true
+            durationSlider.isHidden = true
+            durationEndLabel.isHidden = true
+            durationCurrentLabel.isHidden = true
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

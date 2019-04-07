@@ -666,7 +666,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ending the Party will clear the Queue and remove all party guests." textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Siq-KO-DGk">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ending the party will clear the queue and remove all party guests." textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Siq-KO-DGk">
                                 <rect key="frame" x="30" y="300" width="354" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -706,6 +706,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="endParty:" destination="5TS-6V-Tbw" eventType="touchUpInside" id="bx1-B8-XwL"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -732,6 +735,9 @@
                         <viewLayoutGuide key="safeArea" id="wdS-fb-jRv"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" id="9Xn-3N-Vbe"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="EndParty" id="sHK-Rh-BR9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yY7-Oa-mbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

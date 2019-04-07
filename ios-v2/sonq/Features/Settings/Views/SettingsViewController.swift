@@ -12,19 +12,18 @@ class SettingsViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func endParty(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "End Party?",
+            message: "Ending the party will clear the queue and remove all party guests.",
+            preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "End Party", style: .destructive, handler: { (_) in
+            Globals.partyId = nil
+            self.performSegue(withIdentifier: "EndParty", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+        self.present(alert, animated: true)
     }
-    */
-
 }

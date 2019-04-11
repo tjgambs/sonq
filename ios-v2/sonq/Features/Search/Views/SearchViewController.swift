@@ -35,7 +35,24 @@ class SearchViewController: ViewController  {
         self.searchResultTable.delegate = self
         self.searchResultTable.dataSource = self
         self.searchResultTable.keyboardDismissMode = .onDrag
-        // TODO: Fetch the songs added by this user and populate them into the userAddedSongs var
+        self.updateQueue(index: nil)
+    }
+    
+    func updateQueue(index: IndexPath?) -> Void {
+        SonqAPI.getQueue()
+            .done { value -> Void in
+                let json = JSON(value)
+                let currentQueue = json.arrayValue.map{ SongModel(json: $0, addedBy: "", fromAPI: true) }
+                self.userAddedSongs = currentQueue.filter { $0.deviceID == Globals.deviceId! }
+                
+                if (index != nil) {
+                    self.searchResultTable.cellForRow(at: index!)?.accessoryType = .checkmark
+                }
+                
+            }
+            .catch { error in
+                print(error.localizedDescription)
+        }
     }
 
     @objc func refreshToken() -> Void {
@@ -69,7 +86,7 @@ extension SearchViewController: UISearchBarDelegate {
                                 title:"No search results found",
                                 message:"Please try another search keyword.")
                         }
-                        self.searchResults = items.map{ SongModel(json: $0, addedBy: Globals.deviceName!) }
+                        self.searchResults = items.map{ SongModel(json: $0, addedBy: "", fromAPI: false) }
                         self.view.endEditing(true)
                         self.searchResultTable.reloadData()
                         self.resultsLabel.text = "Results"
@@ -109,21 +126,31 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red: 14.0/255, green: 15.0/255, blue: 38.0/255, alpha: 0.33)
         cell.selectedBackgroundView = backgroundView
-        // TODO: Put a check next to the cells containing this users queued songs. Clear the addedBy name to be blank for these songs and disable them.
-        // cell.accessoryType = .checkmark
+        
+        cell.accessoryType = .none
+        for userSong in self.userAddedSongs {
+            if (userSong.songURL == viewModel.songURL) {
+                cell.accessoryType = .checkmark
+            }
+        }
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedSong = self.searchResults[indexPath.row]
-        // TODO: Check and make sure this song isn't in the queue, then add it.
-        // TODO: Push this the the userAddedSongs variable to keep track of what's been added
-        print(selectedSong)
-        
-        
-        // TEMP: Play the song, delete once connected to the API.
-        MediaPlayer.shared.play(song: selectedSong)
+        SonqAPI.postQueue(song: selectedSong)
+            .done { value -> Void in
+                self.updateQueue(index: indexPath)
+            }
+            .catch { error in
+                Utilities.showAlert(
+                    viewController: self,
+                    title: "Already in the queue.",
+                    message:"Please wait for the song to play before adding it again.")
+                print(error.localizedDescription)
+        }
     }
     
 }

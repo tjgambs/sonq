@@ -20,17 +20,32 @@ class SongModel {
     let songURL: String
     let addedBy: String?
     let album: String
+    let deviceID: String?
     
-    init(json: JSON, addedBy: String?) {
-        self.name = json["name"].stringValue
-        self.album = json["album"]["name"].stringValue
-        self.artist = json["album"]["artists"][0]["name"].stringValue
-        self.durationInMS = json["duration_ms"].doubleValue
-        self.durationInSeconds = Double(self.durationInMS) / 1000
-        self.duration = self.durationInSeconds.minuteSecondMS
-        self.imageURL = json["album"]["images"][0]["url"].stringValue
-        self.songURL = json["uri"].stringValue
-        self.addedBy = addedBy
+    init(json: JSON, addedBy: String?, fromAPI: Bool) {
+        if (fromAPI) {
+            self.name = json["name"].stringValue
+            self.album = json["album"].stringValue
+            self.artist = json["artist"].stringValue
+            self.durationInMS = json["duration_in_ms"].doubleValue
+            self.durationInSeconds = json["duration_in_seconds"].doubleValue
+            self.duration = json["duration"].stringValue
+            self.imageURL = json["image_url"].stringValue
+            self.songURL = json["song_url"].stringValue
+            self.addedBy = json["added_by"].stringValue
+            self.deviceID = json["device_id"].stringValue
+        } else {
+            self.name = json["name"].stringValue
+            self.album = json["album"]["name"].stringValue
+            self.artist = json["album"]["artists"][0]["name"].stringValue
+            self.durationInMS = json["duration_ms"].doubleValue
+            self.durationInSeconds = Double(self.durationInMS) / 1000
+            self.duration = self.durationInSeconds.minuteSecondMS
+            self.imageURL = json["album"]["images"][0]["url"].stringValue
+            self.songURL = json["uri"].stringValue
+            self.addedBy = addedBy
+            self.deviceID = nil
+        }
     }
 }
 

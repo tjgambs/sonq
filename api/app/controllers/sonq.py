@@ -48,12 +48,14 @@ def post_queue():
         queue_obj.position = position
         queue_obj.added_by = request.json.get('added_by')
         queue_obj.status = 0
+
         db.session.add(queue_obj)
         db.session.commit()
-        return 'Success'
-    except:
+        return jsonify({'message': 'Success'})
+    except Exception as e:
+        print(e)
         db.session.rollback()
-        return 'Failure'
+        abort(400)
 
 @mod.route('/queue', methods=["PUT"])
 def put_queue():
@@ -70,10 +72,10 @@ def put_queue():
         
         result.status = request.json.get('status')
         db.session.commit()
-        return 'Success'
+        return jsonify({'message': 'Success'})
     except:
         db.session.rollback()
-        return 'Failure'
+        abort(400)
 
 @mod.route('/queue', methods=["DELETE"])
 def delete_queue():
@@ -90,10 +92,10 @@ def delete_queue():
         
         result.deleted_at = datetime.now()
         db.session.commit()
-        return 'Success'
+        return jsonify({'message': 'Success'})
     except:
         db.session.rollback()
-        return 'Failure'
+        abort(400)
 
 
 
@@ -117,10 +119,10 @@ def post_device():
         device_obj.created_at = datetime.now()
         db.session.add(device_obj)
         db.session.commit()
-        return 'Success'
+        return jsonify({'message': 'Success'})
     except:
         db.session.rollback()
-        return 'Failure'
+        abort(400)
 
 @mod.route('/device', methods=["PUT"])
 def put_device():
@@ -135,10 +137,10 @@ def put_device():
         
         result.username = request.json.get('username')
         db.session.commit()
-        return 'Success'
+        return jsonify({'message': 'Success'})
     except:
         db.session.rollback()
-        return 'Failure'
+        abort(400)
 
 
 
@@ -163,10 +165,10 @@ def post_party():
         party_obj.created_at = datetime.now()
         db.session.add(party_obj)
         db.session.commit()
-        return 'Success'
+        return jsonify({'message': 'Success'})
     except:
         db.session.rollback()
-        return 'Failure'
+        abort(400)
 
 @mod.route('/party', methods=["PUT"])
 def put_party():
@@ -181,10 +183,10 @@ def put_party():
         
         result.name = request.json.get('name')
         db.session.commit()
-        return 'Success'
+        return jsonify({'message': 'Success'})
     except:
         db.session.rollback()
-        return 'Failure'
+        abort(400)
 
 @mod.route('/party', methods=["DELETE"])
 def delete_party():
@@ -199,10 +201,10 @@ def delete_party():
         
         result.ended_at = datetime.now()
         db.session.commit()
-        return 'Success'
+        return jsonify({'message': 'Success'})
     except:
         db.session.rollback()
-        return 'Failure'
+        abort(400)
 
 
 
@@ -225,10 +227,10 @@ def post_guests():
         guest_obj.joined_at = datetime.now()
         db.session.add(guest_obj)
         db.session.commit()
-        return 'Success'
+        return jsonify({'message': 'Success'})
     except:
         db.session.rollback()
-        return 'Failure'
+        abort(400)
 
 @mod.route('/party', methods=["DELETE"])
 def delete_guests():
@@ -245,7 +247,7 @@ def delete_guests():
         
         result.left_at = datetime.now()
         db.session.commit()
-        return 'Success'
+        return jsonify({'message': 'Success'})
     except:
         db.session.rollback()
-        return 'Failure'
+        abort(400)

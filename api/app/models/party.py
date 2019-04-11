@@ -7,7 +7,7 @@ class Party(db.Model):
 
     __tablename__ = "party"
 
-    id = db.Columnid = db.Column(db.String, primary_key=True)
+    id = db.Column(db.String, primary_key=True)
     created_by = db.Column(db.String, db.ForeignKey('device.id'))
     created_by_key = db.relationship(Device, backref='party', foreign_keys=created_by)
     name = db.Column(db.String)

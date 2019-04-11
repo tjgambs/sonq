@@ -118,8 +118,6 @@ class SonqAPI {
         }
     }
     
-    
-    
     static func postParty() -> Promise<[String: Any]> {
         let parameters = [
             "id": Globals.partyId!,
@@ -160,6 +158,61 @@ class SonqAPI {
                     switch response.result {
                     case .success(let json):
                         guard let json = json as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+            }
+        }
+    }
+    
+    static func postQueue(song: SongModel) -> Promise<[String: Any]> {
+        let parameters = [
+            "party_id": Globals.partyId!,
+            "name": song.name,
+            "artist": song.artist,
+            "album": song.album,
+            "duration": song.duration,
+            "duration_in_seconds": String(song.durationInSeconds),
+            "image_url": song.imageURL,
+            "song_url": song.songURL,
+            "added_by": Globals.deviceId!
+        ]
+        return Promise { seal in
+            Alamofire.request(
+                SonqAPI.baseURL + "/sonq/queue",
+                method: .post,
+                parameters: parameters,
+                encoding: JSONEncoding.default)
+                .validate()
+                .responseJSON { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        guard let json = json as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+            }
+        }
+    }
+    
+    static func getQueue() -> Promise<[[String: Any]]> {
+        return Promise { seal in
+            Alamofire.request(
+                SonqAPI.baseURL + "/sonq/queue/" + Globals.partyId!,
+                method: .get,
+                encoding: JSONEncoding.default)
+                .validate()
+                .responseJSON { response in
+                    switch response.result {
+                    case .success(let json):
+                        guard let json = json as? [[String: Any]] else {
                             return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
                         }
                         seal.fulfill(json)

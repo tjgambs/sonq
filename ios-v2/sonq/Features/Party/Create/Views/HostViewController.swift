@@ -20,6 +20,10 @@ class HostViewController: ViewController  {
         self.view.addGestureRecognizer(swipeRight)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     @objc func swipeRightAction() {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "BackSegue", sender: self)
@@ -27,7 +31,7 @@ class HostViewController: ViewController  {
     }
 
     @IBAction func connectToSpotify(_ sender: Any) {
-        SpotifyLogin.shared.login()
+        SpotifyLogin.shared.login(viewController: self)
     }
 }
 

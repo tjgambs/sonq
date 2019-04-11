@@ -50,11 +50,11 @@ class SpotifyLogin {
         MediaPlayer.shared.configurePlayer(authSession: session, id: auth.clientID)
     }
     
-    func login() {
+    func login(viewController: UIViewController) {
         if !self.isLogged {
             safariVC = SFSafariViewController(url: auth.spotifyWebAuthenticationURL())
-            UIApplication.shared.keyWindow?.rootViewController?.presentedViewController?.present(
-                safariVC, animated: true, completion: nil)
+            safariVC.modalPresentationStyle = .overFullScreen
+            viewController.present(safariVC, animated: true, completion: nil)
         } else {
             self.delegate?.didLoginWithSuccess()
         }

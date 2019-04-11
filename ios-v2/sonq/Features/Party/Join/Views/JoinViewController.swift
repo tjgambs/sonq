@@ -42,8 +42,14 @@ class JoinViewController: ViewController  {
         
         SonqAPI.getParty(partyId: partyId)
             .done { value -> Void in
+                let json = JSON(value)
                 Globals.partyId = partyId
-                Globals.isHost = false
+                
+                if (json["device_id"].stringValue == Globals.deviceId!) {
+                    Globals.isHost = true
+                } else {
+                    Globals.isHost = false
+                }
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "JoinParty", sender: self)
                 }

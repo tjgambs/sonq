@@ -16,7 +16,7 @@ class SongCellModel: UITableViewCell {
     @IBOutlet weak var cellSongName: UILabel!
     @IBOutlet weak var cellSongDuration: UILabel!
     @IBOutlet weak var cellSongArtist: UILabel!
-    @IBOutlet weak var cellSongAddedBy: UILabel!
+    @IBOutlet weak var cellSongAddedBy: UILabel?
     @IBOutlet weak var cellSongAlbum: UILabel!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,7 +30,7 @@ class SongCellModel: UITableViewCell {
         self.cellSongDuration.text = viewModel.duration
         self.cellSongAlbum.text = viewModel.album
         if viewModel.addedBy != nil {
-            self.cellSongAddedBy.text = viewModel.addedBy
+            self.cellSongAddedBy?.text = viewModel.addedBy
         }
     }
 }

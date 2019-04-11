@@ -19,6 +19,7 @@ class Party(db.Model):
         return {
             'id': self.id,
             'created_by': self.created_by_key.username,
+            'device_id': self.created_by,
             'name': self.name,
             'created_at': serialize_datetime(self.created_at),
             'ended_at': serialize_datetime(self.ended_at)

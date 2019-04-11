@@ -238,7 +238,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbS-mW-iXf">
-                                                    <rect key="frame" x="95" y="11" width="219" height="21"/>
+                                                    <rect key="frame" x="95" y="11" width="259" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="nNt-Lm-a8t"/>
                                                     </constraints>
@@ -247,7 +247,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Album" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd5-me-PV7" userLabel="Cell Song Album">
-                                                    <rect key="frame" x="95" y="35" width="219" height="15.5"/>
+                                                    <rect key="frame" x="95" y="35" width="259" height="15.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15.5" id="tAR-RL-Wt6"/>
                                                     </constraints>
@@ -256,7 +256,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Artist" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7b-zb-5HW" userLabel="Cell Song Artist">
-                                                    <rect key="frame" x="95" y="53.5" width="219" height="15.5"/>
+                                                    <rect key="frame" x="95" y="53.5" width="259" height="15.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15.5" id="KJ2-2S-sOO"/>
                                                     </constraints>
@@ -265,7 +265,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Duration" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MY8-VF-ta9">
-                                                    <rect key="frame" x="95" y="72" width="219" height="15.5"/>
+                                                    <rect key="frame" x="95" y="72" width="259" height="15.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15.5" id="EQh-pE-f9G"/>
                                                     </constraints>
@@ -273,20 +273,10 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added By" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="giC-9H-6nw">
-                                                    <rect key="frame" x="309" y="44" width="60" height="12"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="OB4-mo-K4U"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="giC-9H-6nw" firstAttribute="centerY" secondItem="BQ2-V8-6HW" secondAttribute="centerY" id="43N-my-RGe"/>
                                                 <constraint firstItem="Cc3-YU-GEl" firstAttribute="leading" secondItem="BQ2-V8-6HW" secondAttribute="leading" constant="5" id="FqW-s6-t61"/>
                                                 <constraint firstItem="MY8-VF-ta9" firstAttribute="trailing" secondItem="hbS-mW-iXf" secondAttribute="trailing" id="GG8-JU-LBy"/>
                                                 <constraint firstItem="hbS-mW-iXf" firstAttribute="leading" secondItem="Cc3-YU-GEl" secondAttribute="trailing" constant="10" id="IA7-Ed-zqh"/>
@@ -298,16 +288,14 @@
                                                 <constraint firstItem="MY8-VF-ta9" firstAttribute="leading" secondItem="Cc3-YU-GEl" secondAttribute="trailing" constant="10" id="aGe-mg-jdY"/>
                                                 <constraint firstItem="MY8-VF-ta9" firstAttribute="top" secondItem="K7b-zb-5HW" secondAttribute="bottom" constant="3" id="bKV-iS-piT"/>
                                                 <constraint firstItem="K7b-zb-5HW" firstAttribute="leading" secondItem="Cc3-YU-GEl" secondAttribute="trailing" constant="10" id="cNm-BM-cWV"/>
-                                                <constraint firstAttribute="trailing" secondItem="giC-9H-6nw" secondAttribute="trailing" constant="5" id="ehY-Wx-b4i"/>
                                                 <constraint firstItem="Dd5-me-PV7" firstAttribute="top" secondItem="hbS-mW-iXf" secondAttribute="bottom" constant="3" id="rjF-h2-31c"/>
                                                 <constraint firstItem="K7b-zb-5HW" firstAttribute="trailing" secondItem="hbS-mW-iXf" secondAttribute="trailing" id="tb3-5I-DOg"/>
-                                                <constraint firstAttribute="trailing" secondItem="hbS-mW-iXf" secondAttribute="trailing" constant="60" id="tf7-2f-reB"/>
+                                                <constraint firstAttribute="trailing" secondItem="hbS-mW-iXf" secondAttribute="trailing" constant="20" id="tf7-2f-reB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.93481594320000005" green="0.16604864599999999" blue="0.3922282755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="cellSongAddedBy" destination="giC-9H-6nw" id="eAp-CH-w8Y"/>
                                             <outlet property="cellSongAlbum" destination="Dd5-me-PV7" id="ITb-gF-r5j"/>
                                             <outlet property="cellSongArtist" destination="K7b-zb-5HW" id="eXb-wY-phV"/>
                                             <outlet property="cellSongDuration" destination="MY8-VF-ta9" id="1fp-Sz-UJm"/>

@@ -40,11 +40,18 @@ class QueueViewController: ViewController {
     }
     
     @objc func refreshQueue() {
-        // TODO: Go fetch the queue from the API and populate it into the searchResults
-        
-        self.queueResultTable.reloadData()
-        self.updateLabel()
-        self.refreshControl.endRefreshing()
+        SonqAPI.getQueue()
+            .done { value -> Void in
+                let json = JSON(value)
+                self.queueResults = json.arrayValue.map{ SongModel(json: $0, addedBy: "", fromAPI: true) }
+                self.queueResultTable.reloadData()
+                self.updateLabel()
+                self.refreshControl.endRefreshing()
+            }
+            .catch { error in
+                self.refreshControl.endRefreshing()
+                print(error.localizedDescription)
+        }
     }
     
     func updateLabel() {

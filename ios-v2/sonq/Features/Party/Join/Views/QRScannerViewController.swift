@@ -72,7 +72,14 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         SonqAPI.getParty(partyId: partyId)
             .done { value -> Void in
                 Globals.partyId = partyId
-                Globals.isHost = false
+                let json = JSON(value)
+                Globals.partyId = partyId
+                
+                if (json["device_id"].stringValue == Globals.deviceId!) {
+                    Globals.isHost = true
+                } else {
+                    Globals.isHost = false
+                }
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "JoinParty", sender: self)
                 }

@@ -12,6 +12,7 @@ PODS:
   - PromiseKit/UIKit (6.8.3):
     - PromiseKit/CorePromise
   - QRCode (2.0)
+  - SwiftRandom (1.0.0)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - AlamofireImage (~> 3.3)
   - PromiseKit (~> 6.8)
   - QRCode
+  - SwiftRandom
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -26,8 +28,9 @@ SPEC CHECKSUMS:
   AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
+  SwiftRandom: 437275c63500ddf5a565cbd56996fb23f12cfc3d
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 7bee908a82b345323312df5d3ccf5ba241a78848
+PODFILE CHECKSUM: bd049191435faeb45d844f5407a195ca993d1f49
 
 COCOAPODS: 1.4.0

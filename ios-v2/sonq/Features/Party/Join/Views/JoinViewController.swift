@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+import SwiftRandom
 
 class JoinViewController: ViewController  {
     
@@ -19,6 +21,10 @@ class JoinViewController: ViewController  {
             action: #selector(swipeRightAction))
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(
+            target: self, action: #selector(JoinViewController.dismissKeyboard)))
+        self.partyIdTextField.delegate = self
     }
     
     @objc func swipeRightAction() {
@@ -27,19 +33,54 @@ class JoinViewController: ViewController  {
         }
     }
     
-    @IBAction func submitPartyId(_ sender: UIButton) {
-        let partyId = partyIdTextField.text
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func afterRegistration() {
+        let partyId = partyIdTextField.text!
         
-        // TODO: Register this deviceID if it has not been already.
-        // TODO: Check to see if the party id is valid
-        // TODO: Add this deviceID to the party
-        Globals.partyId = partyId
-        Globals.deviceName = "Client"
-        Globals.isHost = false
-        print(Globals.partyId!, Globals.deviceId!)
-        
-        DispatchQueue.main.async {
-            self.performSegue(withIdentifier: "JoinParty", sender: self)
+        SonqAPI.getParty(partyId: partyId)
+            .done { value -> Void in
+                Globals.partyId = partyId
+                Globals.isHost = false
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "JoinParty", sender: self)
+                }
+            }
+            .catch { error in
+                print(error.localizedDescription)
+                Utilities.showAlert(
+                    viewController: self,
+                    title:"Party not found",
+                    message:"Please try another party id.")
         }
+    }
+    
+    @IBAction func submitPartyId(_ sender: UIButton) {
+        SonqAPI.getDevice()
+            .done { value -> Void in
+                let json = JSON(value)
+                Globals.deviceName = json["username"].stringValue
+                self.afterRegistration()
+            }
+            .catch { error in
+                Globals.deviceName = Randoms.randomFakeName()
+                SonqAPI.postDevice()
+                    .done { value -> Void in
+                        self.afterRegistration()
+                    }
+                    .catch { error in
+                        print(error.localizedDescription)
+                }
+        }
+    }
+}
+
+
+extension JoinViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.dismissKeyboard()
+        return false
     }
 }

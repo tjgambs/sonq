@@ -48,15 +48,6 @@ class SearchViewController: ViewController  {
                 print(error.localizedDescription)
         }
     }
-    
-    func showAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(alertAction)
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true, completion: nil)
-        }
-    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -73,7 +64,8 @@ extension SearchViewController: UISearchBarDelegate {
                         if items.count == 0 {
                             self.searchResults = []
                             self.resultsLabel.text = "Results"
-                            return self.showAlert(
+                            return Utilities.showAlert(
+                                viewController: self,
                                 title:"No search results found",
                                 message:"Please try another search keyword.")
                         }

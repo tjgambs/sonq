@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+import SwiftRandom
 
 class HostViewController: ViewController  {
     
@@ -36,18 +38,39 @@ class HostViewController: ViewController  {
 }
 
 extension HostViewController: SpotifyLoginDelegate {
+    
+    func afterRegistration() {
+        Globals.partyId = Utilities.generatePartyId()
+        Globals.isHost = true
+        SonqAPI.postParty()
+            .done { value -> Void in
+                self.performSegue(withIdentifier: "CreateParty", sender: self)
+            }
+            .catch { error in
+                print(error.localizedDescription)
+        }
+    }
+
     func didLoginWithSuccess() {
         DispatchQueue.main.async {
             SpotifyLogin.shared.preparePlayer()
-            Globals.partyId = Utilities.generatePartyId()
-            Globals.isHost = true
-            Globals.deviceName = "Host"
-                
-            // TODO: Register this deviceID if it has not been already.
-            // TODO: Create a party with this partyID for this deviceID
-            print(Globals.partyId!, Globals.deviceId!)
-                
-            self.performSegue(withIdentifier: "CreateParty", sender: self)
+            SonqAPI.getDevice()
+                .done { value -> Void in
+                    let json = JSON(value)
+                    Globals.deviceName = json["username"].stringValue
+                    self.afterRegistration()
+                }
+                .catch { error in
+                    // TODO: Use the Spotify username for the host instead of generating one.
+                    Globals.deviceName = Randoms.randomFakeName()
+                    SonqAPI.postDevice()
+                        .done { value -> Void in
+                            self.afterRegistration()
+                        }
+                        .catch { error in
+                            print(error.localizedDescription)
+                    }
+            }
         }
     }
 }

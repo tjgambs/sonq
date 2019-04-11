@@ -8,6 +8,8 @@
 
 import Foundation
 import AVFoundation
+import SwiftyJSON
+import SwiftRandom
 
 class QRScannerViewController: UIViewController {
     
@@ -66,6 +68,21 @@ class QRScannerViewController: UIViewController {
 
 extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     
+    func afterRegistration(partyId: String) {
+        SonqAPI.getParty(partyId: partyId)
+            .done { value -> Void in
+                Globals.partyId = partyId
+                Globals.isHost = false
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "JoinParty", sender: self)
+                }
+            }
+            .catch { error in
+                print(error.localizedDescription)
+                self.captureSession.startRunning()
+        }
+    }
+    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
@@ -81,16 +98,21 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
                 AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                 captureSession.stopRunning()
                 
-                // TODO: Register this deviceID if it has not been already.
-                // TODO: Check to see if the party id is valid
-                // TODO: Add this deviceID to the party
-                Globals.partyId = partyId
-                Globals.isHost = false
-                Globals.deviceName = "Client"
-                print(Globals.partyId!, Globals.deviceId!)
-                
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "JoinParty", sender: self)
+                SonqAPI.getDevice()
+                    .done { value -> Void in
+                        let json = JSON(value)
+                        Globals.deviceName = json["username"].stringValue
+                        self.afterRegistration(partyId: partyId)
+                    }
+                    .catch { error in
+                        Globals.deviceName = Randoms.randomFakeName()
+                        SonqAPI.postDevice()
+                            .done { value -> Void in
+                                self.afterRegistration(partyId: partyId)
+                            }
+                            .catch { error in
+                                print(error.localizedDescription)
+                        }
                 }
             }
         }

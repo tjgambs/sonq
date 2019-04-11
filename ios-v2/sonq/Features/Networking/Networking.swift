@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import PromiseKit
+import SwiftyJSON
 
 class Spotify {
     
@@ -46,6 +47,113 @@ class Spotify {
                 parameters: ["q":"", "type":"track"],
                 encoding: URLEncoding.default,
                 headers: ["Authorization": "Bearer " + accessToken])
+                .validate()
+                .responseJSON { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        guard let json = json as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+            }
+        }
+    }
+    
+}
+
+class SonqAPI {
+    
+    static let baseURL = "http://192.168.1.16:5000"
+    
+    static func postDevice() -> Promise<[String: Any]> {
+        let parameters = [
+            "id": Globals.deviceId!,
+            "username": Globals.deviceName!
+        ]
+        return Promise { seal in
+            Alamofire.request(
+                SonqAPI.baseURL + "/sonq/device",
+                method: .post,
+                parameters: parameters,
+                encoding: JSONEncoding.default)
+                .validate()
+                .responseJSON { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        guard let json = json as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+            }
+        }
+    }
+    
+    static func getDevice() -> Promise<[String: Any]> {
+        return Promise { seal in
+            Alamofire.request(
+                SonqAPI.baseURL + "/sonq/device/" + Globals.deviceId!,
+                method: .get,
+                encoding: URLEncoding.default)
+                .validate()
+                .responseJSON { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        guard let json = json as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+            }
+        }
+    }
+    
+    
+    
+    static func postParty() -> Promise<[String: Any]> {
+        let parameters = [
+            "id": Globals.partyId!,
+            "created_by": Globals.deviceId!,
+            "name": ""
+        ]
+        return Promise { seal in
+            Alamofire.request(
+                SonqAPI.baseURL + "/sonq/party",
+                method: .post,
+                parameters: parameters,
+                encoding: JSONEncoding.default)
+                .validate()
+                .responseJSON { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        guard let json = json as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+            }
+        }
+    }
+    
+    static func getParty(partyId: String) -> Promise<[String: Any]> {
+        return Promise { seal in
+            Alamofire.request(
+                SonqAPI.baseURL + "/sonq/party/" + partyId,
+                method: .get,
+                encoding: JSONEncoding.default)
                 .validate()
                 .responseJSON { response in
                     

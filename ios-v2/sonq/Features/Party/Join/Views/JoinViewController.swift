@@ -39,7 +39,6 @@ class JoinViewController: ViewController  {
     
     func afterRegistration() {
         let partyId = partyIdTextField.text!
-        
         SonqAPI.getParty(partyId: partyId)
             .done { value -> Void in
                 let json = JSON(value)
@@ -50,16 +49,16 @@ class JoinViewController: ViewController  {
                 } else {
                     Globals.isHost = false
                 }
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "JoinParty", sender: self)
+                SonqAPI.postGuest()
+                    .done { value -> Void in
+                        self.performSegue(withIdentifier: "JoinParty", sender: self)
+                    }
+                    .catch { error in
+                        print(error.localizedDescription)
                 }
             }
             .catch { error in
                 print(error.localizedDescription)
-                Utilities.showAlert(
-                    viewController: self,
-                    title:"Party not found",
-                    message:"Please try another party id.")
         }
     }
     

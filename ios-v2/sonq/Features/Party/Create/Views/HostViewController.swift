@@ -44,7 +44,13 @@ extension HostViewController: SpotifyLoginDelegate {
         Globals.isHost = true
         SonqAPI.postParty()
             .done { value -> Void in
-                self.performSegue(withIdentifier: "CreateParty", sender: self)
+                SonqAPI.postGuest()
+                    .done { value -> Void in
+                        self.performSegue(withIdentifier: "CreateParty", sender: self)
+                    }
+                    .catch { error in
+                        print(error.localizedDescription)
+                }
             }
             .catch { error in
                 print(error.localizedDescription)
@@ -61,7 +67,6 @@ extension HostViewController: SpotifyLoginDelegate {
                     self.afterRegistration()
                 }
                 .catch { error in
-                    // TODO: Use the Spotify username for the host instead of generating one.
                     Globals.deviceName = Randoms.randomFakeName()
                     SonqAPI.postDevice()
                         .done { value -> Void in

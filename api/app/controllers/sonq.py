@@ -221,18 +221,27 @@ def get_guests(party_id):
 def post_guests():
     ''' Register a guest as a part of the party'''
     try:
-        guest_obj = Guests()
-        guest_obj.device_id = request.json.get('device_id')
-        guest_obj.party_id = request.json.get('party_id')
+        party_id = request.json.get('party_id')
+        device_id = request.json.get('device_id')
+        q = (db.session.query(Guests)
+                .filter(Guests.party_id == party_id)
+                .filter(Guests.device_id == device_id))
+        guest_obj = q.first()
+        if not guest_obj:
+            guest_obj = Guests()
+        guest_obj.device_id = device_id
+        guest_obj.party_id = party_id
         guest_obj.joined_at = datetime.now()
+        guest_obj.left_at = None
         db.session.add(guest_obj)
         db.session.commit()
         return jsonify({'message': 'Success'})
-    except:
+    except Exception as e:
+        print(e)
         db.session.rollback()
         abort(400)
 
-@mod.route('/party', methods=["DELETE"])
+@mod.route('/guests', methods=["DELETE"])
 def delete_guests():
     ''' Remove the guest from the party '''
     try:

@@ -118,6 +118,60 @@ class SonqAPI {
         }
     }
     
+    static func postGuest() -> Promise<[String: Any]> {
+        let parameters = [
+            "party_id": Globals.partyId!,
+            "device_id": Globals.deviceId!
+        ]
+        return Promise { seal in
+            Alamofire.request(
+                SonqAPI.baseURL + "/sonq/guests",
+                method: .post,
+                parameters: parameters,
+                encoding: JSONEncoding.default)
+                .validate()
+                .responseJSON { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        guard let json = json as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+            }
+        }
+    }
+    
+    static func deleteGuest() -> Promise<[String: Any]> {
+        let parameters = [
+            "party_id": Globals.partyId!,
+            "device_id": Globals.deviceId!
+        ]
+        return Promise { seal in
+            Alamofire.request(
+                SonqAPI.baseURL + "/sonq/guests",
+                method: .delete,
+                parameters: parameters,
+                encoding: JSONEncoding.default)
+                .validate()
+                .responseJSON { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        guard let json = json as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+            }
+        }
+    }
+    
     static func postParty() -> Promise<[String: Any]> {
         let parameters = [
             "id": Globals.partyId!,
@@ -151,6 +205,32 @@ class SonqAPI {
             Alamofire.request(
                 SonqAPI.baseURL + "/sonq/party/" + partyId,
                 method: .get,
+                encoding: JSONEncoding.default)
+                .validate()
+                .responseJSON { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        guard let json = json as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+            }
+        }
+    }
+    
+    static func deleteParty() -> Promise<[String: Any]> {
+        let parameters = [
+            "id": Globals.partyId!
+        ]
+        return Promise { seal in
+            Alamofire.request(
+                SonqAPI.baseURL + "/sonq/party",
+                method: .delete,
+                parameters: parameters,
                 encoding: JSONEncoding.default)
                 .validate()
                 .responseJSON { response in

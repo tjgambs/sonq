@@ -67,11 +67,10 @@ class QRScannerViewController: UIViewController {
 }
 
 extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
-    
+
     func afterRegistration(partyId: String) {
         SonqAPI.getParty(partyId: partyId)
             .done { value -> Void in
-                Globals.partyId = partyId
                 let json = JSON(value)
                 Globals.partyId = partyId
                 
@@ -80,13 +79,16 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
                 } else {
                     Globals.isHost = false
                 }
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "JoinParty", sender: self)
+                SonqAPI.postGuest()
+                    .done { value -> Void in
+                        self.performSegue(withIdentifier: "JoinParty", sender: self)
+                    }
+                    .catch { error in
+                        print(error.localizedDescription)
                 }
             }
             .catch { error in
                 print(error.localizedDescription)
-                self.captureSession.startRunning()
         }
     }
     

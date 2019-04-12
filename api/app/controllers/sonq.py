@@ -53,7 +53,6 @@ def post_queue():
         db.session.commit()
         return jsonify({'message': 'Success'})
     except Exception as e:
-        print(e)
         db.session.rollback()
         abort(400)
 
@@ -229,15 +228,16 @@ def post_guests():
         guest_obj = q.first()
         if not guest_obj:
             guest_obj = Guests()
-        guest_obj.device_id = device_id
-        guest_obj.party_id = party_id
-        guest_obj.joined_at = datetime.now()
-        guest_obj.left_at = None
-        db.session.add(guest_obj)
+            guest_obj.device_id = device_id
+            guest_obj.party_id = party_id
+            guest_obj.joined_at = datetime.now()
+            db.session.add(guest_obj)
+        else:
+            guest_obj.joined_at = datetime.now()
+            guest_obj.left_at = None
         db.session.commit()
         return jsonify({'message': 'Success'})
     except Exception as e:
-        print(e)
         db.session.rollback()
         abort(400)
 

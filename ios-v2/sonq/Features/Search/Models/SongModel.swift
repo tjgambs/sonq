@@ -11,6 +11,7 @@ import SwiftyJSON
 
 class SongModel {
     
+    let id: Int?
     let name: String
     let artist: String
     let durationInMS: Double
@@ -24,6 +25,7 @@ class SongModel {
     
     init(json: JSON, addedBy: String?, fromAPI: Bool) {
         if (fromAPI) {
+            self.id = json["id"].intValue
             self.name = json["name"].stringValue
             self.album = json["album"].stringValue
             self.artist = json["artist"].stringValue
@@ -35,6 +37,7 @@ class SongModel {
             self.addedBy = json["added_by"].stringValue
             self.deviceID = json["device_id"].stringValue
         } else {
+            self.id = nil
             self.name = json["name"].stringValue
             self.album = json["album"]["name"].stringValue
             self.artist = json["album"]["artists"][0]["name"].stringValue

@@ -282,6 +282,35 @@ class SonqAPI {
         }
     }
     
+    static func putQueue(song: SongModel, status: Int) -> Promise<[String: Any]> {
+        let parameters = [
+            "party_id": Globals.partyId!,
+            "id": song.id!,
+            "status": status
+        ] as [String : Any]
+        return Promise { seal in
+            Alamofire.request(
+                SonqAPI.baseURL + "/sonq/queue",
+                method: .put,
+                parameters: parameters,
+                encoding: JSONEncoding.default)
+                .validate()
+                .responseJSON { response in
+                    
+                    switch response.result {
+                    case .success(let json):
+                        guard let json = json as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+                        seal.fulfill(json)
+                    case .failure(let error):
+                        seal.reject(error)
+                    }
+            }
+        }
+    }
+    
+    
     static func getQueue() -> Promise<[[String: Any]]> {
         return Promise { seal in
             Alamofire.request(

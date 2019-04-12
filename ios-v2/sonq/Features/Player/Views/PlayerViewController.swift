@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class PlayerViewController: ViewController {
 
@@ -19,6 +20,9 @@ class PlayerViewController: ViewController {
     @IBOutlet weak var durationSlider: UISlider!
     @IBOutlet weak var skipButton: UIButton!
     
+    var queueResults: [SongModel] = []
+
+    
     var renderedSong: SongModel?
     var currentSong: SongModel? {
         if let song = MediaPlayer.shared.currentSong {
@@ -27,6 +31,7 @@ class PlayerViewController: ViewController {
         return nil
     }
     var timer: Timer?
+    var queueTimer: Timer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +46,13 @@ class PlayerViewController: ViewController {
             durationEndLabel.isHidden = true
             durationCurrentLabel.isHidden = true
         }
+        self.refreshQueue()
+        self.queueTimer = Timer.scheduledTimer(
+            timeInterval: 5.0,
+            target: self,
+            selector: #selector(self.refreshQueue),
+            userInfo: nil,
+            repeats: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,13 +70,38 @@ class PlayerViewController: ViewController {
             self.enableTimer()
         }
         if (Globals.isHost != nil && !Globals.isHost!) {
-            // TODO: Fetch the current song playing and update the fields for it.
+            if self.queueResults.count > 0 {
+                DispatchQueue.main.async {
+                    let nextUp = self.queueResults[0]
+                    self.renderSong(nextUp)
+                }
+            }
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.disableTimer()
+    }
+    
+    @objc func refreshQueue(play: Bool = false) {
+        SonqAPI.getQueue()
+            .done { value -> Void in
+                let json = JSON(value)
+                self.queueResults = json.arrayValue.map{ SongModel(json: $0, addedBy: "", fromAPI: true) }
+                if self.queueResults.count > 0 {
+                    let nextUp = self.queueResults[0]
+                    if (play) {
+                        MediaPlayer.shared.play(song: nextUp)
+                    }
+                    DispatchQueue.main.async {
+                        self.renderSong(nextUp)
+                    }
+                }
+            }
+            .catch { error in
+                print(error.localizedDescription)
+        }
     }
     
     @objc func updateCurrentDuration() -> Void {
@@ -99,7 +136,19 @@ class PlayerViewController: ViewController {
     }
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
-        // TODO: Get the next song in the queue, then play that
+//        0 - Queued
+//        1 - Playing
+//        2 - Finished
+//        3 - Skipped
+        if (MediaPlayer.shared.currentSong != nil && MediaPlayer.shared.currentSong!.id != nil) {
+            SonqAPI.putQueue(song: MediaPlayer.shared.currentSong!, status: 3)
+                .done { value -> Void in
+                    self.refreshQueue(play: true)
+                }
+                .catch { error in
+                    print(error.localizedDescription)
+            }
+        }
     }
     
     @IBAction func playPauseButtonPressed(_ sender: UIButton) {
@@ -114,6 +163,15 @@ class PlayerViewController: ViewController {
                 self.playPauseButton.setImage(
                     UIImage(named: "pause-button"), for: UIControl.State.normal)
                 self.enableTimer()
+            } else if self.queueResults.count > 0  {
+                let nextUp = self.queueResults[0]
+                MediaPlayer.shared.play(song: nextUp)
+                self.playPauseButton.setImage(
+                    UIImage(named: "pause-button"), for: UIControl.State.normal)
+                self.enableTimer()
+                DispatchQueue.main.async {
+                    self.renderSong(nextUp)
+                }
             } else {
                 // TODO: Handle condition when there is no music in the queue. Maybe alert them?
             }

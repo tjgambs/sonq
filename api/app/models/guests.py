@@ -9,7 +9,7 @@ class Guests(db.Model):
 
     device_id = db.Column(db.String, db.ForeignKey('device.id'), primary_key=True)
     device_id_key = db.relationship(Device, backref='guests', foreign_keys=device_id)
-    party_id = db.Column(db.String, db.ForeignKey('party.id'))
+    party_id = db.Column(db.String, db.ForeignKey('party.id'), primary_key=True)
     joined_at = db.Column(db.Date)
     left_at = db.Column(db.Date)
 

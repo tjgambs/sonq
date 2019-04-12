@@ -26,6 +26,7 @@ class Queue(db.Model):
     @property
     def serialize(self):
         return {
+            'id': self.id,
             'party_id': self.party_id,
             'name': self.name,
             'artist': self.artist,

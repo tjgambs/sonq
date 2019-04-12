@@ -14,7 +14,7 @@ import SwiftyJSON
 class Spotify {
     
     static func getAuthToken() -> Promise<[String: Any]> {
-        let headers = ["Authorization": "Basic MzYyZmM1YmRkMGQ1NDYxNDk5Y2NmNmU0ZTc0ODM4MDA6ODhiNGNlOWVhMTQ2NDdjOTlkOGI0YjU3MGYxYTk5OGE="]
+        let headers = ["Authorization": "Basic MWRmMjFiMzc1MDQ2NDg3NThlNjY1NDhiN2FhMTVlMTE6ZDkxMzBmOGNmMjQxNDU1Nzk2ZDJhNjA4YmIwZGEzN2U="]
         
         return Promise { seal in
             Alamofire.request(

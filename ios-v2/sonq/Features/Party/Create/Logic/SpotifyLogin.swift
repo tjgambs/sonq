@@ -22,8 +22,8 @@ class SpotifyLogin {
     
     private init() {
         auth.sessionUserDefaultsKey = "kCurrentSession"
-        auth.redirectURL = URL(string: "Titan://returnAfterLogin")
-        auth.clientID = "362fc5bdd0d5461499ccf6e4e7483800"
+        auth.redirectURL = URL(string: "sonq://returnAfterLogin")
+        auth.clientID = "1df21b37504648758e66548b7aa15e11"
         auth.requestedScopes = [
             SPTAuthStreamingScope,
             SPTAuthPlaylistReadPrivateScope,

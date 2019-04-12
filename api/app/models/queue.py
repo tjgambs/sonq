@@ -7,21 +7,21 @@ class Queue(db.Model):
 
     __tablename__ = "queue"
 
-    id = db.Column(db.Sequence('queue_id_seq'))
-    party_id = db.Column(db.String, db.ForeignKey('device.id'), primary_key=True)
+    id = db.Column(db.Sequence('queue_id_seq'), primary_key=True)
+    party_id = db.Column(db.String, db.ForeignKey('device.id'))
     name = db.Column(db.String)
     artist = db.Column(db.String)
     album = db.Column(db.String)
     duration = db.Column(db.String)
     duration_in_seconds = db.Column(db.Float)
     image_url = db.Column(db.String)
-    song_url = db.Column(db.String, primary_key=True)
+    song_url = db.Column(db.String)
     created_at = db.Column(db.Date)
     deleted_at = db.Column(db.Date)
     position = db.Column(db.Integer)
-    added_by = db.Column(db.String, db.ForeignKey('device.id'), primary_key=True)
+    added_by = db.Column(db.String, db.ForeignKey('device.id'))
     added_by_key = db.relationship(Device, backref='queue', foreign_keys=added_by)
-    status = db.Column(db.Integer, primary_key=True)
+    status = db.Column(db.Integer)
 
     @property
     def serialize(self):

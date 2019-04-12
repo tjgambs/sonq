@@ -32,6 +32,7 @@ def post_queue():
     ''' Add song to the queue '''
     try:
         party_id = request.json.get('party_id')
+        song_url = request.json.get('song_url')
         q = db.session.query(func.max(Queue.position)).filter(Queue.party_id == party_id)
         result = q.first()
         position = 0 if result[0] is None else result[0] + 1
@@ -43,16 +44,25 @@ def post_queue():
         queue_obj.duration = request.json.get('duration')
         queue_obj.duration_in_seconds = request.json.get('duration_in_seconds')
         queue_obj.image_url = request.json.get('image_url')
-        queue_obj.song_url = request.json.get('song_url')
+        queue_obj.song_url = song_url
         queue_obj.created_at = datetime.now()
         queue_obj.position = position
         queue_obj.added_by = request.json.get('added_by')
         queue_obj.status = 0
 
-        db.session.add(queue_obj)
-        db.session.commit()
-        return jsonify({'message': 'Success'})
+        sanity_check = (db.session.query(Queue)
+            .filter(Queue.party_id == party_id)
+            .filter(Queue.song_url == song_url)
+            .filter(Queue.status <= 1))
+        
+        if sanity_check.first() is None:
+            db.session.add(queue_obj)
+            db.session.commit()
+            return jsonify({'message': 'Success'})
+        else:
+            abort(400)
     except Exception as e:
+        print(e)
         db.session.rollback()
         abort(400)
 
@@ -72,7 +82,8 @@ def put_queue():
         result.status = request.json.get('status')
         db.session.commit()
         return jsonify({'message': 'Success'})
-    except:
+    except Exception as e:
+        print(e)
         db.session.rollback()
         abort(400)
 

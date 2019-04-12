@@ -41,6 +41,11 @@ class MediaPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     
     func play(song: SongModel) {
         self.currentSong = song
+        SonqAPI.putQueue(song: song, status: 1)
+            .done { value -> Void in }
+            .catch { error in print(error.localizedDescription)
+        }
+        
         player?.playSpotifyURI(song.songURL, startingWith: 0, startingWithPosition: 0, callback: { (error) in
             if let error = error {
                 print("There was an error playing the track \(song.songURL), this is the error: \(error)")

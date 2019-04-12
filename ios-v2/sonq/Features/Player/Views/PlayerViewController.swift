@@ -21,7 +21,7 @@ class PlayerViewController: ViewController {
     @IBOutlet weak var skipButton: UIButton!
     
     var queueResults: [SongModel] = []
-
+    var doneYet: Bool = false
     
     var renderedSong: SongModel?
     var currentSong: SongModel? {
@@ -105,22 +105,18 @@ class PlayerViewController: ViewController {
         }
     }
     
-    @objc func proceedNextSong() {
-        if let player = MediaPlayer.shared.player {
-            if let state = player.playbackState {
-                if state.position == 0 {
-                    goToNextSong(status: 2)
-                }
-            }
-        }
-    }
-    
     @objc func updateCurrentDuration() -> Void {
         if let player = MediaPlayer.shared.player {
             if let state = player.playbackState {
                 self.durationCurrentLabel.text = state.position.minuteSecondMS
                 if self.currentSong != nil {
                     self.durationSlider.value = Float(Double(state.position) / self.currentSong!.durationInSeconds)
+                    if (self.durationSlider.value == 0) {
+                        goToNextSong(status: 2)
+                        self.doneYet = true
+                    } else {
+                        self.doneYet = false // TODO: Need a better way to determine when a song is done playing.
+                    }
                 }
             }
             if (MediaPlayer.shared.isPlaying) {
@@ -147,15 +143,16 @@ class PlayerViewController: ViewController {
     }
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
-        self.disableNextSongTimer()
+        self.doneYet = true
         goToNextSong(status: 3)
     }
     
     func goToNextSong(status: Int) {
-        if (MediaPlayer.shared.currentSong != nil && MediaPlayer.shared.currentSong!.id != nil) {
+        if (self.doneYet && MediaPlayer.shared.currentSong != nil && MediaPlayer.shared.currentSong!.id != nil) {
             SonqAPI.putQueue(song: MediaPlayer.shared.currentSong!, status: status)
                 .done { value -> Void in
                     self.refreshQueue(play: true)
+                    self.doneYet = false
                 }
                 .catch { error in
                     print(error.localizedDescription)
@@ -169,21 +166,18 @@ class PlayerViewController: ViewController {
             self.playPauseButton.setImage(
                 UIImage(named: "play-button"), for: UIControl.State.normal)
             self.disableTimer()
-            self.disableNextSongTimer()
         } else {
             if MediaPlayer.shared.currentSong != nil {
                 MediaPlayer.shared.resume()
                 self.playPauseButton.setImage(
                     UIImage(named: "pause-button"), for: UIControl.State.normal)
                 self.enableTimer()
-                self.enableNextSongTimer()
             } else if self.queueResults.count > 0  {
                 let nextUp = self.queueResults[0]
                 MediaPlayer.shared.play(song: nextUp)
                 self.playPauseButton.setImage(
                     UIImage(named: "pause-button"), for: UIControl.State.normal)
                 self.enableTimer()
-                self.enableNextSongTimer()
                 DispatchQueue.main.async {
                     self.renderSong(nextUp)
                 }
@@ -219,28 +213,10 @@ class PlayerViewController: ViewController {
         self.renderedSong = nil
     }
     
-    func enableNextSongTimer() {
-        if self.nextSongTimer == nil {
-            self.nextSongTimer = Timer.scheduledTimer(
-                timeInterval: 0.5,
-                target: self,
-                selector: #selector(self.proceedNextSong),
-                userInfo: nil,
-                repeats: true)
-        }
-    }
-    
-    func disableNextSongTimer() {
-        if self.nextSongTimer != nil {
-            self.nextSongTimer!.invalidate()
-            self.nextSongTimer = nil
-        }
-    }
-    
     func disableTimer() {
         if self.timer != nil {
-            self.timer!.invalidate()
-            self.timer = nil
+//            self.timer!.invalidate()
+//            self.timer = nil
         }
     }
     

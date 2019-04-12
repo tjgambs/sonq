@@ -86,6 +86,13 @@ class PlayerViewController: ViewController {
     }
     
     @objc func refreshQueue(play: Bool = false) {
+        if Globals.partyId == nil {
+            if (self.queueTimer != nil) {
+                self.queueTimer!.invalidate()
+                self.queueTimer = nil
+            }
+            return
+        }
         SonqAPI.getQueue()
             .done { value -> Void in
                 let json = JSON(value)
@@ -106,6 +113,13 @@ class PlayerViewController: ViewController {
     }
     
     @objc func updateCurrentDuration() -> Void {
+        if Globals.partyId == nil {
+            if (self.timer != nil) {
+                self.timer!.invalidate()
+                self.timer = nil
+            }
+            return
+        }
         if let player = MediaPlayer.shared.player {
             if let state = player.playbackState {
                 self.durationCurrentLabel.text = state.position.minuteSecondMS

@@ -147,6 +147,7 @@ class PlayerViewController: ViewController {
     }
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
+        self.disableNextSongTimer()
         goToNextSong(status: 3)
     }
     
